@@ -23,7 +23,7 @@ import com.avantiparking.repository.Headquarter_Repository;
 
 
 @RestController
-@RequestMapping("/api/headquarter")
+@RequestMapping("/api")
 public class Headquarter_Controller {
 	@Autowired
 	private Headquarter_Repository headquarter_repository;
