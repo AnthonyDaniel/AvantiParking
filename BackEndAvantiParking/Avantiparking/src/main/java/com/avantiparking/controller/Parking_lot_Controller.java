@@ -26,7 +26,7 @@ import com.avantiparking.repository.Parking_lot_Repository;
 public class Parking_lot_Controller {
 	@Autowired
 	public Parking_lot_Repository parking_lot_repository;
-	
+
 	@GetMapping("/parking_lot")
 	public List<Parking_lot> getAllParking_lot() {
 		return parking_lot_repository.findAll();
@@ -34,7 +34,7 @@ public class Parking_lot_Controller {
 
 	@GetMapping("/parking_lot/{id}")
 	public ResponseEntity<Parking_lot> getParking_lotById(@PathVariable(value = "id") Long id_parking_lot)
-			throws Resource_Not_Found{
+			throws Resource_Not_Found {
 		Parking_lot parking_lot = parking_lot_repository.findById(id_parking_lot)
 				.orElseThrow(() -> new Resource_Not_Found("Id_parking_lot not found for this id :: " + id_parking_lot));
 		return ResponseEntity.ok().body(parking_lot);
@@ -69,7 +69,3 @@ public class Parking_lot_Controller {
 		return response;
 	}
 }
-
-
-
-
