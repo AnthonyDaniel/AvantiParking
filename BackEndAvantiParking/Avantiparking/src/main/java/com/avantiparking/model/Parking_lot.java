@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "parking_lot")
 public class Parking_lot {
@@ -33,7 +31,6 @@ public class Parking_lot {
 			this.headquarter = headquarter;
 		}
 		
-
 		public Long getId_parking_lot() {
 			return id_parking_lot;
 		}
