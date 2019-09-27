@@ -71,14 +71,14 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`space` (
   `name` VARCHAR(45) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   `state` TINYINT NOT NULL,
-  `user` VARCHAR(45),
+  `user` INT,
   `zone` INT NOT NULL,
   PRIMARY KEY (`id_space`),
-  INDEX `fk_space_zone1_idx` (`zone` ASC) ,
+  INDEX `fk_space_zone1_idx` (`zone` ASC),
   CONSTRAINT `fk_space_zone1`
     FOREIGN KEY (`zone`)
     REFERENCES `avantiparking`.`zone` (`id_zone`)
-    ON DELETE NO ACTION
+	ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -87,17 +87,21 @@ ENGINE = InnoDB;
 -- Table `avantiparking`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `avantiparking`.`user` (
-  `user_name` VARCHAR(45) NOT NULL,
+  `id` INT AUTO_INCREMENT NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
   `role` TINYINT NOT NULL,
   `registered` DATE NOT NULL,
+  `provider` varchar(255) NOT NULL,
+  `provider_id` varchar(255) DEFAULT NULL,
   `headquarter` INT,
-  PRIMARY KEY (`user_name`),
+  PRIMARY KEY (`id`),
     INDEX `fk_user_headquarter_idx` (`headquarter` ASC) ,
   CONSTRAINT `fk_user_headquarter`
     FOREIGN KEY (`headquarter`)
     REFERENCES `avantiparking`.`headquarter` (`id_headquarter`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `avantiparking`.`vehicle`
@@ -106,12 +110,12 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`vehicle` (
   `license_plate` VARCHAR(45) NOT NULL,
   `brand` VARCHAR(45) NOT NULL,
   `model` VARCHAR(45) NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
+  `user` INT NOT NULL,
   PRIMARY KEY (`license_plate`),
   INDEX `fk_vehicle_user1_idx` (`user` ASC) ,
   CONSTRAINT `fk_vehicle_user1`
     FOREIGN KEY (`user`)
-    REFERENCES `avantiparking`.`user` (`user_name`)
+    REFERENCES `avantiparking`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -126,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`reserve` (
   `start_time` TIME NOT NULL,
   `end_time` TIME NOT NULL,
   `created_at` DATE NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
+  `user` INT NOT NULL,
   `vehicle` VARCHAR(45) NULL,
   `space` INT NOT NULL,
   PRIMARY KEY (`id_reservation`),
@@ -135,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`reserve` (
   INDEX `fk_reserve_space1_idx` (`space` ASC) ,
   CONSTRAINT `fk_reserve_user1`
     FOREIGN KEY (`user`)
-    REFERENCES `avantiparking`.`user` (`user_name`)
+    REFERENCES `avantiparking`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_reserve_vehicle1`
