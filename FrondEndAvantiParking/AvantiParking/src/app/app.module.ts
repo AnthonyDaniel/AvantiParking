@@ -11,6 +11,7 @@ import { HeadquarterComponent } from './components/administration/headquarter/he
 import { ParkingLotComponent } from './components/administration/parking-lot/parking-lot.component';
 import { ZoneComponent } from './components/administration/zone/zone.component';
 import { SpaceComponent } from './components/administration/space/space.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SpaceComponent } from './components/administration/space/space.componen
     ParkingLotComponent,
     ZoneComponent,
     SpaceComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
