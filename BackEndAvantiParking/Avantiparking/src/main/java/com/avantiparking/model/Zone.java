@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,14 +18,15 @@ public class Zone {
 	private Long id_zone;
 	@Column(name = "name", nullable = false)
 	private String name;
-	@Column(name = "parking_lot", nullable = false)
-	private int parking_lot;
+	@ManyToOne
+	@JoinColumn(name="parking_lot")
+	private Parking_lot parking_lot;
 
 	public Zone() {
 
 	}
 
-	public Zone(String name, int parking_lot) {
+	public Zone(String name, Parking_lot parking_lot) {
 		this.name = name;
 		this.parking_lot = parking_lot;
 	}
@@ -44,11 +47,11 @@ public class Zone {
 		this.name = name;
 	}
 
-	public int getParking_lot() {
+	public Parking_lot getParking_lot() {
 		return parking_lot;
 	}
 
-	public void setParking_lot(int parking_lot) {
+	public void setParking_lot(Parking_lot parking_lot) {
 		this.parking_lot = parking_lot;
 	}
 
