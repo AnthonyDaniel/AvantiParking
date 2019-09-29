@@ -37,10 +37,10 @@ public class Zone_Controller {
 	}
 
 	@GetMapping("/zone/{id}")
-	public ResponseEntity<Zone> getZone_lotById(@PathVariable(value = "id") Long id_Zone)
+	public ResponseEntity<Zone> getZoneById(@PathVariable(value = "id") Long id_Zone)
 			throws Resource_Not_Found {
 		Zone zone = zone_repository.findById(id_Zone)
-				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id :: " + id_Zone));
+				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id : " + id_Zone));
 		return ResponseEntity.ok().body(zone);
 	}
 
@@ -53,7 +53,7 @@ public class Zone_Controller {
 	public ResponseEntity<Zone> updateZone(@PathVariable(value = "id") Long id_Zone,
 			@Valid @RequestBody Zone _zone) throws Resource_Not_Found {
 		Zone zone = zone_repository.findById(id_Zone)
-				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id :: " + id_Zone));
+				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id : " + id_Zone));
 
 		zone.setName(_zone.getName());
 		zone.setParking_lot(_zone.getParking_lot());
