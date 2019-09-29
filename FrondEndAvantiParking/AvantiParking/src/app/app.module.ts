@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+
 import { HeadquarterComponent } from './components/administration/headquarter/headquarter.component';
 import { ParkingLotComponent } from './components/administration/parking-lot/parking-lot.component';
 import { ZoneComponent } from './components/administration/zone/zone.component';
