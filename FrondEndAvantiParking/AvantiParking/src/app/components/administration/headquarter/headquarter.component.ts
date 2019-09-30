@@ -8,18 +8,22 @@ import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.
 })
 export class HeadquarterComponent implements OnInit {
 
-  constructor(private headquarter:ServiceHeadquarterService) { }
+  constructor(public headquarter:ServiceHeadquarterService) { 
+    this.headquarter.listHeadquarter().subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   filterHeadquarter;
   public headquarters;
   
   ngOnInit() {
-    this.headquarter.listHeadquarter().subscribe(
-      data => {
-        this.headquarters = data;
-      },
-      error => console.log(error)
-    );
+
   }
 
 }
