@@ -11,9 +11,11 @@ const routes: Routes = [
   {path: 'parkinlot', component: ParkingLotComponent},
   {path: 'space', component: SpaceComponent},
   {path: 'zone',component: ZoneComponent},
-
+  { path: 'administration/headquarter', component: HeadquarterComponent},
+  { path: 'administration/parking-lot', component: ParkingLotComponent},
+  { path: 'administration/space', component: SpaceComponent},
+  { path: 'administration/zone', component: ZoneComponent},
   {path: '**', component: ErrorComponent}
-];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

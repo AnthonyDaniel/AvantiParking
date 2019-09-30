@@ -13,7 +13,10 @@ import { ParkingLotComponent } from './components/administration/parking-lot/par
 import { ZoneComponent } from './components/administration/zone/zone.component';
 import { SpaceComponent } from './components/administration/space/space.component';
 import { ErrorComponent } from './components/error/error.component';
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { PrincipalComponent } from './components/administration/principal/principal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +24,9 @@ import { ErrorComponent } from './components/error/error.component';
     ParkingLotComponent,
     ZoneComponent,
     SpaceComponent,
+    NavbarComponent,
+    FooterComponent,
+    PrincipalComponent,
     ErrorComponent,
   ],
   imports: [
@@ -30,7 +36,8 @@ import { ErrorComponent } from './components/error/error.component';
     NgbModalModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
