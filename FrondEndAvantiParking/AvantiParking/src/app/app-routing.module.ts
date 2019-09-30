@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'administration/space', component: SpaceComponent},
   { path: 'administration/zone', component: ZoneComponent},
   {path: '**', component: ErrorComponent}
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
