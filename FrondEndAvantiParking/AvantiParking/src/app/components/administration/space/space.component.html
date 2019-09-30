@@ -1,20 +1,23 @@
-<section id="jumbotronHeader" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
-    <h3 class="font-weight-bold"><i class="fas fa-car"></i><i class="fas fa-address-book"></i> SPACE ADMINISTRATION</h3>
+<br>
+<div class="container">
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+    <h3 class="font-weight-bold"> SPACE ADMINISTRATION</h3>
 </section>
+</div>
 <div class="container">
 <div class="row ">
       <div class="col-sm-2 col-md-4 mt-3">
                   <input class="form-control" type="search" placeholder="Search" aria-label="Search">
     </div>
       <div class="col-sm-2 col-md-2 mt-3">
-                <button class="btn btn-outline-secondary" id="btn-search">
+                <button class="btn-search btn btn-outline-secondary" >
                     <i class="fas fa-search"></i>
                 </button>
     </div>
     <div class="col-sm-8 col-md-6 mt-3">
         <div>
             <!--Modal button of add space-->
-            <button class="btn btn-block btn-outline-secondary text-uppercase" id="btn-add" 
+            <button class="btnAdd btn btn-block btn-outline-secondary text-uppercase"  
             data-toggle="modal" data-target="#addSpace">
                 <i class="fas fa-plus-square"></i> Add Zone
             </button>
@@ -39,9 +42,9 @@
             </select>
     </div>
     
-    <table class="table table-striped table-responsive-lg mt-5 ml-2 mr-2">
-          <thead>
-            <tr class="text-light " id="table">
+    <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
+          <thead class="tableThead thead">
+            <tr>
               <th scope="col">ID</th>
               <th scope="col">Space Name</th>
               <th scope="col">Type</th>
@@ -60,48 +63,12 @@
               <td>Unknown</td>
               <td>A</td>
               <td>
-                  <button class="btn btn-block btn-outline-primary" id="btn-edit"
+                  <button class="btn  btn-edit btn-block btn-outline-primary" id="btn-edit"
                   data-toggle="modal" data-target="#editSpace">
                       <i class="fas fa-angle-double-right"></i>
                     Editar
                   </button>
-                  <button class="btn btn-block btn-outline-danger" id="btn-delete">
-                      <i class="fas fa-trash-alt"></i>
-                        Eliminar
-                      </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>02</td>
-              <td>Vehicle</td>
-              <td>AVIABLE</td>
-              <td>Unknown</td>
-              <td>A</td>
-              <td>
-                  <button class="btn btn-block btn-outline-primary" id="btn-edit">
-                      <i class="fas fa-angle-double-right"></i>
-                    Editar
-                  </button>
-                  <button class="btn btn-block btn-outline-danger" id="btn-delete">
-                      <i class="fas fa-trash-alt"></i>
-                        Eliminar
-                      </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>03</td>
-              <td>Vehicle</td>
-              <td>AVIABLE</td>
-              <td>Unknown</td>
-              <td>A</td>
-              <td>
-                  <button class="btn btn-block btn-outline-primary" id="btn-edit">
-                      <i class="fas fa-angle-double-right"></i>
-                    Editar
-                  </button>
-                  <button class="btn btn-block btn-outline-danger" id="btn-delete">
+                  <button class="btn btn-delete btn-block btn-outline-danger" id="btn-delete">
                       <i class="fas fa-trash-alt"></i>
                         Eliminar
                       </button>
@@ -115,7 +82,7 @@
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                            <section id="jumbotronHeaderModal" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+                            <section  class="jumbotronHeaderModal col-md-12 mb-4 jumbotron  justify-content-center text-center" >
                                     <h3 class="modal-title"> <i class="fas fa-plus-square"></i> ADD SPACE</h3>
                             </section>
                       </div>
@@ -157,7 +124,7 @@
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
-                                        <button type="submit" class="btn btn-block btn-outline-secondary" id="btnAddSpace"><i class="fas fa-plus-square"></i> Add</button>
+                                        <button type="submit" class="btnAddSpace btn btn-block btn-outline-secondary" ><i class="fas fa-plus-square"></i> Add</button>
                                 </div>
                         </form>
                       </div>
@@ -169,7 +136,7 @@
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                            <section id="jumbotronHeaderModal" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+                            <section  class="jumbotronHeaderModal col-md-12 mb-4 jumbotron  justify-content-center text-center" >
                                     <h3 class="modal-title"> <i class="fas fa-edit"></i> EDIT SPACE</h3>
                             </section>
                       </div>
@@ -211,7 +178,7 @@
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6 col-sm-2">
-                                        <button type="submit" class="btn btn-block btn-outline-secondary" id="btnEditSpace"><i class="fas fa-plus-square"></i> Edit</button>
+                                        <button type="submit" class="btnEditSpace btn btn-block btn-outline-secondary" ><i class="fas fa-plus-square"></i> Edit</button>
                                 </div>
                         </form>
                       </div>

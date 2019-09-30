@@ -1,58 +1,20 @@
-
-
-
-/*jumboytons*/
-#jumbotronHeader{
-
-	text-align: left;	
-	color: #EF4023;/*color de letra*/
-	background-color: #DBDADA;
-}
-#jumbotronHeaderModal{
-    background-color: #2F2D46;
-    color: #EF4023;/*color de letra*/
-}
-
-/*botones*/
-#btn-add{
-	border-radius: 12px;
-}
-
-#btn-add:hover{
-	color: white;
-	background-color: #454685;
-}
-#btnAddSpace:hover{
-    background-color: #89CA8E;
-}
-#btnEditSpace:hover{
-	background-color: #00ACCF;
+.btnAddSpace{
+    background-color: #fff;
+    color: #89CA8E;
+    border-color: #89CA8E;
     
 }
-#btn-search{
-	border-radius: 12px;
-}
-#btn-search:hover{
-	color: white;
-	background-color: #454685;
-
-}
-#btn-edit{
-	border-radius: 12px;
-}
-#btn-edit:hover{
-	color: white;
-	background-color: #00ACCF;
-}
-#btn-delete{
-	border-radius: 12px;
-}
-#btn-delete:hover{
-	color: white;
-	background-color: #EF6925;
+.btnEditSpace{
+	background-color: #fff;
+    color: #00ACCF;
+    border-color: #00ACCF;
 }
 
-/*tablas*/
-#table{
-	background-color: #2F2D46;
+.btnAddSpace:hover{
+    color: white;
+    background-color: #89CA8E;
+}
+.btnEditSpace:hover{
+    color: white;
+	background-color: #00ACCF; 
 }

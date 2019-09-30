@@ -1,48 +1,49 @@
-<section id="jumbotronHeader" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
-        <h3 class="font-weight-bold"><i class="fas fa-square"></i> ZONE ADMINISTRATION</h3>
-</section>
+<br>
 <div class="container">
-    <div class="row">
-            <div class="col-sm-2 col-md-4 mt-3">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </div>
-        <div class="col-sm-2 col-md-2 mt-3">
-                  <button class="btn btn-outline-secondary" id="btn-search">
-                      <i class="fas fa-search"></i>
-                  </button>
-      </div>
-      <div class="col-sm-8 col-md-6 mt-3">
-          <div>
-              <!--Modal button of add space-->
-              <button class="btn btn-block btn-outline-secondary text-uppercase" id="btn-add" 
-              data-toggle="modal" data-target="#addZone">
-                  <i class="fas fa-plus-square"></i> Add Space
-              </button>
-          </div>	
-      </div>
-      <div class="col-md-6 mt-2">
-          <label>Headquarters</label>
-              <select class="custom-select">
-                  <option selected>Choose...</option>
-                  <option value="1">San José</option>
-                  <option value="2">Liberia</option>
-                  <option value="3">peru</option>
-              </select>
-      </div>
-      <div class="col-md-6 mt-2">	
-              <label>Parking Lot</label>
-              <select class="custom-select">
-                  <option selected>Choose...</option>
-                  <option value="1">San José</option>
-                  <option value="2">Liberia</option>
-                  <option value="3">peru</option>
-              </select>
-      </div>
-    </div>
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+    <h3 class="font-weight-bold"> ZONE ADMINISTRATION</h3>
+</section>
+</div>
+<div class="container">
+        <div class="row justify-content-end">
+                <div class="col-sm-2 col-md-4 mt-3">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </div>
+                <div class="col-sm-2 col-md-2 mt-3">
+                        <button class="btn-search btn btn-outline-secondary">
+                                <i class="fas fa-search"></i>
+                        </button>
+                </div>
+        <div class="col-sm-8 col-md-6 mt-3">
+                <!--Modal button of add space-->
+                <button class="btnAdd btn btn-block btn-outline-secondary text-uppercase"  
+                data-toggle="modal" data-target="#addZone">
+                        <i class="fas fa-plus-square"></i> Add Space
+                </button>	
+        </div>
+                <div class="col-md-6 mt-2">
+                        <label>Headquarters</label>
+                        <select class="custom-select">
+                                <option selected>Choose...</option>
+                                <option value="1">San José</option>
+                                <option value="2">Liberia</option>
+                                <option value="3">peru</option>
+                        </select>
+                </div>
+                <div class="col-md-6 mt-2">	
+                        <label>Parking Lot</label>
+                        <select class="custom-select">
+                                <option selected>Choose...</option>
+                                <option value="1">San José</option>
+                                <option value="2">Liberia</option>
+                                <option value="3">peru</option>
+                        </select>
+                </div>
+        </div>
 
-    <table class="table table-striped table-responsive-lg mt-5 ml-2 mr-2">
-            <thead>
-              <tr class="text-light " id="table">
+    <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
+            <thead class="tableThead thead">
+              <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Zone Name</th>
                 <th scope="col">Parking Lot</th>
@@ -55,47 +56,18 @@
                 <td>A</td>
                 <td>San José</td>
                 <td>
-                    <button class="btn btn-block btn-outline-primary" id="btn-edit"
+                    <button class="btn btn-edit btn-block btn-outline-primary" 
                     data-toggle="modal" data-target="#editZone">
                         <i class="fas fa-angle-double-right"></i>
                       Editar
                     </button>
-                    <button class="btn btn-block btn-outline-danger" id="btn-delete">
+                    <button class="btn btn-delete btn-block btn-outline-danger" >
                         <i class="fas fa-trash-alt"></i>
                           Eliminar
                         </button>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>B</td>
-                <td>San José</td>
-                <td>
-                    <button class="btn btn-block btn-outline-primary" id="btn-edit">
-                        <i class="fas fa-angle-double-right"></i>
-                      Editar
-                    </button>
-                    <button class="btn btn-block btn-outline-danger" id="btn-delete">
-                        <i class="fas fa-trash-alt"></i>
-                          Eliminar
-                        </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>A</td>
-                <td>Liberia</td>
-                <td>
-                    <button class="btn btn-block btn-outline-primary" id="btn-edit">
-                        <i class="fas fa-angle-double-right"></i>
-                      Editar
-                    </button>
-                    <button class="btn btn-block btn-outline-danger" id="btn-delete">
-                        <i class="fas fa-trash-alt"></i>
-                          Eliminar
-                        </button>
-                </td>
-              </tr>
+              
   
             </tbody>
       </table>
@@ -104,7 +76,7 @@
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
-                            <section id="jumbotronHeaderModal" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+                            <section  class="jumbotronHeaderModal col-md-12 mb-4 jumbotron  justify-content-center text-center" >
                                     <h3 class="modal-title"> <i class="fas fa-plus-square"></i> ADD ZONE</h3>
                             </section>
                     </div>
@@ -126,7 +98,7 @@
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
-                                        <button type="submit" class="btn btn-block btn-outline-secondary" id="btnAddZone"><i class="fas fa-plus-square"></i> Add</button>
+                                        <button type="submit" class="btnAddZone btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> Add</button>
                                 </div>
                         </form>
                     </div>
@@ -139,8 +111,8 @@
         <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                        <section id="jumbotronHeaderModal" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
-                                <h3 class="modal-title"> <i class="fas fa-edit"></i> EDIT SPACE</h3>
+                        <section  class="jumbotronHeaderModal col-md-12 pb-5 pt-5 jumbotron  justify-content-center text-center ">
+                                <h3 class="modal-title"> <i class="fas fa-edit"></i> EDIT ZONE</h3>
                         </section>
                   </div>
                   <div class="modal-body">
@@ -161,7 +133,7 @@
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
-                                        <button type="submit" class="btn btn-block btn-outline-secondary" id="btnEditZone"><i class="fas fa-plus-square"></i> Add</button>
+                                        <button type="submit" class="btnEditZone btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> Add</button>
                                 </div>
                         </form>
                   </div>
