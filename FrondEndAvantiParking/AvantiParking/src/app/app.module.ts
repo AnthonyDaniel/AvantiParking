@@ -14,7 +14,8 @@ import { SpaceComponent } from './components/administration/space/space.componen
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { PrincipalComponent } from './components/principal/principal.component';
+import { PrincipalComponent } from './components/administration/principal/principal.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PrincipalComponent } from './components/principal/principal.component';
     SpaceComponent,
     NavbarComponent,
     FooterComponent,
-    PrincipalComponent,
+    PrincipalComponent
+   
   ],
   imports: [
     BrowserModule,
