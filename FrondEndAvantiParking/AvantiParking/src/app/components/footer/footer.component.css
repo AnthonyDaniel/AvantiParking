@@ -1,0 +1,15 @@
+._bottom {
+    background-color: #2F2D46;
+    height: 50px;
+}
+.text-center {
+    color: white !important;
+}
+.foot{
+    margin-top: 20px;
+}
+#text{
+    font-family: "Open Sans"; 
+    font-style: normal; 
+    font-weight: 800; 
+}

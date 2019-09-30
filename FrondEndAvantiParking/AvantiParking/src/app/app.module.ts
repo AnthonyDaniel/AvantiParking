@@ -11,6 +11,10 @@ import { HeadquarterComponent } from './components/administration/headquarter/he
 import { ParkingLotComponent } from './components/administration/parking-lot/parking-lot.component';
 import { ZoneComponent } from './components/administration/zone/zone.component';
 import { SpaceComponent } from './components/administration/space/space.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,9 @@ import { SpaceComponent } from './components/administration/space/space.componen
     ParkingLotComponent,
     ZoneComponent,
     SpaceComponent,
+    NavbarComponent,
+    FooterComponent,
+    PrincipalComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,8 @@ import { SpaceComponent } from './components/administration/space/space.componen
     NgbModalModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

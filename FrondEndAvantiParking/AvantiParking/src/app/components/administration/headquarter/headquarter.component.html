@@ -1,1 +1,47 @@
-<p>headquarter works!</p>
+<br>
+<div class="container">
+  <section id="jumbotronHeader" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+    <h3 class="font-weight-bold" id="text"> HEADQUARTER ADMINISTRATION</h3>
+</section>
+</div>
+
+<div class="container">
+
+  <div class="row justify-content-end">
+    <div class="col-sm-8 col-md-4 mt-3 ">
+      <input type="text" class="form-control" id="search" placeholder="Search" value="" required="">
+    </div>
+    <div class="col-sm-8 col-md-6 mt-3 ">
+      <button type="button" class="btn btn-primary" id="btnAdd" data-toggle="modal" data-target="#exampleModal">
+        <strong id="text">NEW HEADQUARTER</strong>
+      </button>
+    </div>
+  </div>
+
+  <br>
+
+  <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
+    <thead class="thead" id="tHead">
+      <tr>
+        <th scope="col" id="text">ID</th>
+        <th scope="col" id="text">NAME</th>
+        <th scope="col" id="text">COUNTRY</th>
+        <th scope="col" id="text">CITY</th>
+        <th scope="col" id="text">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="text" class="form-control"></td>
+        <td><input type="text" class="form-control"></td>
+        <td><input type="text" class="form-control"></td>
+        <td><input type="text" class="form-control"></td>
+        <td>
+          <button class="btn  btn-outline-primary" id="btn-edit"><strong id="text">EDIT</strong></button>
+          <button class="btn btn-outline-danger" id="btn-delete"><strong id="text">DELETE</strong></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

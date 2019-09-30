@@ -1,0 +1,22 @@
+#logo {
+    width: 95px;
+    height: auto;
+    margin-top: auto;
+    float: left;
+}
+.navbarcolor {
+    background-color: #2F2D46;
+    
+}
+.margin {
+    margin-bottom: 50px;
+}
+#link{
+    color: #fff;
+    font-family: "Open Sans"; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 800; 
+    line-height: 20px; 
+}
