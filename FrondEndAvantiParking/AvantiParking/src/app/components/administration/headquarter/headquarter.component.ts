@@ -27,8 +27,12 @@ export class HeadquarterComponent implements OnInit {
   public headquarters;
 
   ngOnInit() {
+    this.listHeadquarter();
+  }
+  listHeadquarter(){
     this.headquarter.listHeadquarter().subscribe(
       data => {
+        this.headquarters = data;
         console.log(data);
       },
       error => {
@@ -36,7 +40,6 @@ export class HeadquarterComponent implements OnInit {
       }
     );
   }
-
   onSubmit() {
     this.headquarter.addHeadquarter(this.form).subscribe(
       data => {
