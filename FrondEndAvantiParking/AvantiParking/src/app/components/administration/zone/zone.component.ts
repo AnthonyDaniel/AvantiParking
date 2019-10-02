@@ -11,17 +11,18 @@ import { Zone } from 'src/app/models/zone';
 export class ZoneComponent implements OnInit {
 
   public zone: Zone;
-  public zoneService;
+  public zones;
   constructor(public _zone:ServiceZoneService) { }
 
+  private tempZone:any;
+
   ngOnInit() {
-    this.getZone();
+    this.ListZone();
   }
-  getZone(){
+  ListZone(){
     this._zone.listZone().subscribe(
       data=>{
-        this.zoneService = data;
-        console.log(data)
+        this.zones = data;
       },
       error => console.log(error)
     )
