@@ -12,7 +12,7 @@
       <input type="text" class="form-control" placeholder="Search" value="search" required="">
     </div>
     <div class="col-sm-8 col-md-6 mt-3 ">
-      <button type="button" class="btnAdd btn btn-primary"  data-toggle="modal" data-target="#exampleModal">
+      <button type="button" class="btnAdd btn btn-primary"  data-toggle="modal" data-target="#addHeadquarter">
         <strong>NEW HEADQUARTER</strong>
       </button>
     </div>
@@ -31,17 +31,86 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr *ngFor="let headquarter of headquarters ">
+        <td > {{headquarter.id}}</td>
+        <td > {{headquarter.name}}</td>
+        <td > {{headquarter.country}}</td>
+        <td > {{headquarter.city}}</td>
         <td>
-          <button class="btn-edit btn btn-block btn-outline-primary" id=""><strong>EDIT</strong></button>
-          <button class="btn-delete btn btn-block btn-outline-danger" id=""><strong>DELETE</strong></button>
+          <button class="btn-edit btn btn-block btn-outline-primary" id="" data-toggle="modal" data-target="#editHeadquarter"><strong>EDIT</strong></button>
+          <button class="btn-delete btn btn-block btn-outline-danger" id="" data-toggle="modal" data-target="#deleteHeadquarter"><strong>DELETE</strong></button>
         </td>
       </tr>
     </tbody>
   </table>
 
+ 
+<!--Modal add headquarter-->
+<div class="modal" id="addHeadquarter" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " >ADD HEADQUARTER</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #registerVehicleForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
+                <div class="form-group col-md-12">
+                        <label>NAME</label>
+                        <input type="text"  class="form-control" required >
+                </div>
+                <div class="form-group col-md-12">
+                        <label>COUNTRY</label>
+                        <input type="text"  class="form-control" required >
+                </div>
+                <div class="form-group col-md-12">
+                  <label>CITY</label>
+                  <input type="text"  class="form-control" required >
+                </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-6">
+                <button type="submit" class="btnAdd btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> ADD</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--Modal edit headquarter-->
+<div class="modal fade" id="editHeadquarter" tabindex="-1" role="dialog" aria-labelledby="editHeadquarter" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+                  <section  class="jumbotronHeaderModal col-md-12 pb-5 pt-5 jumbotron  justify-content-center text-center ">
+                          <h3 class="modal-title"> <i class="fas fa-edit"></i> EDIT HEADQUARTER</h3>
+                  </section>
+            </div>
+            <div class="modal-body">
+                  <form class="form-row justify-content-sm-center">
+                          <div class="form-group col-md-12">
+                                  <label>Name</label>
+                                  <input type="text"  class="form-control" required >
+                          </div>
+                          <div class="form-group col-md-12">
+                                   <label>COUNTRY</label>
+                                    <input type="text"  class="form-control" required >
+                          </div>
+                          <div class="form-group col-md-12">
+                                  <label>CITY</label>
+                                   <input type="text"  class="form-control" required >
+                         </div>
+                          <div class="col-md-6">
+                                  <button type="submit" class="btnEditZone btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> MODIFY</button>
+                          </div>
+                  </form>
+            </div>
+          </div>
+  </div>
+</div>
 </div>
