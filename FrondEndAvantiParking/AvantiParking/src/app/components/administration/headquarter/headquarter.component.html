@@ -56,24 +56,24 @@
           </button>
         </div>
         <div class="modal-body">
-            <form #registerVehicleForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
+            <form #addHeadquarterForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
                 <div class="form-group col-md-12">
                         <label>NAME</label>
-                        <input type="text"  class="form-control" required >
+                        <input type="text"  class="form-control"  name="name" [(ngModel)]="form.name"  required >
                 </div>
                 <div class="form-group col-md-12">
                         <label>COUNTRY</label>
-                        <input type="text"  class="form-control" required >
+                        <input type="text"  class="form-control" name="country" [(ngModel)]="form.country" required >
                 </div>
                 <div class="form-group col-md-12">
                   <label>CITY</label>
-                  <input type="text"  class="form-control" required >
+                  <input type="text"  class="form-control" name="city" [(ngModel)]="form.city"  required >
                 </div>
         </form>
         </div>
         <div class="modal-footer">
             <div class="col-md-6">
-                <button type="submit" class="btnAdd btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> ADD</button>
+                <button type="submit" class="btnAdd btn btn-block btn-outline-secondary" [disabled]="!addHeadquarterForm.valid"> ADD</button>
             </div>
         </div>
       </div>
@@ -92,21 +92,21 @@
                   </section>
             </div>
             <div class="modal-body">
-                  <form class="form-row justify-content-sm-center">
+                  <form #editHeadquarterForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
                           <div class="form-group col-md-12">
                                   <label>Name</label>
-                                  <input type="text"  class="form-control" required >
+                                  <input type="text"  class="form-control"  name="name" [(ngModel)]="form.name" required >
                           </div>
                           <div class="form-group col-md-12">
                                    <label>COUNTRY</label>
-                                    <input type="text"  class="form-control" required >
+                                    <input type="text"  class="form-control"  name="country" [(ngModel)]="form.country" required >
                           </div>
                           <div class="form-group col-md-12">
                                   <label>CITY</label>
-                                   <input type="text"  class="form-control" required >
+                                   <input type="text"  class="form-control"  name="city" [(ngModel)]="form.city"  required >
                          </div>
                           <div class="col-md-6">
-                                  <button type="submit" class="btnEditZone btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> MODIFY</button>
+                                  <button type="submit" class="btnEditZone btn btn-block btn-outline-secondary"  [disabled]="!editHeadquarterForm.valid"><i class="fas fa-plus-square"></i> MODIFY</button>
                           </div>
                   </form>
             </div>

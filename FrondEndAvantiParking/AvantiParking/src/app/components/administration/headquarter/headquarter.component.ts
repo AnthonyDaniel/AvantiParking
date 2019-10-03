@@ -15,9 +15,9 @@ export class HeadquarterComponent implements OnInit {
 
   public form = {
     id_headquarter: null,
-    city: null,
     name: null,
     country: null,
+    city: null,
   };
   public error: String;
   public success: String;
@@ -44,7 +44,6 @@ export class HeadquarterComponent implements OnInit {
     this.headquarter.addHeadquarter(this.form).subscribe(
       data => {
         this.responseSuccess(data);
-        this.form.id_headquarter = null;
         this.form.name = null;
         this.form.country = null;
         this.form.city = null;
