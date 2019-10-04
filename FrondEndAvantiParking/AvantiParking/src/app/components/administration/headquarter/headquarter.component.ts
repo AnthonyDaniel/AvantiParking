@@ -52,11 +52,11 @@ export class HeadquarterComponent implements OnInit {
     );
 
   }
-  delete(headquarter: Headquarter) {
-    headquarter.id_headquarter = this.form.id_headquarter;
+  delete(headquarter) {
+  
     this.headquarter.deleteHeadquarter(headquarter).subscribe(
       data => {
-        this.headquarters = this.headquarters.filter(h => h !== headquarter);
+   
         this.responseSuccess(data),
           error => this.responseError(error)
       },
