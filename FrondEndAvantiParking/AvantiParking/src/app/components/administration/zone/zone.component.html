@@ -18,30 +18,30 @@
                 <!--Modal button of add space-->
                 <button class="btnAdd btn btn-block btn-outline-secondary text-uppercase"  
                 data-toggle="modal" data-target="#addZone">
-                        <i class="fas fa-plus-square"></i> Add Space
+                        <i class="fas fa-plus-square"></i> Add Zone
                 </button>	
         </div>
                 <div class="col-md-6 mt-2">
                         <label>Headquarters</label>
                         <select class="custom-select">
                                 <option selected>Choose...</option>
-                                <option value="1">San José</option>
-                                <option value="2">Liberia</option>
-                                <option value="3">peru</option>
+                                <option >San José</option>
+                                <option >Liberia</option>
+                                <option >peru</option>
                         </select>
                 </div>
                 <div class="col-md-6 mt-2">	
                         <label>Parking Lot</label>
                         <select class="custom-select">
                                 <option selected>Choose...</option>
-                                <option value="1">San José</option>
-                                <option value="2">Liberia</option>
-                                <option value="3">peru</option>
+                                <option >San José</option>
+                                <option >Liberia</option>
+                                <option >peru</option>
                         </select>
                 </div>
         </div>
 
-    <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
+    <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2 mb-5">
             <thead class="tableThead thead">
               <tr>
                 <th scope="col">ID</th>
@@ -60,7 +60,7 @@
 
                 </td>
                 <td>
-                        {{zone.paking_lot}}
+                        {{zone.parking_lot.name}}
                 </td>
                 <td>
                     <button class="btn btn-edit btn-block btn-outline-primary" 
@@ -68,7 +68,7 @@
                         <i class="fas fa-angle-double-right"></i>
                       Editar
                     </button>
-                    <button class="btn btn-delete btn-block btn-outline-danger" (click)="delete()" >
+                    <button class="btn btn-delete btn-block btn-outline-danger" (click)="delete(zone.id_zone)" >
                         <i class="fas fa-trash-alt"></i>
                           Eliminar
                         </button>
@@ -88,24 +88,24 @@
                             </section>
                     </div>
                     <div class="modal-body">
-                        <form class="form-row justify-content-sm-center">
+                        <form  #addZoneForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
                                 <div class="form-group col-md-12">
                                         <label>Zone Name</label>
-                                        <input type="text"  class="form-control" required >
+                                        <input type="text"  class="form-control" name="name" [(ngModel)]="formZone.name" required >
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>Parking Lot</label>
-                                        <select class="custom-select">
+                                        <select  class="custom-select" name="parking_lot" [(ngModel)]="formZone.parking_lot.id_parking_lot" required>
                                                 <option selected>Choose...</option>
-                                                <option value="1">San José</option>
-                                                <option value="2">Liberia</option>
+                                                <option *ngFor="let parking_lot of parkings" >{{parking_lot.name}}</option>
+                                                
                                         </select>
                                 </div>
                                 <div class="col-md-6">
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
-                                        <button type="submit" class="btnAddZone btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> Add</button>
+                                        <button type="submit" class="btnAddZone btn btn-block btn-outline-secondary" [disabled]="!addZoneForm.valid"><i class="fas fa-plus-square"></i> Add</button>
                                 </div>
                         </form>
                     </div>
