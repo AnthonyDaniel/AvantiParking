@@ -8,9 +8,6 @@ import { ErrorComponent } from './components/error/error.component';
 
 const routes: Routes = [
   {path: '', component: HeadquarterComponent},
-  {path: 'parkinlot', component: ParkingLotComponent},
-  {path: 'space', component: SpaceComponent},
-  {path: 'zone',component: ZoneComponent},
   { path: 'administration/headquarter', component: HeadquarterComponent},
   { path: 'administration/parking-lot', component: ParkingLotComponent},
   { path: 'administration/space', component: SpaceComponent},
