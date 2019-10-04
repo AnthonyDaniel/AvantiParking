@@ -23,6 +23,7 @@ export class ZoneComponent implements OnInit {
     this._zone.listZone().subscribe(
       data=>{
         this.zones = data;
+        console.log(data);
       },
       error => console.log(error)
     )
