@@ -73,6 +73,7 @@ export class ZoneComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
+    this.ngOnInit();
   }
   delete(_formZone){
     console.log(_formZone);
@@ -89,6 +90,7 @@ export class ZoneComponent implements OnInit {
           this._zone.deleteZone(_formZone).subscribe(
             data=>{
               console.log(data);
+              this.ngOnInit();
             }
           )
         Swal.fire(

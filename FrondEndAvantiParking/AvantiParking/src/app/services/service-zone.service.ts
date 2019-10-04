@@ -19,6 +19,6 @@ export class ServiceZoneService {
     return this.http.put(`${this.baseUrl}`, data);
   }
   deleteZone(data){
-    return this.http.delete(`${this.baseUrl}`,data)
+    return this.http.delete(`${this.baseUrl}/`+data)
   }
 }
