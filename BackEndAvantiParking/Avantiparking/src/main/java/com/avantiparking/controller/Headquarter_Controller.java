@@ -27,6 +27,7 @@ import com.avantiparking.repository.Headquarter_Repository;
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,
 		RequestMethod.DELETE})
+
 @RequestMapping("/api")
 public class Headquarter_Controller {
 	@Autowired

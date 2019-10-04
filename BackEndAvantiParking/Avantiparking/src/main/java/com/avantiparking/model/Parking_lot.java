@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Parking_lot {
 	
 	  	@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id_parking_lot;
 		@Column(name = "name", nullable = false)
 		private String name;

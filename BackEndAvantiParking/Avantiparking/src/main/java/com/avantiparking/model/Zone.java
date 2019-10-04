@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Zone {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_zone;
 	@Column(name = "name", nullable = false)
 	private String name;
