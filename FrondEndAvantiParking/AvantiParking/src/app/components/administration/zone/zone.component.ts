@@ -42,6 +42,7 @@ export class ZoneComponent implements OnInit {
       data=>{
         console.log(data);
         this.zones = data;
+        console.log(data);
       },
       error => console.log(error)
     )
