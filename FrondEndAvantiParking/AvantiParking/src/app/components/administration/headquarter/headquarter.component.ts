@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.service';
 import { Headquarter } from 'src/app/models/headquarter';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-headquarter',
@@ -13,7 +14,7 @@ export class HeadquarterComponent implements OnInit {
 
   }
 
-  public form = {
+  public formHeadquarter = {
     id_headquarter: null,
     name: null,
     country: null,
@@ -40,29 +41,44 @@ export class HeadquarterComponent implements OnInit {
       }
     );
   }
-  onSubmit() {
-    this.headquarter.addHeadquarter(this.form).subscribe(
+  addHeadquarter() {
+    this.headquarter.addHeadquarter(this.formHeadquarter).subscribe(
       data => {
         this.responseSuccess(data);
-        this.form.name = null;
-        this.form.country = null;
-        this.form.city = null;
+        this.formHeadquarter.name = null;
+        this.formHeadquarter.country = null;
+        this.formHeadquarter.city = null;
+        this.ngOnInit();
       },
       error => this.responseError(error),
     );
 
   }
-  delete(headquarter) {
-  
-    this.headquarter.deleteHeadquarter(headquarter).subscribe(
-      data => {
-   
-        this.responseSuccess(data),
-          error => this.responseError(error)
-      },
-    );
+  deleteHeadquarter(_formHeadquarter){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#89CA8E',
+      cancelButtonColor: '#EF4023',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+          this.headquarter.deleteHeadquarter(_formHeadquarter).subscribe(
+            data=>{
+              this.ngOnInit();
+            }
+          )
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
   }
-  edit(headquarter: Headquarter) {
+  editHeadquarter(headquarter: Headquarter) {
     this.headquarter.editHeadquarter(headquarter).subscribe(data => {
       this.responseSuccess(data),
         error => this.responseError(error)

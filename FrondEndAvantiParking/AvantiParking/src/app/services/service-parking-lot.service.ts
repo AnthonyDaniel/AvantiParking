@@ -19,7 +19,7 @@ export class ServiceParkingLotService {
         return this.http.put(`${this.baseUrl}`,data);
      }
      deleteParkingLot(data){
-        return this.http.delete(`${this.baseUrl}`,data);
+      return this.http.delete(`${this.baseUrl}/`+data)
      }
   
 }

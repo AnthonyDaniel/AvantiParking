@@ -20,6 +20,6 @@ export class ServiceHeadquarterService {
       return this.http.put(`${this.baseUrl}`,data);
    }
    deleteHeadquarter(data){
-      return this.http.delete(`${this.baseUrl}`,data);
+      return this.http.delete(`${this.baseUrl}/`+data)
    }
 }
