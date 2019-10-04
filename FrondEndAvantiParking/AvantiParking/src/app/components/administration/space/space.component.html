@@ -55,20 +55,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>01</td>
-              <td>Vehicle</td>
-              <td>AVIABLE</td>
-              <td>Unknown</td>
-              <td>A</td>
+            <tr *ngFor="let space of spaces">
+              <td>{{space.id_space}}</td>
+              <td>{{space.name}}</td>
+              <td>{{space.type}}</td>
+              <td *ngIf="space.state === false">Available</td>
+              <td *ngIf="space.state === true">Occupied</td>
+              <td>{{space.user}}</td>
+              <td>{{space.zone.name}}</td>
               <td>
-                  <button class="btn  btn-edit btn-block btn-outline-primary" id="btn-edit"
+                  <button class="btn  btn-edit btn-block btn-outline-primary" 
                   data-toggle="modal" data-target="#editSpace">
                       <i class="fas fa-angle-double-right"></i>
                     Editar
                   </button>
-                  <button class="btn btn-delete btn-block btn-outline-danger" id="btn-delete">
+                  <button class="btn btn-delete btn-block btn-outline-danger" (click)="delete()">
                       <i class="fas fa-trash-alt"></i>
                         Eliminar
                       </button>
@@ -87,44 +88,46 @@
                             </section>
                       </div>
                       <div class="modal-body">
-                        <form class="form-row justify-content-sm-center">
+                        <form #addZoneForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
+                                
                                 <div class="form-group col-md-12">
                                         <label>Space Name</label>
-                                        <input type="text"  class="form-control" required >
+                                        <input type="text" name="name" class="form-control" [(ngModel)]="form.name" required >
                                 </div>
-                                <div class="form-group col-md-12">
-                                        <label>Type</label>
-                                        <select class="custom-select">
-                                                <option selected>Choose...</option>
-                                                <option value="1">Vehicle</option>
-                                                <option value="2">Special</option>
-                                        </select>
-                                </div>
+                                
                                 <div class="form-group col-md-12">
                                         <label>State</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="state" [(ngModel)]="form.state" required>
                                                 <option selected>Choose...</option>
-                                                <option value="1">Aviable</option>
-                                                <option value="2">Occupied</option>
+                                                <option >Available</option>
+                                                <option >Occupied</option>
                                         </select>
                                 </div>
                                 <div class="form-group col-md-12">
+                                                <label>Type</label>
+                                                <select class="custom-select" name="type" [(ngModel)]="form.type" required>
+                                                        <option selected>Choose...</option>
+                                                        <option >Vehicle</option>
+                                                        <option >Special</option>
+                                                </select>
+                                        </div>
+                                <div class="form-group col-md-12">
                                         <label>user</label>
-                                        <input type="text"  class="form-control" required >
+                                        <input type="text"  class="form-control" name="user" [(ngModel)] ="form.user"  >
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>Zone</label>
-                                        <select class="custom-select">
+                                        <select *ngFor="let _zone of zones" class="custom-select" name="zone" [(ngModel)]="form.zone.id_zone" required>
                                                 <option selected>Choose...</option>
-                                                <option value="1">A</option>
-                                                <option value="2">B</option>
+                                                <option >{{_zone.id_zone}}</option>
+                                                
                                         </select>
                                 </div>
                                 <div class="col-md-6">
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
-                                        <button type="submit" class="btnAddSpace btn btn-block btn-outline-secondary" ><i class="fas fa-plus-square"></i> Add</button>
+                                        <button type="submit" class="btnAddSpace btn btn-block btn-outline-secondary" [disabled]="!addZoneForm.valid"><i class="fas fa-plus-square"></i> Add</button>
                                 </div>
                         </form>
                       </div>
