@@ -50,7 +50,7 @@ ENGINE = InnoDB;
 -- Table `avantiparking`.`zone`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `avantiparking`.`zone` (
-  `id_zone` INT NOT NULL,
+  `id_zone` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(10) NOT NULL,
   `parking_lot` INT NOT NULL,
   PRIMARY KEY (`id_zone`),
@@ -62,37 +62,16 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`zone` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `avantiparking`.`space`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`space` (
-  `id_space` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `type` VARCHAR(45) NOT NULL,
-  `state` TINYINT NOT NULL,
-  `user` INT,
-  `zone` INT NOT NULL,
-  PRIMARY KEY (`id_space`),
-  INDEX `fk_space_zone1_idx` (`zone` ASC),
-  CONSTRAINT `fk_space_zone1`
-    FOREIGN KEY (`zone`)
-    REFERENCES `avantiparking`.`zone` (`id_zone`)
-	ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `avantiparking`.`user`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `avantiparking`.`user` (
   `id` INT AUTO_INCREMENT NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `email` varchar(255) UNIQUE NOT NULL,
   `image_url` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `role` TINYINT NOT NULL,
-  `registered` DATE NOT NULL,
+  `role` TINYINT DEFAULT NULL,
+  `registered`  DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `provider` varchar(255) NOT NULL,
   `provider_id` varchar(255) DEFAULT NULL,
   `headquarter` INT,
@@ -102,6 +81,32 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`user` (
     FOREIGN KEY (`headquarter`)
     REFERENCES `avantiparking`.`headquarter` (`id_headquarter`))
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `avantiparking`.`space`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `avantiparking`.`space` (
+  `id_space` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `type` VARCHAR(45) NOT NULL,
+  `state` TINYINT NOT NULL,
+  `user` INT,
+  `zone` INT NOT NULL,
+  PRIMARY KEY (`id_space`),
+  INDEX `fk_space_zone1_idx` (`zone` ASC),
+  INDEX `fk_space_user_idx` (`user` ASC),
+  CONSTRAINT `fk_space_user`
+    FOREIGN KEY (`user`)
+    REFERENCES `avantiparking`.`user` (`id`)
+	ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_space_zone1`
+    FOREIGN KEY (`zone`)
+    REFERENCES `avantiparking`.`zone` (`id_zone`)
+	ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `avantiparking`.`vehicle`
