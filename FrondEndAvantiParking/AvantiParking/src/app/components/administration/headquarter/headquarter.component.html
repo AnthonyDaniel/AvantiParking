@@ -38,14 +38,14 @@
         <td > {{headquarter.city}}</td>
         <td>
           <button class="btn-edit btn btn-block btn-outline-primary" id="" data-toggle="modal" data-target="#editHeadquarter"><strong>EDIT</strong></button>
-          <button (click)="delete()" class="btn-delete btn btn-block btn-outline-danger" ><strong>DELETE</strong></button>
+          <button (click)="delete(headquarter)" class="btn-delete btn btn-block btn-outline-danger" ><strong>DELETE</strong></button>
         </td>
       </tr>
     </tbody>
   </table>
 
  
-<!--Modal add headquarter-->
+<!--Modal edit headquarter-->
 <div class="modal" id="editHeadquarter" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -81,8 +81,7 @@
   </div>
 
 
-
-<!--Modal edit headquarter-->
+<!--Modal add headquarter-->
 <div class="modal fade" id="addHeadquarter" tabindex="-1" role="dialog" aria-labelledby="addHeadquarter" aria-hidden="true">
   <div class="modal-dialog" role="document">
           <div class="modal-content">

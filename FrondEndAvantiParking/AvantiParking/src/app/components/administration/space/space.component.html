@@ -19,7 +19,7 @@
             <!--Modal button of add space-->
             <button class="btnAdd btn btn-block btn-outline-secondary text-uppercase"  
             data-toggle="modal" data-target="#addSpace">
-                <i class="fas fa-plus-square"></i> Add Zone
+                <i class="fas fa-plus-square"></i> Add Space
             </button>
         </div>	
     </div>
@@ -88,7 +88,7 @@
                             </section>
                       </div>
                       <div class="modal-body">
-                        <form #addZoneForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
+                        <form #addSpaceForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
                                 
                                 <div class="form-group col-md-12">
                                         <label>Space Name</label>
@@ -117,9 +117,9 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>Zone</label>
-                                        <select *ngFor="let _zone of zones" class="custom-select" name="zone" [(ngModel)]="form.zone.id_zone" required>
+                                        <select class="custom-select" name="_zone" [(ngModel)]="form.zone.id_zone" required>
                                                 <option selected>Choose...</option>
-                                                <option >{{_zone.id_zone}}</option>
+                                                <option *ngFor="let _zone of zones">{{_zone.id_zone}}</option>
                                                 
                                         </select>
                                 </div>
@@ -127,7 +127,7 @@
                                         <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
-                                        <button type="submit" class="btnAddSpace btn btn-block btn-outline-secondary" [disabled]="!addZoneForm.valid"><i class="fas fa-plus-square"></i> Add</button>
+                                        <button type="submit" class="btnAddSpace btn btn-block btn-outline-secondary" [disabled]="!addSpaceForm.valid"><i class="fas fa-plus-square"></i> Add</button>
                                 </div>
                         </form>
                       </div>

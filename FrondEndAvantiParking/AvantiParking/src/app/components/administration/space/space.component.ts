@@ -75,6 +75,7 @@ export class SpaceComponent implements OnInit {
         this.form.user= null,
         this.form.zone.id_zone= null
         
+        
       },
       error=> this.responseError(error),
     );
@@ -84,6 +85,7 @@ export class SpaceComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
+    this.ngOnInit();
   }
   delete(){
     Swal.fire({
