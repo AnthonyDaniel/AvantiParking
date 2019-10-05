@@ -24,7 +24,6 @@ export class HeadquarterComponent implements OnInit {
   public success: String;
   public status: String;
 
-  filterHeadquarters;
   public headquarters;
 
   ngOnInit() {
@@ -48,11 +47,16 @@ export class HeadquarterComponent implements OnInit {
         this.formHeadquarter.name = null;
         this.formHeadquarter.country = null;
         this.formHeadquarter.city = null;
-        this.ngOnInit();
       },
       error => this.responseError(error),
     );
-
+    Swal.fire({
+      type: 'success',
+      title: 'The Zone has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.ngOnInit();
   }
   deleteHeadquarter(_formHeadquarter){
     Swal.fire({

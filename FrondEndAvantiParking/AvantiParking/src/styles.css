@@ -28,6 +28,20 @@
     background-color: #2F2D46;
     color: #EF4023;/*color de letra*/
 }
+.modal-header{
+    background-color: #2F2D46;
+    color: #EF4023;/*color de letra*/
+}
+.btnModalAdd{
+    background-color: #fff;
+    color:#89CA8E;
+    border-color: #89CA8E;
+}
+.btnModalAdd:hover{
+    color: white;
+    background-color: #89CA8E;
+    border-color: #89CA8E;
+}
 /*buttons*/
 .btnAdd{
     background-color: #fff;

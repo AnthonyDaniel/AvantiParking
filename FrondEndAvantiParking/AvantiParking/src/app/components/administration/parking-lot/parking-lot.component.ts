@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.service';
+import Swal from 'sweetalert2';
+import { Parking_lot } from 'src/app/models/parking_lot';
+import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.service';
 
 @Component({
   selector: 'app-parking-lot',
@@ -7,9 +11,102 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkingLotComponent implements OnInit {
 
-  constructor() { }
+  public formHeadquarter = {
+    id_headquarter: null,
+    name: null,
+    country: null,
+    city: null,
+  }
+  constructor(public _parking:ServiceParkingLotService, public _headquarter: ServiceHeadquarterService) { }
 
-  ngOnInit() {
+  public formParkingLot ={
+    id_parking_lot: null,
+    name: null,
+    headquarter: this.formHeadquarter,
   }
 
+  public error: String;
+  public success: String;
+  public status: String;
+
+  public parkings;
+  public headquarters;
+
+  ngOnInit() {
+    this.ListParkingLot();
+    this.ListHeadquarters();
+  }
+  ListParkingLot(){
+    this._parking.listParkingLot().subscribe(
+      data=>{
+        console.log(data);
+        this.parkings = data;
+        console.log(data);
+      },
+      error => console.log(error)
+    )
+  }
+  ListHeadquarters(){
+    this._headquarter.listHeadquarter().subscribe(
+      data=>{
+        console.log(data);
+        this.headquarters= data;
+      },
+      error => console.log(error)
+    )
+  }
+  addParkingLot(){
+    console.log(this.formParkingLot)
+    this._parking.addParkingLot(this.formParkingLot).subscribe(
+      data=>{
+        console.log(data);
+        this.responseSuccess(data);
+        this.formParkingLot.name=null,
+        this.formParkingLot.headquarter.id_headquarter=null
+      },
+      error=> this.responseError(error),
+    );
+    Swal.fire({
+      type: 'success',
+      title: 'The Zone has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    this.ngOnInit();
+  }
+  deleteParkingLot(_formParkingLot){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#89CA8E',
+      cancelButtonColor: '#EF4023',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+          this._parking.deleteParkingLot(_formParkingLot).subscribe(
+            data=>{
+              this.ngOnInit();
+            }
+          )
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+  }
+
+
+  responseSuccess(data) {
+    this.success = data.data;
+    this.status = "success";
+  }
+  responseError(error) {
+    console.log(error)
+    this.error = error.error.error;
+    this.status = "error";
+  }
 }
