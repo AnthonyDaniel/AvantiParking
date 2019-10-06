@@ -17,6 +17,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PrincipalComponent } from './components/administration/principal/principal.component';
+import { HeadquarterPipePipe } from './pipes/headquarter-pipe.pipe';
+import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,9 @@ import { PrincipalComponent } from './components/administration/principal/princi
     FooterComponent,
     PrincipalComponent,
     ErrorComponent,
+    HeadquarterPipePipe,
+    ParkingLotPipePipe,
+ 
   ],
   imports: [
     BrowserModule,

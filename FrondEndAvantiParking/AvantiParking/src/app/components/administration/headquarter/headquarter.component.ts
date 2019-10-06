@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.service';
 import { Headquarter } from 'src/app/models/headquarter';
 import Swal from 'sweetalert2';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-headquarter',
@@ -10,9 +11,9 @@ import Swal from 'sweetalert2';
 })
 export class HeadquarterComponent implements OnInit {
 
-  constructor(public headquarter: ServiceHeadquarterService) {
+  constructor(public headquarter: ServiceHeadquarterService) { }
 
-  }
+  filterHeadquarters = "";
 
   public formHeadquarter = {
     id_headquarter: null,
@@ -29,7 +30,7 @@ export class HeadquarterComponent implements OnInit {
   ngOnInit() {
     this.listHeadquarter();
   }
-  listHeadquarter(){
+  listHeadquarter() {
     this.headquarter.listHeadquarter().subscribe(
       data => {
         this.headquarters = data;
@@ -52,13 +53,13 @@ export class HeadquarterComponent implements OnInit {
     );
     Swal.fire({
       type: 'success',
-      title: 'The Zone has been saved',
+      title: 'The headquarter has been saved',
       showConfirmButton: false,
       timer: 1500
     })
     this.ngOnInit();
   }
-  deleteHeadquarter(_formHeadquarter){
+  deleteHeadquarter(_formHeadquarter) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -69,11 +70,11 @@ export class HeadquarterComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-          this.headquarter.deleteHeadquarter(_formHeadquarter).subscribe(
-            data=>{
-              this.ngOnInit();
-            }
-          )
+        this.headquarter.deleteHeadquarter(_formHeadquarter).subscribe(
+          data => {
+            this.ngOnInit();
+          }
+        )
         Swal.fire(
           'Deleted!',
           'Your file has been deleted.',
@@ -82,11 +83,28 @@ export class HeadquarterComponent implements OnInit {
       }
     })
   }
-  editHeadquarter(headquarter: Headquarter) {
-    this.headquarter.editHeadquarter(headquarter).subscribe(data => {
-      this.responseSuccess(data),
-        error => this.responseError(error)
-    });
+  editHeadquarter() {
+    this.headquarter.editHeadquarter(this.formHeadquarter.id_headquarter, this.formHeadquarter).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    Swal.fire({
+      type: 'success',
+      title: 'The headquarter has been updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+  dataHeadquarterFormEdit(_headquarter) {
+    this.formHeadquarter.id_headquarter = _headquarter.id_headquarter;
+    this.formHeadquarter.name = _headquarter.name;
+    this.formHeadquarter.city = _headquarter.city;
+    this.formHeadquarter.country = _headquarter.country;
   }
   responseSuccess(data) {
     this.success = data.data;
@@ -96,4 +114,5 @@ export class HeadquarterComponent implements OnInit {
     this.error = error.error.error;
     this.status = "error";
   }
+
 }

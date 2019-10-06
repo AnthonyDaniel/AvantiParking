@@ -17,9 +17,11 @@ export class ParkingLotComponent implements OnInit {
     country: null,
     city: null,
   }
-  constructor(public _parking:ServiceParkingLotService, public _headquarter: ServiceHeadquarterService) { }
+  constructor(public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService) { }
 
-  public formParkingLot ={
+  filterParkingLot = "";
+
+  public formParkingLot = {
     id_parking_lot: null,
     name: null,
     headquarter: this.formHeadquarter,
@@ -36,9 +38,9 @@ export class ParkingLotComponent implements OnInit {
     this.ListParkingLot();
     this.ListHeadquarters();
   }
-  ListParkingLot(){
+  ListParkingLot() {
     this._parking.listParkingLot().subscribe(
-      data=>{
+      data => {
         console.log(data);
         this.parkings = data;
         console.log(data);
@@ -46,25 +48,25 @@ export class ParkingLotComponent implements OnInit {
       error => console.log(error)
     )
   }
-  ListHeadquarters(){
+  ListHeadquarters() {
     this._headquarter.listHeadquarter().subscribe(
-      data=>{
+      data => {
         console.log(data);
-        this.headquarters= data;
+        this.headquarters = data;
       },
       error => console.log(error)
     )
   }
-  addParkingLot(){
+  addParkingLot() {
     console.log(this.formParkingLot)
     this._parking.addParkingLot(this.formParkingLot).subscribe(
-      data=>{
+      data => {
         console.log(data);
         this.responseSuccess(data);
-        this.formParkingLot.name=null,
-        this.formParkingLot.headquarter.id_headquarter=null
+        this.formParkingLot.name = null,
+          this.formParkingLot.headquarter.id_headquarter = null
       },
-      error=> this.responseError(error),
+      error => this.responseError(error),
     );
     Swal.fire({
       type: 'success',
@@ -74,7 +76,8 @@ export class ParkingLotComponent implements OnInit {
     })
     this.ngOnInit();
   }
-  deleteParkingLot(_formParkingLot){
+  deleteParkingLot(_formParkingLot) {
+    console.log(_formParkingLot);
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -85,11 +88,12 @@ export class ParkingLotComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-          this._parking.deleteParkingLot(_formParkingLot).subscribe(
-            data=>{
-              this.ngOnInit();
-            }
-          )
+        this._parking.deleteParkingLot(_formParkingLot).subscribe(
+          data => {
+            console.log(data);
+            this.ngOnInit();
+          }
+        )
         Swal.fire(
           'Deleted!',
           'Your file has been deleted.',
@@ -98,7 +102,28 @@ export class ParkingLotComponent implements OnInit {
       }
     })
   }
-
+  editParkingLot() {
+    this._parking.editParkingLot(this.formParkingLot.id_parking_lot, this.formParkingLot).subscribe(
+      data => {
+        console.log(data);
+        this.ngOnInit();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    Swal.fire({
+      type: 'success',
+      title: 'The parking lot has been updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+  dataParkingLotFormEdit(_parkingLot) {
+    this.formParkingLot.id_parking_lot = _parkingLot.id_parking_lot;
+    this.formParkingLot.name = _parkingLot.name;
+    this.formParkingLot.headquarter = _parkingLot.headquarter;
+  }
 
   responseSuccess(data) {
     this.success = data.data;

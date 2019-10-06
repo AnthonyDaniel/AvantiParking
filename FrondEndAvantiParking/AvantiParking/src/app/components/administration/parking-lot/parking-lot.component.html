@@ -1,18 +1,19 @@
 <br>
 <div class="container">
-  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center" >
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
     <h3 class="font-weight-bold"> PARKING LOT ADMINISTRATION</h3>
-</section>
+  </section>
 </div>
 
 <div class="container">
 
   <div class="row justify-content-end">
     <div class="col-sm-8 col-md-4 mt-3 ">
-      <input type="text" class="form-control" placeholder="Search" value="search" required="">
+      <input type="text" class="form-control" name="filterParkingLot" placeholder="Search..."
+        [(ngModel)]="filterParkingLot">
     </div>
     <div class="col-sm-8 col-md-6 mt-3 ">
-      <button type="button" class="btnAdd btn btn-primary"  data-toggle="modal" data-target="#addParkingLot">
+      <button type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addParkingLot">
         <strong>NEW PARKINGLOT</strong>
       </button>
     </div>
@@ -23,27 +24,30 @@
   <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
     <thead class="tableThead thead">
       <tr>
-        <th scope="col" >ID</th>
+        <th scope="col">ID</th>
         <th scope="col">NAME</th>
         <th scope="col">HEADQUARTER</th>
         <th scope="col">ACTION</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let parking of parkings ">
+      <tr *ngFor="let parking of parkings | parkingLotPipe:filterParkingLot ">
         <td>{{parking.id_parking_lot}}</td>
         <td>{{parking.name}}</td>
         <td>{{parking.headquarter.name}}</td>
         <td>
-          <button class="btn-edit btn btn-block btn-outline-primary" id="" data-toggle="modal" data-target="#addParking"><strong>EDIT</strong></button>
-          <button (click)="deleteParkingLot(parking.id_parking_lot)" class="btn-delete btn btn-block btn-outline-danger" id="" data-toggle="modal" data-target="#deleteParking"><strong>DELETE</strong></button>
+          <button (click)="dataParkingLotFormEdit(parking)" class="btn-edit btn btn-block btn-outline-primary" id=""
+            data-toggle="modal" data-target="#editParkingLot"><strong>EDIT</strong></button>
+          <button (click)="deleteParkingLot(parking.id_parking_lot)" class="btn-delete btn btn-block btn-outline-danger"
+            id="" data-toggle="modal" data-target="#deleteParkingLot"><strong>DELETE</strong></button>
         </td>
       </tr>
     </tbody>
   </table>
 
-<!--Modal de add parking-->
-<div class="modal fade" id="addParkingLot" tabindex="-1" role="dialog" aria-labelledby="addParkingLot" aria-hidden="true">
+  <!--Modal de add parking-->
+  <div class="modal fade" id="addParkingLot" tabindex="-1" role="dialog" aria-labelledby="addParkingLot"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -53,56 +57,64 @@
           </button>
         </div>
         <div class="modal-body">
-            <form  #addParkingLotForm=ngForm (ngSubmit)="addParkingLot()" class="form-row justify-content-sm-center">
-                <div class="form-group col-md-12">
-                        <label>NAME</label>
-                        <input type="text"  class="form-control" name="name" [(ngModel)]="formParkingLot.name" required >
-                </div>
-                <div class="form-group col-md-12">
-                        <label>HEADQUARTER</label>
-                        <select  class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter" required>
-                                <option selected>Choose...</option>
-                                <option *ngFor="let headquarter of headquarters" >{{headquarter.id_headquarter}}</option>
-                                
-                        </select>
-                </div>
-                <div class="col-md-6">
-                        <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary" [disabled]="!addParkingLotForm.valid"><i class="fas fa-plus-square"></i> ADD</button>
-                </div>
-        </form>
+          <form #addParkingLotForm=ngForm (ngSubmit)="addParkingLot()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>NAME</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="formParkingLot.name" required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>HEADQUARTER</label>
+              <select class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter"
+                required>
+                <option selected>Choose...</option>
+                <option *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}}</option>
+
+              </select>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!addParkingLotForm.valid"><i class="fas fa-plus-square"></i> ADD</button>
+            </div>
+          </form>
         </div>
-        
+
       </div>
     </div>
   </div>
 
-<!--Modal edit headquarter-->
-<div class="modal fade" id="editParking" tabindex="-1" role="dialog" aria-labelledby="editParking" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-                  <section  class="jumbotronHeaderModal col-md-12 pb-5 pt-5 jumbotron  justify-content-center text-center ">
-                          <h3 class="modal-title"> <i class="fas fa-edit"></i> EDIT HEADQUARTER</h3>
-                  </section>
+  <!--Modal edit parkingLot-->
+  <div class="modal fade" id="editParkingLot" tabindex="-1" role="dialog" aria-labelledby="editParkingLot"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title justify-content-center"><strong>EDIT PARKING LOT</strong></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editParkingLotForm=ngForm (ngSubmit)="editParkingLot()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>NAME</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="formParkingLot.name" required>
             </div>
-            <div class="modal-body">
-                  <form class="form-row justify-content-sm-center">
-                          <div class="form-group col-md-12">
-                                  <label>Name</label>
-                                  <input type="text"  class="form-control" required >
-                          </div>
-                          <div class="form-group col-md-12">
-                                   <label>HEADQUARTER</label>
-                                   <select class="custom-select">
-                                    <option selected>Choose...</option>
-                                    <option value="1">San José</option>
-                                    <option value="2">Liberia</option>
-                            </select>
-                          </div>
-                  </form>
-            </div>
-          </div>
-  </div>
-</div>
-</div>
+            <div class="form-group col-md-12">
+              <label>HEADQUARTER</label>
+              <select class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter"
+                required>
+                <option selected>Choose...</option>
+                <option *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}}</option>
 
+              </select>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!editParkingLotForm.valid"><i class="fas fa-plus-square"></i> EDIT</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

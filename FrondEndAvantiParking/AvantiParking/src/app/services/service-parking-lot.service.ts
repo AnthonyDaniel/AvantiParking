@@ -15,8 +15,8 @@ export class ServiceParkingLotService {
      listParkingLot(){
         return this.http.get(`${this.baseUrl}`)
      }
-     editParkingLot(data){
-        return this.http.put(`${this.baseUrl}`,data);
+     editParkingLot(id,data){
+        return this.http.put(`${this.baseUrl}/`+id,data);
      }
      deleteParkingLot(data){
       return this.http.delete(`${this.baseUrl}/`+data)

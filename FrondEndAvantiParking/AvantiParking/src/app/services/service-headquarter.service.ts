@@ -16,8 +16,8 @@ export class ServiceHeadquarterService {
    listHeadquarter(){
       return this.http.get(`${this.baseUrl}`)
    }
-   editHeadquarter(data){
-      return this.http.put(`${this.baseUrl}`,data);
+   editHeadquarter(id,data){
+      return this.http.put(`${this.baseUrl}/`+id,data)
    }
    deleteHeadquarter(data){
       return this.http.delete(`${this.baseUrl}/`+data)
