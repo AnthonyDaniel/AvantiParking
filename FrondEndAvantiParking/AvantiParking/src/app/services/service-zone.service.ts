@@ -15,9 +15,9 @@ export class ServiceZoneService {
   listZone(){
     return this.http.get(`${this.baseUrl}`);
   }
-  editZone(data){
-    return this.http.put(`${this.baseUrl}`, data);
-  }
+  editZone(id,data){
+    return this.http.put(`${this.baseUrl}/`+id,data);
+ }
   deleteZone(data){
     return this.http.delete(`${this.baseUrl}/`+data)
   }

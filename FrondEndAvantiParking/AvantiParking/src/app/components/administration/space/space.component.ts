@@ -16,7 +16,8 @@ export class SpaceComponent implements OnInit {
   }
   constructor(public space: ServiceSpaceService, public _zone: ServiceZoneService) { }
   //modelo espacio
-  public form = {
+  public formSpace = {
+    id_space: null,
     name: null,
     type: null,
     state: null,
@@ -57,23 +58,23 @@ export class SpaceComponent implements OnInit {
     )
   }
   onSubmit(){
-    if(this.form.state == 'Available'){
-      this.form.state = 0;
+    if(this.formSpace.state == 'Available'){
+      this.formSpace.state = 0;
      
-    }else if(this.form.state== 'Occupied'){
-      this.form.state = 1;
+    }else if(this.formSpace.state== 'Occupied'){
+      this.formSpace.state = 1;
     }
-    console.log(this.form);
-    this.space.addSpace(this.form).subscribe(
+    console.log(this.formSpace);
+    this.space.addSpace(this.formSpace).subscribe(
       
       data=>{
         console.log(data);
         this.responseSuccess(data);
-        this.form.name= null,
-        this.form.type= null,
-        this.form.state= null,
-        this.form.user= null,
-        this.form.zone.id_zone= null
+        this.formSpace.name= null,
+        this.formSpace.type= null,
+        this.formSpace.state= null,
+        this.formSpace.user= null,
+        this.formSpace.zone.id_zone= null
         
         
       },
@@ -87,7 +88,7 @@ export class SpaceComponent implements OnInit {
     })
     this.ngOnInit();
   }
-  delete(){
+  deleteSpace(_formSpace){
     Swal.fire({
       title: 'Are you sure delete?',
       text: "You won't be able to revert this!",
@@ -98,7 +99,12 @@ export class SpaceComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        //codigo
+        this.space.deleteSpace(_formSpace).subscribe(
+          data =>{
+            console.log(data);
+            this.ngOnInit();
+          }
+        )
         Swal.fire(
           'Deleted!',
           'The Space has been deleted.',
@@ -107,9 +113,32 @@ export class SpaceComponent implements OnInit {
       }
     })
   }
+  editSpaceForm(){
+    this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
+      data =>{
+        console.log(data);
+        this.ngOnInit();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+    Swal.fire({
+      type: 'success',
+      title: 'The parking lot has been updated',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
 
-
-
+  dataSpaceFormEdit(_spaceAux){
+  this.formSpace.id_space = _spaceAux.id_space;
+  this.formSpace.name = _spaceAux.name;
+  this.formSpace.state= _spaceAux.state;
+  this.formSpace.type = _spaceAux.type;
+  this.formSpace.user = _spaceAux.user;
+  this.formSpace.zone =_spaceAux.zone;
+  }
 
   responseSuccess(data) {
     this.success = data.data;

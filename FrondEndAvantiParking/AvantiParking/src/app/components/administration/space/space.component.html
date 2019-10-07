@@ -62,12 +62,12 @@
               <td>{{space.user}}</td>
               <td>{{space.zone.name}}</td>
               <td>
-                  <button class="btn  btn-edit btn-block btn-outline-primary" 
+                  <button (click)="dataSpaceFormEdit(space)" class="btn  btn-edit btn-block btn-outline-primary" 
                   data-toggle="modal" data-target="#editSpace">
                       <i class="fas fa-angle-double-right"></i>
                     Editar
                   </button>
-                  <button class="btn btn-delete btn-block btn-outline-danger" (click)="delete()">
+                  <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteSpace(space.id_space)">
                       <i class="fas fa-trash-alt"></i>
                         Eliminar
                       </button>
@@ -81,21 +81,22 @@
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                            <section  class="jumbotronHeaderModal col-md-12 mb-4 jumbotron  justify-content-center text-center" >
-                                    <h3 class="modal-title"> <i class="fas fa-plus-square"></i> ADD SPACE</h3>
-                            </section>
+                                <h5 class="modal-title justify-content-center"><strong>ADD SPACE</strong></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
                       </div>
                       <div class="modal-body">
                         <form #addSpaceForm=ngForm (ngSubmit)="onSubmit()" class="form-row justify-content-sm-center">
                                 
                                 <div class="form-group col-md-12">
                                         <label>Space Name</label>
-                                        <input type="text" name="name" class="form-control" [(ngModel)]="form.name" required >
+                                        <input type="text" name="name" class="form-control" [(ngModel)]="formSpace.name" required >
                                 </div>
                                 
                                 <div class="form-group col-md-12">
                                         <label>State</label>
-                                        <select class="custom-select" name="state" [(ngModel)]="form.state" required>
+                                        <select class="custom-select" name="state" [(ngModel)]="formSpace.state" required>
                                                 <option selected>Choose...</option>
                                                 <option >Available</option>
                                                 <option >Occupied</option>
@@ -103,7 +104,7 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                                 <label>Type</label>
-                                                <select class="custom-select" name="type" [(ngModel)]="form.type" required>
+                                                <select class="custom-select" name="type" [(ngModel)]="formSpace.type" required>
                                                         <option selected>Choose...</option>
                                                         <option >Vehicle</option>
                                                         <option >Special</option>
@@ -111,18 +112,15 @@
                                         </div>
                                 <div class="form-group col-md-12">
                                         <label>user</label>
-                                        <input type="text"  class="form-control" name="user" [(ngModel)] ="form.user"  >
+                                        <input type="text"  class="form-control" name="user" [(ngModel)] ="formSpace.user"  >
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>Zone</label>
-                                        <select class="custom-select" name="_zone" [(ngModel)]="form.zone.id_zone" required>
+                                        <select class="custom-select" name="_zone" [(ngModel)]="formSpace.zone.id_zone" required>
                                                 <option selected>Choose...</option>
                                                 <option *ngFor="let _zone of zones">{{_zone.id_zone}}</option>
                                                 
                                         </select>
-                                </div>
-                                <div class="col-md-6">
-                                        <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6">
                                         <button type="submit" class="btnAddSpace btn btn-block btn-outline-secondary" [disabled]="!addSpaceForm.valid"><i class="fas fa-plus-square"></i> Add</button>
@@ -137,46 +135,42 @@
             <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                            <section  class="jumbotronHeaderModal col-md-12 mb-4 jumbotron  justify-content-center text-center" >
-                                    <h3 class="modal-title"> <i class="fas fa-edit"></i> EDIT SPACE</h3>
-                            </section>
+                                <h5 class="modal-title justify-content-center"><strong>EDIT SPACE</strong></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
                       </div>
                       <div class="modal-body">
-                        <form class="form-row justify-content-sm-center">
+                        <form (ngSubmit)="editSpaceForm()" class="form-row justify-content-sm-center">
                                 <div class="form-group col-md-12">
                                         <label>Space Name</label>
-                                        <input type="text"  class="form-control" required >
+                                        <input type="text"  class="form-control" name="name" [(ngModel)]="formSpace.name" required >
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>Type</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="type" [(ngModel)]="formSpace.type">
                                                 <option selected>Choose...</option>
-                                                <option value="1">Vehicle</option>
-                                                <option value="2">Special</option>
+                                                <option *ngFor="let space of spaces">{{space.type}}</option>
                                         </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>State</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="state" [(ngModel)]="formSpace.state">
                                                 <option selected>Choose...</option>
-                                                <option value="1">Aviable</option>
-                                                <option value="2">Occupied</option>
+                                                <option *ngFor="let space of spaces">{{space.state}}</option>
+                                                
                                         </select>
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>user</label>
-                                        <input type="text"  class="form-control" required >
+                                        <input type="text"  class="form-control" name="user" [(ngModel)]="formSpace.user"  >
                                 </div>
                                 <div class="form-group col-md-12">
                                         <label>Zone</label>
-                                        <select class="custom-select">
+                                        <select class="custom-select" name="zone" [(ngModel)]="formSpace.zone.id_zone">
                                                 <option selected>Choose...</option>
-                                                <option value="1">A</option>
-                                                <option value="2">B</option>
+                                                <option *ngFor="let _zone of zones">{{_zone.id_zone}}</option>
                                         </select>
-                                </div>
-                                <div class="col-md-6 col-sm-2">
-                                        <button type="button" class="btn btn-block btn-outline-danger " data-dismiss="modal">Close</button>
                                 </div>
                                 <div class="col-md-6 col-sm-2">
                                         <button type="submit" class="btnEditSpace btn btn-block btn-outline-secondary" ><i class="fas fa-plus-square"></i> Edit</button>

@@ -15,10 +15,10 @@ export class ServiceSpaceService {
   listSpace(){
     return this.http.get(`${this.baseUrl}`);
   }
-  editSpace(data){
-    return this.http.put(`${this.baseUrl}`, data);
-  }
-  deleteSpace(data){
-    return this.http.delete(`${this.baseUrl}`,data)
-  }
+  editSpace(id,data){
+    return this.http.put(`${this.baseUrl}/`+id,data);
+ }
+ deleteSpace(data){
+  return this.http.delete(`${this.baseUrl}/`+data)
+}
 }

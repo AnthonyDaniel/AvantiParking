@@ -29,7 +29,7 @@ export class ZoneComponent implements OnInit {
   public success: String;
   public status: String;
 
-  filterZone;
+  filterZone = "";
   public zones;
   public parkings;
 
@@ -95,12 +95,34 @@ export class ZoneComponent implements OnInit {
           )
         Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'Your zone has been deleted.',
           'success'
         )
       }
     })
   }
+editZone(){
+  this._zone.editZone(this.formZone.id_zone,this.formZone).subscribe(
+    data=>{
+      console.log(data);
+      this.ngOnInit();
+    },
+    error=>{
+      console.log(error);
+    }
+  );
+  Swal.fire({
+    type: 'success',
+    title: 'The zone has been updated',
+    showConfirmButton: false,
+    timer: 1500
+  })
+}
+dataZoneFormEdit(_zoneAux){
+this.formZone.id_zone = _zoneAux.id_zone;
+this.formZone.name = _zoneAux.name;
+this.formZone.parking_lot = _zoneAux.parking_lot;
+}
 
 
   responseSuccess(data) {
