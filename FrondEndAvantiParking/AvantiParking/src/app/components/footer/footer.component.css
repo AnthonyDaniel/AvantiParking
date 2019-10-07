@@ -1,12 +1,12 @@
 ._bottom {
     background-color: #2F2D46;
-    height: 50px;
+    height: 80px;
 }
 .text-center {
     color: white !important;
 }
-.foot{
-    margin-top: 20px;
+.footer{
+    padding-top: 20px;
 }
 #text{
     font-family: "Open Sans"; 

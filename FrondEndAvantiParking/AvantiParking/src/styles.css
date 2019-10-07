@@ -17,8 +17,10 @@
 .ng-valid:not(form){
     border-left:5px solid green;
 }
-
-
+/*CONTAINER*/
+.container{
+    margin-bottom: 10%;
+}
 /*jumboytons*/
 .jumbotronHeader{
 	color: #EF4023;/*color de letra*/
