@@ -1,50 +1,49 @@
-
-
 <div class="container">
-    <br>
-      <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
-        <h3 class="font-weight-bold"> HEADQUARTER ADMINISTRATION</h3>
-      </section>
-  <div class="row justify-content-end">
-    <div class="col-sm-8 col-md-4 mt-3 ">
+  <br>
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+    <h3 class="font-weight-bold"> HEADQUARTER ADMINISTRATION</h3>
+  </section>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 mt-3 ">
       <input type="text" class="form-control" name="filterHeadquarters" placeholder="Search..."
         [(ngModel)]="filterHeadquarters">
     </div>
-    <div class="col-sm-8 col-md-6 mt-3 ">
+    <div class="col-sm-6 col-md-8 mt-3 ">
       <button type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addHeadquarter">
         <strong>NEW HEADQUARTER</strong>
       </button>
     </div>
   </div>
-
   <br>
-
-  <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
-    <thead class="tableThead thead">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">NAME</th>
-        <th scope="col">COUNTRY</th>
-        <th scope="col">CITY</th>
-        <th scope="col">ACTION</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let headquarter of headquarters | headquarterPipe:filterHeadquarters">
-        <td> {{headquarter.id_headquarter}}</td>
-        <td> {{headquarter.name}}</td>
-        <td> {{headquarter.country}}</td>
-        <td> {{headquarter.city}}</td>
-        <td>
-          <button (click)=" dataHeadquarterFormEdit(headquarter)" class="btn-edit btn btn-block btn-outline-primary"
-            id="" data-toggle="modal" data-target="#editHeadquarter"><strong>EDIT</strong></button>
-          <button (click)="deleteHeadquarter(headquarter.id_headquarter)"
-            class="btn-delete btn btn-block btn-outline-danger"><strong>DELETE</strong></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
+  <div>
+    <div class="table-responsive mt-5 ml-2 mr-2">
+      <table class="table table-bordered table-hover">
+        <thead class="tableThead thead">
+          <tr>
+            <th scope="col">NAME</th>
+            <th scope="col">COUNTRY</th>
+            <th scope="col">CITY</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let headquarter of headquarters | headquarterPipe:filterHeadquarters">
+            <td> {{headquarter.name}}</td>
+            <td> {{headquarter.country}}</td>
+            <td> {{headquarter.city}}</td>
+            <td>
+              <button (click)=" dataHeadquarterFormEdit(headquarter)" class="btn-edit btn btn-block btn-outline-primary"
+                id="" data-toggle="modal" data-target="#editHeadquarter"><strong>EDIT</strong></button>
+              <button (click)="deleteHeadquarter(headquarter.id_headquarter)"
+                class="btn-delete btn btn-block btn-outline-danger"><strong>DELETE</strong></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="my-3"></div>
+  </div>
 
   <!--Modal edit headquarter-->
   <div class="modal fade" id="editHeadquarter" tabindex="-1" role="dialog" aria-labelledby="editHeadquarter"
@@ -81,7 +80,6 @@
     </div>
   </div>
 
-
   <!--Modal add headquarter-->
   <div class="modal fade" id="addHeadquarter" tabindex="-1" role="dialog" aria-labelledby="addHeadquarter"
     aria-hidden="true">
@@ -113,7 +111,6 @@
             </div>
           </form>
         </div>
-
       </div>
     </div>
   </div>
