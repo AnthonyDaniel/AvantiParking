@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.service';
 import { Headquarter } from 'src/app/models/headquarter';
 import Swal from 'sweetalert2';
@@ -8,6 +8,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   selector: 'app-headquarter',
   templateUrl: './headquarter.component.html',
   styleUrls: ['./headquarter.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class HeadquarterComponent implements OnInit {
 

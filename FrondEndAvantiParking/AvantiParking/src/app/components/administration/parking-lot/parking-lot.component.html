@@ -4,12 +4,12 @@
     <h3 class="font-weight-bold"> PARKING LOT ADMINISTRATION</h3>
   </section>
   <div class="row justify-content-end">
-    <div class="col-sm-8 col-md-4 mt-3 ">
+    <div class="col-sm-4 col-md-6 mt-3">
       <input type="text" class="form-control" name="filterParkingLot" placeholder="Search..."
         [(ngModel)]="filterParkingLot">
     </div>
     <div class="col-sm-8 col-md-6 mt-3 ">
-      <button type="button" class="btnAdd btn btn-primary" data-toggle="modal" data-target="#addParkingLot">
+      <button type="button" class="btnAdd btn btn-primary btn-block" data-toggle="modal" data-target="#addParkingLot">
         <strong>NEW PARKINGLOT</strong>
       </button>
     </div>
@@ -20,7 +20,6 @@
       <table class="table table-bordered table-hover ">
         <thead class="tableThead thead">
           <tr>
-            <th scope="col">ID</th>
             <th scope="col">NAME</th>
             <th scope="col">HEADQUARTER</th>
             <th scope="col">ACTION</th>
@@ -28,7 +27,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let parking of parkings | parkingLotPipe:filterParkingLot ">
-            <td>{{parking.id_parking_lot}}</td>
             <td>{{parking.name}}</td>
             <td>{{parking.headquarter.name}}</td>
             <td>

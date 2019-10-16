@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Injectable } from '@angular/core';
 import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.service';
 import Swal from 'sweetalert2';
 import { Parking_lot } from 'src/app/models/parking_lot';
@@ -8,6 +8,9 @@ import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.
   selector: 'app-parking-lot',
   templateUrl: './parking-lot.component.html',
   styleUrls: ['./parking-lot.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class ParkingLotComponent implements OnInit {
 

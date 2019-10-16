@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbarcolor">
 
     <a class="navbar-brand" routerLink="/">
@@ -7,48 +6,68 @@
     <button class="navbar-toggler" id="togglee" type="button" (click)="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngClass]="{'show': navbarOpen}">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
                 <a class="nav-link" routerLink="/reserve" data-toggle="tooltip" data-placement="left"
                     title="Make parking lot reservations" *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong id="link">RESERVE</strong> 
+                    <strong id="link">RESERVE</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/vehicle" data-toggle="tooltip" data-placement="left"
                     title="See your vehicles." *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">VEHICLE</strong>
+                    <strong id="link">VEHICLE</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/reports" data-toggle="tooltip" data-placement="left"
                     title="Generate your reports" *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">REPORTS</strong>
+                    <strong id="link">REPORTS</strong>
                 </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-o">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/administration/principal" data-toggle="tooltip" data-placement="left"
-                    title="Register and enjoy AvantiParking" *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">ADMINISTRATION</strong>
+            <li class="nav-item dropdownbtn-group dropleft">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <img src="https://lh3.googleusercontent.com/a-/AAuE7mAB0PvVJ7G63tSVG65eUD_6sL660F0i8oipoWdX4gc"
+                        class="rounded-circle" width="40px">
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " routerLink="/user/login" data-toggle="tooltip" data-placement="left"
-                    title="Log in to AvantiParking" *ngIf="loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">LOGIN</strong>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tooltip" data-placement="left" title="Sign off" href="#"
-                    (click)="logout($event)" *ngIf="!loggedIn">
-                    <strong  id="link">LOGOUT</strong> 
-                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item disabled">
+                        <i class="far fa-user-circle"></i>Anthony Marín Bolívar</a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item btn" data-toggle="modal" data-target="#Settings">
+                        <i class="fas fa-cog"></i> Settings
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" data-toggle="tooltip" routerLink="">
+                        <i class="fas fa-sign-out-alt"></i>LOGOUT
+                    </a>
+                </div>
             </li>
         </ul>
     </div>
 </nav>
 <div class="margin"></div>
+
+<div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="Settings" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">AVANTIPARKING SETTINGS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-admin-panel></app-admin-panel>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

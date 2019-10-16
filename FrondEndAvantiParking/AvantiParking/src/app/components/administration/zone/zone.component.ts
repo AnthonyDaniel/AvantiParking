@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Injectable} from '@angular/core';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import Swal from 'sweetalert2';
 import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.service';
@@ -7,6 +7,9 @@ import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.s
   templateUrl: './zone.component.html',
   styleUrls: ['./zone.component.css'],
   
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class ZoneComponent implements OnInit {
   
@@ -134,4 +137,9 @@ this.formZone.parking_lot = _zoneAux.parking_lot;
     this.error = error.error.error;
     this.status = "error";
   }
+
+  spaces(zone){
+    console.log(zone);
+  }
+
 }

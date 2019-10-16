@@ -12,7 +12,6 @@ const routes: Routes = [
   { path: 'administration/principal', component: PrincipalComponent},
   { path: 'administration/headquarter', component: HeadquarterComponent},
   { path: 'administration/parking-lot', component: ParkingLotComponent},
-  { path: 'administration/space', component: SpaceComponent},
   { path: 'administration/zone', component: ZoneComponent},
   {path: '**', component: ErrorComponent}
 ]

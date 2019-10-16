@@ -19,6 +19,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { PrincipalComponent } from './components/administration/principal/principal.component';
 import { HeadquarterPipePipe } from './pipes/headquarter-pipe.pipe';
 import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
+import { AdminPanelComponent } from './components/administration/admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
     ErrorComponent,
     HeadquarterPipePipe,
     ParkingLotPipePipe,
+    AdminPanelComponent,
  
   ],
   imports: [

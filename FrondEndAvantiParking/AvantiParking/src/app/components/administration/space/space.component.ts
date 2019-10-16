@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Injectable } from '@angular/core';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
@@ -6,6 +6,9 @@ import { ServiceZoneService } from 'src/app/services/service-zone.service';
   selector: 'app-space',
   templateUrl: './space.component.html',
   styleUrls: ['./space.component.css']
+})
+@Injectable({
+  providedIn: 'root'
 })
 export class SpaceComponent implements OnInit {
   //modelo zona
@@ -25,14 +28,13 @@ export class SpaceComponent implements OnInit {
     zone: this.formZone
   }
   
-
   public error: String;
   public success: String;
   public status: String;
 
-  filterSpace;
   public spaces;
   public zones;
+
   ngOnInit() {
     this.listSpace();
     this.ListZone();

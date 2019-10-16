@@ -4,13 +4,8 @@
                 <h3 class="font-weight-bold"> SPACE ADMINISTRATION</h3>
         </section>
 <div class="row ">
-      <div class="col-sm-2 col-md-4 mt-3">
+      <div class="col-sm-4 col-md-6 mt-3">
                   <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-    </div>
-      <div class="col-sm-2 col-md-2 mt-3">
-                <button class="btn-search btn btn-outline-secondary" >
-                    <i class="fas fa-search"></i>
-                </button>
     </div>
     <div class="col-sm-8 col-md-6 mt-3">
         <div>
@@ -21,29 +16,9 @@
             </button>
         </div>	
     </div>
-    <div class="col-md-6 mt-2">
-        <label>Headquarters</label>
-            <select class="custom-select">
-                <option selected>Choose...</option>
-                <option value="1">San José</option>
-                <option value="2">Liberia</option>
-                <option value="3">peru</option>
-            </select>
-    </div>
-    <div class="col-md-6 mt-2">	
-            <label>Headquarters</label>
-            <select class="custom-select">
-                <option selected>Choose...</option>
-                <option value="1">San José</option>
-                <option value="2">Liberia</option>
-                <option value="3">peru</option>
-            </select>
-    </div>
-    
     <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
           <thead class="tableThead thead">
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Space Name</th>
               <th scope="col">Type</th>
               <th scope="col">State</th>
@@ -54,7 +29,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let space of spaces">
-              <td>{{space.id_space}}</td>
               <td>{{space.name}}</td>
               <td>{{space.type}}</td>
               <td *ngIf="space.state === false">Available</td>
