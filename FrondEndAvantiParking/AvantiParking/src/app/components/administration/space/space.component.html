@@ -66,7 +66,7 @@
                                         <div class="modal-header">
                                                 <h5 class="modal-title justify-content-center"><strong>ADD
                                                                 SPACE</strong></h5>
-                                                <button type="button" class="close" data-dismiss="modal"
+                                                <button type="button" id="closeModal6" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -104,15 +104,6 @@
                                                                 <input type="text" class="form-control" name="user"
                                                                         [(ngModel)]="formSpace.user">
                                                         </div>
-                                                        <div class="form-group col-md-12">
-                                                                <label>Zone</label>
-                                                                <select class="custom-select" name="_zone"
-                                                                        [(ngModel)]="formSpace.zone.id_zone" required>
-                                                                        <option selected>Choose...</option>
-                                                                        <option value="{{_zone.id_zone}}" *ngFor="let _zone of zones">
-                                                                                        {{_zone.id_zone}} {{_zone.name}}</option>
-                                                                </select>
-                                                        </div>
                                                         <div class="col-md-6">
                                                                 <button type="submit"
                                                                         class="btnAddSpace btn btn-block btn-outline-secondary"
@@ -133,7 +124,7 @@
                                         <div class="modal-header">
                                                 <h5 class="modal-title justify-content-center"><strong>EDIT
                                                                 SPACE</strong></h5>
-                                                <button type="button"  class="close" data-dismiss="modal"
+                                                <button type="button"  id="closeModal7" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                 </button>

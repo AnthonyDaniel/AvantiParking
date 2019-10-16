@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-space',
@@ -59,6 +60,7 @@ export class SpaceComponent implements OnInit {
     //this.spaces = spaces;
     var i = localStorage.getItem('zone');
     var o = JSON.parse(i);
+    this.formSpace.zone.id_zone=o.id_zone;
     for (var n = 0; n < spaces.length; n++) {
       if (spaces[n].zone.id_zone == o.id_zone) {
         this.spaces.push(spaces[n]);
@@ -84,6 +86,7 @@ export class SpaceComponent implements OnInit {
 
       data => {
         this.responseSuccess(data);
+        $("#closeModal6").click();
         this.formSpace.name = null,
           this.formSpace.type = null,
           this.formSpace.state = null,
@@ -127,6 +130,7 @@ export class SpaceComponent implements OnInit {
   editSpaceForm() {
     this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
       data => {
+        $("#closeModal7").click();
         Swal.fire({
           type: 'success',
           title: 'The parking lot has been updated',
