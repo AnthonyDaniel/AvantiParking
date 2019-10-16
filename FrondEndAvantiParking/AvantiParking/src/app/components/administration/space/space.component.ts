@@ -110,7 +110,7 @@ export class SpaceComponent implements OnInit {
       },
       buttonsStyling: false
     })
-    
+
     Swal.fire({
       title: 'Are you sure delete?',
       text: "You won't be able to revert this!",
@@ -135,6 +135,11 @@ export class SpaceComponent implements OnInit {
     })
   }
   editSpaceForm() {
+    if(this.formSpace.state === 'Occupied'){
+      this.formSpace.state = true;
+    }else{
+      this.formSpace.state =  false;
+    }
     this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
       data => {
         $("#closeModal7").click();
@@ -144,12 +149,17 @@ export class SpaceComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        this.ngOnInit();
+        this.reloadTable(data);
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  reloadTable(data){
+    console.log(data)
+    this.ngOnInit();
   }
 
   dataSpaceFormEdit(_spaceAux) {
