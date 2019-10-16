@@ -1,3 +1,6 @@
+<button class="botonF1" routerLink="/administration/zone">
+        <span><i class="fas fa-arrow-left    "></i></span>
+</button>
 <div class="container">
         <br>
         <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
@@ -5,8 +8,8 @@
         </section>
         <div class="row ">
                 <div class="col-sm-4 col-md-6 mt-3">
-                        <input class="form-control" name="filterParkingLot" placeholder="Search..."
-                        [(ngModel)]="filterParkingLot">
+                        <input class="form-control" name="filterSpace" placeholder="Search..."
+                                [(ngModel)]="filterSpace">
                 </div>
                 <div class="col-sm-8 col-md-6 mt-3">
                         <div>
@@ -30,7 +33,7 @@
                                         </tr>
                                 </thead>
                                 <tbody>
-                                        <tr *ngFor="let space of spaces">
+                                        <tr *ngFor="let space of spaces | spacePipe:filterSpace">
                                                 <td>{{space.name}}</td>
                                                 <td>{{space.type}}</td>
                                                 <td *ngIf="space.state === false">Available</td>
@@ -41,7 +44,8 @@
                                                         <button (click)="dataSpaceFormEdit(space)"
                                                                 class="btn  btn-edit btn-block btn-outline-primary"
                                                                 data-toggle="modal" data-target="#editSpace">
-                                                                <strong><i class="fas fa-angle-double-right"></i>EDIT</strong>
+                                                                <strong><i
+                                                                                class="fas fa-angle-double-right"></i>EDIT</strong>
                                                         </button>
                                                         <button class="btn btn-delete btn-block btn-outline-danger"
                                                                 (click)="deleteSpace(space.id_space)">
@@ -91,7 +95,7 @@
                                                                 <select class="custom-select" name="type"
                                                                         [(ngModel)]="formSpace.type" required>
                                                                         <option selected>Choose...</option>
-                                                                        <option>Vehicle</option>
+                                                                        <option>Regular</option>
                                                                         <option>Special</option>
                                                                 </select>
                                                         </div>
@@ -105,8 +109,8 @@
                                                                 <select class="custom-select" name="_zone"
                                                                         [(ngModel)]="formSpace.zone.id_zone" required>
                                                                         <option selected>Choose...</option>
-                                                                        <option *ngFor="let _zone of zones">
-                                                                                {{_zone.id_zone}}</option>
+                                                                        <option value="{{_zone.id_zone}}" *ngFor="let _zone of zones">
+                                                                                        {{_zone.id_zone}} {{_zone.name}}</option>
                                                                 </select>
                                                         </div>
                                                         <div class="col-md-6">
@@ -129,7 +133,7 @@
                                         <div class="modal-header">
                                                 <h5 class="modal-title justify-content-center"><strong>EDIT
                                                                 SPACE</strong></h5>
-                                                <button type="button" class="close" data-dismiss="modal"
+                                                <button type="button"  class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                 </button>

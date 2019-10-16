@@ -21,6 +21,7 @@ import { HeadquarterPipePipe } from './pipes/headquarter-pipe.pipe';
 import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
 import { AdminPanelComponent } from './components/administration/admin-panel/admin-panel.component';
 import { ZonePipePipe } from './pipes/zone-pipe.pipe';
+import { SpacePipePipe } from './pipes/space-pipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { ZonePipePipe } from './pipes/zone-pipe.pipe';
     ParkingLotPipePipe,
     AdminPanelComponent,
     ZonePipePipe,
+    SpacePipePipe
  
   ],
   imports: [

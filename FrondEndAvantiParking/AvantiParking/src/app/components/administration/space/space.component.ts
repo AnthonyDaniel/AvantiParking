@@ -29,6 +29,8 @@ export class SpaceComponent implements OnInit {
     zone: this.formZone
   }
 
+  public filterSpace:any = '';
+
   public zone: any;
 
   public error: String;
@@ -78,27 +80,25 @@ export class SpaceComponent implements OnInit {
     } else if (this.formSpace.state == 'Occupied') {
       this.formSpace.state = 1;
     }
-    console.log(this.formSpace);
     this.space.addSpace(this.formSpace).subscribe(
 
       data => {
-        console.log(data);
         this.responseSuccess(data);
         this.formSpace.name = null,
           this.formSpace.type = null,
           this.formSpace.state = null,
           this.formSpace.user = null,
           this.formSpace.zone.id_zone = null
+          Swal.fire({
+            type: 'success',
+            title: 'The Space has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.ngOnInit();
       },
       error => this.responseError(error),
     );
-    Swal.fire({
-      type: 'success',
-      title: 'The Space has been saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    this.ngOnInit();
   }
   deleteSpace(_formSpace) {
     Swal.fire({
@@ -113,14 +113,13 @@ export class SpaceComponent implements OnInit {
       if (result.value) {
         this.space.deleteSpace(_formSpace).subscribe(
           data => {
-            console.log(data);
+            Swal.fire(
+              'Deleted!',
+              'The Space has been deleted.',
+              'success'
+            )
             this.ngOnInit();
           }
-        )
-        Swal.fire(
-          'Deleted!',
-          'The Space has been deleted.',
-          'success'
         )
       }
     })
@@ -128,19 +127,18 @@ export class SpaceComponent implements OnInit {
   editSpaceForm() {
     this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
       data => {
-        console.log(data);
+        Swal.fire({
+          type: 'success',
+          title: 'The parking lot has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.ngOnInit();
       },
       error => {
         console.log(error);
       }
     );
-    Swal.fire({
-      type: 'success',
-      title: 'The parking lot has been updated',
-      showConfirmButton: false,
-      timer: 1500
-    })
   }
 
   dataSpaceFormEdit(_spaceAux) {
