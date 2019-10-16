@@ -18,6 +18,10 @@ public class Zone {
 	private Long id_zone;
 	@Column(name = "name", nullable = false)
 	private String name;
+	@Column(name = "quantity", nullable = false)
+	private int quantity;
+	@Column(name = "start", nullable = false)
+	private int start;
 	@ManyToOne
 	@JoinColumn(name="parking_lot")
 	private Parking_lot parking_lot;
@@ -53,6 +57,22 @@ public class Zone {
 
 	public void setParking_lot(Parking_lot parking_lot) {
 		this.parking_lot = parking_lot;
+	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
 	}
 
 	@Override

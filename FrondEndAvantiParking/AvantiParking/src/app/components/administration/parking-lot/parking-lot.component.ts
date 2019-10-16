@@ -44,9 +44,7 @@ export class ParkingLotComponent implements OnInit {
   ListParkingLot() {
     this._parking.listParkingLot().subscribe(
       data => {
-        console.log(data);
         this.parkings = data;
-        console.log(data);
       },
       error => console.log(error)
     )
@@ -54,7 +52,6 @@ export class ParkingLotComponent implements OnInit {
   ListHeadquarters() {
     this._headquarter.listHeadquarter().subscribe(
       data => {
-        console.log(data);
         this.headquarters = data;
       },
       error => console.log(error)
@@ -64,20 +61,19 @@ export class ParkingLotComponent implements OnInit {
     console.log(this.formParkingLot)
     this._parking.addParkingLot(this.formParkingLot).subscribe(
       data => {
-        console.log(data);
         this.responseSuccess(data);
-        this.formParkingLot.name = null,
-          this.formParkingLot.headquarter.id_headquarter = null
+        this.formParkingLot.name = null;
+          this.formParkingLot.headquarter.id_headquarter = null;
+          Swal.fire({
+            type: 'success',
+            title: 'The Zone has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.ngOnInit();
       },
       error => this.responseError(error),
     );
-    Swal.fire({
-      type: 'success',
-      title: 'The Zone has been saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    this.ngOnInit();
   }
   deleteParkingLot(_formParkingLot) {
     console.log(_formParkingLot);
@@ -93,14 +89,13 @@ export class ParkingLotComponent implements OnInit {
       if (result.value) {
         this._parking.deleteParkingLot(_formParkingLot).subscribe(
           data => {
-            console.log(data);
             this.ngOnInit();
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
           }
-        )
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
         )
       }
     })
@@ -108,7 +103,6 @@ export class ParkingLotComponent implements OnInit {
   editParkingLot() {
     this._parking.editParkingLot(this.formParkingLot.id_parking_lot, this.formParkingLot).subscribe(
       data => {
-        console.log(data);
         this.ngOnInit();
       },
       error => {

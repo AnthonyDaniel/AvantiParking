@@ -31,10 +31,10 @@
             <td>{{parking.headquarter.name}}</td>
             <td>
               <button (click)="dataParkingLotFormEdit(parking)" class="btn-edit btn btn-block btn-outline-primary" id=""
-                data-toggle="modal" data-target="#editParkingLot"><strong>EDIT</strong></button>
+                data-toggle="modal" data-target="#editParkingLot"><strong><i class="fas fa-angle-double-right"></i>EDIT</strong></button>
               <button (click)="deleteParkingLot(parking.id_parking_lot)"
                 class="btn-delete btn btn-block btn-outline-danger" id="" data-toggle="modal"
-                data-target="#deleteParkingLot"><strong>DELETE</strong></button>
+                data-target="#deleteParkingLot"><strong><i class="fas fa-trash-alt"></i>DELETE</strong></button>
             </td>
           </tr>
         </tbody>
@@ -63,7 +63,7 @@
               <select class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter"
                 required>
                 <option selected>Choose...</option>
-                <option *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}}</option>
+                <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}} {{headquarter.name}}</option>
 
               </select>
             </div>
@@ -98,7 +98,7 @@
               <select class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter"
                 required>
                 <option selected>Choose...</option>
-                <option *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}}</option>
+                <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}} {{headquarter.name}}</option>
               </select>
             </div>
             <div class="col-md-6">

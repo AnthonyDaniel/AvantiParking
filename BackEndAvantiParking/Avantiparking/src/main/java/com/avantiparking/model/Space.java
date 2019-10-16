@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "space")
 public class Space {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id_space;
 	@Column(name = "name", nullable = false)
 	private String name;

@@ -28,6 +28,8 @@ export class ZoneComponent implements OnInit {
     id_zone:null,
     name: null,
     parking_lot: this.formParkingLot,
+    quantity:null,
+    start:null,
   }
 
   public error: String;

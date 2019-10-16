@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avantiparking.exception.Resource_Not_Found;
+import com.avantiparking.model.Space;
 import com.avantiparking.model.Zone;
+import com.avantiparking.repository.Space_Repository;
 import com.avantiparking.repository.Zone_Repository;
 
 @RestController
@@ -30,7 +32,9 @@ import com.avantiparking.repository.Zone_Repository;
 public class Zone_Controller {
 	@Autowired
 	public Zone_Repository zone_repository;
-
+	@Autowired
+	public Space_Repository space_repository;
+	
 	@GetMapping("/zone")
 	public List<Zone> getAllZones() {
 		return zone_repository.findAll();
@@ -45,8 +49,21 @@ public class Zone_Controller {
 	}
 
 	@PostMapping("/zone")
-	public Zone createZone(@Valid @RequestBody Zone zone) {
-		return zone_repository.save(zone);
+	public ResponseEntity<Zone> createZone(@Valid @RequestBody Zone zone) {
+		zone_repository.save(zone);
+		int starTemp=zone.getStart();
+		for(int i=0; i< zone.getQuantity(); i++) {
+			Space temp = new Space();
+			temp.setName(starTemp + "");
+			temp.setState(false);
+			temp.setType("Regular");
+			temp.setUser(null);
+			temp.setZone(zone);
+			space_repository.save(temp);
+			starTemp++;
+		}
+			
+		return ResponseEntity.ok().body(zone);
 	}
 
 	@PutMapping("/zone/{id}")

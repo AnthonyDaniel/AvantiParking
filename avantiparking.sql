@@ -54,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`zone` (
   `name` VARCHAR(10) NOT NULL,
   `parking_lot` INT NOT NULL,
   `quantity` INT NOT NULL,
+  `start` INT NOT NULL,
   PRIMARY KEY (`id_zone`),
   INDEX `fk_zone_parking_lot1_idx` (`parking_lot` ASC) ,
   CONSTRAINT `fk_zone_parking_lot1`

@@ -6,7 +6,7 @@
         <div class="row justify-content-end">
                 <div class="col-sm-4 col-md-6 mt-3">
                         <input class="form-control" name="filterParkingLot" placeholder="Search..."
-                        [(ngModel)]="filterParkingLot">
+                                [(ngModel)]="filterParkingLot">
                 </div>
                 <div class="col-sm-8 col-md-6 mt-3">
                         <!--Modal button of add space-->
@@ -44,13 +44,11 @@
                                                 <button (click)="dataZoneFormEdit(zone)"
                                                         class="btn btn-edit btn-block btn-outline-primary"
                                                         data-toggle="modal" data-target="#editZone">
-                                                        <i class="fas fa-angle-double-right"></i>
-                                                        Editar
+                                                        <strong><i class="fas fa-angle-double-right"></i>EDIT</strong>
                                                 </button>
                                                 <button class="btn btn-delete btn-block btn-outline-danger"
                                                         (click)="delete(zone.id_zone)">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                        Eliminar
+                                                        <strong><i class="fas fa-trash-alt"></i>DELETE</strong>
                                                 </button>
                                         </td>
                                 </tr>
@@ -79,13 +77,23 @@
                                                                 [(ngModel)]="formZone.name" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
+                                                        <label>Quality</label>
+                                                        <input type="number"  min="0" max="100" class="form-control" name="quality" [(ngModel)]="formZone.quantity"   required/>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                        <label>Start with...</label>
+                                                        <input type="number" min="0" max="100" class="form-control" name="start" [(ngModel)]="formZone.start"     required/>
+                                                </div>
+                                                <div class="form-group col-md-12">
                                                         <label>Parking Lot</label>
                                                         <select class="custom-select" name="parking_lot"
                                                                 [(ngModel)]="formZone.parking_lot.id_parking_lot"
                                                                 required>
                                                                 <option selected>Choose...</option>
-                                                                <option value="{{parking_lot.id_parking_lot}}" *ngFor="let parking_lot of parkings">
-                                                                                {{parking_lot.id_parking_lot}} {{parking_lot.name}} </option>
+                                                                <option value="{{parking_lot.id_parking_lot}}"
+                                                                        *ngFor="let parking_lot of parkings">
+                                                                        {{parking_lot.id_parking_lot}}
+                                                                        {{parking_lot.name}} </option>
                                                         </select>
                                                 </div>
 
