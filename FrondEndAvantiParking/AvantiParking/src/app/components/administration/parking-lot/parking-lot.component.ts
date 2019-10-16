@@ -3,6 +3,7 @@ import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.s
 import Swal from 'sweetalert2';
 import { Parking_lot } from 'src/app/models/parking_lot';
 import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-parking-lot',
@@ -58,12 +59,12 @@ export class ParkingLotComponent implements OnInit {
     )
   }
   addParkingLot() {
-    console.log(this.formParkingLot)
     this._parking.addParkingLot(this.formParkingLot).subscribe(
       data => {
         this.responseSuccess(data);
         this.formParkingLot.name = null;
           this.formParkingLot.headquarter.id_headquarter = null;
+          $("#closeModal2").click();
           Swal.fire({
             type: 'success',
             title: 'The Zone has been saved',
@@ -76,10 +77,9 @@ export class ParkingLotComponent implements OnInit {
     );
   }
   deleteParkingLot(_formParkingLot) {
-    console.log(_formParkingLot);
     Swal.fire({
       title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      text: "You will not be able to reverse this! If you eliminate this parking, areas and parking areas will be permanently deleted!!!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#89CA8E',
@@ -103,18 +103,19 @@ export class ParkingLotComponent implements OnInit {
   editParkingLot() {
     this._parking.editParkingLot(this.formParkingLot.id_parking_lot, this.formParkingLot).subscribe(
       data => {
+        $("#closeModal3").click();
+        Swal.fire({
+          type: 'success',
+          title: 'The parking lot has been updated',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.ngOnInit();
       },
       error => {
         console.log(error);
       }
     );
-    Swal.fire({
-      type: 'success',
-      title: 'The parking lot has been updated',
-      showConfirmButton: false,
-      timer: 1500
-    })
   }
   dataParkingLotFormEdit(_parkingLot) {
     this.formParkingLot.id_parking_lot = _parkingLot.id_parking_lot;
@@ -127,7 +128,6 @@ export class ParkingLotComponent implements OnInit {
     this.status = "success";
   }
   responseError(error) {
-    console.log(error)
     this.error = error.error.error;
     this.status = "error";
   }
