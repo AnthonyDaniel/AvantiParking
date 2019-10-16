@@ -67,7 +67,7 @@ export class ParkingLotComponent implements OnInit {
           $("#closeModal2").click();
           Swal.fire({
             type: 'success',
-            title: 'The Zone has been saved',
+            title: 'The Parking has been saved',
             showConfirmButton: false,
             timer: 1500
           })
