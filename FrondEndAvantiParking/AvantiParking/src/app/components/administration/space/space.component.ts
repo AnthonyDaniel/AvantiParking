@@ -146,9 +146,13 @@ export class SpaceComponent implements OnInit {
   }
 
   dataSpaceFormEdit(_spaceAux) {
+    if(_spaceAux.state){
+      this.formSpace.state =  'Occupied';
+    }else{
+      this.formSpace.state =  'Available';
+    }
     this.formSpace.id_space = _spaceAux.id_space;
     this.formSpace.name = _spaceAux.name;
-    this.formSpace.state = _spaceAux.state;
     this.formSpace.type = _spaceAux.type;
     this.formSpace.user = _spaceAux.user;
     this.formSpace.zone = _spaceAux.zone;

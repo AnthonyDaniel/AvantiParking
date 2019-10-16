@@ -85,7 +85,7 @@
                                                                 <label>State</label>
                                                                 <select class="custom-select" name="state"
                                                                         [(ngModel)]="formSpace.state" required>
-                                                                        <option selected>Choose...</option>
+                                                                        
                                                                         <option>Available</option>
                                                                         <option>Occupied</option>
                                                                 </select>
@@ -94,7 +94,7 @@
                                                                 <label>Type</label>
                                                                 <select class="custom-select" name="type"
                                                                         [(ngModel)]="formSpace.type" required>
-                                                                        <option selected>Choose...</option>
+                                                                        
                                                                         <option>Regular</option>
                                                                         <option>Special</option>
                                                                 </select>
@@ -141,18 +141,18 @@
                                                                 <label>Type</label>
                                                                 <select class="custom-select" name="type"
                                                                         [(ngModel)]="formSpace.type">
-                                                                        <option selected>Choose...</option>
-                                                                        <option *ngFor="let space of spaces">
-                                                                                {{space.type}}</option>
+                                                                        
+                                                                        <option>Regular</option>
+                                                                        <option>Special</option>
                                                                 </select>
                                                         </div>
                                                         <div class="form-group col-md-12">
                                                                 <label>State</label>
                                                                 <select class="custom-select" name="state"
                                                                         [(ngModel)]="formSpace.state">
-                                                                        <option selected>Choose...</option>
-                                                                        <option *ngFor="let space of spaces">
-                                                                                {{space.state}}</option>
+                                                                        
+                                                                        <option>Available</option>
+                                                                        <option>Occupied</option>
 
                                                                 </select>
                                                         </div>

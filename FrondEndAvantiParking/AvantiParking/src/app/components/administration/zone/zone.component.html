@@ -77,7 +77,7 @@
                                                                 [(ngModel)]="formZone.name" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                        <label>Quality</label>
+                                                        <label>Quantity</label>
                                                         <input type="number" min="0" max="100" class="form-control"
                                                                 name="quality" [(ngModel)]="formZone.quantity"
                                                                 required />
@@ -92,7 +92,7 @@
                                                         <select class="custom-select" name="parking_lot"
                                                                 [(ngModel)]="formZone.parking_lot.id_parking_lot"
                                                                 required>
-                                                                <option selected>Choose...</option>
+                                                               
                                                                 <option value="{{parking_lot.id_parking_lot}}"
                                                                         *ngFor="let parking_lot of parkings">
                                                                         {{parking_lot.id_parking_lot}}

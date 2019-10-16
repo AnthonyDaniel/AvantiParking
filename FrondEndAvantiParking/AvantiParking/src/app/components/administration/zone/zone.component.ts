@@ -94,14 +94,21 @@ export class ZoneComponent implements OnInit {
     }
   }
   delete(_formZone) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+
     Swal.fire({
       title: 'Are you sure?',
       text: "You will not be able to reverse this! It permanently removes all parking associated with the parking area!!",
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#89CA8E',
-      cancelButtonColor: '#EF4023',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: '#EF4023',
+      confirmButtonText: 'Yes, delete it!',
+      reverseButtons: true
     }).then((result) => {
       if (result.value) {
         this._zone.deleteZone(_formZone).subscribe(
