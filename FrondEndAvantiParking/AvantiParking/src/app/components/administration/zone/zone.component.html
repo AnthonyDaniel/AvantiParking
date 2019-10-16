@@ -5,8 +5,8 @@
         </section>
         <div class="row justify-content-end">
                 <div class="col-sm-4 col-md-6 mt-3">
-                        <input class="form-control" name="filterParkingLot" placeholder="Search..."
-                                [(ngModel)]="filterParkingLot">
+                        <input class="form-control" name="filterZone" placeholder="Search..."
+                                [(ngModel)]="filterZone">
                 </div>
                 <div class="col-sm-8 col-md-6 mt-3">
                         <!--Modal button of add space-->
@@ -28,7 +28,7 @@
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr *ngFor="let zone of zones">
+                                <tr *ngFor="let zone of zones | zonePipe:filterZone ">
                                         <td>{{zone.name}}</td>
                                         <td>
                                                 {{zone.parking_lot.name}}
@@ -64,7 +64,7 @@
                         <div class="modal-content">
                                 <div class="modal-header">
                                         <h5 class="modal-title justify-content-center"><strong>ADD ZONE</strong></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" id="closeModal5" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                         </button>
                                 </div>
@@ -78,11 +78,14 @@
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Quality</label>
-                                                        <input type="number"  min="0" max="100" class="form-control" name="quality" [(ngModel)]="formZone.quantity"   required/>
+                                                        <input type="number" min="0" max="100" class="form-control"
+                                                                name="quality" [(ngModel)]="formZone.quantity"
+                                                                required />
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Start with...</label>
-                                                        <input type="number" min="0" max="100" class="form-control" name="start" [(ngModel)]="formZone.start"     required/>
+                                                        <input type="number" min="0" max="100" class="form-control"
+                                                                name="start" [(ngModel)]="formZone.start" required />
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Parking Lot</label>
@@ -108,14 +111,13 @@
                         </div>
                 </div>
         </div>
-
         <!--Modal edit zone-->
         <div class="modal fade" id="editZone" tabindex="-1" role="dialog" aria-labelledby="editZone" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                         <div class="modal-content">
                                 <div class="modal-header">
                                         <h5 class="modal-title justify-content-center"><strong>EDIT ZONE</strong></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" id="closeModal4" (click)="ngOnInit()" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                         </button>
                                 </div>
@@ -133,16 +135,16 @@
                                                                 [(ngModel)]="formZone.parking_lot.id_parking_lot"
                                                                 required>
                                                                 <option selected>Choose...</option>
-                                                                <option *ngFor="let parking_lot of parkings">
-                                                                        {{parking_lot.id_parking_lot}}</option>
+                                                                <option value="{{parking_lot.id_parking_lot}}" *ngFor="let parking_lot of parkings">
+                                                                                {{parking_lot.id_parking_lot}}  {{parking_lot.name}} </option>
                                                         </select>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                         <button type="submit"
                                                                 class="btnEditZone btn btn-block btn-outline-secondary"
-                                                                [disabled]="!editZoneForm.valid"><i
-                                                                        class="fas fa-plus-square"></i> Add</button>
+                                                                [disabled]="!editZoneForm.valid" ><i
+                                                                        class="fas fa-plus-square"></i>Add</button>
                                                 </div>
                                         </form>
                                 </div>
