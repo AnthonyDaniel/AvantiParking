@@ -2,6 +2,8 @@ import { Component, OnInit , Injectable} from '@angular/core';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import Swal from 'sweetalert2';
 import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.service';
+import * as $ from 'jquery';
+import { SpaceComponent } from '../space/space.component';
 @Component({
   selector: 'app-zone',
   templateUrl: './zone.component.html',
@@ -18,7 +20,7 @@ export class ZoneComponent implements OnInit {
     name: null,
     headquarter: null,
   }
-  constructor(public _zone:ServiceZoneService, public parking_lot: ServiceParkingLotService) { }
+  constructor(public _zone:ServiceZoneService, public parking_lot: ServiceParkingLotService, private space: SpaceComponent) { }
 
   
 
@@ -43,9 +45,7 @@ export class ZoneComponent implements OnInit {
   ListZone(){
     this._zone.listZone().subscribe(
       data=>{
-        console.log(data);
         this.zones = data;
-        console.log(data);
       },
       error => console.log(error)
     )
@@ -53,7 +53,6 @@ export class ZoneComponent implements OnInit {
   ListParkingLot(){
     this.parking_lot.listParkingLot().subscribe(
       data=>{
-        console.log(data);
         this.parkings = data;
       },
       error => console.log(error)
@@ -65,18 +64,19 @@ export class ZoneComponent implements OnInit {
       data=>{
         console.log(data);
         this.responseSuccess(data);
-        this.formZone.name=null,
-        this.formZone.parking_lot.id_parking_lot=null
+        this.formZone.name=null;
+        this.formZone.parking_lot.id_parking_lot=null;
+        Swal.fire({
+          type: 'success',
+          title: 'The Zone has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.ngOnInit();
       },
       error=> this.responseError(error),
     );
-    Swal.fire({
-      type: 'success',
-      title: 'The Zone has been saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    this.ngOnInit();
+   
   }
   delete(_formZone){
     console.log(_formZone);
@@ -93,14 +93,14 @@ export class ZoneComponent implements OnInit {
           this._zone.deleteZone(_formZone).subscribe(
             data=>{
               console.log(data);
+              Swal.fire(
+                'Deleted!',
+                'Your zone has been deleted.',
+                'success'
+              )
               this.ngOnInit();
             }
           )
-        Swal.fire(
-          'Deleted!',
-          'Your zone has been deleted.',
-          'success'
-        )
       }
     })
   }
@@ -139,7 +139,7 @@ this.formZone.parking_lot = _zoneAux.parking_lot;
   }
 
   spaces(zone){
-    console.log(zone);
+    localStorage.setItem('zone',JSON.stringify(zone));
   }
 
 }

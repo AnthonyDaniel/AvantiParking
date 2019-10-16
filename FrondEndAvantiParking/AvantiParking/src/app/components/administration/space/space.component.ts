@@ -1,7 +1,8 @@
-import { Component, OnInit,Injectable } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
+
 @Component({
   selector: 'app-space',
   templateUrl: './space.component.html',
@@ -27,60 +28,69 @@ export class SpaceComponent implements OnInit {
     user: null,
     zone: this.formZone
   }
-  
+
+  public zone: any;
+
   public error: String;
   public success: String;
   public status: String;
 
-  public spaces;
+  public spaces:any =[];
   public zones;
 
   ngOnInit() {
     this.listSpace();
     this.ListZone();
   }
-  listSpace(){
+  listSpace() {
     this.space.listSpace().subscribe(
-      data=>{
-        this.spaces = data;
-        console.log(data)
+      data => {
+        this.ListSpaceInZone(data);
       },
-      error =>{
+      error => {
         console.log(error);
       }
-      
+
     );
   }
-  ListZone(){
+  ListSpaceInZone(spaces) {
+    //this.spaces = spaces;
+    var i = localStorage.getItem('zone');
+    var o = JSON.parse(i);
+    for (var n = 0; n < spaces.length; n++) {
+      if (spaces[n].zone.id_zone == o.id_zone) {
+        this.spaces.push(spaces[n]);
+      }
+    }
+  }
+  ListZone() {
     this._zone.listZone().subscribe(
-      data=>{
+      data => {
         this.zones = data;
       },
       error => console.log(error)
     )
   }
-  onSubmit(){
-    if(this.formSpace.state == 'Available'){
+  onSubmit() {
+    if (this.formSpace.state == 'Available') {
       this.formSpace.state = 0;
-     
-    }else if(this.formSpace.state== 'Occupied'){
+
+    } else if (this.formSpace.state == 'Occupied') {
       this.formSpace.state = 1;
     }
     console.log(this.formSpace);
     this.space.addSpace(this.formSpace).subscribe(
-      
-      data=>{
+
+      data => {
         console.log(data);
         this.responseSuccess(data);
-        this.formSpace.name= null,
-        this.formSpace.type= null,
-        this.formSpace.state= null,
-        this.formSpace.user= null,
-        this.formSpace.zone.id_zone= null
-        
-        
+        this.formSpace.name = null,
+          this.formSpace.type = null,
+          this.formSpace.state = null,
+          this.formSpace.user = null,
+          this.formSpace.zone.id_zone = null
       },
-      error=> this.responseError(error),
+      error => this.responseError(error),
     );
     Swal.fire({
       type: 'success',
@@ -90,7 +100,7 @@ export class SpaceComponent implements OnInit {
     })
     this.ngOnInit();
   }
-  deleteSpace(_formSpace){
+  deleteSpace(_formSpace) {
     Swal.fire({
       title: 'Are you sure delete?',
       text: "You won't be able to revert this!",
@@ -102,7 +112,7 @@ export class SpaceComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.space.deleteSpace(_formSpace).subscribe(
-          data =>{
+          data => {
             console.log(data);
             this.ngOnInit();
           }
@@ -115,9 +125,9 @@ export class SpaceComponent implements OnInit {
       }
     })
   }
-  editSpaceForm(){
+  editSpaceForm() {
     this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
-      data =>{
+      data => {
         console.log(data);
         this.ngOnInit();
       },
@@ -133,13 +143,13 @@ export class SpaceComponent implements OnInit {
     })
   }
 
-  dataSpaceFormEdit(_spaceAux){
-  this.formSpace.id_space = _spaceAux.id_space;
-  this.formSpace.name = _spaceAux.name;
-  this.formSpace.state= _spaceAux.state;
-  this.formSpace.type = _spaceAux.type;
-  this.formSpace.user = _spaceAux.user;
-  this.formSpace.zone =_spaceAux.zone;
+  dataSpaceFormEdit(_spaceAux) {
+    this.formSpace.id_space = _spaceAux.id_space;
+    this.formSpace.name = _spaceAux.name;
+    this.formSpace.state = _spaceAux.state;
+    this.formSpace.type = _spaceAux.type;
+    this.formSpace.user = _spaceAux.user;
+    this.formSpace.zone = _spaceAux.zone;
   }
 
   responseSuccess(data) {

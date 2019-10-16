@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`parking_lot` (
   CONSTRAINT `fk_parking_lot_headquarter`
     FOREIGN KEY (`headquarter`)
     REFERENCES `avantiparking`.`headquarter` (`id_headquarter`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+   ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -53,13 +53,14 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`zone` (
   `id_zone` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(10) NOT NULL,
   `parking_lot` INT NOT NULL,
+  `quantity` INT NOT NULL,
   PRIMARY KEY (`id_zone`),
   INDEX `fk_zone_parking_lot1_idx` (`parking_lot` ASC) ,
   CONSTRAINT `fk_zone_parking_lot1`
     FOREIGN KEY (`parking_lot`)
     REFERENCES `avantiparking`.`parking_lot` (`id_parking_lot`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
@@ -98,13 +99,13 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`space` (
   CONSTRAINT `fk_space_user`
     FOREIGN KEY (`user`)
     REFERENCES `avantiparking`.`user` (`id`)
-	ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+	ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_space_zone1`
     FOREIGN KEY (`zone`)
     REFERENCES `avantiparking`.`zone` (`id_zone`)
-	ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -121,8 +122,8 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`vehicle` (
   CONSTRAINT `fk_vehicle_user1`
     FOREIGN KEY (`user`)
     REFERENCES `avantiparking`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -145,16 +146,16 @@ CREATE TABLE IF NOT EXISTS `avantiparking`.`reserve` (
   CONSTRAINT `fk_reserve_user1`
     FOREIGN KEY (`user`)
     REFERENCES `avantiparking`.`user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_reserve_vehicle1`
     FOREIGN KEY (`vehicle`)
     REFERENCES `avantiparking`.`vehicle` (`license_plate`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_reserve_space1`
     FOREIGN KEY (`space`)
     REFERENCES `avantiparking`.`space` (`id_space`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;

@@ -5,7 +5,8 @@
         </section>
         <div class="row justify-content-end">
                 <div class="col-sm-4 col-md-6 mt-3">
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control" name="filterParkingLot" placeholder="Search..."
+                        [(ngModel)]="filterParkingLot">
                 </div>
                 <div class="col-sm-8 col-md-6 mt-3">
                         <!--Modal button of add space-->
@@ -16,44 +17,49 @@
                 </div>
         </div>
 
-        <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2 mb-5">
-                <thead class="tableThead thead">
-                        <tr>
-                                <th scope="col">Zone Name</th>
-                                <th scope="col">Parking Lot</th>
-                                <th scope="col">Actions</th>
-                        </tr>
-                </thead>
-                <tbody>
-                        <tr *ngFor="let zone of zones">
-                                <td>{{zone.name}}</td>
-                                <td>
-                                        {{zone.parking_lot.name}}
-                                </td>
-                                <td>
-                                        <button (click)="spaces(zone)"
-                                                class="btn btn-edit btn-block btn-outline-primary" data-toggle="modal"
-                                                data-target="#editZone">
-                                                <i class="fas fa-eye"></i>
-                                                Spaces
-                                        </button>
-                                        <button (click)="dataZoneFormEdit(zone)"
-                                                class="btn btn-edit btn-block btn-outline-primary" data-toggle="modal"
-                                                data-target="#editZone">
-                                                <i class="fas fa-angle-double-right"></i>
-                                                Editar
-                                        </button>
-                                        <button class="btn btn-delete btn-block btn-outline-danger"
-                                                (click)="delete(zone.id_zone)">
-                                                <i class="fas fa-trash-alt"></i>
-                                                Eliminar
-                                        </button>
-                                </td>
-                        </tr>
+        <div class="table-responsive">
+                <table class="table table-bordered table-hover mt-5 mb-5">
+                        <thead class="tableThead thead">
+                                <tr>
+                                        <th scope="col">Zone Name</th>
+                                        <th scope="col">Parking Lot</th>
+                                        <th scope="col">Spaces</th>
+                                        <th scope="col">Actions</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                                <tr *ngFor="let zone of zones">
+                                        <td>{{zone.name}}</td>
+                                        <td>
+                                                {{zone.parking_lot.name}}
+                                        </td>
+                                        <td valign="middle" style="vertical-align:middle;"
+                                                class="m-auto p-auto justify-content-center">
+                                                <button class="m-auto p-auto btn btn-block text-primary"
+                                                        (click)="spaces(zone)" routerLink="/administration/space">
+                                                        <i class="fas fa-eye fa-lg" style="width:12; height:12;"></i>
+                                                </button>
+                                        </td>
+                                        <td>
+                                                <button (click)="dataZoneFormEdit(zone)"
+                                                        class="btn btn-edit btn-block btn-outline-primary"
+                                                        data-toggle="modal" data-target="#editZone">
+                                                        <i class="fas fa-angle-double-right"></i>
+                                                        Editar
+                                                </button>
+                                                <button class="btn btn-delete btn-block btn-outline-danger"
+                                                        (click)="delete(zone.id_zone)">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Eliminar
+                                                </button>
+                                        </td>
+                                </tr>
 
 
-                </tbody>
-        </table>
+                        </tbody>
+                </table>
+        </div>
+
         <!--Modal de add zone-->
         <div class="modal fade" id="addZone" tabindex="-1" role="dialog" aria-labelledby="addZone" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -78,9 +84,8 @@
                                                                 [(ngModel)]="formZone.parking_lot.id_parking_lot"
                                                                 required>
                                                                 <option selected>Choose...</option>
-                                                                <option *ngFor="let parking_lot of parkings">
-                                                                        {{parking_lot.id_parking_lot}}</option>
-
+                                                                <option value="{{parking_lot.id_parking_lot}}" *ngFor="let parking_lot of parkings">
+                                                                                {{parking_lot.id_parking_lot}} {{parking_lot.name}} </option>
                                                         </select>
                                                 </div>
 
