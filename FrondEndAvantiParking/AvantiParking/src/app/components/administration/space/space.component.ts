@@ -46,6 +46,7 @@ export class SpaceComponent implements OnInit {
     this.ListZone();
   }
   listSpace() {
+    this.spaces =[];
     this.space.listSpace().subscribe(
       data => {
         this.ListSpaceInZone(data);
@@ -149,7 +150,7 @@ export class SpaceComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
-        this.reloadTable(data);
+        this.listSpace();
       },
       error => {
         console.log(error);
