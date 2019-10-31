@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-oauth2',
@@ -12,7 +13,9 @@ export class Oauth2Component implements OnInit {
   public token;
   public error;
 
-  constructor(private router: Router) {
+  public img;
+
+  constructor(private router: Router,public user:UserService) {
 
     this.urlTree = this.router.parseUrl(this.router.url);
  
@@ -20,10 +23,17 @@ export class Oauth2Component implements OnInit {
     this.error = this.urlTree.queryParams['error'];
     if(this.token){
       localStorage.setItem('accessToken', this.token);
+      //this.router.navigateByUrl('/');
     }
     
  };
   ngOnInit() {
+    this.user.loadImg().subscribe(data=>{this.loadImg(data)});
+  }
+
+  loadImg(data){
+    console.log(data);
+    this.img = data.imageUrl;
   }
 
 }

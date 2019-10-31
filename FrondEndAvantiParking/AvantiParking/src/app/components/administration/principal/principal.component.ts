@@ -13,5 +13,6 @@ export class PrincipalComponent implements OnInit {
   constructor(public user:UserService) { }
 
   ngOnInit() {
+    
   }
 }

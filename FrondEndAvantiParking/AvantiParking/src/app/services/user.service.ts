@@ -15,4 +15,8 @@ export class UserService {
   constructor(private http: HttpClient) { 
   }
 
+  loadImg(){
+    return this.http.get(`${this.baseUrl}/api/user`,{headers:this.httpHeaders});
+  }
+
 }
