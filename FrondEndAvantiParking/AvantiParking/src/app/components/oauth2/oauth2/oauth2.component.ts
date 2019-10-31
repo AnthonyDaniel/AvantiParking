@@ -23,7 +23,7 @@ export class Oauth2Component implements OnInit {
     this.error = this.urlTree.queryParams['error'];
     if(this.token){
       localStorage.setItem('accessToken', this.token);
-      //this.router.navigateByUrl('/');
+      this.router.navigateByUrl('administration/principal');
     }
     
  };
