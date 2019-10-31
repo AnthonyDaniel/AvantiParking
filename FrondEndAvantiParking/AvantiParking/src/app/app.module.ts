@@ -22,6 +22,7 @@ import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
 import { AdminPanelComponent } from './components/administration/admin-panel/admin-panel.component';
 import { ZonePipePipe } from './pipes/zone-pipe.pipe';
 import { SpacePipePipe } from './pipes/space-pipe.pipe';
+import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { SpacePipePipe } from './pipes/space-pipe.pipe';
     ParkingLotPipePipe,
     AdminPanelComponent,
     ZonePipePipe,
-    SpacePipePipe
+    SpacePipePipe,
+    Oauth2Component
  
   ],
   imports: [

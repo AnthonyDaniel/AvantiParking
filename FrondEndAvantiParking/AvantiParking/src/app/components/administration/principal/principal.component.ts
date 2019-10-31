@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-principal',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrincipalComponent implements OnInit {
 
-  constructor() { }
+  public GOOGLE_AUTH_URL = this.user.GOOGLE_AUTH_URL;
+
+  constructor(public user:UserService) { }
 
   ngOnInit() {
   }
-
 }

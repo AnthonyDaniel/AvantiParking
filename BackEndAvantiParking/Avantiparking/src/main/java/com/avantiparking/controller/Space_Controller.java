@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.avantiparking.exception.Resource_Not_Found;
+import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Space;
 import com.avantiparking.repository.Space_Repository;
 
@@ -38,9 +38,9 @@ public class Space_Controller {
 
 	@GetMapping("/space/{id}")
 	public ResponseEntity<Space> getSpaceById(@PathVariable(value = "id") Long id_Space)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Space space = space_repository.findById(id_Space)
-				.orElseThrow(() -> new Resource_Not_Found("Space not found for this id : " + id_Space));
+				.orElseThrow(() -> new ResourceNotFoundException("Space not found for this id : " + id_Space));
 		return ResponseEntity.ok().body(space);
 	}
 
@@ -51,9 +51,9 @@ public class Space_Controller {
 
 	@PutMapping("/space/{id}")
 	public ResponseEntity<Space> updateSpace(@PathVariable(value = "id") Long id_Space,
-			@Valid @RequestBody Space _space) throws Resource_Not_Found {
+			@Valid @RequestBody Space _space) throws ResourceNotFoundException {
 		Space space = space_repository.findById(id_Space)
-				.orElseThrow(() -> new Resource_Not_Found("Space not found for this id : " + id_Space));
+				.orElseThrow(() -> new ResourceNotFoundException("Space not found for this id : " + id_Space));
 
 		space.setName(_space.getName());
 		space.setState(_space.getState());
@@ -66,9 +66,9 @@ public class Space_Controller {
 
 	@DeleteMapping("/space/{id}")
 	public Map<String, Boolean> deleteSpace(@PathVariable(value = "id") Long id_Space)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Space space = space_repository.findById(id_Space)
-				.orElseThrow(() -> new Resource_Not_Found("Space not found for this id : " + id_Space));
+				.orElseThrow(() -> new ResourceNotFoundException("Space not found for this id : " + id_Space));
 
 		space_repository.delete(space);
 		Map<String, Boolean> response = new HashMap<>();

@@ -6,6 +6,7 @@ import { ParkingLotComponent } from './components/administration/parking-lot/par
 import { SpaceComponent } from './components/administration/space/space.component';
 import { ZoneComponent } from './components/administration/zone/zone.component';
 import { ErrorComponent } from './components/error/error.component';
+import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'administration/parking-lot', component: ParkingLotComponent},
   { path: 'administration/space', component: SpaceComponent},
   { path: 'administration/zone', component: ZoneComponent},
+  { path: 'oauth2/redirect', component: Oauth2Component},
   {path: '**', component: ErrorComponent}
 ]
 

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.avantiparking.exception.Resource_Not_Found;
+import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Space;
 import com.avantiparking.model.Zone;
 import com.avantiparking.repository.Space_Repository;
@@ -42,9 +42,9 @@ public class Zone_Controller {
 
 	@GetMapping("/zone/{id}")
 	public ResponseEntity<Zone> getZoneById(@PathVariable(value = "id") Long id_Zone)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Zone zone = zone_repository.findById(id_Zone)
-				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id : " + id_Zone));
+				.orElseThrow(() -> new ResourceNotFoundException("Zone not found for this id : " + id_Zone));
 		return ResponseEntity.ok().body(zone);
 	}
 
@@ -68,9 +68,9 @@ public class Zone_Controller {
 
 	@PutMapping("/zone/{id}")
 	public ResponseEntity<Zone> updateZone(@PathVariable(value = "id") Long id_Zone,
-			@Valid @RequestBody Zone _zone) throws Resource_Not_Found {
+			@Valid @RequestBody Zone _zone) throws ResourceNotFoundException {
 		Zone zone = zone_repository.findById(id_Zone)
-				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id : " + id_Zone));
+				.orElseThrow(() -> new ResourceNotFoundException("Zone not found for this id : " + id_Zone));
 
 		zone.setName(_zone.getName());
 		zone.setParking_lot(_zone.getParking_lot());
@@ -80,9 +80,9 @@ public class Zone_Controller {
 
 	@DeleteMapping("/zone/{id}")
 	public Map<String, Boolean> deleteZone(@PathVariable(value = "id") Long id_Zone)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Zone zone = zone_repository.findById(id_Zone)
-				.orElseThrow(() -> new Resource_Not_Found("Zone not found for this id : " + id_Zone));
+				.orElseThrow(() -> new ResourceNotFoundException("Zone not found for this id : " + id_Zone));
 
 		zone_repository.delete(zone);
 		Map<String, Boolean> response = new HashMap<>();
