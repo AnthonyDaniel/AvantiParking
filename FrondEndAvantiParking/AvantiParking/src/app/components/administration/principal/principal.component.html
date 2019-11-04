@@ -3,7 +3,25 @@
         <h1 id="main" class="white-text"><span>WELCOME TO AVANTIPARKING</span></h1>
         <p class="tabindex-script white-text">It is a parking manager for the company Avantica. <br>
             So you can reserve the parking of your vehicle.</p>
-        <a class="btnLogin btn btn-primary btn-block" href="{{GOOGLE_AUTH_URL}}">
+            <div class="form-group row">
+                <div class="col-12">
+                  <input type="username" name="username" class="form-control" id="inputUsername3" placeholder="USERNAME"
+                    [(ngModel)]="form.username" required>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-12">
+                  <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="PASSWORD"
+                    [(ngModel)]="form.password" required>
+                </div>
+              </div>
+              <br>
+              <div class="row justify-content-center">
+                <div class="mx-auto">
+                  <a class="text-center decore btn " href="{{GOOGLE_AUTH_URL}}">Sing in with Google</a>
+                </div>
+              </div>
+        <a class="btnLogin btn btn-primary btn-block" >
             <strong>LOG IN</strong>
         </a>
     </div>

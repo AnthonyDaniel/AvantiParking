@@ -32,12 +32,12 @@
             <li class="nav-item dropdownbtn-group dropleft">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <img src="https://lh3.googleusercontent.com/a-/AAuE7mAB0PvVJ7G63tSVG65eUD_6sL660F0i8oipoWdX4gc"
+                    <img src="{{userInf.imageUrl}}"
                         class="rounded-circle" width="40px">
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item disabled">
-                        <i class="far fa-user-circle"></i>Anthony Marín Bolívar</a>
+                        <i class="far fa-user-circle"></i>{{userInf.name}}</a>
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item btn"  (click)="toggleNavbar()" data-toggle="modal" data-target="#Settings">
                         <i class="fas fa-cog"></i> Settings
