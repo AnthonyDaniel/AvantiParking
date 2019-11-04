@@ -13,8 +13,6 @@ export class Oauth2Component implements OnInit {
   public token;
   public error;
 
-  public img;
-
   constructor(private router: Router,public user:UserService) {
 
     this.urlTree = this.router.parseUrl(this.router.url);
@@ -28,13 +26,7 @@ export class Oauth2Component implements OnInit {
     console.log(this.token);
  };
   ngOnInit() {
-    this.user.loadImg().subscribe(data=>{this.loadImg(data)});
-  }
-
-  loadImg(data){
-    console.log(data);
-    this.img = data.imageUrl;
-    console.log(this.img);
+  
   }
 
 }

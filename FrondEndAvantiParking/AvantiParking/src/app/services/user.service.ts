@@ -18,5 +18,5 @@ export class UserService {
   loadImg(){
     return this.http.get(`${this.baseUrl}/api/user`,{headers:this.httpHeaders});
   }
-
+  
 }

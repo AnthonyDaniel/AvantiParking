@@ -7,14 +7,15 @@ import { SpaceComponent } from './components/administration/space/space.componen
 import { ZoneComponent } from './components/administration/zone/zone.component';
 import { ErrorComponent } from './components/error/error.component';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
+import { AfterLoginService } from './services/after-login.service';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
-  { path: 'administration/principal', component: PrincipalComponent},
-  { path: 'administration/headquarter', component: HeadquarterComponent},
-  { path: 'administration/parking-lot', component: ParkingLotComponent},
-  { path: 'administration/space', component: SpaceComponent},
-  { path: 'administration/zone', component: ZoneComponent},
+  { path: 'administration/principal', component: PrincipalComponent,canActivate: [AfterLoginService]},
+  { path: 'administration/headquarter', component: HeadquarterComponent,canActivate: [AfterLoginService]},
+  { path: 'administration/parking-lot', component: ParkingLotComponent,canActivate: [AfterLoginService]},
+  { path: 'administration/space', component: SpaceComponent,canActivate: [AfterLoginService]},
+  { path: 'administration/zone', component: ZoneComponent,canActivate: [AfterLoginService]},
   { path: 'oauth2/redirect', component: Oauth2Component},
   {path: '**', component: ErrorComponent}
 ]
