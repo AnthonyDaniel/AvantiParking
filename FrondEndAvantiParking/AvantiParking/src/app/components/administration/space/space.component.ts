@@ -141,6 +141,10 @@ export class SpaceComponent implements OnInit {
     }else{
       this.formSpace.state =  false;
     }
+     var i = localStorage.getItem('zone');
+     var o = JSON.parse(i);
+     this.formSpace.zone.id_zone=o.id_zone;
+    
     this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
       data => {
         $("#closeModal7").click();

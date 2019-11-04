@@ -161,15 +161,6 @@
                                                                 <input type="text" class="form-control" name="user"
                                                                         [(ngModel)]="formSpace.user">
                                                         </div>
-                                                        <div class="form-group col-md-12">
-                                                                <label>Zone</label>
-                                                                <select class="custom-select" name="zone"
-                                                                        [(ngModel)]="formSpace.zone.id_zone">
-                                                                        
-                                                                        <option *ngFor="let _zone of zones">
-                                                                                {{_zone.id_zone}}</option>
-                                                                </select>
-                                                        </div>
                                                         <div class="col-md-6 col-sm-2">
                                                                 <button type="submit"
                                                                         class="btnEditSpace btn btn-block btn-outline-secondary"><i
