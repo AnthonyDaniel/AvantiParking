@@ -7,14 +7,14 @@ export class TokenService {
 
   constructor() { }
 
-  getToken(){
+  getToken() {
     return localStorage.getItem("accessToken");
   }
 
   loggedIn() {
     const token = this.getToken();
-    if (token) {
-     
+    if (token != null) {
+      return true;
     }
     return false;
   }
