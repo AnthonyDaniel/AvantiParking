@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { TokenService } from 'src/app/services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public user:UserService) { }
+  constructor(public user:UserService,private router: Router,
+    private Token: TokenService) { }
   navbarOpen = false;
   public img;
   public userInf={
@@ -27,5 +30,12 @@ export class NavbarComponent implements OnInit {
     console.log(data);
     this.img = data.imageUrl;
     console.log(this.img);
+  }
+  logout(event: MouseEvent) {
+    this.ngOnInit();
+    event.preventDefault();
+    this.Token.remove();
+    
+    this.router.navigateByUrl('');
   }
 }
