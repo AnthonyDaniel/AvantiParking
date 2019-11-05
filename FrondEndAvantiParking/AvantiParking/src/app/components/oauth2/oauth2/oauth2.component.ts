@@ -24,6 +24,7 @@ export class Oauth2Component implements OnInit {
       this.router.navigateByUrl('administration/principal');
     }
     console.log(this.token);
+    console.log(this.error);
  };
   ngOnInit() {
   

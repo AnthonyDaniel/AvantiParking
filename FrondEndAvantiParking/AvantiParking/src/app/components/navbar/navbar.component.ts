@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
     console.log(this.Token);
   }
   logout(event: MouseEvent) {
-    this.ngOnInit();
+    
     event.preventDefault();
     this.Token.remove();
     this.user.changeAuthStatus(false);
