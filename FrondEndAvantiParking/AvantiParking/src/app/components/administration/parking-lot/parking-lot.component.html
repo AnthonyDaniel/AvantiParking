@@ -56,11 +56,11 @@
           <form #addParkingLotForm=ngForm (ngSubmit)="addParkingLot()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>NAME</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="formParkingLot.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="addFormParkingLot.name" required>
             </div>
             <div class="form-group col-md-12">
               <label>HEADQUARTER</label>
-              <select class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter"
+              <select class="custom-select" name="headquarter" [(ngModel)]="addFormParkingLot.headquarter.id_headquarter"
                 required>
                 <option selected>Choose...</option>
                 <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}} {{headquarter.name}}</option>
@@ -91,11 +91,11 @@
           <form #editParkingLotForm=ngForm (ngSubmit)="editParkingLot()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>NAME</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="formParkingLot.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="editFormParkingLot.name" required>
             </div>
             <div class="form-group col-md-12">
               <label>HEADQUARTER</label>
-              <select class="custom-select" name="headquarter" [(ngModel)]="formParkingLot.headquarter.id_headquarter"
+              <select class="custom-select" name="headquarter" [(ngModel)]="editFormParkingLot.headquarter.id_headquarter"
                 required>
                 <option selected>Choose...</option>
                 <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}} {{headquarter.name}}</option>

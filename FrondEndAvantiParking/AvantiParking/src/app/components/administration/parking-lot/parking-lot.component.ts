@@ -25,7 +25,12 @@ export class ParkingLotComponent implements OnInit {
 
   filterParkingLot = "";
 
-  public formParkingLot = {
+  public addFormParkingLot = {
+    id_parking_lot: null,
+    name: null,
+    headquarter: this.formHeadquarter,
+  }
+  public editFormParkingLot = {
     id_parking_lot: null,
     name: null,
     headquarter: this.formHeadquarter,
@@ -59,11 +64,11 @@ export class ParkingLotComponent implements OnInit {
     )
   }
   addParkingLot() {
-    this._parking.addParkingLot(this.formParkingLot).subscribe(
+    this._parking.addParkingLot(this.addFormParkingLot).subscribe(
       data => {
         this.responseSuccess(data);
-        this.formParkingLot.name = null;
-          this.formParkingLot.headquarter.id_headquarter = null;
+        this.addFormParkingLot.name = null;
+          this.addFormParkingLot.headquarter.id_headquarter = null;
           $("#closeModal2").click();
           Swal.fire({
             type: 'success',
@@ -108,7 +113,7 @@ export class ParkingLotComponent implements OnInit {
     })
   }
   editParkingLot() {
-    this._parking.editParkingLot(this.formParkingLot.id_parking_lot, this.formParkingLot).subscribe(
+    this._parking.editParkingLot(this.editFormParkingLot.id_parking_lot, this.editFormParkingLot).subscribe(
       data => {
         $("#closeModal3").click();
         Swal.fire({
@@ -125,9 +130,9 @@ export class ParkingLotComponent implements OnInit {
     );
   }
   dataParkingLotFormEdit(_parkingLot) {
-    this.formParkingLot.id_parking_lot = _parkingLot.id_parking_lot;
-    this.formParkingLot.name = _parkingLot.name;
-    this.formParkingLot.headquarter = _parkingLot.headquarter;
+    this.editFormParkingLot.id_parking_lot = _parkingLot.id_parking_lot;
+    this.editFormParkingLot.name = _parkingLot.name;
+    this.editFormParkingLot.headquarter = _parkingLot.headquarter;
   }
 
   responseSuccess(data) {

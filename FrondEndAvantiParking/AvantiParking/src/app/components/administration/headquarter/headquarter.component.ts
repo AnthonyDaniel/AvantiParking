@@ -18,7 +18,13 @@ export class HeadquarterComponent implements OnInit {
 
   filterHeadquarters = "";
 
-  public formHeadquarter = {
+  public addFormHeadquarter = {
+    id_headquarter: null,
+    name: null,
+    country: null,
+    city: null,
+  };
+  public editFormHeadquarter = {
     id_headquarter: null,
     name: null,
     country: null,
@@ -44,12 +50,12 @@ export class HeadquarterComponent implements OnInit {
     );
   }
   addHeadquarter() {
-    this.headquarter.addHeadquarter(this.formHeadquarter).subscribe(
+    this.headquarter.addHeadquarter(this.addFormHeadquarter).subscribe(
       data => {
         this.responseSuccess(data);
-        this.formHeadquarter.name = null;
-        this.formHeadquarter.country = null;
-        this.formHeadquarter.city = null;
+        this.addFormHeadquarter.name = null;
+        this.addFormHeadquarter.country = null;
+        this.addFormHeadquarter.city = null;
         Swal.fire({
           type: 'success',
           title: 'The headquarter has been saved',
@@ -94,7 +100,7 @@ export class HeadquarterComponent implements OnInit {
     })
   }
   editHeadquarter() {
-    this.headquarter.editHeadquarter(this.formHeadquarter.id_headquarter, this.formHeadquarter).subscribe(
+    this.headquarter.editHeadquarter(this.editFormHeadquarter.id_headquarter, this.editFormHeadquarter).subscribe(
       data => {
         $("#closeModal1").click();
         Swal.fire({
@@ -111,10 +117,10 @@ export class HeadquarterComponent implements OnInit {
     );
   }
   dataHeadquarterFormEdit(_headquarter) {
-    this.formHeadquarter.id_headquarter = _headquarter.id_headquarter;
-    this.formHeadquarter.name = _headquarter.name;
-    this.formHeadquarter.city = _headquarter.city;
-    this.formHeadquarter.country = _headquarter.country;
+    this.editFormHeadquarter.id_headquarter = _headquarter.id_headquarter;
+    this.editFormHeadquarter.name = _headquarter.name;
+    this.editFormHeadquarter.city = _headquarter.city;
+    this.editFormHeadquarter.country = _headquarter.country;
   }
   responseSuccess(data) {
     this.success = data.data;

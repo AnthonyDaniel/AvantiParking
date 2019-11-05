@@ -74,23 +74,23 @@
                                                 <div class="form-group col-md-12">
                                                         <label>Zone Name</label>
                                                         <input type="text" class="form-control" name="name"
-                                                                [(ngModel)]="formZone.name" required>
+                                                                [(ngModel)]="addFormZone.name" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Quantity</label>
                                                         <input type="number" min="0" max="100" class="form-control"
-                                                                name="quality" [(ngModel)]="formZone.quantity"
+                                                                name="quality" [(ngModel)]="addFormZone.quantity"
                                                                 required />
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Start with...</label>
                                                         <input type="number" min="0" max="100" class="form-control"
-                                                                name="start" [(ngModel)]="formZone.start" required />
+                                                                name="start" [(ngModel)]="addFormZone.start" required />
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Parking Lot</label>
                                                         <select class="custom-select" name="parking_lot"
-                                                                [(ngModel)]="formZone.parking_lot.id_parking_lot"
+                                                                [(ngModel)]="addFormZone.parking_lot.id_parking_lot"
                                                                 required>
                                                                
                                                                 <option value="{{parking_lot.id_parking_lot}}"
@@ -127,12 +127,12 @@
                                                 <div class="form-group col-md-12">
                                                         <label>Zone Name</label>
                                                         <input type="text" class="form-control" name="name"
-                                                                [(ngModel)]="formZone.name" required>
+                                                                [(ngModel)]="editFormZone.name" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Parking Lot</label>
                                                         <select class="custom-select" name="parking_lot"
-                                                                [(ngModel)]="formZone.parking_lot.id_parking_lot"
+                                                                [(ngModel)]="editFormZone.parking_lot.id_parking_lot"
                                                                 required>
                                                                 <option selected>Choose...</option>
                                                                 <option value="{{parking_lot.id_parking_lot}}" *ngFor="let parking_lot of parkings">

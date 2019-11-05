@@ -13,15 +13,25 @@ import * as $ from 'jquery';
   providedIn: 'root'
 })
 export class SpaceComponent implements OnInit {
+  
+  constructor(public space: ServiceSpaceService, public _zone: ServiceZoneService) { }
   //modelo zona
   public formZone = {
     id_zone: null,
     name: null,
     paking_lot: null
   }
-  constructor(public space: ServiceSpaceService, public _zone: ServiceZoneService) { }
   //modelo espacio
-  public formSpace = {
+  public addFormSpace = {
+    id_space: null,
+    name: null,
+    type: null,
+    state: null,
+    user: null,
+    zone: this.formZone
+  }
+  //modelo espacio
+  public editFormSpace = {
     id_space: null,
     name: null,
     type: null,
@@ -61,7 +71,7 @@ export class SpaceComponent implements OnInit {
     //this.spaces = spaces;
     var i = localStorage.getItem('zone');
     var o = JSON.parse(i);
-    this.formSpace.zone.id_zone=o.id_zone;
+    this.addFormSpace.zone.id_zone=o.id_zone;
     for (var n = 0; n < spaces.length; n++) {
       if (spaces[n].zone.id_zone == o.id_zone) {
         this.spaces.push(spaces[n]);
@@ -77,22 +87,22 @@ export class SpaceComponent implements OnInit {
     )
   }
   onSubmit() {
-    if (this.formSpace.state == 'Available') {
-      this.formSpace.state = 0;
+    if (this.addFormSpace.state == 'Available') {
+      this.addFormSpace.state = 0;
 
-    } else if (this.formSpace.state == 'Occupied') {
-      this.formSpace.state = 1;
+    } else if (this.addFormSpace.state == 'Occupied') {
+      this.addFormSpace.state = 1;
     }
-    this.space.addSpace(this.formSpace).subscribe(
+    this.space.addSpace(this.addFormSpace).subscribe(
 
       data => {
         this.responseSuccess(data);
         $("#closeModal6").click();
-        this.formSpace.name = null,
-          this.formSpace.type = null,
-          this.formSpace.state = null,
-          this.formSpace.user = null,
-          this.formSpace.zone.id_zone = null
+        this.addFormSpace.name = null,
+          this.addFormSpace.type = null,
+          this.addFormSpace.state = null,
+          this.addFormSpace.user = null,
+          this.addFormSpace.zone.id_zone = null
           Swal.fire({
             type: 'success',
             title: 'The Space has been saved',
@@ -136,16 +146,16 @@ export class SpaceComponent implements OnInit {
     })
   }
   editSpaceForm() {
-    if(this.formSpace.state === 'Occupied'){
-      this.formSpace.state = true;
+    if(this.editFormSpace.state === 'Occupied'){
+      this.editFormSpace.state = true;
     }else{
-      this.formSpace.state =  false;
+      this.editFormSpace.state =  false;
     }
      var i = localStorage.getItem('zone');
      var o = JSON.parse(i);
-     this.formSpace.zone.id_zone=o.id_zone;
+     this.editFormSpace.zone.id_zone=o.id_zone;
     
-    this.space.editSpace(this.formSpace.id_space, this.formSpace).subscribe(
+    this.space.editSpace(this.editFormSpace.id_space, this.editFormSpace).subscribe(
       data => {
         $("#closeModal7").click();
         Swal.fire({
@@ -169,15 +179,15 @@ export class SpaceComponent implements OnInit {
 
   dataSpaceFormEdit(_spaceAux) {
     if(_spaceAux.state){
-      this.formSpace.state =  'Occupied';
+      this.editFormSpace.state =  'Occupied';
     }else{
-      this.formSpace.state =  'Available';
+      this.editFormSpace.state =  'Available';
     }
-    this.formSpace.id_space = _spaceAux.id_space;
-    this.formSpace.name = _spaceAux.name;
-    this.formSpace.type = _spaceAux.type;
-    this.formSpace.user = _spaceAux.user;
-    this.formSpace.zone = _spaceAux.zone;
+    this.editFormSpace.id_space = _spaceAux.id_space;
+    this.editFormSpace.name = _spaceAux.name;
+    this.editFormSpace.type = _spaceAux.type;
+    this.editFormSpace.user = _spaceAux.user;
+    this.editFormSpace.zone = _spaceAux.zone;
   }
 
   responseSuccess(data) {

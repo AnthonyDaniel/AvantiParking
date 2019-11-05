@@ -60,15 +60,15 @@
           <form #editHeadquarterForm=ngForm (ngSubmit)="editHeadquarter()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>NAME</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="formHeadquarter.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="editFormHeadquarter.name" required>
             </div>
             <div class="form-group col-md-12">
               <label>COUNTRY</label>
-              <input type="text" class="form-control" name="country" [(ngModel)]="formHeadquarter.country" required>
+              <input type="text" class="form-control" name="country" [(ngModel)]="editFormHeadquarter.country" required>
             </div>
             <div class="form-group col-md-12">
               <label>CITY</label>
-              <input type="text" class="form-control" name="city" [(ngModel)]="formHeadquarter.city" required>
+              <input type="text" class="form-control" name="city" [(ngModel)]="editFormHeadquarter.city" required>
             </div>
             <div class="col-md-6">
               <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
@@ -95,15 +95,15 @@
           <form #addHeadquarterForm=ngForm (ngSubmit)="addHeadquarter()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>Name</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="formHeadquarter.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="addFormHeadquarter.name" required>
             </div>
             <div class="form-group col-md-12">
               <label>COUNTRY</label>
-              <input type="text" class="form-control" name="country" [(ngModel)]="formHeadquarter.country" required>
+              <input type="text" class="form-control" name="country" [(ngModel)]="addFormHeadquarter.country" required>
             </div>
             <div class="form-group col-md-12">
               <label>CITY</label>
-              <input type="text" class="form-control" name="city" [(ngModel)]="formHeadquarter.city" required>
+              <input type="text" class="form-control" name="city" [(ngModel)]="addFormHeadquarter.city" required>
             </div>
             <div class="col-md-6">
               <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"

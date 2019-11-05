@@ -15,14 +15,22 @@ import { SpaceComponent } from '../space/space.component';
 })
 export class ZoneComponent implements OnInit {
 
+ 
+  constructor(public _zone: ServiceZoneService, public parking_lot: ServiceParkingLotService, private space: SpaceComponent) { }
+
   public formParkingLot = {
     id_parking_lot: null,
     name: null,
     headquarter: null,
   }
-  constructor(public _zone: ServiceZoneService, public parking_lot: ServiceParkingLotService, private space: SpaceComponent) { }
-
-  public formZone = {
+  public addFormZone = {
+    id_zone: null,
+    name: null,
+    parking_lot: this.formParkingLot,
+    quantity: null,
+    start: null,
+  }
+  public editFormZone = {
     id_zone: null,
     name: null,
     parking_lot: this.formParkingLot,
@@ -39,10 +47,10 @@ export class ZoneComponent implements OnInit {
   public parkings;
 
   ngOnInit() {
-    this.formZone.name = null;
-    this.formZone.parking_lot.id_parking_lot = null;
-    this.formZone.quantity = null;
-    this.formZone.start = null;
+    this.addFormZone.name = null;
+    this.addFormZone.parking_lot.id_parking_lot = null;
+    this.addFormZone.quantity = null;
+    this.addFormZone.start = null;
     this.ListZone();
     this.ListParkingLot();
   }
@@ -64,14 +72,14 @@ export class ZoneComponent implements OnInit {
   }
   onSubmit() {
 
-    if(this.formZone.quantity <= 100){
-      this._zone.addZone(this.formZone).subscribe(
+    if(this.addFormZone.quantity <= 100){
+      this._zone.addZone(this.addFormZone).subscribe(
         data => {
           this.responseSuccess(data);
-          this.formZone.name = null;
-          this.formZone.parking_lot.id_parking_lot = null;
-          this.formZone.quantity = null;
-          this.formZone.start = null;
+          this.addFormZone.name = null;
+          this.addFormZone.parking_lot.id_parking_lot = null;
+          this.addFormZone.quantity = null;
+          this.addFormZone.start = null;
           $("#closeModal5").click();
           Swal.fire({
             type: 'success',
@@ -125,7 +133,7 @@ export class ZoneComponent implements OnInit {
     })
   }
   editZone() {
-    this._zone.editZone(this.formZone.id_zone, this.formZone).subscribe(
+    this._zone.editZone(this.editFormZone.id_zone, this.editFormZone).subscribe(
       data => {
         $("#closeModal4").click();
         Swal.fire({
@@ -142,11 +150,11 @@ export class ZoneComponent implements OnInit {
     );
   }
   dataZoneFormEdit(_zoneAux) {
-    this.formZone.id_zone = _zoneAux.id_zone;
-    this.formZone.name = _zoneAux.name;
-    this.formZone.parking_lot = _zoneAux.parking_lot;
-    this.formZone.quantity = _zoneAux.quantity;
-    this.formZone.start = _zoneAux.start;
+    this.editFormZone.id_zone = _zoneAux.id_zone;
+    this.editFormZone.name = _zoneAux.name;
+    this.editFormZone.parking_lot = _zoneAux.parking_lot;
+    this.editFormZone.quantity = _zoneAux.quantity;
+    this.editFormZone.start = _zoneAux.start;
   }
   responseSuccess(data) {
     this.success = data.data;
