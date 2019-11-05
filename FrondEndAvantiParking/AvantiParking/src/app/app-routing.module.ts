@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'administration/parking-lot', component: ParkingLotComponent,canActivate: [AfterLoginService]},
   { path: 'administration/space', component: SpaceComponent,canActivate: [AfterLoginService]},
   { path: 'administration/zone', component: ZoneComponent,canActivate: [AfterLoginService]},
-  { path: 'oauth2/redirect', component: Oauth2Component,canActivate: [AfterLoginService]},
+  { path: 'oauth2/redirect', component: Oauth2Component},
   {path: '**', component: ErrorComponent}
 ]
 
