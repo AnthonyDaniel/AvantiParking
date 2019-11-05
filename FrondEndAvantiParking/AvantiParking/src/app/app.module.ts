@@ -24,6 +24,7 @@ import { ZonePipePipe } from './pipes/zone-pipe.pipe';
 import { SpacePipePipe } from './pipes/space-pipe.pipe';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/administration/users/users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { LoginComponent } from './components/login/login.component';
     ZonePipePipe,
     SpacePipePipe,
     Oauth2Component,
-    LoginComponent
+    LoginComponent,
+    UsersComponent
  
   ],
   imports: [
