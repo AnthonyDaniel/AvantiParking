@@ -19,6 +19,6 @@ export class TokenService {
     return false;
   }
   remove() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('accessToken');
   }
 }
