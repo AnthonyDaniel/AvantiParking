@@ -44,8 +44,8 @@ export class NavbarComponent implements OnInit {
     if (data.email == null) {
       this.auth.changeAdminStatus(false);
       this.auth.changeAuthStatus(false);
-      this.router.navigateByUrl('');
       localStorage.removeItem('accessToken');
+      this.router.navigateByUrl('');
     } else {
       this.auth.changeAuthStatus(true);
     }
@@ -66,7 +66,10 @@ export class NavbarComponent implements OnInit {
       this.user.loadImg().subscribe(data => {
         this.loadUser(data);
       },error=>{
-        console.log(error);
+        this.auth.changeAdminStatus(false);
+        this.auth.changeAuthStatus(false);
+        localStorage.removeItem('accessToken');
+        this.router.navigateByUrl('');
       });
     }
     setTimeout(() => {
