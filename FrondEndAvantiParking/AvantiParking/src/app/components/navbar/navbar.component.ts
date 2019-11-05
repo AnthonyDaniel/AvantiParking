@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(public user:UserService,private router: Router,
     private Token: TokenService) { }
+   
+    public loggedIn : boolean;  
   navbarOpen = false;
   public img;
   public userInf={
@@ -24,18 +26,23 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.user.loadImg().subscribe(data=>{this.loadImg(data)});
+    this.user.authStatus.subscribe(value=> this.loggedIn = value);
+    setTimeout(() => {
+    
+    },12000);
   }
   loadImg(data){
     this.userInf=data;
     console.log(data);
     this.img = data.imageUrl;
-    console.log(this.img);
+    console.log(this.Token);
   }
   logout(event: MouseEvent) {
     this.ngOnInit();
     event.preventDefault();
     this.Token.remove();
-    
+    this.user.changeAuthStatus(false);
     this.router.navigateByUrl('');
+    console.log(this.Token);
   }
 }
