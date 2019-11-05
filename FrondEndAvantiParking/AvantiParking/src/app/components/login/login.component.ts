@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +10,13 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginComponent implements OnInit {
 
   public GOOGLE_AUTH_URL = this.user.GOOGLE_AUTH_URL;
-
-  constructor(public user:UserService) { }
+  public loggedIn: boolean;
+  constructor(public user: UserService, private auth: AuthService) { }
 
   ngOnInit() {
-    
+    this.auth.authStatus.subscribe(value => this.loggedIn = value);
   }
 }
+
+
+

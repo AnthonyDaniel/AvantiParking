@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { TokenService } from 'src/app/services/token.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -10,39 +11,68 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public user:UserService,private router: Router,
-    private Token: TokenService) { }
-   
-    public loggedIn : boolean;  
-  navbarOpen = false;
+  public loggedIn: boolean;
+  public admin: boolean;
+  public navbarOpen = false;
   public img;
-  public userInf={
-     name:null,
-     imageUrl:null
+  private asyncResult;
+
+  constructor(public user: UserService, private router: Router, private auth: AuthService) {
+  }
+
+  public userInf = {
+    name: null,
+    imageUrl: null
   };
+
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
-
   ngOnInit() {
-    this.user.loadImg().subscribe(data=>{this.loadImg(data)});
-    this.user.authStatus.subscribe(value=> this.loggedIn = value);
-    setTimeout(() => {
-    
-    },12000);
+    this.auth.authStatus.subscribe(value => this.loggedIn = value);
+    this.auth.adminStatus.subscribe(value => this.admin = value);
+    this.getAsyncData();
   }
-  loadImg(data){
-    this.userInf=data;
-    console.log(data);
+  loadUser(data) {
+    this.userInf = data;
+    if (data.role) {
+      this.auth.changeAdminStatus(true);
+    } else {
+      this.auth.changeAdminStatus(false);
+      this.router.navigateByUrl('');
+    }
+    if (data.email == null) {
+      this.auth.changeAdminStatus(false);
+      this.auth.changeAuthStatus(false);
+      this.router.navigateByUrl('');
+      localStorage.removeItem('accessToken');
+    } else {
+      this.auth.changeAuthStatus(true);
+    }
     this.img = data.imageUrl;
-    console.log(this.Token);
   }
   logout(event: MouseEvent) {
-    
     event.preventDefault();
-    this.Token.remove();
-    this.user.changeAuthStatus(false);
+    localStorage.removeItem('accessToken');
+    this.auth.changeAdminStatus(false);
+    this.auth.changeAuthStatus(false);
     this.router.navigateByUrl('');
-    console.log(this.Token);
+  }
+  async getAsyncData() {
+    if (localStorage.getItem('accessToken') == null) {
+      this.auth.changeAdminStatus(false);
+      this.auth.changeAuthStatus(false);
+    } else {
+      this.user.loadImg().subscribe(data => {
+        this.loadUser(data);
+      },error=>{
+        console.log(error);
+      });
+    }
+    setTimeout(() => {
+      this.getAsyncData()
+    }, 3000);
   }
 }
+
+

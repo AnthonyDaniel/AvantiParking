@@ -16,7 +16,6 @@ import { ErrorComponent } from './components/error/error.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { PrincipalComponent } from './components/administration/principal/principal.component';
 import { HeadquarterPipePipe } from './pipes/headquarter-pipe.pipe';
 import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
 import { AdminPanelComponent } from './components/administration/admin-panel/admin-panel.component';
@@ -34,7 +33,6 @@ import { UsersComponent } from './components/administration/users/users.componen
     SpaceComponent,
     NavbarComponent,
     FooterComponent,
-    PrincipalComponent,
     ErrorComponent,
     HeadquarterPipePipe,
     ParkingLotPipePipe,

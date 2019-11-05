@@ -8,17 +8,6 @@ export class TokenService {
   constructor() { }
 
   getToken() {
-    return localStorage.getItem("accessToken");
-  }
-
-  loggedIn() {
-    const token = this.getToken();
-    if (token != null) {
-      return true;
-    }
-    return false;
-  }
-  remove() {
-    localStorage.removeItem('accessToken');
+    return localStorage.getItem("accessToken")
   }
 }

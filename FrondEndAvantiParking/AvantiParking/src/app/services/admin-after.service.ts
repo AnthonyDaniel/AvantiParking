@@ -5,12 +5,14 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AfterLoginService implements CanActivate {
-  public loggedIn: boolean;
+export class AdminAfterService implements CanActivate {
+
+  private admin:boolean;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    return this.loggedIn;
+    return this.admin;
   }
-  constructor(public auth: AuthService) {
-    this.auth.authStatus.subscribe(value => this.loggedIn = value);
+  constructor(public auth:AuthService) {
+    this.auth.adminStatus.subscribe(value => this.admin = value);
   }
+
 }
