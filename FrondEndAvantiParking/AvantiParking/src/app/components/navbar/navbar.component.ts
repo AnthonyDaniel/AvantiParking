@@ -20,10 +20,7 @@ export class NavbarComponent implements OnInit {
   constructor(public user: UserService, private router: Router, private auth: AuthService) {
   }
 
-  public userInf = {
-    name: null,
-    imageUrl: null
-  };
+  public userInf:any;
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;

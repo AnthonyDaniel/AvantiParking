@@ -14,6 +14,9 @@ export class ServiceHeadquarterService {
    constructor(private http: HttpClient) {
 
    }
+   getByID(id:any){
+      return this.http.get(`${this.baseUrl}/${id}`, {headers:this.httpHeaders})
+   }
    addHeadquarter(data: any) {
       return this.http.post(`${this.baseUrl}`, data,{headers:this.httpHeaders});
    }

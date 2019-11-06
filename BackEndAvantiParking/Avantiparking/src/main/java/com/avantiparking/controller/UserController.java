@@ -52,7 +52,6 @@ public class UserController {
 			@Valid @RequestBody User headq) throws ResourceNotFoundException {
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id : " + id));
-
 		user.setRole(headq.isRole());
 		user.setHeadquarter(headq.getHeadquarter());
 		final User updatedUser= userRepository.save(user);

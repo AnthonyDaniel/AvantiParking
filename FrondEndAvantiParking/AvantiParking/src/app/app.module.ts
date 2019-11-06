@@ -25,6 +25,7 @@ import { UserPipePipe } from './pipes/user-pipe.pipe';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/administration/users/users.component';
+import { UserPanelComponent } from './components/user-panel/user-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { UsersComponent } from './components/administration/users/users.componen
     Oauth2Component,
     LoginComponent,
     UsersComponent,
-    UserPipePipe
+    UserPipePipe,
+    UserPanelComponent
  
   ],
   imports: [

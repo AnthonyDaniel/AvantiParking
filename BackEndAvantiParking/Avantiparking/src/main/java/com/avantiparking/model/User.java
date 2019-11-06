@@ -4,6 +4,7 @@ import java.sql.Date;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 @Entity
 @Table(name = "user")
@@ -27,13 +28,17 @@ public class User {
     @Enumerated(EnumType.STRING)
     private AuthProvider provider;
 
-    private String providerId;
-    
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="headquarter")
 	private Headquarter headquarter;
+    
+    private String providerId;
 
-    public Headquarter getHeadquarter() {
+	public User() {
+		
+	}
+	
+	public Headquarter getHeadquarter() {
 		return headquarter;
 	}
 
