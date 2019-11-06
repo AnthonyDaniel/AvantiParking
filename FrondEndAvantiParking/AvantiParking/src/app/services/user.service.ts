@@ -19,4 +19,10 @@ export class UserService {
   loadImg(){
     return this.http.get(`${this.baseUrl}/api/user`,{headers:this.httpHeaders});
   }
+  getAll(){
+    return this.http.get(`${this.baseUrl}/api/users`,{headers:this.httpHeaders});
+  }
+  modify(data){
+    return this.http.put(`${this.baseUrl}/api/user/${data.id}`,data,{headers:this.httpHeaders});
+  }
 }

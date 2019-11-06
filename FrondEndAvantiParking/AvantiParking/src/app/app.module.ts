@@ -21,6 +21,7 @@ import { ParkingLotPipePipe } from './pipes/parking-lot-pipe.pipe';
 import { AdminPanelComponent } from './components/administration/admin-panel/admin-panel.component';
 import { ZonePipePipe } from './pipes/zone-pipe.pipe';
 import { SpacePipePipe } from './pipes/space-pipe.pipe';
+import { UserPipePipe } from './pipes/user-pipe.pipe';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/administration/users/users.component';
@@ -41,7 +42,8 @@ import { UsersComponent } from './components/administration/users/users.componen
     SpacePipePipe,
     Oauth2Component,
     LoginComponent,
-    UsersComponent
+    UsersComponent,
+    UserPipePipe
  
   ],
   imports: [

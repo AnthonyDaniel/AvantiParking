@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 @Injectable({
@@ -8,9 +8,12 @@ import { AuthService } from './auth.service';
 export class BeforeLoginService implements CanActivate{
   private loggedIn:boolean;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean | Observable<boolean> | Promise<boolean>{
+    if(this.loggedIn){
+      this.router.navigateByUrl('');
+     }
     return !this.loggedIn;
   }
-  constructor(public auth:AuthService) {
+  constructor(public auth:AuthService,private router: Router) {
     this.auth.authStatus.subscribe(value => this.loggedIn = value);
    }
 }

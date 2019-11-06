@@ -28,8 +28,20 @@ public class User {
     private AuthProvider provider;
 
     private String providerId;
+    
+	@ManyToOne
+	@JoinColumn(name="headquarter")
+	private Headquarter headquarter;
 
-    public Long getId() {
+    public Headquarter getHeadquarter() {
+		return headquarter;
+	}
+
+	public void setHeadquarter(Headquarter headquarter) {
+		this.headquarter = headquarter;
+	}
+
+	public Long getId() {
         return id;
     }
 

@@ -1,6 +1,7 @@
 package com.avantiparking.controller;
 
 import com.avantiparking.exception.ResourceNotFoundException;
+import com.avantiparking.model.AuthProvider;
 import com.avantiparking.model.Headquarter;
 import com.avantiparking.model.User;
 import com.avantiparking.repository.UserRepository;
@@ -9,12 +10,23 @@ import com.avantiparking.security.UserPrincipal;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,12 +43,20 @@ public class UserController {
         return userRepository.findById(userPrincipal.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
     }
-	@GetMapping("/user")
+	@GetMapping("/users")
 	public List<User> getAllUser() {
 		return userRepository.findAll();
 	}
-	@PostMapping("/user")
-	public User createUser(@Valid @RequestBody User user) {
-		return userRepository.save(user);
+	@PutMapping("/user/{id}")
+	public ResponseEntity<User> updateHeadquarter(@PathVariable(value = "id") Long id,
+			@Valid @RequestBody User headq) throws ResourceNotFoundException {
+		User user = userRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("User not found for this id : " + id));
+
+		user.setRole(headq.isRole());
+		user.setHeadquarter(headq.getHeadquarter());
+		final User updatedUser= userRepository.save(user);
+		return ResponseEntity.ok(updatedUser);
 	}
+
 }
