@@ -26,6 +26,7 @@ import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/administration/users/users.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
+import { VehicleComponent } from './components/vehicle/vehicle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,9 @@ import { UserPanelComponent } from './components/user-panel/user-panel.component
     LoginComponent,
     UsersComponent,
     UserPipePipe,
-    UserPanelComponent
+    UserPanelComponent,
+    VehicleComponent,
+  
  
   ],
   imports: [

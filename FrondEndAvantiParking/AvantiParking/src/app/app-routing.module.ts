@@ -6,11 +6,13 @@ import { SpaceComponent } from './components/administration/space/space.componen
 import { ZoneComponent } from './components/administration/zone/zone.component';
 import { UsersComponent } from './components/administration/users/users.component';
 import { LoginComponent } from './components/login/login.component';
+import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { ErrorComponent } from './components/error/error.component';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { AfterLoginService } from './services/after-login.service';
 import { BeforeLoginService } from './services/before-login.service';
 import { AdminAfterService } from './services/admin-after.service';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -19,8 +21,9 @@ const routes: Routes = [
   { path: 'administration/user', component: UsersComponent,canActivate: [AdminAfterService]},
   { path: 'administration/space', component: SpaceComponent,canActivate: [AdminAfterService]},
   { path: 'administration/zone', component: ZoneComponent,canActivate: [AdminAfterService]},
+  { path: 'vehicle', component: VehicleComponent,canActivate: [AdminAfterService]},
   { path: 'oauth2/redirect', component: Oauth2Component,canActivate: [BeforeLoginService]},
-  {path: '**', component: ErrorComponent}
+  { path: '**', component: ErrorComponent}
 ]
 
 @NgModule({
