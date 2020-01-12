@@ -6,8 +6,11 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 import com.avantiparking.config.AppProperties;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
+@EnableSwagger2
 public class Avantiparking_Application {
 
 	public static void main(String[] args) {

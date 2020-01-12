@@ -8,6 +8,9 @@ import com.avantiparking.repository.UserRepository;
 import com.avantiparking.security.CurrentUser;
 import com.avantiparking.security.UserPrincipal;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -32,12 +35,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Api(value="User Controller")
 @RequestMapping("/api")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
-
+    
+    @ApiOperation(value = "Current User", response = List.class)
     @GetMapping("/user")
     public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
         return userRepository.findById(userPrincipal.getId())
