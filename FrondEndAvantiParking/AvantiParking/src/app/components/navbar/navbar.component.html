@@ -28,19 +28,29 @@
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-o">
             <li class="nav-item dropdownbtn-group dropleft">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" *ngIf="loggedIn"
+                <a class="nav-link dropdown-toggle notification" id="navbarDropdown" role="button" *ngIf="loggedIn"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{userInf.imageUrl}}" class="rounded-circle" width="40px">
+                    <span class="badgeProfile" *ngIf="!notifications==0">{{notification}}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="loggedIn">
                     <a class="dropdown-item disabled" *ngIf="loggedIn">
                         <i class="far fa-user-circle"></i>{{userInf.name}}</a>
                     <div class="dropdown-divider"></div>
-                    <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
-                        data-target="#Settings">
-                        <i class="fas fa-cog"></i> Settings
+                    <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()">
+                        <a class="notification">
+                            <i class="fas fa-bell"></i><span>Notifications</span>
+                            <span class="badge"  *ngIf="!notifications==0">{{notification}}</span>
+                          </a>
                     </div>
+                   
+
                     <div class="dropdown-divider"></div>
+                    <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
+                    data-target="#Settings">
+                    <i class="fas fa-cog"></i> Settings
+                </div>
+                <div class="dropdown-divider"></div>
                     <a class="dropdown-item" data-toggle="tooltip" routerLink="/" (click)="logout($event)">
                         <i class="fas fa-sign-out-alt"></i>LOGOUT
                     </a>

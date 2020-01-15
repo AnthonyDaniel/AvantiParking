@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
   public navbarOpen = false;
   public img;
   private asyncResult;
+  public notifications = 0;
 
   constructor(public user: UserService, private router: Router, private auth: AuthService) {
   }
