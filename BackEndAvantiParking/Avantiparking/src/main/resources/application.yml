@@ -3,7 +3,20 @@ spring:
         url: jdbc:mysql://localhost:3306/avantiparking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
         username: root
         password: 
-
+    mail:
+        host: smtp-relay.sendinblue.com
+        port: 587
+        username: anthonymmarinbolivar@gmail.com
+        password: JzdTS36jxEXqOIGy
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    connectiontimeout: 5000
+                    timeout: 5000
+                    writetimeout: 5000
+                    starttls:
+                        enable: true
     jpa:
         show-sql: true
         hibernate:
@@ -31,4 +44,4 @@ app:
     authorizedRedirectUris:
       - http://localhost:4200/oauth2/redirect
       
-      
+          

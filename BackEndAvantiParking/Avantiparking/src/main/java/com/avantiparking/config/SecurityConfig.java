@@ -86,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .csrf()
                     .disable()
-                .formLogin()
+                    .formLogin()
                     .disable()
                 .httpBasic()
                     .disable()
@@ -124,7 +124,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .userService(customOAuth2UserService)
                         .and()
                     .successHandler(oAuth2AuthenticationSuccessHandler)
-                    .failureHandler(oAuth2AuthenticationFailureHandler);
+                    .failureHandler(oAuth2AuthenticationFailureHandler); 
 
         // Add our custom Token based authentication filter
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

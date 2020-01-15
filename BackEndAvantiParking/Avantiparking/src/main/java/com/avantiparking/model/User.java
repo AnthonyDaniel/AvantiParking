@@ -31,7 +31,7 @@ public class User {
 	@OneToOne
 	@JoinColumn(name="headquarter")
 	private Headquarter headquarter;
-    
+	
     private String providerId;
 
 	public User() {
