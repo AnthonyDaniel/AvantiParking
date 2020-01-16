@@ -12,8 +12,8 @@ import com.avantiparking.model.Vehicle;
 @Repository
 public interface Vehicle_Repository extends JpaRepository<Vehicle, Long> {
 	
-	Optional<Vehicle> findVehicle(String license_plate);
-	
+	@Query(value = "select * from vehicle where license_plate = ?1", nativeQuery = true)
+	Optional<Vehicle> findVehicle(String license_plate);	
 	
 	@Query(value = "select * from vehicle where user = ?1", nativeQuery = true)
 	List<Vehicle> findVehiclesByUser(Long user_id);
