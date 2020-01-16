@@ -36,9 +36,18 @@ export class NavbarComponent implements OnInit {
   notificationsUser(data){
     this.notifications=0;
     data.forEach(element => {
-      this.notifications++;
+      if(!element.viewed){
+        this.notifications++;
+      }
     });
     this.notificationsArray = data;
+  }
+  notificationViewed(id){
+    this.notificationsService.changeViewed(id).subscribe(
+      data=>{
+        this.notifications = 0;
+      }
+    );
   }
   loadUser(data) {
     this.userInf = data;
@@ -60,6 +69,13 @@ export class NavbarComponent implements OnInit {
     this.notificationsService.userNotifications(data.id).subscribe(
       data => {
         this.notificationsUser(data);
+      }
+    );
+  }
+  deleteNotifications(n){
+    this.notificationsService.deleteNotification(n.id).subscribe(
+      data => {
+        this.getAsyncData();
       }
     );
   }

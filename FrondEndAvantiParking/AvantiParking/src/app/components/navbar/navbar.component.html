@@ -39,7 +39,7 @@
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
                         data-target="#Notifications">
-                        <a class="notification">
+                        <a class="notification" (click)="notificationViewed(userInf.id)">
                             <i class="fas fa-bell"></i><span>Notifications</span>
                             <span class="badge" *ngIf="notifications>0">{{notifications}}</span>
                         </a>
@@ -97,7 +97,7 @@
                         <div class="toast-header">
                             <strong class="mr-auto">{{n.subject}}</strong>
                             <small>{{n.date}}</small>
-                            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <button (click)="deleteNotifications(n)" type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>

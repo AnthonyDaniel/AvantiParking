@@ -17,7 +17,7 @@ export class NotificationsService {
     return this.http.get(`${this.baseUrl}/`+id, { headers: this.httpHeaders });
   }
   changeViewed(id) {
-    return this.http.put(`${this.baseUrl}/`+id, { headers: this.httpHeaders });
+    return this.http.put(`${this.baseUrl}/`+id, id, { headers: this.httpHeaders });
   }
   deleteNotification(id) {
     return this.http.delete(`${this.baseUrl}/`+id, { headers: this.httpHeaders });
