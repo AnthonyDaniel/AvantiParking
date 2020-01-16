@@ -1,5 +1,7 @@
 package com.avantiparking.model;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,6 +25,12 @@ public class Email_Notifications {
 	@Column(name = "html")
 	private String html;
 	
+	@Column(name = "text")
+	private String text;
+	
+	@Column(name = "date")
+	private String date;
+	
 	@Column(name = "viewed")
 	private boolean viewed;
 	
@@ -40,8 +48,24 @@ public class Email_Notifications {
 		this.html = html;
 	}
 	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public boolean isViewed() {
 		return viewed;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public void setViewed(boolean viewed) {

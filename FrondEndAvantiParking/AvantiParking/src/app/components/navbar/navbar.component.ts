@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-navbar',
@@ -18,11 +19,12 @@ export class NavbarComponent implements OnInit {
   private asyncResult;
   public notifications = 0;
 
-  constructor(public user: UserService, private router: Router, private auth: AuthService) {
+  constructor(public user: UserService, private router: Router, private auth: AuthService
+    , public notificationsService: NotificationsService) {
   }
 
-  public userInf:any;
-
+  public userInf: any;
+  public notificationsArray: any;
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
@@ -30,6 +32,13 @@ export class NavbarComponent implements OnInit {
     this.auth.authStatus.subscribe(value => this.loggedIn = value);
     this.auth.adminStatus.subscribe(value => this.admin = value);
     this.getAsyncData();
+  }
+  notificationsUser(data){
+    this.notifications=0;
+    data.forEach(element => {
+      this.notifications++;
+    });
+    this.notificationsArray = data;
   }
   loadUser(data) {
     this.userInf = data;
@@ -48,6 +57,11 @@ export class NavbarComponent implements OnInit {
       this.auth.changeAuthStatus(true);
     }
     this.img = data.imageUrl;
+    this.notificationsService.userNotifications(data.id).subscribe(
+      data => {
+        this.notificationsUser(data);
+      }
+    );
   }
   logout(event: MouseEvent) {
     event.preventDefault();
@@ -63,7 +77,7 @@ export class NavbarComponent implements OnInit {
     } else {
       this.user.loadImg().subscribe(data => {
         this.loadUser(data);
-      },error=>{
+      }, error => {
         this.auth.changeAdminStatus(false);
         this.auth.changeAuthStatus(false);
         localStorage.removeItem('accessToken');

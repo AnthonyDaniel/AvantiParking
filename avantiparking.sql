@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-01-2020 a las 23:56:13
+-- Tiempo de generación: 16-01-2020 a las 01:11:41
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -33,16 +33,20 @@ CREATE TABLE `email_notifications` (
   `to_email` varchar(120) DEFAULT NULL,
   `subject` varchar(120) DEFAULT NULL,
   `html` text DEFAULT NULL,
+  `text` text DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `viewed` tinyint(1) DEFAULT 0
+  `viewed` tinyint(1) DEFAULT 0,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `email_notifications`
 --
 
-INSERT INTO `email_notifications` (`id`, `to_email`, `subject`, `html`, `user_id`, `viewed`) VALUES
-(1, 'anthony.marin@decimoinc.com', 'Test', 'test', 1, 1);
+INSERT INTO `email_notifications` (`id`, `to_email`, `subject`, `html`, `text`, `user_id`, `viewed`, `date`) VALUES
+(1, 'anthony.marin@decimoinc.com', 'Test', 'testdfdfsdfsdfsdfsdfsdfsdfsdfsdfsd', 'Hellodasdsadasdasdasdasdasdasdasdasdasdasdasdasd', 1, 1, '2020-01-15 00:00:00'),
+(2, 'anthonymmarinbolivar@gmail.com', 'Test', '<p>Hello<?p>', 'Hello', 1, 0, '2020-01-15 00:00:00'),
+(3, 'anthonymmarinbolivar@gmail.com', 'Test', '<p>Hello<?p>', 'Bye bye', 1, 0, '2020-01-15 00:00:00');
 
 -- --------------------------------------------------------
 

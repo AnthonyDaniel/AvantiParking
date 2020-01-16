@@ -31,27 +31,25 @@
                 <a class="nav-link dropdown-toggle notification" id="navbarDropdown" role="button" *ngIf="loggedIn"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{userInf.imageUrl}}" class="rounded-circle" width="40px">
-                    <span class="badgeProfile" *ngIf="!notifications==0">{{notification}}</span>
+                    <span class="badgeProfile" *ngIf="notifications>0">{{notifications}}</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="loggedIn">
                     <a class="dropdown-item disabled" *ngIf="loggedIn">
                         <i class="far fa-user-circle"></i>{{userInf.name}}</a>
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
-                    data-target="#Notifications">
+                        data-target="#Notifications">
                         <a class="notification">
                             <i class="fas fa-bell"></i><span>Notifications</span>
-                            <span class="badge"  *ngIf="!notifications==0">{{notification}}</span>
-                          </a>
+                            <span class="badge" *ngIf="notifications>0">{{notifications}}</span>
+                        </a>
                     </div>
-                   
-
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
-                    data-target="#Settings">
-                    <i class="fas fa-cog"></i> Settings
-                </div>
-                <div class="dropdown-divider"></div>
+                        data-target="#Settings">
+                        <i class="fas fa-cog"></i> Settings
+                    </div>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" data-toggle="tooltip" routerLink="/" (click)="logout($event)">
                         <i class="fas fa-sign-out-alt"></i>LOGOUT
                     </a>
@@ -82,7 +80,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="Notifications" tabindex="-1" role="dialog" aria-labelledby="Notifications" aria-hidden="true">
+<div class="modal fade" id="Notifications" tabindex="-1" role="dialog" aria-labelledby="Notifications"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,7 +90,31 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <div class="modal-body">
+                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Recent Notifications</h6>
+                    <div *ngFor="let n of notificationsArray">
+                        <div class="media text-muted pt-3">
+                            <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32"
+                                xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                focusable="false" role="img" aria-label="Placeholder: 32x32">
+                                <title>{{n.subject}}</title>   
+                                <rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%"
+                                    fill="#6f42c1" dy=".3em">32x32</text>
+                            </svg>
+                            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                                <strong class="d-block text-gray-dark">To {{n.user_id.name}}</strong>
+                                {{n.text}}
+                                <strong class="d-block">==========>{{n.date}}</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
+
+
+
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>

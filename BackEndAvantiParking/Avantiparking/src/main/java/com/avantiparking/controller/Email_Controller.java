@@ -26,13 +26,13 @@ import com.avantiparking.service.EmailService;
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,
 		RequestMethod.DELETE})
-@RequestMapping("/api")
+@RequestMapping("/api/email")
 public class Email_Controller {
     @Autowired
     private EmailService emailService;
 	@Autowired
 	public Email_Notifications_Repository emailRepository;
-	@PostMapping("/email")
+	@PostMapping("")
     public  Map<String, Boolean> sendmail(@Valid @RequestBody Email_Notifications email) {
 
         emailService.sendMail(email.getTo(),email.getSubject(),email.getHtml());
@@ -45,7 +45,7 @@ public class Email_Controller {
 		return response;
     }
 	
-    @GetMapping("/notifications/{id}")
+    @GetMapping("/{id}")
     public  List<Email_Notifications> UserNotifications(@PathVariable(value = "id") Long id) {
     	List<Email_Notifications> i = emailRepository.findAll();
     	List<Email_Notifications> result = new LinkedList<Email_Notifications>();
@@ -59,7 +59,7 @@ public class Email_Controller {
 		return  result;
     }
     
-    @PutMapping("/notification_viewed/{id}")
+    @PutMapping("/{id}")
     public Map<String, Boolean> ChangeViewed(@PathVariable(value = "id") Long id) {
     	
     	Optional<Email_Notifications> email = emailRepository.findById(id);
@@ -76,7 +76,7 @@ public class Email_Controller {
 		}
     }
     
-    @DeleteMapping("/notification/{id}")
+    @DeleteMapping("/{id}")
     public Map<String, Boolean> DeleteNotification(@PathVariable(value = "id") Long id) {
     	
     	Optional<Email_Notifications> email = emailRepository.findById(id);
