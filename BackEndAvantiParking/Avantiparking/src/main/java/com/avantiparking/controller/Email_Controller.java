@@ -32,6 +32,8 @@ public class Email_Controller {
     private EmailService emailService;
 	@Autowired
 	public Email_Notifications_Repository emailRepository;
+	
+	
 	@PostMapping("")
     public  Map<String, Boolean> sendmail(@Valid @RequestBody Email_Notifications email) {
 
@@ -61,15 +63,20 @@ public class Email_Controller {
     
     @PutMapping("/{id}")
     public Map<String, Boolean> ChangeViewed(@PathVariable(value = "id") Long id) {
+    	List<Email_Notifications> i = emailRepository.findAll();
+    	List<Email_Notifications> result = new LinkedList<Email_Notifications>();
     	
-    	Optional<Email_Notifications> email = emailRepository.findById(id);
-    	email.get().setViewed(true);
-        emailRepository.save(email.get());
-        Map<String, Boolean> response = new HashMap<>();
-        
-		if(email.get() != null) {
-			   response.put("ok", Boolean.TRUE);
-				return response;
+    	for (Email_Notifications e: i) {
+			if(e.getUser_id().getId() == id) {
+				e.setViewed(true);
+				emailRepository.save(e);
+			}
+		}
+    	
+    	Map<String, Boolean> response = new HashMap<>();
+    	if(!i.isEmpty()) {
+            response.put("Ok", Boolean.TRUE);
+    		return response;
 		}else {
 			response.put("bad", Boolean.FALSE);
 			return response;
@@ -93,4 +100,5 @@ public class Email_Controller {
 		}
      
     }
+  
 }
