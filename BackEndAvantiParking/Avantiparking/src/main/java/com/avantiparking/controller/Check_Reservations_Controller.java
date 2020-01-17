@@ -7,7 +7,7 @@ import com.avantiparking.repository.Space_Repository;
 import com.avantiparking.repository.UserRepository;
 import com.avantiparking.repository.Vehicle_Repository;
 
-public class Dashboard_Controller {
+public class Check_Reservations_Controller {
 	@Autowired
 	public Vehicle_Repository vehicle_repository;
 	
