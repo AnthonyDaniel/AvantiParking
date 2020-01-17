@@ -27,6 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/administration/users/users.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { VehiclePipePipe } from './pipes/vehicle-pipe.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
     UserPipePipe,
     UserPanelComponent,
     VehicleComponent,
+    VehiclePipePipe,
   
  
   ],
