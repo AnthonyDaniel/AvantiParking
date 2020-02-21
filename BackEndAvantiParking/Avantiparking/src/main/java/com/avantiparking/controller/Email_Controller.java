@@ -33,13 +33,12 @@ public class Email_Controller {
 	@Autowired
 	public Email_Notifications_Repository emailRepository;
 	
-	
 	@PostMapping("")
     public  Map<String, Boolean> sendmail(@Valid @RequestBody Email_Notifications email) {
-
-        emailService.sendMail(email.getTo(),email.getSubject(),email.getHtml());
-	
+		
         emailRepository.save(email);
+        
+        emailService.sendMail(email.getTo(),email.getSubject(),email.getHtml());
         
         Map<String, Boolean> response = new HashMap<>();
 		
