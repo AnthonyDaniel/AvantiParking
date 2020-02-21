@@ -50,6 +50,7 @@ export class UserPanelComponent implements OnInit {
       country: null,
       city: null,
     }
+    this.auth.adminStatus.subscribe(value => this.u.role = value);
     this.u.headquarter = headquarter;
     this.user.modify(this.u).subscribe(
       data => {

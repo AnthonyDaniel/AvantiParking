@@ -48,7 +48,7 @@ public class Email_Controller {
     }
 	
     @GetMapping("/{id}")
-    public  List<Email_Notifications> UserNotifications(@PathVariable(value = "id") Long id) {
+    public  List<Email_Notifications> userNotifications(@PathVariable(value = "id") Long id) {
     	List<Email_Notifications> i = emailRepository.findAll();
     	List<Email_Notifications> result = new LinkedList<Email_Notifications>();
     	
@@ -62,7 +62,7 @@ public class Email_Controller {
     }
     
     @PutMapping("/{id}")
-    public Map<String, Boolean> ChangeViewed(@PathVariable(value = "id") Long id) {
+    public Map<String, Boolean> changeViewed(@PathVariable(value = "id") Long id) {
     	List<Email_Notifications> i = emailRepository.findAll();
     	List<Email_Notifications> result = new LinkedList<Email_Notifications>();
     	
@@ -84,7 +84,7 @@ public class Email_Controller {
     }
     
     @DeleteMapping("/{id}")
-    public Map<String, Boolean> DeleteNotification(@PathVariable(value = "id") Long id) {
+    public Map<String, Boolean> deleteNotification(@PathVariable(value = "id") Long id) {
     	
     	Optional<Email_Notifications> email = emailRepository.findById(id);
 

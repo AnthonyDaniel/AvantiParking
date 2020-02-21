@@ -7,8 +7,8 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   authStatus = this.loggedIn.asObservable();
 
-  private admin = new BehaviorSubject<boolean>(false);
-  adminStatus = this.admin.asObservable();
+  public admin = new BehaviorSubject<boolean>(false);
+  public adminStatus = this.admin.asObservable();
 
   changeAuthStatus(value:boolean) {
     this.loggedIn.next(value)
