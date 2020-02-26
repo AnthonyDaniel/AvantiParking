@@ -20,7 +20,7 @@ export class VehicleServiceService {
      return this.http.post(`${this.baseUrl}`, data,{headers:this.httpHeaders});
   }
   listVehicle(plate:any) {
-     return this.http.get(`${this.baseUrl}/${plate}`, {headers:this.httpHeaders})
+     return this.http.get(`${this.baseUrl}/u/${plate}`, {headers:this.httpHeaders})
   }
   editVehicle(plate, data) {
      return this.http.put(`${this.baseUrl}/` + plate, data,{headers:this.httpHeaders})

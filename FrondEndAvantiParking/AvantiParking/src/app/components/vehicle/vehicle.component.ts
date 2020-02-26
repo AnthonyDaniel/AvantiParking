@@ -13,13 +13,16 @@ export class VehicleComponent implements OnInit {
   constructor(public user: UserService, public vehicle: VehicleServiceService) { }
 
   filterVehicles = "";
-  public userId: any;
+
+  public formUser = {
+    id: null
+  };
 
   public addFormVehicle = {
     license_plate: null,
     brand: null,
     model: null,
-    user: null,
+    user: this.formUser,
   };
   public editFormVehicle = {
     license_plate: null,
@@ -35,22 +38,19 @@ export class VehicleComponent implements OnInit {
   public vehicles;
 
   ngOnInit() {
-    this.getData()
+    this.getData();
     
-    this.vehicle.listVehicle(this.userId).subscribe(data=>{
-      this.loadUser(data);
-    });
+    
   }
 
   loadUser(data) {
-    this.userId = data.id;
-    this.addFormVehicle.user = this.userId;
-    console.log(this.addFormVehicle.user)
+    this.formUser.id = data.id;    
   }
 
   getData() {
     this.user.loadImg().subscribe(data => {
       this.loadUser(data);
+      this.listVehicles();
     },
       error => {
         console.log(error);
@@ -58,8 +58,7 @@ export class VehicleComponent implements OnInit {
   }
 
   listVehicles() {
-    console.log(this.userId)
-    this.vehicle.listVehicle(this.addFormVehicle.user).subscribe(
+    this.vehicle.listVehicle(this.formUser.id).subscribe(
       data => {
         this.vehicles = data;
       },
@@ -88,11 +87,13 @@ export class VehicleComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         });
+        console.log(error);
       }
     //);
   }
 
   addVehicle() {
+    this.addFormVehicle.user.id = this.formUser.id;
     this.vehicle.addVehicle(this.addFormVehicle).subscribe(
       data => {
         this.responseSuccess(data);
@@ -157,6 +158,7 @@ export class VehicleComponent implements OnInit {
           showConfirmButton: false,
           timer: 1500
         })
+        $("#closeModal").click();
         this.ngOnInit();
       },
       error => {
@@ -169,7 +171,7 @@ export class VehicleComponent implements OnInit {
     this.editFormVehicle.license_plate = _vehicle.license_plate;
     this.editFormVehicle.brand = _vehicle.brand;
     this.editFormVehicle.model = _vehicle.model;
-    this.editFormVehicle.user = this.addFormVehicle.user;
+    this.editFormVehicle.user = this.formUser;
   }
 
   responseSuccess(data) {

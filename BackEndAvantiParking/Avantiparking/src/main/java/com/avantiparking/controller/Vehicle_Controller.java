@@ -47,11 +47,11 @@ public class Vehicle_Controller {
 		return ResponseEntity.ok().body(vehicle);
 	}
 	/*****************************************************************/
-	//   necesaria???
-	@GetMapping("/vehicle/{user}")
+	 //   necesaria???
+	@GetMapping("/vehicle/u/{user}")
 	public List<Vehicle> getUserVehicles(@PathVariable(value = "user") Long user_id) {
 		return vehicle_repository.findVehiclesByUser(user_id);
-	}
+	} 
 	/*****************************************************************/
 	@PostMapping("/vehicle")
 	public Vehicle saveVehicle(@Valid @RequestBody Vehicle vehicle) {
