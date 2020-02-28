@@ -9,6 +9,7 @@ export class AfterLoginService implements CanActivate {
 
   private login:boolean;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
+
    if(!this.login){
     this.router.navigateByUrl('');
    }
