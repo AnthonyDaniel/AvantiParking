@@ -55,7 +55,6 @@ export class NavbarComponent implements OnInit {
       this.auth.changeAdminStatus(true);
     } else {
       this.auth.changeAdminStatus(false);
-      this.router.navigateByUrl('');
     }
     if (data.email == null) {
       this.auth.changeAdminStatus(false);

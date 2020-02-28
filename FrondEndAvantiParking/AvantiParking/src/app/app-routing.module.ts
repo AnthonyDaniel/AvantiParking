@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'administration/user', component: UsersComponent,canActivate: [AdminAfterService]},
   { path: 'administration/space', component: SpaceComponent,canActivate: [AdminAfterService]},
   { path: 'administration/zone', component: ZoneComponent,canActivate: [AdminAfterService]},
-  { path: 'vehicle', component: VehicleComponent,canActivate: [AdminAfterService]},
+  { path: 'vehicle', component: VehicleComponent,canActivate: [AfterLoginService]},
   { path: 'oauth2/redirect', component: Oauth2Component,canActivate: [BeforeLoginService]},
   { path: '**', component: ErrorComponent}
 ]

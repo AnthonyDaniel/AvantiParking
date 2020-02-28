@@ -10,7 +10,7 @@ export class AfterLoginService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
     if(!this.loggedIn){
       this.router.navigateByUrl('');
-     }
+    }
     return this.loggedIn;
   }
   constructor(public auth: AuthService,private router: Router) {
