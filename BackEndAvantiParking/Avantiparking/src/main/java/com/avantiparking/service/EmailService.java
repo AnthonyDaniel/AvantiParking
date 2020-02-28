@@ -19,7 +19,7 @@ public class EmailService {
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
 
-        mailMessage.setFrom("suppot@avantiparking.com");
+        mailMessage.setFrom("support@avantiparking.com");
 
         javaMailSender.send(mailMessage);
     }

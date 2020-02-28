@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.avantiparking.model.Email_Notifications;
 import com.avantiparking.repository.Email_Notifications_Repository;
 import com.avantiparking.service.EmailService;
+import com.avantiparking.template.TemplateEmail;
 
 
 @RestController
@@ -36,13 +37,18 @@ public class Email_Controller {
 	@PostMapping("")
     public  Map<String, Boolean> sendmail(@Valid @RequestBody Email_Notifications email) {
 		
+		TemplateEmail i = new TemplateEmail();
+		
+		String emailHtml = i.TempleteEmailAvantiParking(email.getSubject(),email.getText(), "http://localhost:4200", true, "Go to AvantiParking");
+		
         emailRepository.save(email);
         
-        emailService.sendMail(email.getTo(),email.getSubject(),email.getHtml());
+        emailService.sendMail(email.getTo(),email.getSubject(),emailHtml);
         
         Map<String, Boolean> response = new HashMap<>();
 		
-        response.put("Send", Boolean.TRUE);
+        response.put("Send Email", Boolean.TRUE);
+        
 		return response;
     }
 	

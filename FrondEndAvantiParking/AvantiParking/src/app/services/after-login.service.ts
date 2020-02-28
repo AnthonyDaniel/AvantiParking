@@ -6,14 +6,16 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AfterLoginService implements CanActivate {
-  public loggedIn: boolean;
+
+  private login:boolean;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    if(!this.loggedIn){
-      this.router.navigateByUrl('');
-     }
-    return this.loggedIn;
+   if(!this.login){
+    this.router.navigateByUrl('');
+   }
+    return this.login;
   }
-  constructor(public auth: AuthService,private router: Router) {
-    this.auth.authStatus.subscribe(value => this.loggedIn = value);
+  constructor(public auth:AuthService,private router: Router) {
+    this.auth.authStatus.subscribe(value => this.login = value);
   }
+
 }
