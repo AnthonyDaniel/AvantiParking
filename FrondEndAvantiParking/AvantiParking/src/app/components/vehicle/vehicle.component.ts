@@ -14,6 +14,8 @@ export class VehicleComponent implements OnInit {
 
   filterVehicles = "";
 
+  oldLicensePlate;
+
   public formUser = {
     id: null
   };
@@ -149,7 +151,7 @@ export class VehicleComponent implements OnInit {
   }
 
   editVehicle() {
-    this.vehicle.editVehicle(this.editFormVehicle.license_plate, this.editFormVehicle).subscribe(
+    this.vehicle.editVehicle(this.oldLicensePlate, this.editFormVehicle).subscribe(
       data => {
         $("#closeModal1").click();
         Swal.fire({
@@ -168,6 +170,8 @@ export class VehicleComponent implements OnInit {
   }
 
   dataVehicleFormEdit(_vehicle) {
+    this.oldLicensePlate = _vehicle.license_plate;
+    console.log(this.oldLicensePlate)
     this.editFormVehicle.license_plate = _vehicle.license_plate;
     this.editFormVehicle.brand = _vehicle.brand;
     this.editFormVehicle.model = _vehicle.model;
