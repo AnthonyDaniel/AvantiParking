@@ -47,13 +47,12 @@ public class Vehicle_Controller {
 				.orElseThrow(() -> new ResourceNotFoundException("Vehicle not found for this plate : " + plate_vehicle));
 		return ResponseEntity.ok().body(vehicle);
 	}
-	/*****************************************************************/
-	 //   necesaria???
+	
 	@GetMapping("/vehicle/u/{user}")
 	public List<Vehicle> getUserVehicles(@PathVariable(value = "user") Long user_id) {
 		return vehicle_repository.findVehiclesByUser(user_id);
 	} 
-	/*****************************************************************/
+	
 	@PostMapping("/vehicle")
 	public Vehicle saveVehicle(@Valid @RequestBody Vehicle _vehicle) { //se revisa que no este registrado, devueleve un vehiculo vacio si encontro coincidencia
 		Optional<Vehicle> exists= vehicle_repository.findVehicle(_vehicle.getLicense_plate());
