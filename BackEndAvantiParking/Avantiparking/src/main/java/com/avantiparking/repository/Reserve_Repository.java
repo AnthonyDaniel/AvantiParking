@@ -12,9 +12,12 @@ import com.avantiparking.model.Vehicle;
 @Repository
 public interface Reserve_Repository extends JpaRepository<Reserve, Long> {
 	
-	final String information = "id_reservation, date, start_time, end_time, created_at, user, vehicle, space";
+	final String information = "select * from reserve";
 	
-	@Query(value = "select "+information+" from reserve where user = ?1", nativeQuery = true)
+	@Query(value = information+" where user = ?1", nativeQuery = true)
 	List<Reserve> findReservationsByUser(Long user_id);
+	
+	@Query(value = information+" where date < current_date() and user=?1", nativeQuery = true)
+	List<Reserve> findCompletedReservationsByUser(Long user_id);
 	
 }

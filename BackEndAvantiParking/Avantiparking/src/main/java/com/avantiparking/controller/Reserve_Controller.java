@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,20 +34,19 @@ public class Reserve_Controller {
 	public Space_Repository space_repository;
 	
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository user_Repository;
     
     @Autowired
     private Reserve_Repository reserveRepository;
     
-	@GetMapping("/reserves/u/{user}")
-	public List<Reserve> getAllReservationsForUser() {
-		//return reserveRepository.findReservationsByUser(user_id);
-		return null;
+	@GetMapping("/reserves/user/{user}")
+	public List<Reserve> getAllReservationsForUser(@PathVariable(value = "user")Long user_id) {
+		return reserveRepository.findReservationsByUser(user_id);
 	}
     
-	@GetMapping("/reserves_completed_user/{id}")
-	public List<Reserve> reservationsCompletedByUser() {
-		return null;
+	@GetMapping("/reserves/completed/user/{user}")
+	public List<Reserve> reservationsCompletedByUser(@PathVariable(value = "user")Long user_id) {		
+		return reserveRepository.findCompletedReservationsByUser(user_id);
 	}
 	
 	@GetMapping("/currentReservations/{id}")
