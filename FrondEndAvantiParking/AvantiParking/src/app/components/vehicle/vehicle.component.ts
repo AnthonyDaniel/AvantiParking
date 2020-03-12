@@ -98,7 +98,7 @@ export class VehicleComponent implements OnInit {
     this.addFormVehicle.user.id = this.formUser.id; 
     this.vehicle.addVehicle(this.addFormVehicle).subscribe(
       data => {        
-        if(data.license_plate === null){ //si viene vacio el vehiculo ya esta registrado
+        if(data === null){ //si viene vacio el vehiculo ya esta registrado
           Swal.fire({
             type: 'error',
             title: 'Oops...',

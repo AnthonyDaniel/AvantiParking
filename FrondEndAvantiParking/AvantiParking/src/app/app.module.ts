@@ -28,6 +28,7 @@ import { UsersComponent } from './components/administration/users/users.componen
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { VehiclePipePipe } from './pipes/vehicle-pipe.pipe';
+import { ReserveComponent } from './components/reserve/reserve.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { VehiclePipePipe } from './pipes/vehicle-pipe.pipe';
     UserPanelComponent,
     VehicleComponent,
     VehiclePipePipe,
+    ReserveComponent,
   
  
   ],
