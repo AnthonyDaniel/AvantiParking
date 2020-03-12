@@ -2,11 +2,14 @@ package com.avantiparking.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,8 +38,9 @@ public class Reserve_Controller {
     @Autowired
     private Reserve_Repository reserveRepository;
     
-	@GetMapping("/reserve_for_user")
-	public List<Reserve> getAllReserves() {
+	@GetMapping("/reserves/u/{user}")
+	public List<Reserve> getAllReservationsForUser() {
+		//return reserveRepository.findReservationsByUser(user_id);
 		return null;
 	}
     
@@ -49,10 +53,15 @@ public class Reserve_Controller {
 	public List<Reserve> currentReservations() {
 		return null;
 	}
-    
-	@PostMapping("/reserve")
-	public List<Reserve> addReservation() {
+    /******************************************
+	@PostMapping("/reserve")//list?
+	public List<Reserve> addReservation(@Valid @RequestBody Reserve reserve) {
 		return null;
+	}
+	**********************************/
+	@PostMapping("/reserve")
+	public Reserve addReservation(@Valid @RequestBody Reserve reserve) {
+		return reserveRepository.save(reserve);
 	}
 	
 	@PutMapping("/reserve")

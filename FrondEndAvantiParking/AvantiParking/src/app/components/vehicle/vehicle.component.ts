@@ -95,22 +95,31 @@ export class VehicleComponent implements OnInit {
   }
 
   addVehicle() {
-    this.addFormVehicle.user.id = this.formUser.id;
+    this.addFormVehicle.user.id = this.formUser.id; 
     this.vehicle.addVehicle(this.addFormVehicle).subscribe(
-      data => {
-        this.responseSuccess(data);
-        this.addFormVehicle.license_plate = null;
-        this.addFormVehicle.brand = null;
-        this.addFormVehicle.model = null;
-        this.addFormVehicle.user = null;
-        Swal.fire({
-          type: 'success',
-          title: 'The vehicle has been saved',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        $("#closeModal1").click();
-        this.ngOnInit();
+      data => {        
+        if(data.license_plate === null){ //si viene vacio el vehiculo ya esta registrado
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'A vehicle with the license plate '+this.addFormVehicle.license_plate+' has already been registered!',
+            confirmButtonColor: '#EF4023'
+          })
+        }else{
+          this.responseSuccess(data);
+          this.addFormVehicle.license_plate = null;
+          this.addFormVehicle.brand = null;
+          this.addFormVehicle.model = null;
+          this.addFormVehicle.user.id = null;
+          Swal.fire({
+            type: 'success',
+            title: 'The vehicle has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#closeModal1").click();
+          this.ngOnInit();
+        }
       },
       error => {
         console.log(error);
@@ -171,7 +180,6 @@ export class VehicleComponent implements OnInit {
 
   dataVehicleFormEdit(_vehicle) {
     this.oldLicensePlate = _vehicle.license_plate;
-    console.log(this.oldLicensePlate)
     this.editFormVehicle.license_plate = _vehicle.license_plate;
     this.editFormVehicle.brand = _vehicle.brand;
     this.editFormVehicle.model = _vehicle.model;

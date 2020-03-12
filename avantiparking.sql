@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
@@ -138,6 +138,7 @@ CREATE TABLE `user` (
 --
 
 CREATE TABLE `vehicle` (
+  `increment` int(11) NOT NULL,
   `license_plate` varchar(45) NOT NULL,
   `brand` varchar(45) NOT NULL,
   `model` varchar(45) NOT NULL,
@@ -211,7 +212,8 @@ ALTER TABLE `user`
 -- Indices de la tabla `vehicle`
 --
 ALTER TABLE `vehicle`
-  ADD PRIMARY KEY (`license_plate`),
+  ADD PRIMARY KEY (`increment`),
+  ADD UNIQUE (`license_plate`),
   ADD KEY `fk_vehicle_user1_idx` (`user`);
 
 --
@@ -260,6 +262,18 @@ ALTER TABLE `user`
 --
 ALTER TABLE `zone`
   MODIFY `id_zone` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `reserve`
+--
+ALTER TABLE `reserve`
+  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `vehicle`
+--
+ALTER TABLE `vehicle`
+  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

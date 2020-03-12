@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -54,8 +55,12 @@ public class Vehicle_Controller {
 	} 
 	/*****************************************************************/
 	@PostMapping("/vehicle")
-	public Vehicle saveVehicle(@Valid @RequestBody Vehicle vehicle) {
-		return vehicle_repository.save(vehicle);
+	public Vehicle saveVehicle(@Valid @RequestBody Vehicle _vehicle) { //se revisa que no este registrado, devueleve un vehiculo vacio si encontro coincidencia
+		Optional<Vehicle> exists= vehicle_repository.findVehicle(_vehicle.getLicense_plate());
+		if(!exists.isPresent()) {
+			return vehicle_repository.save(_vehicle);
+		}
+		return new Vehicle(null,null,null,null);
 	}
 
 	@PutMapping("/vehicle/{plate}")

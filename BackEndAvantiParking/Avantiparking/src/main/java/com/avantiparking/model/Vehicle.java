@@ -2,6 +2,8 @@ package com.avantiparking.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,9 +11,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehicle")
-public class Vehicle {
+public class Vehicle {	
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long increment;	
 	@Column(name = "license_plate", nullable = false)
 	private String license_plate;
 	@Column(name = "brand", nullable = false)
@@ -26,10 +30,19 @@ public class Vehicle {
 	}
 
 	public Vehicle(String license_plate, String brand, String model, User user) {
+		this.increment = null;
 		this.license_plate = license_plate;
 		this.brand = brand;
 		this.model = model;
 		this.user = user;
+	}
+	
+	public Long getIncrement() {
+		return increment;
+	}
+
+	public void setIncrement(Long increment) {
+		this.increment = increment;
 	}
 
 	public String getLicense_plate() {
