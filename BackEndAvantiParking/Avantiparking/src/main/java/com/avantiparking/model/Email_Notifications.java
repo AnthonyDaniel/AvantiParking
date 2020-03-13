@@ -25,9 +25,6 @@ public class Email_Notifications {
 	@Column(name = "subject")
 	private String subject;
 	
-	@Column(name = "html")
-	private String html;
-	
 	@Column(name = "text")
 	private String text;
 	
@@ -48,7 +45,6 @@ public class Email_Notifications {
 	public Email_Notifications(String to,String subject, String html) {
 		this.to = to;
 		this.subject = subject;
-		this.html = html;
 	}
 	
 	public String getText() {
@@ -101,11 +97,5 @@ public class Email_Notifications {
 	}
 	public void setSubject(String subject) {
 		this.subject = subject;
-	}
-	public String getHtml() {
-		return html;
-	}
-	public void setHtml(String html) {
-		this.html = html;
 	}
 }

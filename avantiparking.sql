@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2020 a las 23:46:05
+-- Tiempo de generación: 13-03-2020 a las 11:52:33
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -32,12 +32,21 @@ CREATE TABLE `email_notifications` (
   `id` int(11) NOT NULL,
   `to_email` varchar(120) DEFAULT NULL,
   `subject` varchar(120) DEFAULT NULL,
-  `html` text DEFAULT NULL,
   `text` text DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   `viewed` tinyint(1) DEFAULT 0,
-  `date` datetime NOT NULL DEFAULT current_timestamp()
+  `date` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `email_notifications`
+--
+
+INSERT INTO `email_notifications` (`id`, `to_email`, `subject`, `text`, `user_id`, `viewed`, `date`) VALUES
+(3, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL),
+(4, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL),
+(5, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL),
+(6, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -131,6 +140,13 @@ CREATE TABLE `user` (
   `headquarter` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `image_url`, `name`, `role`, `registered`, `provider`, `provider_id`, `headquarter`) VALUES
+(3, 'anthonymmarinbolivar@gmail.com', 'https://lh3.googleusercontent.com/a-/AOh14Gi37ow_5wX2aUf0OGn0PCQzAjHRXr2XORty2uk4lUs', 'Anthony M', 0, '2020-03-12 19:39:30', 'google', '104381904823282008651', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -213,7 +229,7 @@ ALTER TABLE `user`
 --
 ALTER TABLE `vehicle`
   ADD PRIMARY KEY (`increment`),
-  ADD UNIQUE (`license_plate`),
+  ADD UNIQUE KEY `license_plate` (`license_plate`),
   ADD KEY `fk_vehicle_user1_idx` (`user`);
 
 --
@@ -231,7 +247,7 @@ ALTER TABLE `zone`
 -- AUTO_INCREMENT de la tabla `email_notifications`
 --
 ALTER TABLE `email_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `headquarter`
@@ -246,6 +262,12 @@ ALTER TABLE `parking_lot`
   MODIFY `id_parking_lot` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `reserve`
+--
+ALTER TABLE `reserve`
+  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `space`
 --
 ALTER TABLE `space`
@@ -255,7 +277,13 @@ ALTER TABLE `space`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `vehicle`
+--
+ALTER TABLE `vehicle`
+  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `zone`
@@ -264,16 +292,52 @@ ALTER TABLE `zone`
   MODIFY `id_zone` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `reserve`
+-- Restricciones para tablas volcadas
 --
-ALTER TABLE `reserve`
-  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `vehicle`
+-- Filtros para la tabla `email_notifications`
+--
+ALTER TABLE `email_notifications`
+  ADD CONSTRAINT `FKd86c7fpsvwwnxq215gspj8dg6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `parking_lot`
+--
+ALTER TABLE `parking_lot`
+  ADD CONSTRAINT `FKioqp07pvsr26gwpfjfys1uslq` FOREIGN KEY (`headquarter`) REFERENCES `headquarter` (`id_headquarter`);
+
+--
+-- Filtros para la tabla `reserve`
+--
+ALTER TABLE `reserve`
+  ADD CONSTRAINT `FK8hq81yhl3m2750ihq3ru1e3b6` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`),
+  ADD CONSTRAINT `FK9p0j7pl3dqli4q1pa0d0gu7om` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`license_plate`),
+  ADD CONSTRAINT `FKgy7m20tr83hy2grolgcjem5m7` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `space`
+--
+ALTER TABLE `space`
+  ADD CONSTRAINT `FKht2b1xbdmbsufqijafwuvvix8` FOREIGN KEY (`zone`) REFERENCES `zone` (`id_zone`);
+
+--
+-- Filtros para la tabla `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FKmfioxmifjm40a1j0t54vo2r7s` FOREIGN KEY (`headquarter`) REFERENCES `headquarter` (`id_headquarter`);
+
+--
+-- Filtros para la tabla `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT;
+  ADD CONSTRAINT `FKafmyw13bui0mea0w4d3css2sr` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `zone`
+--
+ALTER TABLE `zone`
+  ADD CONSTRAINT `FKdf15k78mv3n5pt2214c63ohnc` FOREIGN KEY (`parking_lot`) REFERENCES `parking_lot` (`id_parking_lot`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

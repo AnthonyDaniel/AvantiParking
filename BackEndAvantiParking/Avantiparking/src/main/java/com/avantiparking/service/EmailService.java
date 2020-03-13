@@ -18,7 +18,7 @@ public class EmailService {
         mailMessage.setTo(toEmail);
         mailMessage.setSubject(subject);
         mailMessage.setText(message);
-
+        	
         mailMessage.setFrom("support@avantiparking.com");
 
         javaMailSender.send(mailMessage);

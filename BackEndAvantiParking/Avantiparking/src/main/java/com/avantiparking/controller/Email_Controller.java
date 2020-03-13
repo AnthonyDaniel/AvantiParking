@@ -38,7 +38,7 @@ public class Email_Controller {
     public  Map<String, Boolean> sendmail(@Valid @RequestBody Email_Notifications email) {
 		
 		TemplateEmail i = new TemplateEmail();
-		
+	
 		String emailHtml = i.TempleteEmailAvantiParking(email.getSubject(),email.getText(), "http://localhost:4200", true, "Go to AvantiParking");
 		
         emailRepository.save(email);
