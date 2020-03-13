@@ -6,8 +6,8 @@ spring:
     mail:
         host: smtp-relay.sendinblue.com
         port: 587
-        username: anthonymmarinbolivar@gmail.com
-        password: JzdTS36jxEXqOIGy
+        username: anthony.marin@decimoinc.com
+        password: fP3hR2VLTycEnKdg
         properties:
             mail:
                 smtp:
