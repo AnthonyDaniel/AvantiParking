@@ -26,6 +26,12 @@ export class VehicleComponent implements OnInit {
     model: null,
     user: this.formUser,
   };
+  public nullVehicle: any = {
+    license_plate: null,
+    brand: null,
+    model: null,
+    user: null,
+  };
   public editFormVehicle = {
     license_plate: null,
     brand: null,
@@ -97,8 +103,9 @@ export class VehicleComponent implements OnInit {
   addVehicle() {
     this.addFormVehicle.user.id = this.formUser.id; 
     this.vehicle.addVehicle(this.addFormVehicle).subscribe(
-      data => {        
-        if(data === null){ //si viene vacio el vehiculo ya esta registrado
+      data => { 
+        this.nullVehicle = data;       
+        if(this.nullVehicle.license_plate === null){ //si viene vacio el vehiculo ya esta registrado
           Swal.fire({
             type: 'error',
             title: 'Oops...',
