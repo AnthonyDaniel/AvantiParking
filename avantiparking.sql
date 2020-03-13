@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-03-2020 a las 11:52:33
+-- Tiempo de generación: 13-03-2020 a las 12:27:01
 -- Versión del servidor: 10.4.8-MariaDB
 -- Versión de PHP: 7.3.11
 
@@ -43,10 +43,13 @@ CREATE TABLE `email_notifications` (
 --
 
 INSERT INTO `email_notifications` (`id`, `to_email`, `subject`, `text`, `user_id`, `viewed`, `date`) VALUES
-(3, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL),
-(4, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL),
-(5, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL),
-(6, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL);
+(3, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(4, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(5, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(6, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(7, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(8, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(9, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -247,7 +250,7 @@ ALTER TABLE `zone`
 -- AUTO_INCREMENT de la tabla `email_notifications`
 --
 ALTER TABLE `email_notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `headquarter`

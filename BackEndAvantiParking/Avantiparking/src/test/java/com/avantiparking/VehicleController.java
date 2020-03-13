@@ -1,4 +1,4 @@
-package com.avantiparking.avantiparking;
+package com.avantiparking;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -52,6 +52,21 @@ public class VehicleController {
 	public void getUserVehicles() {
 		Vehicle vehicle = restTemplate.getForObject(getRootUrl() + "/vehicle/u/2", Vehicle.class);
 		assertNotNull(vehicle);
+	}
+	
+	@Test
+	public void saveVehicles() {
+		Vehicle v = new Vehicle();
+		User u=new User();
+		u.setId((long) 1);
+		v.setUser(u);
+		v.setLicense_plate("ERET");
+		v.setModel("WER");
+		v.setBrand("1234");
+		v.setIncrement((long) 1);
+		ResponseEntity<Vehicle> postResponse = restTemplate.postForEntity(getRootUrl() + "/vehicle", v, Vehicle.class);
+		assertNotNull(postResponse);
+		assertNotNull(postResponse.getBody());
 	}
 	
 	@Test

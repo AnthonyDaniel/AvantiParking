@@ -16,12 +16,16 @@ public class Vehicle {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long increment;	
+	
 	@Column(name = "license_plate", nullable = false)
 	private String license_plate;
+	
 	@Column(name = "brand", nullable = false)
 	private String brand;
+	
 	@Column(name = "model", nullable = false)
 	private String model;
+	
 	@ManyToOne
 	@JoinColumn(name="user")
 	private User user;
