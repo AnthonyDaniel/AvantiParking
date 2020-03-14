@@ -1,4 +1,4 @@
-<div class="grid-block img-fluid mt-5 mb-5">
+<div class="grid-block img-fluid">
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mx-auto my-auto" *ngIf="!loggedIn">
         <form #loginForm=ngForm (ngSubmit)="onSubmit()" class="form-container">
             <h3 class="text text-center text-white"><strong>WELCOME TO AVANTIPARKING</strong></h3><br>
@@ -14,53 +14,5 @@
                 </div>
             </div>
         </form>
-    </div>
-    <div *ngIf="loggedIn">
-        <div class="row justify-content-center">
-            <div class="col-md-10 container">
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/car.png" width="100" alt="">
-                        <p>Check all the actions of your vehicles. </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/month.png" width="100" alt="">
-                        <p>Check out the reservations!. </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/parking.png" width="100" alt="">
-                        <p>Interact with parking. </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/placeholder.png" width="100" alt="">
-                        <p>View and configure all headquarters. </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/report.png" width="100" alt="">
-                        <p>Have all the reports at hand. </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/zone.png" width="100" alt="">
-                        <p>View and configure all zone. </p>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="content">
-                        <img src="assets/employee.png" width="100" alt="">
-                        <p>assign or modify roles. </p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
