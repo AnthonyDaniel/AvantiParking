@@ -7,6 +7,8 @@ import { ZoneComponent } from './components/administration/zone/zone.component';
 import { UsersComponent } from './components/administration/users/users.component';
 import { LoginComponent } from './components/login/login.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReservesComponent } from './components/reserves/reserves.component';
 import { ErrorComponent } from './components/error/error.component';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { AfterLoginService } from './services/after-login.service';
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'administration/space', component: SpaceComponent,canActivate: [AdminAfterService]},
   { path: 'administration/zone', component: ZoneComponent,canActivate: [AdminAfterService]},
   { path: 'vehicle', component: VehicleComponent,canActivate: [AfterLoginService]},
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AfterLoginService]},
+  { path: 'reserves', component: ReservesComponent,canActivate: [AfterLoginService]},
   { path: 'oauth2/redirect', component: Oauth2Component,canActivate: [BeforeLoginService]},
   { path: '**', component: ErrorComponent}
 ]
