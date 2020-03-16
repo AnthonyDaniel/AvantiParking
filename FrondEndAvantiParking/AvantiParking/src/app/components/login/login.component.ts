@@ -11,10 +11,12 @@ export class LoginComponent implements OnInit {
 
   public GOOGLE_AUTH_URL = this.user.GOOGLE_AUTH_URL;
   public loggedIn: boolean;
+  public type: boolean;
   constructor(public user: UserService, private auth: AuthService) { }
 
   ngOnInit() {
     this.auth.authStatus.subscribe(value => this.loggedIn = value);
+    this.auth.adminStatus.subscribe(value => this.type = value);
   }
 }
 
