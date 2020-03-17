@@ -55,7 +55,7 @@
   grid-gap: 10px;
 }
 .container .box{
-  background: #333;
+  background: rgba(0,0,0,.8);
   padding: 20px;
   display: grid;
   font-size: 20px;
@@ -63,18 +63,25 @@
   text-align: center;
   color: #fff;
   transition: 0.5s;
-
+  box-shadow: 0px 0px 10px 0px #000;
+ 
 
 }
-.container .box:hover
+.container .box:hover 
 {
   background: #2F2D46;
+  
 }
 .container .box img
 {
   position: relative;
   max-width: 100px;
   margin-bottom: 10px;
+  transition: transform .5s;
+}
+.container .box:hover img
+{
+  transform: scale(1.5);
 }
 .container .box:nth-child(1)
 {
