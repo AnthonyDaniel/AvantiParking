@@ -2,6 +2,7 @@
     <br> <br> <br>
     <div class="row ">
         <div class="col-md-10">
+            <div class="table-responsive">
             <table class="table table-bordered table-hover ">
                 <thead class="tableThead thead">
                   <tr>
@@ -21,7 +22,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td> <button class="btn btn-delete btn-block btn-outline-danger">
+                    <td> <button class="btn btn-delete btn-block btn-outline-danger" routerLink="/reserves">
                         <strong>RESERVE</strong></button>
                     </td>
                     <td valign="middle" style="vertical-align:middle;"
@@ -34,25 +35,28 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
         </div>
         <div class="col-md-2">
             <label>CURRENT LOCATION</label>
-            <select class="custom-select" name="headquarter" 
-              required>
-              <option selected>Choose...</option>
-              <option >dd</option>
-            </select>
+            <select class="custom-select" id="inputGroupSelect04" name="headquarter"
+            [(ngModel)]="userInf.headquarter" aria-label="">
+            <option selected="true" *ngIf="current !=null" >Current
+                {{current}}
+            </option>
+            <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.name}} {{headquarter.city}}
+                {{headquarter.country}}</option>
+        </select>
             <label>PARKING LOT</label>
-            <select class="custom-select" name="headquarter" 
-              required>
-              <option selected>Choose...</option>
-              <option >k</option>
-            </select>
+            <select class="custom-select" name="parking lot" >
+            <option selected>Choose...</option>
+            <option value="{{parking.id_parking_lot}}" *ngFor="let parking of parkings">{{parking.id_parking_lot}} {{parking.name}}</option>
+          </select>
             <label>ZONE</label>
             <select class="custom-select" name="headquarter" 
               required>
               <option selected>Choose...</option>
-              <option >s</option>
+              <option value="{{zone.id_zone}}" *ngFor="let zone of zones">{{zone.parking_lot}} {{zone.name}}</option>
             </select><br><br>
             <button class="btn btn-delete btn-block btn-outline-danger"
             >
