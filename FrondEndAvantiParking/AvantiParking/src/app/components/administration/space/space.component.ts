@@ -145,6 +145,36 @@ export class SpaceComponent implements OnInit {
       }
     })
   }
+  deleteAll(){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        cancelButton: 'btn btn-secondary'
+      },
+      buttonsStyling: false
+    })
+
+    Swal.fire({
+      title: 'Are you sure delete?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4023',
+      confirmButtonText: 'Yes, delete it!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+ 
+            Swal.fire(
+              'Deleted!',
+              'All spaces have been removed.',
+              'success'
+            )
+            this.ngOnInit();
+          
+        
+      }
+    })
+  }
   editSpaceForm() {
     if(this.editFormSpace.state === 'Occupied'){
       this.editFormSpace.state = true;

@@ -7,16 +7,24 @@
                 <h3 class="font-weight-bold"> SPACE ADMINISTRATION</h3>
         </section>
         <div class="row ">
-                <div class="col-sm-4 col-md-6 mt-3">
+                <div class="col-sm-4 col-md-4 mt-3">
                         <input class="form-control" name="filterSpace" placeholder="Search..."
                                 [(ngModel)]="filterSpace">
                 </div>
-                <div class="col-sm-8 col-md-6 mt-3">
+                <div class="col-sm-8 col-md-4 mt-3">
                         <div>
                                 <!--Modal button of add space-->
                                 <button class="btnAdd btn btn-block btn-outline-secondary text-uppercase"
                                         data-toggle="modal" data-target="#addSpace">
                                         <i class="fas fa-plus-square"></i> Add Space
+                                </button>
+                        </div>
+                </div>
+                <div class="col-sm-8 col-md-4 mt-3">
+                        <div>
+                                <button class="btn btn-delete btn-block btn-outline-danger"
+                                        (click)="deleteAll()">
+                                        <strong><i class="fas fa-trash-alt"></i>DELETE ALL</strong>
                                 </button>
                         </div>
                 </div>
