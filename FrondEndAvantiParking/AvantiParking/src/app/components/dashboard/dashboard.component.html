@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-2">
             <label>CURRENT LOCATION</label>
-            <select class="custom-select" id="inputGroupSelect04" name="headquarter"
+            <select class="custom-select" id="inputGroupSelect04" name="headquarter" required
             [(ngModel)]="userInf.headquarter" aria-label="">
             <option selected="true" *ngIf="current !=null" >Current
                 {{current}}
@@ -48,15 +48,16 @@
                 {{headquarter.country}}</option>
         </select>
             <label>PARKING LOT</label>
-            <select class="custom-select" name="parking lot" >
+            <select class="custom-select" name="parking lot" required 
+            [(ngModel)]="formReserve.parking">
             <option selected>Choose...</option>
             <option value="{{parking.id_parking_lot}}" *ngFor="let parking of parkings">{{parking.id_parking_lot}} {{parking.name}}</option>
           </select>
             <label>ZONE</label>
-            <select class="custom-select" name="headquarter" 
-              required>
+            <select class="custom-select" name="headquarter" required
+               [(ngModel)]="formReserve.zone">
               <option selected>Choose...</option>
-              <option value="{{zone.id_zone}}" *ngFor="let zone of zones">{{zone.parking_lot}} {{zone.name}}</option>
+              <option value="{{zone.id_zone}}" *ngFor="let zone of zones">{{zone.parking_lot.name}} {{zone.name}}</option>
             </select><br><br>
             <button class="btn btn-delete btn-block btn-outline-danger"
             >

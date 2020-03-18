@@ -25,6 +25,10 @@ export class DashboardComponent implements OnInit {
     imageUrl: null,
     headquarter: ''
   };
+  private formReserve = {
+    parking: null,
+    zone: null
+  }
  
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
@@ -73,35 +77,6 @@ export class DashboardComponent implements OnInit {
       this.userInf.headquarter = data.headquarter;
       this.current = data.headquarter.name;
     }
-  }
-  allocateHeadquarters() {
-    var headquarter = {
-      id_headquarter: this.u.headquarter,
-      name: null,
-      country: null,
-      city: null,
-    }
-    this.auth.adminStatus.subscribe(value => this.u.role = value);
-    this.u.headquarter = headquarter;
-    this.user.modify(this.u).subscribe(
-      data => {
-        Swal.fire({
-          type: 'success',
-          title: 'The user was correctly assigned the headquarters, now on the dasboard and in the reservations, they will appear by default the selected headquarters',
-          showConfirmButton: false,
-          timer: 4500
-        });
-        this.ngOnInit();
-      },
-      error => {
-        Swal.fire({
-          type: 'error',
-          title: 'Failed to assign headquarters, try again or contact the application administrator',
-          showConfirmButton: false,
-          timer: 4500
-        })
-      }
-    );
   }
   headquarterUser(data) {
     this.userInf.headquarter = data.name;

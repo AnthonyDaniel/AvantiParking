@@ -76,30 +76,6 @@ export class VehicleComponent implements OnInit {
     );
   }
 
-  //incompleto
-  listar() {
-
-  //  this.vehicle.listVehicle().subscribe(
-      //data => {
-
-        //this.vehicles = data;
-        var words = this.vehicles;
-        const result = words.filter(word => word.username == this.addFormVehicle.user);
-        this.vehicles = result;
-
-      //},
-      error => {
-        Swal.fire({
-          type: 'error',
-          title: 'Error del sistema',
-          showConfirmButton: false,
-          timer: 1500
-        });
-        console.log(error);
-      }
-    //);
-  }
-
   addVehicle() {
     this.addFormVehicle.user.id = this.formUser.id; 
     this.vehicle.addVehicle(this.addFormVehicle).subscribe(

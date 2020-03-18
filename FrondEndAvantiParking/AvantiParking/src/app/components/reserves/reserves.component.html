@@ -37,10 +37,10 @@
                 </thead>
                 <tbody>
                   <tr >
-                    <td><select class="custom-select" name="headquarter" 
-                        required>
+                    <td><select class="custom-select" name="vehicle" 
+                        required [(ngModel)]="formAddReserve.vehicle">
                         <option selected>Choose...</option>
-                        <option >dd</option>
+                        <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}</option>
                       </select></td>
                     <td></td>
                     <td></td>
