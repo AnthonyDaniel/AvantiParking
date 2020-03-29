@@ -1,11 +1,11 @@
 ﻿-- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-03-2020 a las 12:27:01
--- Versión del servidor: 10.4.8-MariaDB
--- Versión de PHP: 7.3.11
+-- Tiempo de generación: 29-03-2020 a las 05:38:01
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -113,6 +113,22 @@ CREATE TABLE `reserve` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `reserve_detail`
+--
+
+CREATE TABLE `reserve_detail` (
+  `id_reserve_detail` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `reserve_state` tinyint(4) NOT NULL,
+  `end_date_extend` date NOT NULL,
+  `space_id_space` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `space`
 --
 
@@ -212,6 +228,13 @@ ALTER TABLE `reserve`
   ADD KEY `fk_reserve_space1_idx` (`space`);
 
 --
+-- Indices de la tabla `reserve_detail`
+--
+ALTER TABLE `reserve_detail`
+  ADD PRIMARY KEY (`id_reserve_detail`),
+  ADD KEY `fk_reserveDetail_space1_idx` (`space_id_space`);
+
+--
 -- Indices de la tabla `space`
 --
 ALTER TABLE `space`
@@ -271,6 +294,12 @@ ALTER TABLE `reserve`
   MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `reserve_detail`
+--
+ALTER TABLE `reserve_detail`
+  MODIFY `id_reserve_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `space`
 --
 ALTER TABLE `space`
@@ -317,6 +346,12 @@ ALTER TABLE `reserve`
   ADD CONSTRAINT `FK8hq81yhl3m2750ihq3ru1e3b6` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`),
   ADD CONSTRAINT `FK9p0j7pl3dqli4q1pa0d0gu7om` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`license_plate`),
   ADD CONSTRAINT `FKgy7m20tr83hy2grolgcjem5m7` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `reserve_detail`
+--
+ALTER TABLE `reserve_detail`
+  ADD CONSTRAINT `fk_reserveDetail_space1` FOREIGN KEY (`space_id_space`) REFERENCES `space` (`id_space`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `space`
