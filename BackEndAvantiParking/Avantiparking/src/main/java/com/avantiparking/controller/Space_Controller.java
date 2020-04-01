@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -23,6 +24,8 @@ import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Space;
 import com.avantiparking.repository.Space_Repository;
 
+import springfox.documentation.spring.web.json.Json;
+
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,
 		RequestMethod.DELETE})
@@ -33,6 +36,7 @@ public class Space_Controller {
 
 	@GetMapping("/space")
 	public List<Space> getAllSpaces() {
+		
 		return space_repository.findAll();
 	}
 
@@ -43,10 +47,21 @@ public class Space_Controller {
 				.orElseThrow(() -> new ResourceNotFoundException("Space not found for this id : " + id_Space));
 		return ResponseEntity.ok().body(space);
 	}
+	
+	@GetMapping("/space/zone/{id}")
+	public ResponseEntity<List<Space>> getSpaceByZone(@PathVariable(value = "id") Long zone) {
+		List<Space> spaces = space_repository.findByZone(zone);
+		System.out.println(spaces.size());
+		return ResponseEntity.ok().body(spaces);
+	}
 
 	@PostMapping("/space")
 	public Space createSpace(@Valid @RequestBody Space space) {
-		return space_repository.save(space);
+		Optional<Space> exists= space_repository.findByNameAndZone(space.getName(), space.getZone().getId_zone());
+		if(!exists.isPresent()) {
+			return space_repository.save(space);
+		}
+		return new Space(null, null, false, null, null);
 	}
 
 	@PutMapping("/space/{id}")
@@ -74,5 +89,11 @@ public class Space_Controller {
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
+	}
+	
+	@DeleteMapping("/space/{zone}/all")//delete all spaces for a zone
+	public ResponseEntity<String> deleteAllSpacesByZone(@PathVariable(value = "zone") Long zone) {
+		space_repository.deleteAllByZone(zone);
+		return ResponseEntity.ok().body("{'state':'succes', 'message':'Deleted All'}");
 	}
 }

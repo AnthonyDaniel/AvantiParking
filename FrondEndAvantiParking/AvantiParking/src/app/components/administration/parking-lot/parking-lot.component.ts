@@ -36,6 +36,12 @@ export class ParkingLotComponent implements OnInit {
     headquarter: this.formHeadquarter,
   }
 
+  private nullParkingLot: any = {
+    id_parking_lot: null,
+    name: null,
+    headquarter: this.formHeadquarter,
+  }
+
   public error: String;
   public success: String;
   public status: String;
@@ -66,17 +72,27 @@ export class ParkingLotComponent implements OnInit {
   addParkingLot() {
     this._parking.addParkingLot(this.addFormParkingLot).subscribe(
       data => {
-        this.responseSuccess(data);
-        this.addFormParkingLot.name = null;
-          this.addFormParkingLot.headquarter.id_headquarter = null;
-          $("#closeModal2").click();
+        this.nullParkingLot = data;
+        if(this.nullParkingLot.name == null){
           Swal.fire({
-            type: 'success',
-            title: 'The Parking has been saved',
-            showConfirmButton: false,
-            timer: 1500
+            type: 'error',
+            title: 'Oops...',
+            text: 'A parking lot with the name '+this.addFormParkingLot.name+' has already been registered for the selected headquarter!',
+            confirmButtonColor: '#EF4023'
           })
-          this.ngOnInit();
+        }else{
+          this.responseSuccess(data);
+          this.addFormParkingLot.name = null;
+            this.addFormParkingLot.headquarter.id_headquarter = null;
+            $("#closeModal2").click();
+            Swal.fire({
+              type: 'success',
+              title: 'The Parking has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.ngOnInit();
+        }        
       },
       error => this.responseError(error),
     );

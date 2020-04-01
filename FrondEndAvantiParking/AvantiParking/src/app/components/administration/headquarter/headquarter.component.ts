@@ -30,6 +30,14 @@ export class HeadquarterComponent implements OnInit {
     country: null,
     city: null,
   };
+
+  private nullHeadquarter: any = {
+    id_headquarter: null,
+    name: null,
+    country: null,
+    city: null,
+  };
+
   public error: String;
   public success: String;
   public status: String;
@@ -52,18 +60,28 @@ export class HeadquarterComponent implements OnInit {
   addHeadquarter() {
     this.headquarter.addHeadquarter(this.addFormHeadquarter).subscribe(
       data => {
+        this.nullHeadquarter = data;
         this.responseSuccess(data);
-        this.addFormHeadquarter.name = null;
-        this.addFormHeadquarter.country = null;
-        this.addFormHeadquarter.city = null;
-        Swal.fire({
-          type: 'success',
-          title: 'The headquarter has been saved',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        $("#closeModal1").click();
-        this.ngOnInit();
+        if(this.nullHeadquarter.name == null){
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'A headquarter with the name '+this.addFormHeadquarter.name+' has already been registered!',
+            confirmButtonColor: '#EF4023'
+          })
+        }else{          
+          this.addFormHeadquarter.name = null;
+          this.addFormHeadquarter.country = null;
+          this.addFormHeadquarter.city = null;
+          Swal.fire({
+            type: 'success',
+            title: 'The headquarter has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          $("#closeModal1").click();
+          this.ngOnInit();
+          }
       },
       error => this.responseError(error),
     );

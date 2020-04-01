@@ -13,7 +13,6 @@ import * as $ from 'jquery';
   providedIn: 'root'
 })
 export class SpaceComponent implements OnInit {
-  
   constructor(public space: ServiceSpaceService, public _zone: ServiceZoneService) { }
   //modelo zona
   public formZone = {
@@ -40,6 +39,18 @@ export class SpaceComponent implements OnInit {
     zone: this.formZone
   }
 
+  private nullSpace:any = {
+    id_space: null,
+    name: null,
+    type: null,
+    state: null,
+    user: null,
+    zone: this.formZone
+  }
+
+  private zoneToken;
+
+
   public filterSpace:any = '';
 
   public zone: any;
@@ -55,8 +66,19 @@ export class SpaceComponent implements OnInit {
     this.listSpace();
     this.ListZone();
   }
-  listSpace() {
-    this.spaces =[];
+
+  listSpace() {//mejor hacer el filtro en el backend ?
+    this.zoneToken = JSON.parse(localStorage.getItem('zone'));
+    this.addFormSpace.zone.id_zone = this.zoneToken.id_zone;
+    this.space.listSpaces(this.zoneToken.id_zone).subscribe(
+      data=>{
+        this.spaces = data;
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+    /*this.spaces =[];
     this.space.listSpace().subscribe(
       data => {
         this.ListSpaceInZone(data);
@@ -65,8 +87,9 @@ export class SpaceComponent implements OnInit {
         console.log(error);
       }
 
-    );
+    );*/
   }
+
   ListSpaceInZone(spaces) {
     //this.spaces = spaces;
     var i = localStorage.getItem('zone');
@@ -78,6 +101,7 @@ export class SpaceComponent implements OnInit {
       }
     }
   }
+
   ListZone() {
     this._zone.listZone().subscribe(
       data => {
@@ -86,6 +110,7 @@ export class SpaceComponent implements OnInit {
       error => console.log(error)
     )
   }
+
   onSubmit() {
     if (this.addFormSpace.state == 'Available') {
       this.addFormSpace.state = 0;
@@ -94,11 +119,19 @@ export class SpaceComponent implements OnInit {
       this.addFormSpace.state = 1;
     }
     this.space.addSpace(this.addFormSpace).subscribe(
-
       data => {
-        this.responseSuccess(data);
-        $("#closeModal6").click();
-        this.addFormSpace.name = null,
+        this.nullSpace = data;
+        if(this.nullSpace.name == null){
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: 'A space with the name '+this.addFormSpace.name+' has already been registered for this zone!',
+            confirmButtonColor: '#EF4023'
+          })
+        }else{
+          this.responseSuccess(data);
+          $("#closeModal6").click();
+          this.addFormSpace.name = null,
           this.addFormSpace.type = null,
           this.addFormSpace.state = null,
           this.addFormSpace.user = null,
@@ -110,10 +143,12 @@ export class SpaceComponent implements OnInit {
             timer: 1500
           })
           this.ngOnInit();
+        }        
       },
       error => this.responseError(error),
     );
   }
+
   deleteSpace(_formSpace) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
@@ -145,16 +180,10 @@ export class SpaceComponent implements OnInit {
       }
     })
   }
-  deleteAll(){
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        cancelButton: 'btn btn-secondary'
-      },
-      buttonsStyling: false
-    })
 
+  deleteAll(){
     Swal.fire({
-      title: 'Are you sure delete?',
+      title: 'Are you sure to delete all?',
       text: "You won't be able to revert this!",
       type: 'warning',
       showCancelButton: true,
@@ -163,18 +192,24 @@ export class SpaceComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
- 
-            Swal.fire(
-              'Deleted!',
-              'All spaces have been removed.',
-              'success'
-            )
-            this.ngOnInit();
-          
-        
+        this.space.deleteAllZoneSpaces(this.zoneToken.id_zone).subscribe(
+          data=>{
+            console.log(data);
+          },
+          error=>{
+            console.log(error);
+          }
+        );
+        Swal.fire(
+          'Deleted!',
+          'All spaces have been removed.',
+          'success'
+        )
+        this.ngOnInit();
       }
     })
   }
+
   editSpaceForm() {
     if(this.editFormSpace.state === 'Occupied'){
       this.editFormSpace.state = true;
@@ -224,6 +259,7 @@ export class SpaceComponent implements OnInit {
     this.success = data.data;
     this.status = "success";
   }
+
   responseError(error) {
     console.log(error)
     this.error = error.error.error;

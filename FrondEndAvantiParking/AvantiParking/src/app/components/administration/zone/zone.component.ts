@@ -13,8 +13,7 @@ import { SpaceComponent } from '../space/space.component';
 @Injectable({
   providedIn: 'root'
 })
-export class ZoneComponent implements OnInit {
-
+export class ZoneComponent implements OnInit {  
  
   constructor(public _zone: ServiceZoneService, public parking_lot: ServiceParkingLotService, private space: SpaceComponent) { }
 
@@ -31,6 +30,14 @@ export class ZoneComponent implements OnInit {
     start: null,
   }
   public editFormZone = {
+    id_zone: null,
+    name: null,
+    parking_lot: this.formParkingLot,
+    quantity: null,
+    start: null,
+  }
+
+  private nullZone:any = {
     id_zone: null,
     name: null,
     parking_lot: this.formParkingLot,
@@ -75,19 +82,29 @@ export class ZoneComponent implements OnInit {
     if(this.addFormZone.quantity <= 100){
       this._zone.addZone(this.addFormZone).subscribe(
         data => {
-          this.responseSuccess(data);
-          this.addFormZone.name = null;
-          this.addFormZone.parking_lot.id_parking_lot = null;
-          this.addFormZone.quantity = null;
-          this.addFormZone.start = null;
-          $("#closeModal5").click();
-          Swal.fire({
-            type: 'success',
-            title: 'The Zone has been saved',
-            showConfirmButton: false,
-            timer: 1500
-          })
-          this.ngOnInit();
+          this.nullZone = data;
+          if(this.nullZone.name == null){
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: 'A zone with the name "'+this.addFormZone.name+'" has already been registered for the selected parking lot!',
+              confirmButtonColor: '#EF4023'
+            })
+          }else{
+            this.responseSuccess(data);
+            this.addFormZone.name = null;
+            this.addFormZone.parking_lot.id_parking_lot = null;
+            this.addFormZone.quantity = null;
+            this.addFormZone.start = null;
+            $("#closeModal5").click();
+            Swal.fire({
+              type: 'success',
+              title: 'The Zone has been saved',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.ngOnInit();
+          }          
         },
         error => this.responseError(error),
       );

@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avantiparking.exception.ResourceNotFoundException;
-import com.avantiparking.model.Space;
-import com.avantiparking.model.User;
 import com.avantiparking.model.Vehicle;
 import com.avantiparking.repository.Vehicle_Repository;
 
@@ -53,8 +51,8 @@ public class Vehicle_Controller {
 		return vehicle_repository.findVehiclesByUser(user_id);
 	} 
 	
-	@PostMapping("/vehicle")
-	public Vehicle saveVehicle(@Valid @RequestBody Vehicle _vehicle) { //se revisa que no este registrado, devueleve un vehiculo vacio si encontro coincidencia
+	@PostMapping("/vehicle")//se revisa que no este registrado (por placa), devuelve un vehiculo vacio si encontro coincidencia
+	public Vehicle saveVehicle(@Valid @RequestBody Vehicle _vehicle) { 
 		Optional<Vehicle> exists= vehicle_repository.findVehicle(_vehicle.getLicense_plate());
 		if(!exists.isPresent()) {
 			return vehicle_repository.save(_vehicle);

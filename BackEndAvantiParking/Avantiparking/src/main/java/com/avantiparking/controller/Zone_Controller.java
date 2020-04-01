@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -49,21 +50,24 @@ public class Zone_Controller {
 	}
 
 	@PostMapping("/zone")
-	public ResponseEntity<Zone> createZone(@Valid @RequestBody Zone zone) {
-		zone_repository.save(zone);
-		int starTemp=zone.getStart();
-		for(int i=0; i< zone.getQuantity(); i++) {
-			Space temp = new Space();
-			temp.setName(starTemp + "");
-			temp.setState(false);
-			temp.setType("Regular");
-			temp.setUser(null);
-			temp.setZone(zone);
-			space_repository.save(temp);
-			starTemp++;
+	public Zone createZone(@Valid @RequestBody Zone zone) {
+		Optional<Zone> exists= zone_repository.findByNameAndParkingLot(zone.getName(), zone.getParking_lot().getId_parking_lot());
+		if(!exists.isPresent()) {
+			zone_repository.save(zone);
+			int starTemp=zone.getStart();
+			for(int i=0; i< zone.getQuantity(); i++) {
+				Space temp = new Space();
+				temp.setName(starTemp + "");
+				temp.setState(false);
+				temp.setType("Regular");
+				temp.setUser(null);
+				temp.setZone(zone);
+				space_repository.save(temp);
+				starTemp++;
+			}				
+			return zone;
 		}
-			
-		return ResponseEntity.ok().body(zone);
+		return new Zone(null, null);		
 	}
 
 	@PutMapping("/zone/{id}")

@@ -18,13 +18,19 @@ export class ServiceSpaceService {
   addSpace(data:any){
     return this.http.post(`${this.url}/api/space`,data,{headers:this.httpHeaders});
   }
-  listSpace(){
+  listSpace(){// lista todos los espacios
     return this.http.get(`${this.url}/api/space`,{headers:this.httpHeaders});
+  }
+  listSpaces(data){//lista los espacios de una zona especifica
+    return this.http.get(`${this.url}/api/space/zone/`+data,{headers:this.httpHeaders});
   }
   editSpace(id,data){
     return this.http.put(`${this.url}/api/space/`+id,data,{headers:this.httpHeaders});
  }
- deleteSpace(data){
-  return this.http.delete(`${this.url}/api/space/`+data,{headers:this.httpHeaders})
-}
+  deleteSpace(data){
+    return this.http.delete(`${this.url}/api/space/`+data,{headers:this.httpHeaders})
+  }
+  deleteAllZoneSpaces(data){
+    return this.http.delete(`${this.url}/api/space/`+data+`/all`,{headers:this.httpHeaders})
+  }
 }

@@ -26,7 +26,7 @@ export class VehicleComponent implements OnInit {
     model: null,
     user: this.formUser,
   };
-  public nullVehicle: any = {
+  private nullVehicle: any = {//se utiliza al registrar un vehiculo, el back end devuelve uno objeto vacio quiere decir que esta regitrado
     license_plate: null,
     brand: null,
     model: null,

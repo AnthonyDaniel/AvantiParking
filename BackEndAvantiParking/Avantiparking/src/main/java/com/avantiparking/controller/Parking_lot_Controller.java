@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -44,9 +45,13 @@ public class Parking_lot_Controller {
 		return ResponseEntity.ok().body(parking_lot);
 	}
 
-	@PostMapping("/parking_lot")
+	@PostMapping("/parking_lot")//se revisa que no este registrado (por name) para esa sede, devuelve un parking lot vacio si encontro coincidencia
 	public Parking_lot createParking_lot(@Valid @RequestBody Parking_lot parking_lot) {
-		return parking_lot_repository.save(parking_lot);
+		Optional<Parking_lot> exists= parking_lot_repository.finByNameAndHQ(parking_lot.getName(),parking_lot.getHeadquarter().getId_headquarter());
+		if(!exists.isPresent()) {
+			return parking_lot_repository.save(parking_lot);
+		}
+		return new Parking_lot(null, null);
 	}
 
 	@PutMapping("/parking_lot/{id}")

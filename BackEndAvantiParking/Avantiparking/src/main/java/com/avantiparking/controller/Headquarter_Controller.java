@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -46,9 +47,13 @@ public class Headquarter_Controller {
 		return ResponseEntity.ok().body(headquarter);
 	}
 
-	@PostMapping("/headquarter")
+	@PostMapping("/headquarter")//se revisa que no este registrado (por nombre), devuelve una sede vacio si encontro coincidencia
 	public Headquarter createHeadquarter(@Valid @RequestBody Headquarter headquarter) {
-		return headquarter_repository.save(headquarter);
+		Optional<Headquarter> exists= headquarter_repository.findByName(headquarter.getName());
+		if(!exists.isPresent()) {
+			return headquarter_repository.save(headquarter);
+		}
+		return new Headquarter(null,null,null);		
 	}
 
 	@PutMapping("/headquarter/{id_headquarter}")
