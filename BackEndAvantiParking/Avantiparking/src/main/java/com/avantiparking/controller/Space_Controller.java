@@ -91,9 +91,9 @@ public class Space_Controller {
 		return response;
 	}
 	
-	@DeleteMapping("/space/{zone}/all")//delete all spaces for a zone
+	@DeleteMapping("/space/{zone}/all")//delete all spaces for a zone | response is json
 	public ResponseEntity<String> deleteAllSpacesByZone(@PathVariable(value = "zone") Long zone) {
 		space_repository.deleteAllByZone(zone);
-		return ResponseEntity.ok().body("{'state':'succes', 'message':'Deleted All'}");
+		return ResponseEntity.ok().body("{\"status\":\"Sucess\",\"message\":\"Deleted All\"}");
 	}
 }
