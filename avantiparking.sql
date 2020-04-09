@@ -101,9 +101,6 @@ CREATE TABLE `parking_lot` (
 
 CREATE TABLE `reserve` (
   `id_reservation` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
   `created_at` date NOT NULL,
   `user` int(11) NOT NULL,
   `vehicle` varchar(45) DEFAULT NULL,
