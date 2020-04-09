@@ -24,3 +24,6 @@
   .botonF1:active{
     transform:scale(1.1);
   }
+  .fondo{
+    background: rgb(212, 212, 212);
+  }
