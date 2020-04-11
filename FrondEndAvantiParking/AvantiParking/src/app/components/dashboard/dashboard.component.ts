@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { $ } from 'protractor';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +35,7 @@ export class DashboardComponent implements OnInit {
     zone: null
   }
   public dashboardForm={
-    reserveDate: { year: 2019, month: 11, day: 1   }
+
   }
 
   public error: String;
@@ -47,14 +48,14 @@ export class DashboardComponent implements OnInit {
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig) { 
 
-      const current = new Date();
+      const now = new Date();
+      const since = moment().add(30,'d').toDate();
     
-
-      config.minDate={ year: current.getFullYear(), month: current.getMonth()+1,
-        day: current.getDate(),
-      }
+      config.minDate={year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
       
-      config.maxDate = { year: current.getFullYear(), month: 12, day: 31 }
+      config.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate()}
+
+    
       
     }
 
