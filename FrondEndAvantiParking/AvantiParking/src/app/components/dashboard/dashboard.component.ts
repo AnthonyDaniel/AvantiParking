@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { $ } from 'protractor';
 import * as moment from 'moment';
 
@@ -18,6 +19,7 @@ import * as moment from 'moment';
 })
 
 export class DashboardComponent implements OnInit {
+  
 
   public parkings
   public zones
@@ -46,7 +48,18 @@ export class DashboardComponent implements OnInit {
 
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
-    public _zone: ServiceZoneService, private config: NgbDatepickerConfig) { 
+    public _zone: ServiceZoneService, private config: NgbDatepickerConfig,confi: NgbCarouselConfig) { 
+
+
+     
+        // customize default values of carousels used by this component tree
+        confi.interval = 10000;
+        confi.wrap = true;
+        confi.keyboard = true;
+        confi.pauseOnHover = true;
+        confi.showNavigationIndicators= true;
+       
+      
 
       const now = new Date();
       const since = moment().add(30,'d').toDate();
