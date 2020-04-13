@@ -7,8 +7,7 @@
         <div class="form-group">
           <div class="input-group">
             <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [minDate]="minDate"
-              [maxDate]="maxDate" [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker
-              #d2="ngbDatepicker">
+              [maxDate]="maxDate" [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
             </div>
@@ -56,29 +55,30 @@
 
   </div>
 
-
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover ">
-      <thead class="tableThead thead">
-        <tr *ngIf="parkings">
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td *ngFor="let parking of parkings ">
-            <div class="card text-center" style="width: 18rem;"><img src="/assets/garage.png" width="32" height="32">
-              <div class="card-body">
-                <h5 class="card-title">{{parking.name}}</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <button class="btn btn-delete btn-block btn-outline-danger" routerLink="/reserves">
+  <div class="row justify-content-center">
+    <div class="col-md-10 ">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover ">
+          <thead class="tableThead thead">
+            <tr>
+              <th scope="col"><strong>SPACE</strong></th>
+              <th scope="col"><strong>AVAILABLE</strong></th>
+              <th scope="col"><strong>RESERVE</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>7-8</td>
+              <td></td>
+              <td> <button class="btn btn-delete btn-block btn-outline-danger" routerLink="/reserves">
                   <strong>RESERVE</strong></button>
-              </div>
-            </div>
-          </td>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-        </tr>
-      </tbody>
-    </table>
   </div>
 
 </div>
