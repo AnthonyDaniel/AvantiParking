@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
+import { DataReserveServiceService } from 'src/app/services/data-reserve-service.service';
 
 @Component({
   selector: 'app-reserves',
@@ -9,11 +10,12 @@ import { VehicleServiceService } from 'src/app/services/vehicle-service.service'
 })
 export class ReservesComponent implements OnInit {
 
+
   public formUser = {
     id: null
   };
-
-  constructor( public _user: UserService, public _vehicle: VehicleServiceService) { }
+  //_dataReserve instancia el servicio data-reserve y usa los strings del propio en el html de reserva
+  constructor( public _user: UserService, public _vehicle: VehicleServiceService, public _dataReserve: DataReserveServiceService) { }
 
   public vehicles;
   private formAddReserve = {
