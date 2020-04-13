@@ -19,12 +19,11 @@
     <div class="col-md-2">
       <label>CURRENT LOCATION</label>
       <select class="custom-select" id="inputGroupSelect04" name="headquarter" required
-        [(ngModel)]="userInf.headquarter" aria-label="" (click)="sendHeadquarter($event.target.value)">
+        [(ngModel)]="userInf.headquarter" aria-label="">
         <option selected="true" *ngIf="current !=null">Current
           {{current}}
         </option>
-        <option value="{{headquarter.id_headquarter}} {{headquarter.name}} " *ngFor="let headquarter of headquarters"  >
-          {{headquarter.name}}
+        <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.name}}
           {{headquarter.city}}
           {{headquarter.country}}</option>
       </select>
@@ -32,18 +31,18 @@
 
     <div class="col-md-2">
       <label>PARKING LOT</label>
-      <select class="custom-select" name="parking lot" required [(ngModel)]="formReserve.parking" (click)="sendParking($event.target.value)">
+      <select class="custom-select" name="parking lot" required [(ngModel)]="formReserve.parking">
         <option selected>Choose...</option>
-        <option value="{{parking.id_parking_lot}} {{parking.name}}" *ngFor="let parking of parkings">{{parking.id_parking_lot}}
+        <option value="{{parking.id_parking_lot}}" *ngFor="let parking of parkings">{{parking.id_parking_lot}}
           {{parking.name}}</option>
       </select>
     </div>
 
     <div class="col-md-2">
       <label>ZONE</label>
-      <select class="custom-select" name="headquarter" required [(ngModel)]="formReserve.zone" (click)="sendZone($event.target.value)">
+      <select class="custom-select" name="headquarter" required [(ngModel)]="formReserve.zone">
         <option selected>Choose...</option>
-        <option value="{{zone.id_zone}} {{zone.name}}" *ngFor="let zone of zones">{{zone.parking_lot.name}} {{zone.name}}</option>
+        <option value="{{zone.id_zone}}" *ngFor="let zone of zones">{{zone.parking_lot.name}} {{zone.name}}</option>
       </select>
     </div>
 
@@ -71,7 +70,7 @@
             <tr>
               <td>7-8</td>
               <td></td>
-              <td> <button class="btn btn-delete btn-block btn-outline-danger" routerLink="/reserves"  >
+              <td> <button class="btn btn-delete btn-block btn-outline-danger" routerLink="/reserves">
                   <strong>RESERVE</strong></button>
               </td>
             </tr>

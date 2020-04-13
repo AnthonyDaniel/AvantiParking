@@ -9,7 +9,6 @@ import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { $ } from 'protractor';
 import * as moment from 'moment';
-import { DataReserveServiceService } from 'src/app/services/data-reserve-service.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,11 +18,11 @@ import { DataReserveServiceService } from 'src/app/services/data-reserve-service
 })
 
 export class DashboardComponent implements OnInit {
-  public sede: any;
+
   public parkings
   public zones
   private img;
-  public headquarters: any;
+  public headquarters;
   private u: any;
   private current:any;
   private userInf = {
@@ -47,7 +46,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
-    public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _sendReserve: DataReserveServiceService) { 
+    public _zone: ServiceZoneService, private config: NgbDatepickerConfig) { 
 
       const now = new Date();
       const since = moment().add(30,'d').toDate();
@@ -123,16 +122,6 @@ export class DashboardComponent implements OnInit {
   responseError(error) {
     this.error = error.error.error;
     this.status = "error";
-  }
-  sendHeadquarter(headquarter){//recibe el string del combo box seleccionado y lo envia al servicio de data-reserve
-    console.log(headquarter);
-    this._sendReserve.headquarter = headquarter;
-  }
-  sendParking(parking){
-    this._sendReserve.parkingLot = parking;
-  }
-  sendZone(zone){
-    this._sendReserve.zone = zone;
   }
   
 }
