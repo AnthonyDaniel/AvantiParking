@@ -41,6 +41,7 @@ export class ReservesComponent implements OnInit {
   listVehicles() {
     this._vehicle.listVehicle(this.formUser.id).subscribe(
       data => {
+        console.log(data);
         this.vehicles = data;
       },
       error => {

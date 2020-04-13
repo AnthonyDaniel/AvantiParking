@@ -31,9 +31,9 @@
 
     <div class="col-md-2">
       <label>PARKING LOT</label>
-      <select class="custom-select" name="parking lot" required [(ngModel)]="formReserve.parking">
+      <select class="custom-select" name="parking lot" required [(ngModel)]="formReserve.parking" (click)=" dataReserve($event.target.value)">
         <option selected>Choose...</option>
-        <option value="{{parking.id_parking_lot}}" *ngFor="let parking of parkings">{{parking.id_parking_lot}}
+        <option [ngValue]="parking" *ngFor="let parking of parkings" >{{parking.id_parking_lot}}
           {{parking.name}}</option>
       </select>
     </div>
@@ -70,7 +70,7 @@
             <tr>
               <td>7-8</td>
               <td></td>
-              <td> <button class="btn btn-delete btn-block btn-outline-danger" routerLink="/reserves">
+              <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve">
                   <strong>RESERVE</strong></button>
               </td>
             </tr>
@@ -81,4 +81,103 @@
 
   </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="reserve" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Reserve</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <h5 class="card-title text-center font-weight-bold">Space reservation for avantiparking</h5>
+          <!--Inicia formulario-->
+          <form>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="custom-select" name="vehicle" required [(ngModel)]="formAddReserve.vehicle">
+                  <option selected>Choose...</option>
+                  <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Fecha</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="date" class="form-control"  placeholder="Fecha">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control "  placeholder="nombre sede" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label"  >Parking</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control" name="parking" [(ngModel)]="formOpenReserve.parking" value="parking" disabled required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Zone</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control"  placeholder="nombre zona" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Space number</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control"  placeholder="numero de espacio" disabled>
+              </div>
+            </div>
+            <!--Botones-->
+            <div class="row text-center">
+
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Reserve</button>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Extended Reservation</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
+import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { $ } from 'protractor';
 import * as moment from 'moment';
@@ -25,18 +26,30 @@ export class DashboardComponent implements OnInit {
   public headquarters;
   private u: any;
   private current:any;
-  private userInf = {
+  public vehicles;
+
+
+  public formAddReserve = {
+    vehicle: null
+  }
+  public userInf = {
+    id: null,
     name: null,
     imageUrl: null,
     headquarter: ''
   };
   private formReserve = {
+    parking_lot_id: null,
     parking: null,
     zone: null
+  }
+  public formOpenReserve = {
+    parking: null,
   }
   public dashboardForm={
 
   }
+ 
 
   public error: String;
   public success: String;
@@ -46,7 +59,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
-    public _zone: ServiceZoneService, private config: NgbDatepickerConfig) { 
+    public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService) { 
 
       const now = new Date();
       const since = moment().add(30,'d').toDate();
@@ -58,10 +71,12 @@ export class DashboardComponent implements OnInit {
     
       
     }
+    
 
   ngOnInit() {
     this.user.loadImg().subscribe(data => {
       this.loadUser(data);
+      this.listVehicles();
     });
     this.ListHeadquarters();
     this.ListParkings();
@@ -93,9 +108,20 @@ export class DashboardComponent implements OnInit {
       error => console.log(error)
     )
   }
+  listVehicles() {
+    this._vehicle.listVehicle(this.userInf.id).subscribe(
+      data => {
+        this.vehicles = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
   loadUser(data) {
     this.userInf = data;
+    this.userInf.id = data.id;
     this.u = data;
     this.img = data.imageUrl;
     if (data.headquarter == null) {
@@ -122,6 +148,12 @@ export class DashboardComponent implements OnInit {
   responseError(error) {
     this.error = error.error.error;
     this.status = "error";
+  }
+
+  dataReserve(value) {
+    console.log(value);
+    this.formOpenReserve.parking = this.formReserve.parking;
+
   }
   
 }
