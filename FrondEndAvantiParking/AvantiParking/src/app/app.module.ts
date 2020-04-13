@@ -30,6 +30,7 @@ import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { VehiclePipePipe } from './pipes/vehicle-pipe.pipe';
 import { ReservesComponent } from './components/reserves/reserves.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ReportComponent } from './components/administration/report/report.component';
 
 
 
@@ -57,6 +58,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     VehiclePipePipe,
     ReservesComponent,
     DashboardComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
