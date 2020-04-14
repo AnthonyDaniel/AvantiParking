@@ -28,9 +28,9 @@ import { UsersComponent } from './components/administration/users/users.componen
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { VehicleComponent } from './components/vehicle/vehicle.component';
 import { VehiclePipePipe } from './pipes/vehicle-pipe.pipe';
-import { ReservesComponent } from './components/reserves/reserves.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReportComponent } from './components/administration/report/report.component';
+import { MyReservesComponent } from './components/my-reserves/my-reserves.component';
 
 
 
@@ -56,9 +56,9 @@ import { ReportComponent } from './components/administration/report/report.compo
     UserPanelComponent,
     VehicleComponent,
     VehiclePipePipe,
-    ReservesComponent,
     DashboardComponent,
     ReportComponent,
+    MyReservesComponent,
   ],
   imports: [
     BrowserModule,
