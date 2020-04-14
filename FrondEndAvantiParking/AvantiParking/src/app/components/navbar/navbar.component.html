@@ -25,6 +25,12 @@
                     <strong id="link">REPORTS</strong>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/my-reserves" data-toggle="tooltip" data-placement="left"
+                    title="Generate your reports" *ngIf="loggedIn" (click)="toggleNavbar()">
+                    <strong id="link">MY RESERVES</strong>
+                </a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-o">
             <li class="nav-item dropdownbtn-group dropleft">

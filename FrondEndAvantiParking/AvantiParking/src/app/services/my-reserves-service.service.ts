@@ -4,8 +4,8 @@ import * as API from './api.modules';
 @Injectable({
   providedIn: 'root'
 })
-export class ReserveServiceService {
-
+export class MyReservesServiceService {
+  
   public url: any;
   httpHeaders = new HttpHeaders({
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")

@@ -1,0 +1,41 @@
+<div class="container">
+    <br>
+    <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+      <h3 class="font-weight-bold">MY RESERVES</h3>
+    </section>
+   <div class="row justify-content-center">
+      <div class="col-md-10 ">    
+        <div class="table-responsive">
+  
+            <table class="table table-bordered table-hover ">
+                <thead class="tableThead thead">
+                  <tr *ngIf="parkings">
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td *ngFor="let parking of parkings ">
+                      <div class="card text-center " style="width: 18rem;">
+                        <div class="card-header text-white rounded pb-5 text-center">
+                            <h3 class="card-header-title pt-3"><strong>DATE</strong></h3>
+                        </div>
+                        <div class="card-body"> 
+                          <h5 class="card-title">{{parking.name}}</h5>
+                          <p class="card-text"><strong>VEHICLE: </strong>{{parking.name}} </p>
+                          <p class="card-text"><strong>PARKING: </strong>{{parking.name}} </p>
+                          <p class="card-text"><strong>SPACE: </strong>{{parking.name}} </p>
+                          <p class="card-text"><strong>START TIME: </strong>{{parking.name}}</p>
+                          <p class="card-text"><strong>END TIME: </strong>{{parking.name}}</p>
+                          <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteParkingLot(parking.id_parking_lot)">
+                              <i class="fas fa-trash-alt"></i>
+                            <strong>CANCEL</strong></button>
+                        </div>
+                      </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+       </div>
+   </div>
+</div>
+    
