@@ -119,7 +119,8 @@ CREATE TABLE `reserve_detail` (
   `end_time` time NOT NULL,
   `reserve_state` tinyint(4) NOT NULL,
   `end_date_extend` date,
-  `space` int(11) NOT NULL
+  `space` int(11) NOT NULL,
+`reserve` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -225,6 +226,10 @@ ALTER TABLE `reserve`
 --
 -- Indices de la tabla `reserve_detail`
 --
+ALTER TABLE `reserve_detail`
+  ADD PRIMARY KEY (`id_reserve_detail`),
+  ADD KEY `fk_reserveDetail_space1_idx` (`space`),
+  ADD KEY `fk_reserveDetail_reserve_idx` (`reserve`);
 
 --
 -- Indices de la tabla `space`
@@ -342,8 +347,8 @@ ALTER TABLE `reserve`
 -- Filtros para la tabla `reserve_detail`
 --
 ALTER TABLE `reserve_detail`
-  ADD CONSTRAINT `fk_reserveDetail_space1` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+  ADD CONSTRAINT `fk_reserveDetail_space1` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`),
+  ADD CONSTRAINT `fk_reserveDetail_reserve` FOREIGN KEY (`reserve`) REFERENCES `reserve` (`id_reservation`);
 --
 -- Filtros para la tabla `space`
 --

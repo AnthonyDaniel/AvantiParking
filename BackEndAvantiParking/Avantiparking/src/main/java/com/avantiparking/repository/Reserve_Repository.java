@@ -7,10 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.avantiparking.model.Reserve;
-import com.avantiparking.model.Vehicle;
 
 @Repository
-public interface Reserve_Repository extends JpaRepository<Reserve, Long> {
+public interface Reserve_Repository extends JpaRepository<Reserve,Long> {
 	
 	final String information = "select * from reserve";
 	
