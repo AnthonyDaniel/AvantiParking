@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 import { $ } from 'protractor';
 import * as moment from 'moment';
 
@@ -15,6 +16,7 @@ import * as moment from 'moment';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
+  providers: [DatePipe]//necesario para conversion de date a string
   
 })
 
@@ -43,32 +45,35 @@ export class DashboardComponent implements OnInit {
     parking: null,
     zone: null
   }
-  public formOpenReserve = {
-    parking: null,
-  }
+  // public formOpenReserve = {
+  //   parking: null,
+  // }
   public dashboardForm={
-
+    reserveDate: null
   }
 
-  public hqModel = {
+  public hqModel = { //copia de un modelo de headquarters
     id_headquarter: null,
     name: null,
     country: null,
     city: null,
   }
 
-  public parkingLotModel = {
+  public parkingLotModel = { //copia de un modelo de parking
     id_parking_lot: null,
     name: null,
     headquarter: this.hqModel,
   }
 
-  public zoneModel = {
+  public zoneModel = { // copia de un modelo de zonas
     id_zone: null,
     name: null,
     parking_lot: this.parkingLotModel,
     quantity: null,
     start: null,
+  }
+  public calendarModel = {
+    date: null
   }
  
 
@@ -80,7 +85,9 @@ export class DashboardComponent implements OnInit {
 
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
-    public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService) { 
+    public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
+    public datepipe: DatePipe
+    ) { 
 
       const now = new Date();
       const since = moment().add(30,'d').toDate();
@@ -171,7 +178,7 @@ export class DashboardComponent implements OnInit {
     this.status = "error";
   }
 
-  dataReserve(object,value) {
+  dataReserve(object,value) { // object es igual a todo el modelo de datos para parqueo/zona/sede y value es el valaor del combo box
     if(object == this.hqModel){
       console.log("hq",object);
     }else if(object == this.parkingLotModel){
@@ -179,9 +186,15 @@ export class DashboardComponent implements OnInit {
     }else if(object == this.zoneModel){
       console.log("zone",object);
     }
-    
-    this.formOpenReserve.parking = this.formReserve.parking;
 
+  }
+  dataCalendar(data){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
+    console.log(this.dashboardForm.reserveDate);
+    console.log(data);
+    var date =new Date(); // variable usada para transformar
+    this.calendarModel.date = this.dashboardForm.reserveDate; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
+    this.calendarModel.date = this.datepipe.transform(date, 'yyyy-MM-dd' );// transformamos el modelo de date a string
+    
   }
   
 }
