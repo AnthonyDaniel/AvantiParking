@@ -18,12 +18,12 @@
 
     <div class="col-md-2">
       <label>CURRENT LOCATION</label>
-      <select class="custom-select" id="inputGroupSelect04" name="headquarter" required
-        [(ngModel)]="userInf.headquarter" aria-label="">
+      <select class="custom-select" id="inputGroupSelect04" name="headquarter" required 
+      [(ngModel)]="hqModel" (change)=" dataReserve(hqModel,$event.target.value)" aria-label="">
         <option selected="true" *ngIf="current !=null">Current
           {{current}}
         </option>
-        <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.name}}
+        <option *ngFor="let headquarter of headquarters" [ngValue]="headquarter" >{{headquarter.name}}
           {{headquarter.city}}
           {{headquarter.country}}</option>
       </select>
@@ -31,18 +31,18 @@
 
     <div class="col-md-2">
       <label>PARKING LOT</label>
-      <select class="custom-select" name="parking lot" required [(ngModel)]="formReserve.parking" (click)=" dataReserve($event.target.value)">
+      <select class="custom-select" name="parking lot" required [(ngModel)]="parkingLotModel" (change)=" dataReserve(parkingLotModel,$event.target.value)">
         <option selected>Choose...</option>
-        <option [ngValue]="parking" *ngFor="let parking of parkings" >{{parking.id_parking_lot}}
+        <option *ngFor="let parking of parkings" [ngValue]="parking"  >{{parking.id_parking_lot}}
           {{parking.name}}</option>
       </select>
     </div>
 
     <div class="col-md-2">
       <label>ZONE</label>
-      <select class="custom-select" name="headquarter" required [(ngModel)]="formReserve.zone">
+      <select class="custom-select" name="zone" required [(ngModel)]="zoneModel" (change)=" dataReserve(zoneModel,$event.target.value)">
         <option selected>Choose...</option>
-        <option value="{{zone.id_zone}}" *ngFor="let zone of zones">{{zone.parking_lot.name}} {{zone.name}}</option>
+        <option *ngFor="let zone of zones" [ngValue]="zone" >{{zone.parking_lot.name}} {{zone.name}}</option>
       </select>
     </div>
 
@@ -143,19 +143,19 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
               <div class="col-sm-8 col-lg-10">
-                <input type="text" class="form-control "  placeholder="nombre sede" disabled>
+                <input [(ngModel)]="hqModel.name" name="headquarter" type="text" class="form-control"  disabled>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label"  >Parking</label>
               <div class="col-sm-8 col-lg-10">
-                <input type="text" class="form-control" name="parking" [(ngModel)]="formOpenReserve.parking" value="parking" disabled required>
+                <input [(ngModel)]="parkingLotModel.name" name="parking" type="text" class="form-control"  disabled required>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Zone</label>
               <div class="col-sm-8 col-lg-10">
-                <input type="text" class="form-control"  placeholder="nombre zona" disabled>
+                <input [(ngModel)]="zoneModel.name" name="zone" type="text" class="form-control" disabled>
               </div>
             </div>
             <div class="form-group row">

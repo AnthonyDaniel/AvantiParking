@@ -17,30 +17,18 @@ import javax.persistence.Table;
 public class Reserve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_reservation;
-	@Column(name = "date", nullable = false)
-	private Date date;
-	@Column(name = "start_time", nullable = false)
-	private Time start_time;
-	@Column(name = "end_time", nullable = false)
-	private Time end_time;
+	private int id_reservation;	
 	@Column(name = "created_at", nullable = false)
-	private Time created_at;
-	
+	private Date created_at;	
 	@ManyToOne
 	@JoinColumn(name="user")
 	private User user;
 	@ManyToOne
 	@JoinColumn(name="vehicle")
-	private Vehicle vehicle;
-	@ManyToOne
-	@JoinColumn(name="space")
-	private Space space;
-	
+	private Vehicle vehicle;	
 	
 	public Reserve() {
 	}
-
 
 	public int getId_reservation() {
 		return id_reservation;
@@ -51,43 +39,12 @@ public class Reserve {
 		this.id_reservation = id_reservation;
 	}
 
-
-	public Date getDate() {
-		return date;
-	}
-
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-
-	public Time getStart_time() {
-		return start_time;
-	}
-
-
-	public void setStart_time(Time start_time) {
-		this.start_time = start_time;
-	}
-
-
-	public Time getEnd_time() {
-		return end_time;
-	}
-
-
-	public void setEnd_time(Time end_time) {
-		this.end_time = end_time;
-	}
-
-
-	public Time getCreated_at() {
+	public Date getCreated_at() {
 		return created_at;
 	}
 
 
-	public void setCreated_at(Time created_at) {
+	public void setCreated_at(Date created_at) {
 		this.created_at = created_at;
 	}
 
@@ -111,22 +68,10 @@ public class Reserve {
 		this.vehicle = vehicle;
 	}
 
-
-	public Space getSpace() {
-		return space;
-	}
-
-
-	public void setSpace(Space space) {
-		this.space = space;
-	}
-
-
 	@Override
 	public String toString() {
-		return "Reserve [id_reservation=" + id_reservation + ", date=" + date + ", start_time=" + start_time
-				+ ", end_time=" + end_time + ", created_at=" + created_at + ", user=" + user + ", vehicle=" + vehicle
-				+ ", space=" + space + "]";
+		return "Reserve [id_reservation=" + id_reservation + ", created_at=" + created_at + ", user=" + user
+				+ ", vehicle=" + vehicle + "]";
 	}
 	
 	

@@ -103,8 +103,7 @@ CREATE TABLE `reserve` (
   `id_reservation` int(11) NOT NULL,
   `created_at` date NOT NULL,
   `user` int(11) NOT NULL,
-  `vehicle` varchar(45) DEFAULT NULL,
-  `space` int(11) NOT NULL
+  `vehicle` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -119,8 +118,8 @@ CREATE TABLE `reserve_detail` (
   `start_time` time NOT NULL,
   `end_time` time NOT NULL,
   `reserve_state` tinyint(4) NOT NULL,
-  `end_date_extend` date NOT NULL,
-  `space_id_space` int(11) NOT NULL
+  `end_date_extend` date,
+  `space` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -221,15 +220,11 @@ ALTER TABLE `parking_lot`
 ALTER TABLE `reserve`
   ADD PRIMARY KEY (`id_reservation`),
   ADD KEY `fk_reserve_user1_idx` (`user`),
-  ADD KEY `fk_reserve_vehicle1_idx` (`vehicle`),
-  ADD KEY `fk_reserve_space1_idx` (`space`);
+  ADD KEY `fk_reserve_vehicle1_idx` (`vehicle`);
 
 --
 -- Indices de la tabla `reserve_detail`
 --
-ALTER TABLE `reserve_detail`
-  ADD PRIMARY KEY (`id_reserve_detail`),
-  ADD KEY `fk_reserveDetail_space1_idx` (`space_id_space`);
 
 --
 -- Indices de la tabla `space`
@@ -340,7 +335,6 @@ ALTER TABLE `parking_lot`
 -- Filtros para la tabla `reserve`
 --
 ALTER TABLE `reserve`
-  ADD CONSTRAINT `FK8hq81yhl3m2750ihq3ru1e3b6` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`),
   ADD CONSTRAINT `FK9p0j7pl3dqli4q1pa0d0gu7om` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`license_plate`),
   ADD CONSTRAINT `FKgy7m20tr83hy2grolgcjem5m7` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 
@@ -348,7 +342,7 @@ ALTER TABLE `reserve`
 -- Filtros para la tabla `reserve_detail`
 --
 ALTER TABLE `reserve_detail`
-  ADD CONSTRAINT `fk_reserveDetail_space1` FOREIGN KEY (`space_id_space`) REFERENCES `space` (`id_space`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_reserveDetail_space1` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `space`

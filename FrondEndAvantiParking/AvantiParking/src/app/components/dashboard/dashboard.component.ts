@@ -49,6 +49,27 @@ export class DashboardComponent implements OnInit {
   public dashboardForm={
 
   }
+
+  public hqModel = {
+    id_headquarter: null,
+    name: null,
+    country: null,
+    city: null,
+  }
+
+  public parkingLotModel = {
+    id_parking_lot: null,
+    name: null,
+    headquarter: this.hqModel,
+  }
+
+  public zoneModel = {
+    id_zone: null,
+    name: null,
+    parking_lot: this.parkingLotModel,
+    quantity: null,
+    start: null,
+  }
  
 
   public error: String;
@@ -150,8 +171,15 @@ export class DashboardComponent implements OnInit {
     this.status = "error";
   }
 
-  dataReserve(value) {
-    console.log(value);
+  dataReserve(object,value) {
+    if(object == this.hqModel){
+      console.log("hq",object);
+    }else if(object == this.parkingLotModel){
+      console.log("parking lot",object);
+    }else if(object == this.zoneModel){
+      console.log("zone",object);
+    }
+    
     this.formOpenReserve.parking = this.formReserve.parking;
 
   }
