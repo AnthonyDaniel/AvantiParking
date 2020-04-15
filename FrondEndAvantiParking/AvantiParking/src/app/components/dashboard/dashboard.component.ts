@@ -188,6 +188,8 @@ export class DashboardComponent implements OnInit {
     }
 
   }
+  
+  
   dataCalendar(data){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate);
     console.log(data);
