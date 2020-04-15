@@ -8,7 +8,7 @@
   </section>
   <div class="row">
     <div class="col-sm-4 col-md-6 mt-3">
-      <input type="text" class="form-control" name="filterHeadquarters" placeholder="Search..."
+      <input type="text" class="form-control" name="filterHeadquarters" placeholder="Search..."  maxlength="40" 
         [(ngModel)]="filterHeadquarters">
     </div>
     <div class="col-sm-8 col-md-6 mt-3">
@@ -63,15 +63,15 @@
           <form #editHeadquarterForm=ngForm (ngSubmit)="editHeadquarter()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>NAME</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="editFormHeadquarter.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="editFormHeadquarter.name"  maxlength="40"  required>
             </div>
             <div class="form-group col-md-12">
               <label>COUNTRY</label>
-              <input type="text" class="form-control" name="country" [(ngModel)]="editFormHeadquarter.country" required>
+              <input type="text" class="form-control" name="country" [(ngModel)]="editFormHeadquarter.country"  maxlength="20"  required>
             </div>
             <div class="form-group col-md-12">
               <label>CITY</label>
-              <input type="text" class="form-control" name="city" [(ngModel)]="editFormHeadquarter.city" required>
+              <input type="text" class="form-control" name="city" [(ngModel)]="editFormHeadquarter.city"  maxlength="20"  required>
             </div>
             <div class="col-md-6">
               <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
@@ -98,15 +98,15 @@
           <form #addHeadquarterForm=ngForm (ngSubmit)="addHeadquarter()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>Name</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="addFormHeadquarter.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="addFormHeadquarter.name"  maxlength="40"  required>
             </div>
             <div class="form-group col-md-12">
               <label>COUNTRY</label>
-              <input type="text" class="form-control" name="country" [(ngModel)]="addFormHeadquarter.country" required>
+              <input type="text" class="form-control" name="country" [(ngModel)]="addFormHeadquarter.country"  maxlength="20"  required>
             </div>
             <div class="form-group col-md-12">
               <label>CITY</label>
-              <input type="text" class="form-control" name="city" [(ngModel)]="addFormHeadquarter.city" required>
+              <input type="text" class="form-control" name="city" [(ngModel)]="addFormHeadquarter.city"  maxlength="20"  required>
             </div>
             <div class="col-md-6">
               <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"

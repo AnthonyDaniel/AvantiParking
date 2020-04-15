@@ -5,7 +5,7 @@
     </section>
     <div class="row">
       <div class="col-sm-4 col-md-6 mt-3">
-        <input type="text" class="form-control" name="filterVehicles" placeholder="Search..."
+        <input type="text" class="form-control" name="filterVehicles" placeholder="Search..."  maxlength="40" 
           [(ngModel)]="filterVehicles">
       </div>
       <div class="col-sm-8 col-md-6 mt-3">
@@ -61,15 +61,15 @@
         <form #addVehicleForm=ngForm (ngSubmit)="addVehicle()" class="form-row justify-content-sm-center">
           <div class="form-group col-md-12">
             <label>LICENCE PLATE</label>
-            <input type="text" class="form-control" name="licence_plate" [(ngModel)]="addFormVehicle.license_plate" required>
+            <input type="text" class="form-control" name="licence_plate" [(ngModel)]="addFormVehicle.license_plate"  maxlength="20"  required>
           </div>
           <div class="form-group col-md-12">
             <label>BRAND</label>
-            <input type="text" class="form-control" name="brand" [(ngModel)]="addFormVehicle.brand" required>
+            <input type="text" class="form-control" name="brand" [(ngModel)]="addFormVehicle.brand"  maxlength="20"  required>
           </div>
           <div class="form-group col-md-12">
             <label>MODEL</label>
-            <input type="text" class="form-control" name="model" [(ngModel)]="addFormVehicle.model" required>
+            <input type="text" class="form-control" name="model" [(ngModel)]="addFormVehicle.model"  maxlength="20"  required>
           </div>
           <div class="col-md-6">
             <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
@@ -96,15 +96,15 @@
           <form #editVehicleForm=ngForm (ngSubmit)="editVehicle()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>LICENSE PLATE</label>
-              <input type="text" class="form-control" name="license_plate" [(ngModel)]="editFormVehicle.license_plate" required>
+              <input type="text" class="form-control" name="license_plate" [(ngModel)]="editFormVehicle.license_plate"  maxlength="20"  required>
             </div>
             <div class="form-group col-md-12">
               <label>BRAND</label>
-              <input type="text" class="form-control" name="brand" [(ngModel)]="editFormVehicle.brand" required>
+              <input type="text" class="form-control" name="brand" [(ngModel)]="editFormVehicle.brand"  maxlength="20"  required>
             </div>
             <div class="form-group col-md-12">
               <label>MODEL</label>
-              <input type="text" class="form-control" name="model" [(ngModel)]="editFormVehicle.model" required>
+              <input type="text" class="form-control" name="model" [(ngModel)]="editFormVehicle.model"  maxlength="20"  required>
             </div>
             <div class="col-md-6">
               <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"

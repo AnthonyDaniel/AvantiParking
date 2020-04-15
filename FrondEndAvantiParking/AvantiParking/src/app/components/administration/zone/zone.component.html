@@ -8,7 +8,7 @@
         </section>
         <div class="row justify-content-end">
                 <div class="col-sm-4 col-md-6 mt-3">
-                        <input class="form-control" name="filterZone" placeholder="Search..."
+                        <input class="form-control" name="filterZone" placeholder="Search..."  maxlength="40" 
                                 [(ngModel)]="filterZone">
                 </div>
                 <div class="col-sm-8 col-md-6 mt-3">
@@ -76,18 +76,18 @@
                                                 class="form-row justify-content-sm-center">
                                                 <div class="form-group col-md-12">
                                                         <label>Zone Name</label>
-                                                        <input type="text" class="form-control" name="name"
+                                                        <input type="text" class="form-control" name="name"  maxlength="10" 
                                                                 [(ngModel)]="addFormZone.name" required>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Quantity</label>
-                                                        <input type="number" min="0" max="100" class="form-control"
+                                                        <input type="number" maxlength="3"   min="0" max="100" class="form-control"
                                                                 name="quality" [(ngModel)]="addFormZone.quantity"
                                                                 required />
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                         <label>Start with...</label>
-                                                        <input type="number" min="0" max="100" class="form-control"
+                                                        <input type="number"  maxlength="3"  class="form-control"
                                                                 name="start" [(ngModel)]="addFormZone.start" required />
                                                 </div>
                                                 <div class="form-group col-md-12">
@@ -130,7 +130,7 @@
                                                 class="form-row justify-content-sm-center">
                                                 <div class="form-group col-md-12">
                                                         <label>Zone Name</label>
-                                                        <input type="text" class="form-control" name="name"
+                                                        <input type="text" class="form-control"  maxlength="10"  name="name"
                                                                 [(ngModel)]="editFormZone.name" required>
                                                 </div>
                                                 <div class="form-group col-md-12">

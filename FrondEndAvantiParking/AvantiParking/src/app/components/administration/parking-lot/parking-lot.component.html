@@ -8,7 +8,7 @@
   </section>
   <div class="row justify-content-end">
     <div class="col-sm-4 col-md-6 mt-3">
-      <input type="text" class="form-control" name="filterParkingLot" placeholder="Search..."
+      <input type="text" class="form-control" name="filterParkingLot" placeholder="Search..."  maxlength="40" 
         [(ngModel)]="filterParkingLot">
     </div>
     <div class="col-sm-8 col-md-6 mt-3 ">
@@ -59,7 +59,7 @@
           <form #addParkingLotForm=ngForm (ngSubmit)="addParkingLot()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>NAME</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="addFormParkingLot.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="addFormParkingLot.name"  maxlength="40"  required>
             </div>
             <div class="form-group col-md-12">
               <label>HEADQUARTER</label>
@@ -93,7 +93,7 @@
           <form #editParkingLotForm=ngForm (ngSubmit)="editParkingLot()" class="form-row justify-content-sm-center">
             <div class="form-group col-md-12">
               <label>NAME</label>
-              <input type="text" class="form-control" name="name" [(ngModel)]="editFormParkingLot.name" required>
+              <input type="text" class="form-control" name="name" [(ngModel)]="editFormParkingLot.name"  maxlength="40"  required>
             </div>
             <div class="form-group col-md-12">
               <label>HEADQUARTER</label>

@@ -79,7 +79,7 @@ export class ZoneComponent implements OnInit {
   }
   onSubmit() {
 
-    if(this.addFormZone.quantity <= 100){
+    if(this.addFormZone.quantity <= 100 && this.addFormZone.start <= 999){
       this._zone.addZone(this.addFormZone).subscribe(
         data => {
           this.nullZone = data;
@@ -112,7 +112,7 @@ export class ZoneComponent implements OnInit {
     }else{
       Swal.fire({
         type: 'error',
-        title: 'The quality cannot exceed 100',
+        title: 'The quality cannot exceed 100 or the start space cannot exceed 999',
         showConfirmButton: false,
         timer: 1500
       })

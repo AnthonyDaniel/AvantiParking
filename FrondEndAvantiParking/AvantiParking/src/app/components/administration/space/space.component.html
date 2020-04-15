@@ -8,7 +8,7 @@
         </section>
         <div class="row ">
                 <div class="col-sm-4 col-md-4 mt-3">
-                        <input class="form-control" name="filterSpace" placeholder="Search..."
+                        <input class="form-control" name="filterSpace" placeholder="Search..."  maxlength="40" 
                                 [(ngModel)]="filterSpace">
                 </div>
                 <div class="col-sm-8 col-md-4 mt-3">
@@ -85,7 +85,7 @@
 
                                                         <div class="form-group col-md-12">
                                                                 <label>Space Name</label>
-                                                                <input type="text" name="name" class="form-control"
+                                                                <input type="text" name="name" class="form-control"  maxlength="20" 
                                                                         [(ngModel)]="addFormSpace.name" required>
                                                         </div>
 
@@ -142,7 +142,7 @@
                                                         class="form-row justify-content-sm-center">
                                                         <div class="form-group col-md-12">
                                                                 <label>Space Name</label>
-                                                                <input type="text" class="form-control" name="name"
+                                                                <input type="text" class="form-control" name="name"  maxlength="20" 
                                                                         [(ngModel)]="editFormSpace.name" required>
                                                         </div>
                                                         <div class="form-group col-md-12">
