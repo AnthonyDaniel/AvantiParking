@@ -32,8 +32,7 @@ import com.avantiparking.repository.Vehicle_Repository;
 @RequestMapping("/api")
 public class Dashboard_Controller {
 	
-	@Autowired
-	public Vehicle_Repository vehicle_repository;
+	
 	
 	@Autowired
 	public Space_Repository space_repository;

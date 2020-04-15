@@ -103,7 +103,7 @@ CREATE TABLE `reserve` (
   `id_reservation` int(11) NOT NULL,
   `created_at` date NOT NULL,
   `user` int(11) NOT NULL,
-  `vehicle` varchar(45) DEFAULT NULL
+  `vehicle` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -340,7 +340,7 @@ ALTER TABLE `parking_lot`
 -- Filtros para la tabla `reserve`
 --
 ALTER TABLE `reserve`
-  ADD CONSTRAINT `FK9p0j7pl3dqli4q1pa0d0gu7om` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`license_plate`),
+  ADD CONSTRAINT `FK9p0j7pl3dqli4q1pa0d0gu7om` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`increment`),
   ADD CONSTRAINT `FKgy7m20tr83hy2grolgcjem5m7` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
 
 --
