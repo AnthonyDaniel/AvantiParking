@@ -10,7 +10,12 @@ export class DashboardServiceService {
   httpHeaders = new HttpHeaders({
     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
   });
+
   constructor(private http: HttpClient) {
     this.url = API.domain;
    }
+
+   listTimes(id,date){// lista todos los espacios
+    return this.http.get(`${this.url}/api/dashboard/`+id+`/`+date,{headers:this.httpHeaders});
+  }
 }

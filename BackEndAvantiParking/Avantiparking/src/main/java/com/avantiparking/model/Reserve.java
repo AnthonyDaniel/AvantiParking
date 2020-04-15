@@ -1,7 +1,6 @@
 package com.avantiparking.model;
 
 import java.sql.Date;
-import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +16,7 @@ import javax.persistence.Table;
 public class Reserve {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_reservation;	
+	private Long id_reservation;	
 	@Column(name = "created_at", nullable = false)
 	private Date created_at;	
 	@ManyToOne
@@ -30,12 +29,12 @@ public class Reserve {
 	public Reserve() {
 	}
 
-	public int getId_reservation() {
+	public Long getId_reservation() {
 		return id_reservation;
 	}
 
 
-	public void setId_reservation(int id_reservation) {
+	public void setId_reservation(Long id_reservation) {
 		this.id_reservation = id_reservation;
 	}
 

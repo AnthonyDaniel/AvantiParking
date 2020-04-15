@@ -41,7 +41,7 @@ public class Reserve_Controller {
     
 	@GetMapping("/reserves/user/{user}")
 	public List<Reserve> getAllReservationsForUser(@PathVariable(value = "user")Long user_id) {
-		return reserveRepository.findReservationsByUser(user_id);
+		return reserveRepository.findAllUserReservations(user_id);
 	}
     
 	@GetMapping("/reserves/completed/user/{user}")
