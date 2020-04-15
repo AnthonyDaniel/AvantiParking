@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
+import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { $ } from 'protractor';
@@ -86,7 +87,7 @@ export class DashboardComponent implements OnInit {
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe, public _dashboard: DashboardServiceService
     ) { 
 
       const now = new Date();
@@ -109,6 +110,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
+    this.loadAvailableTimes();
   }
 
   ListParkings() {
@@ -198,5 +200,17 @@ export class DashboardComponent implements OnInit {
     this.calendarModel.date = this.datepipe.transform(date, 'yyyy-MM-dd' );// transformamos el modelo de date a string
     
   }
+
+  loadAvailableTimes(){
+    console.log("bienvenido");
+    this._dashboard.listTimes(2,'2020-04-24').subscribe(
+      data =>{
+        console.log(data);
+      },
+      error=>{
+
+      });  
+  }
+
   
 }

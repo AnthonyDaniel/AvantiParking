@@ -15,6 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "reserve_detail")
 public class Reserve_detail {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_reserve_detail ;
@@ -25,7 +26,7 @@ public class Reserve_detail {
 	@Column(name = "end_time", nullable = false)
 	private Time end_time;
 	@Column(name = "reserve_state", nullable = false)
-	private boolean reserve_state;
+	private Integer reserve_state;
 	@Column(name = "end_date_extend", nullable = true)
 	private Date end_date_extend;
 	@ManyToOne
@@ -63,10 +64,10 @@ public class Reserve_detail {
 	public void setEnd_time(Time end_time) {
 		this.end_time = end_time;
 	}
-	public boolean isReserve_state() {
+	public Integer isReserve_state() {
 		return reserve_state;
 	}
-	public void setReserve_state(boolean reserve_state) {
+	public void setReserve_state(Integer reserve_state) {
 		this.reserve_state = reserve_state;
 	}
 	public Date getEnd_date_extend() {

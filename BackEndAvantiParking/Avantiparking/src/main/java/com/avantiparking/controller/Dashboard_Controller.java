@@ -58,6 +58,7 @@ public class Dashboard_Controller {
 				System.out.println("***************************xxxxxxxx"+date+"---------"+spaces.get(i).getId_space());
 				System.out.println("XAXAXAXXXAXAXAXAXAXXAXXAX");
 				List<Reserve_detail> details = reserve_detail_repository.findByDateAndSpace(date, spaces.get(i).getId_space());
+				System.out.println("-------------------------------------");
 				System.out.println("***************************oooo"+details.size());
 				System.out.println("***************************xxxxxxxx"+details.get(0));
 				if(details.size() > 0) {
