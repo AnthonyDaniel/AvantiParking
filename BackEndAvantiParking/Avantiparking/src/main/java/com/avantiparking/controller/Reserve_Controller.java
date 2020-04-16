@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avantiparking.model.Reserve;
+import com.avantiparking.model.Reserve_detail;
 import com.avantiparking.model.Space;
 import com.avantiparking.repository.Reserve_Repository;
+import com.avantiparking.repository.Reserve_detail_Repository;
 import com.avantiparking.repository.Space_Repository;
 import com.avantiparking.repository.UserRepository;
 import com.avantiparking.repository.Vehicle_Repository;
@@ -38,6 +40,9 @@ public class Reserve_Controller {
     
     @Autowired
     private Reserve_Repository reserveRepository;
+    
+    @Autowired
+    private Reserve_detail_Repository reserve_detail_repository;
     
 	@GetMapping("/reserves/user/{user}")
 	public List<Reserve> getAllReservationsForUser(@PathVariable(value = "user")Long user_id) {
@@ -60,8 +65,9 @@ public class Reserve_Controller {
 	}
 	**********************************/
 	@PostMapping("/reserve")
-	public Reserve addReservation(@Valid @RequestBody Reserve reserve) {
-		return reserveRepository.save(reserve);
+	public Reserve_detail  addReservation(@Valid @RequestBody Reserve_detail reserve_detail) {
+		/*Reserve reserve = reserveRepository.fin*/
+		return reserve_detail_repository.save(reserve_detail);
 	}
 	
 	@PutMapping("/reserve")

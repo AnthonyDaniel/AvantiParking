@@ -53,6 +53,7 @@ public class Dashboard_Controller {
 		List<Space> spaces = space_repository.findByZone(zone_id);
 		if(spaces.size() > 0 ) {
 			container = new HashMap<>();
+			boolean flag = false;
 			for(int i = 0; i < spaces.size(); i++) {				
 				int available = 0;
 				List<Reserve_detail> details = reserve_detail_repository.findByDateAndSpace(date, spaces.get(i).getId_space());
@@ -73,6 +74,7 @@ public class Dashboard_Controller {
 							available = getBase(details.get(j-1).getEnd_time(), "20:00:00", details.get(j).getStart_time());
 						}
 						if(available != 0) {
+							flag = true;
 							range[0][0]=available;
 							range[0][1]=timeToInt(details.get(j).getStart_time());
 							rangeContainer.add(range);
@@ -86,7 +88,10 @@ public class Dashboard_Controller {
 							}
 						}
 					}
-					container.put(spaces.get(i).getId_space(),rangeContainer);
+					if(flag) {
+						container.put(spaces.get(i).getId_space(),rangeContainer);
+						flag = false;
+					}
 				}
 			}			
 		}
