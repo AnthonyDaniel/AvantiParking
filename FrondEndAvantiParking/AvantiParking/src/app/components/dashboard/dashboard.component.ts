@@ -109,7 +109,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
-    //this.loadAvailableTimes(null,null);
+    this.loadAvailableTimes(null,null);
   }
 
   ListParkings() {
@@ -210,7 +210,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  /*loadAvailableTimes(zone,date){
+  loadAvailableTimes(zone,date){
       console.log("bienvenido");
     this._dashboard.listTimes(2,'2020-04-24').subscribe(
       data =>{
@@ -233,7 +233,7 @@ export class DashboardComponent implements OnInit {
       error=>{
         console.log(error);
       });  
-  }*/
+  }
 
   loadAvailableTimesV2(){
     let zone = this.zoneModel.id_zone;
