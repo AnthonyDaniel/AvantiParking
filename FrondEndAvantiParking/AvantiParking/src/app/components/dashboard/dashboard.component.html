@@ -1,0 +1,183 @@
+<div class="container">
+  <br> <br> <br>
+  <div class="row  justify-content-center">
+    <div class="col-md-3">
+      <label>DATE</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [minDate]="minDate"  readonly
+              [maxDate]="maxDate" [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar" (click)="d2.toggle()" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-2">
+      <label>CURRENT LOCATION</label>
+      <select class="custom-select" id="inputGroupSelect04" name="headquarter" required 
+      [(ngModel)]="hqModel" (change)=" dataReserve(hqModel,$event.target.value)" aria-label="">
+        <option selected="true" *ngIf="current !=null">Current
+          {{current}}
+        </option>
+        <option *ngFor="let headquarter of headquarters" [ngValue]="headquarter" >{{headquarter.name}}
+          {{headquarter.city}}
+          {{headquarter.country}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <label>PARKING LOT</label>
+      <select class="custom-select" name="parking lot" required [(ngModel)]="parkingLotModel" (change)=" dataReserve(parkingLotModel,$event.target.value)">
+        <option selected>Choose...</option>
+        <option *ngFor="let parking of parkings" [ngValue]="parking"  >{{parking.id_parking_lot}}
+          {{parking.name}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <label>ZONE</label>
+      <select class="custom-select" name="zone" required [(ngModel)]="zoneModel" (change)=" dataReserve(zoneModel,$event.target.value)">
+        <option selected>Choose...</option>
+        <option *ngFor="let zone of zones" [ngValue]="zone" >{{zone.parking_lot.name}} {{zone.name}}</option>
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <br>
+      <button class="btn btn-delete btn-block btn-outline-danger">
+        <strong>VIEW DASHBOARD</strong>
+      </button><br><br>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-10 ">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover ">
+          <thead class="tableThead thead">
+            <tr>
+              <th scope="col"><strong>SPACE</strong></th>
+              <th scope="col"><strong>AVAILABLE</strong></th>
+              <th scope="col"><strong>RESERVE</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>7-8</td>
+              <td></td>
+              <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve" (click)="dataCalendar()">
+                  <strong>RESERVE</strong></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="reserve" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Reserve</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <h5 class="card-title text-center font-weight-bold">Space reservation for avantiparking</h5>
+          <!--Inicia formulario-->
+          <form>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="custom-select" name="vehicle" required [(ngModel)]="formAddReserve.vehicle">
+                  <option selected>Choose...</option>
+                  <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Date</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control" [(ngModel)]="calendarModel"  name="calendarModel"  disabled >
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
+              <div class="col-sm-8 col-lg-10">
+                <input [(ngModel)]="hqModel.name" name="headquarter" type="text" class="form-control"  disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label"  >Parking</label>
+              <div class="col-sm-8 col-lg-10">
+                <input [(ngModel)]="parkingLotModel.name" name="parking" type="text" class="form-control"  disabled required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Zone</label>
+              <div class="col-sm-8 col-lg-10">
+                <input [(ngModel)]="zoneModel.name" name="zone" type="text" class="form-control" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Space number</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control"  placeholder="numero de espacio" disabled>
+              </div>
+            </div>
+            <!--Botones-->
+            <div class="row text-center">
+
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Reserve</button>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Extended Reservation</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
