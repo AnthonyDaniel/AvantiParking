@@ -199,7 +199,7 @@ export class DashboardComponent implements OnInit {
     console.log('mes sin el 0: '+ monthWithoutCero)
     var monthWithCero: string  = '0'+this.dashboardForm.reserveDate.month // mes con el 0(mes: 04,05,06)
     console.log('algo '+ monthWithCero)
-    console.log('exc luego de la igualacion de algo '+ exc)
+    console.log('exc luego de la igualacion de algo '+ monthWithoutCero)
     if (monthWithoutCero[0] != monthWithCero[1]  && this.dashboardForm.reserveDate.month <10) {
       this.dashboardForm.reserveDate.month = '0'+this.dashboardForm.reserveDate.month;
     }
