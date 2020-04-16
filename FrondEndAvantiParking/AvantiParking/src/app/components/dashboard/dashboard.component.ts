@@ -73,9 +73,7 @@ export class DashboardComponent implements OnInit {
     quantity: null,
     start: null,
   }
-  public calendarModel = {
-    date: null
-  }
+  public calendarModel;
  
 
   public error: String;
@@ -192,13 +190,17 @@ export class DashboardComponent implements OnInit {
   }
   
   
-  dataCalendar(data){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
+  dataCalendar(){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate);
-    console.log(data);
-    var date =new Date(); // variable usada para transformar
-    this.calendarModel.date = this.dashboardForm.reserveDate; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
-    this.calendarModel.date = this.datepipe.transform(date, 'yyyy-MM-dd' );// transformamos el modelo de date a string
-    
+    console.log(this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day);
+    if (this.dashboardForm.reserveDate.month <10 ) {
+      this.dashboardForm.reserveDate.month = '0'+this.dashboardForm.reserveDate.month;
+    }
+    this.calendarModel = this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
+    console.log(this.calendarModel);
+
+    //this.calendarModel.date = this.datepipe.transform(this.calendarModel, 'yyyy-MM-dd' );// transformamos el modelo de date a string
+
   }
 
   loadAvailableTimes(){
