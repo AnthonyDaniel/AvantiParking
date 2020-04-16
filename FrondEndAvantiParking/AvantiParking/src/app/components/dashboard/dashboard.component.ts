@@ -33,7 +33,10 @@ export class DashboardComponent implements OnInit {
 
 
   public formAddReserve = {
-    vehicle: null
+    vehicle: null,
+    startTime:null,
+    endTime:null,
+    space:null
   }
   public userInf = {
     id: null,
@@ -165,9 +168,6 @@ export class DashboardComponent implements OnInit {
     this.userInf.headquarter = data.name;
   }
 
-  dashboardData(){
-
-  }
 
   
   responseSuccess(data) {
@@ -210,30 +210,30 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  /*loadAvailableTimes(zone,date){
-      console.log("bienvenido");
-    this._dashboard.listTimes(2,'2020-04-24').subscribe(
-      data =>{
-        console.log(data)
-        console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
-        console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
-        console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
-        console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
-        console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
-        console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")
-        let keysArray = Object.keys(data)
-        for(let space of keysArray){
-          let ranges = data[space]
-          console.log(ranges)
-          for(let range of ranges){
-            console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+range[0][0]+" Fin:"+range[0][1]+"]");           
-          }          
-        }        
-      },
-      error=>{
-        console.log(error);
-      });  
-  }*/
+  // loadAvailableTimes(zone,date){
+  //   console.log("bienvenido");
+  //   this._dashboard.listTimes(2,'2020-04-24').subscribe(
+  //     data =>{
+  //       console.log(data)
+  //       console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
+  //       console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
+  //       console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
+  //       console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
+  //       console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
+  //       console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")
+  //       let keysArray = Object.keys(data)
+  //       for(let space of keysArray){
+  //         let ranges = data[space]
+  //         console.log(ranges)
+  //         for(let range of ranges){
+  //           console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+range[0][0]+" Fin:"+range[0][1]+"]");           
+  //         }          
+  //       }        
+  //     },
+  //     error=>{
+  //       console.log(error);
+  //     });  
+  // }
 
   loadAvailableTimesV2(){
     let zone = this.zoneModel.id_zone;
@@ -270,5 +270,24 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  
+  addReserve(){
+    var i ={
+      date:this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day,
+      start_time:"6:00",
+      end_time:"12:00",
+      space:"3",
+      user:this.userInf.id,
+      vehicle:this.formAddReserve.vehicle
+    }
+    this._dashboard.createReserve(i).subscribe(
+      data=>{
+       
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+    console.log(i);
+  }
+
 }

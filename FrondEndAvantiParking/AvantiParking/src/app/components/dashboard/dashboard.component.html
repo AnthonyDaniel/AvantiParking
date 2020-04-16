@@ -6,7 +6,7 @@
       <form class="form-inline">
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [minDate]="minDate" maxlength="0"
+            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [minDate]="minDate" readonly
               [maxDate]="maxDate" [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker" >
             <div class="input-group-append">
               <button class="btn btn-outline-secondary calendar"  (click)="d2.toggle()" type="button"  ></button>
@@ -111,7 +111,7 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="form-control" id="exampleFormControlSelect2">
+                <select class="form-control" id="exampleFormControlSelect2" >
                   <option selected>Choose...</option>
                   <option>1</option>
                   <option>2</option>
@@ -124,7 +124,7 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="form-control" id="exampleFormControlSelect2">
+                <select class="form-control" id="exampleFormControlSelect2" >
                   <option selected>Choose...</option>
                   <option>1</option>
                   <option>2</option>
@@ -168,7 +168,7 @@
             <div class="row text-center">
 
               <div class="col-sm-6 col-md-6">
-                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Reserve</button>
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" (click)="addReserve()" >Reserve</button>
               </div>
               <div class="col-sm-6 col-md-6">
                 <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Extended Reservation</button>
