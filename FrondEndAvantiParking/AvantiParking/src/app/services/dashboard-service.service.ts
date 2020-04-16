@@ -14,7 +14,7 @@ export class DashboardServiceService {
   constructor(private http: HttpClient) {
     this.url = API.domain;
    }
-
+   //recibe id de zona y fecha
    listTimes(id,date){// lista todos los espacios
     return this.http.get(`${this.url}/api/dashboard/`+id+`/`+date,{headers:this.httpHeaders});
   }

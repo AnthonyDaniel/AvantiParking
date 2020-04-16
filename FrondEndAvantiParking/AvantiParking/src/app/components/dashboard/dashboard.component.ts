@@ -74,6 +74,7 @@ export class DashboardComponent implements OnInit {
     start: null,
   }
   public calendarModel;
+
  
 
   public error: String;
@@ -108,7 +109,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
-    this.loadAvailableTimes(null,null);
+    //this.loadAvailableTimes(null,null);
   }
 
   ListParkings() {
@@ -193,39 +194,79 @@ export class DashboardComponent implements OnInit {
   dataCalendar(){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate);
     console.log(this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day);
-    if (this.dashboardForm.reserveDate.month <10 ) {
+    var monthWithoutCero: string= this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
+    
+    console.log('mes sin el 0: '+ monthWithoutCero)
+    var monthWithCero: string  = '0'+this.dashboardForm.reserveDate.month // mes con el 0(mes: 04,05,06)
+    console.log('algo '+ monthWithCero)
+    console.log('exc luego de la igualacion de algo '+ exc)
+    if (monthWithoutCero[0] != monthWithCero[1]  && this.dashboardForm.reserveDate.month <10) {
       this.dashboardForm.reserveDate.month = '0'+this.dashboardForm.reserveDate.month;
     }
     this.calendarModel = this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
     console.log(this.calendarModel);
 
-    //this.calendarModel.date = this.datepipe.transform(this.calendarModel, 'yyyy-MM-dd' );// transformamos el modelo de date a string
+    
 
   }
 
-  loadAvailableTimes(zone,date){
-    console.log("bienvenido");
-    this._dashboard.listTimes(2,'2020-04-24').subscribe(
-      data =>{
-        console.log(data)
-        console.log(Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
-        console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
-        console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
-        console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
-        console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
-        console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")
-        let keysArray = Object.keys(data)
-        for(let space of keysArray){
-          let ranges = data[space]
-          console.log(ranges)
-          for(let range of ranges){
-            console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+range[0][0]+" Fin:"+range[0][1]+"]");           
-          }          
-        }        
-      },
-      error=>{
-        console.log(error);
-      });  
+
+  // loadAvailableTimes(zone,date){
+  //   console.log("bienvenido");
+  //   this._dashboard.listTimes(2,'2020-04-24').subscribe(
+  //     data =>{
+  //       console.log(data)
+  //       console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
+  //       console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
+  //       console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
+  //       console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
+  //       console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
+  //       console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")
+  //       let keysArray = Object.keys(data)
+  //       for(let space of keysArray){
+  //         let ranges = data[space]
+  //         console.log(ranges)
+  //         for(let range of ranges){
+  //           console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+range[0][0]+" Fin:"+range[0][1]+"]");           
+  //         }          
+  //       }        
+  //     },
+  //     error=>{
+  //       console.log(error);
+  //     });  
+  // }
+  loadAvailableTimesV2(){
+    let zone = this.zoneModel.id_zone;
+    if( zone != null && this.calendarModel != null){
+      console.log('***********');
+      console.log('fecha seleccionada: '+this.calendarModel);
+      console.log('numero de zona '+zone);
+      console.log("bienvenido");
+      this._dashboard.listTimes(zone,this.calendarModel).subscribe(
+        data =>{
+          console.log(data)
+          console.log('Espacios por zona '+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
+          console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
+          console.log('rangos '+data[5])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
+          console.log(data[5].length)//para ver la cantidad de espacios disponibles del espacio con id 33
+          console.log("-----Primer rango para el espacio id: 5 Rango [Inicio: "+data[5][0][0][0]+" Fin: "+data[5][0][0][1]+"]")
+          console.log("Segundo rango para el espacio id:5 Rango [Inicio:"+data[5][1][0][0]+" Fin:"+data[5][1][0][1]+"]")
+  
+          let keysArray = Object.keys(data) // todos los id del espacio
+          for(let space of keysArray){ 
+            let ranges = data[space] //contenedor de rangos
+            console.log(ranges)
+            for(let range of ranges){
+              console.log("Rangos para espacio "+space+" Rango "+range+" [Inicio: "+range[0][0]+" Fin: "+range[0][1]+"]");           
+            }          
+          }        
+        },
+        error=>{
+          console.log(error);
+        }); 
+    } 
+   
+     
   }
 
 
