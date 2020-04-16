@@ -23,25 +23,25 @@ import * as moment from 'moment';
 
 export class DashboardComponent implements OnInit {
 
-  public parkings //variable para listar los parqueos
-  public zones//variable para listar las zonas
+  public parkings
+  public zones
   private img;
-  public headquarters;//variable para listar las sedes
+  public headquarters;
   private u: any;
   private current:any;
-  public vehicles; //variable para listar los vehiculos
+  public vehicles;
 
 
-  public formAddReserve = { //modelo de los vehiculos
+  public formAddReserve = {
     vehicle: null
   }
-  public userInf = { //modelo de la informacion del usuario
+  public userInf = {
     id: null,
     name: null,
     imageUrl: null,
     headquarter: ''
   };
-  private formReserve = { // modelo del formulario de la reserva
+  private formReserve = {
     parking_lot_id: null,
     parking: null,
     zone: null
@@ -73,7 +73,7 @@ export class DashboardComponent implements OnInit {
     quantity: null,
     start: null,
   }
-  public calendarModel = { // modelo del calendario
+  public calendarModel = {
     date: null
   }
  
@@ -112,12 +112,8 @@ export class DashboardComponent implements OnInit {
     this.ListZones();
     this.loadAvailableTimes();
   }
-  addReserve(){
-    
-  }
 
-
-  ListParkings() { // metodo para listar parqueos
+  ListParkings() {
     this._parking.listParkingLot().subscribe(
       data => {
         this.parkings = data;
@@ -126,7 +122,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  ListHeadquarters(){ // metodo para listar sedes
+  ListHeadquarters(){
     this._headquarter.listHeadquarter().subscribe(
       data => {
         this.headquarters = data;
@@ -134,7 +130,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  ListZones() { // metodo para listar zonas
+  ListZones() {
     this._zone.listZone().subscribe(
       data => {
         this.zones = data;
@@ -142,7 +138,7 @@ export class DashboardComponent implements OnInit {
       error => console.log(error)
     )
   }
-  listVehicles() { // metodo para listar vehiculos
+  listVehicles() {
     this._vehicle.listVehicle(this.userInf.id).subscribe(
       data => {
         this.vehicles = data;
@@ -153,7 +149,7 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  loadUser(data) { //cargar el usuario
+  loadUser(data) {
     this.userInf = data;
     this.userInf.id = data.id;
     this.u = data;
@@ -166,7 +162,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  headquarterUser(data) { 
+  headquarterUser(data) {
     this.userInf.headquarter = data.name;
   }
 
@@ -197,8 +193,8 @@ export class DashboardComponent implements OnInit {
   
   
   dataCalendar(data){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
-    // console.log(this.dashboardForm.reserveDate);
-    // console.log(data);
+    console.log(this.dashboardForm.reserveDate);
+    console.log(data);
     var date =new Date(); // variable usada para transformar
     this.calendarModel.date = this.dashboardForm.reserveDate; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
     this.calendarModel.date = this.datepipe.transform(date, 'yyyy-MM-dd' );// transformamos el modelo de date a string
