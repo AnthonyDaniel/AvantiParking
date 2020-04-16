@@ -18,4 +18,7 @@ export class DashboardServiceService {
    listTimes(id,date){// lista todos los espacios
     return this.http.get(`${this.url}/api/dashboard/`+id+`/`+date,{headers:this.httpHeaders});
   }
+  createReserve(data){//faltan parametros
+    return this.http.post(`${this.url}`,{headers:this.httpHeaders});
+  }
 }

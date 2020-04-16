@@ -13,4 +13,7 @@ export class MyReservesServiceService {
   constructor(private http: HttpClient) {
     this.url = API.domain;
    }
+   listMyReservesById(){
+     
+   }
 }
