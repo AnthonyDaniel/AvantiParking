@@ -56,11 +56,11 @@ public class Dashboard_Controller {
 			for(int i = 0; i < spaces.size(); i++) {				
 				int firstAvailable = 0;
 				List<Reserve_detail> details = reserve_detail_repository.findByDateAndSpace(date, spaces.get(i).getId_space());
+				ArrayList<Integer[][]> rangeContainer = new ArrayList<>();
+				Integer range[][];
 				if(details.size() > 0) {
 					firstAvailable = getBase(6,20, details.get(0).getStart_time());
-					if(firstAvailable != 0) {
-						ArrayList<Integer[][]> rangeContainer = new ArrayList<>();
-						Integer range[][];						
+					if(firstAvailable != 0) {	
 						for(int j = 0; j < details.size(); j++) {
 							range = new Integer[1][2];
 							if(j == 0) {
@@ -80,6 +80,12 @@ public class Dashboard_Controller {
 						}
 						container.put(spaces.get(i).getId_space(),rangeContainer);
 					}
+				}else if(details.size() == 0){
+					range = new Integer[1][2];
+					range[0][0]=6;
+					range[0][1]=20;
+					rangeContainer.add(range);
+					container.put(spaces.get(i).getId_space(),rangeContainer);
 				}
 			}			
 		}
