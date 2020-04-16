@@ -2,6 +2,7 @@ package com.avantiparking.model;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.Instant;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "reserve_detail")
@@ -20,11 +23,11 @@ public class Reserve_detail {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_reserve_detail ;
 	@Column(name = "date", nullable = false)
-	private Date date;
+	private Date date;	
 	@Column(name = "start_time", nullable = false)
-	private Time start_time;
+	private String start_time;
 	@Column(name = "end_time", nullable = false)
-	private Time end_time;
+	private String end_time;
 	@Column(name = "reserve_state", nullable = false)
 	private Integer reserve_state;
 	@Column(name = "end_date_extend", nullable = true)
@@ -52,16 +55,16 @@ public class Reserve_detail {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Time getStart_time() {
+	public String getStart_time() {
 		return start_time;
 	}
-	public void setStart_time(Time start_time) {
+	public void setStart_time(String start_time) {
 		this.start_time = start_time;
 	}
-	public Time getEnd_time() {
+	public String getEnd_time() {
 		return end_time;
 	}
-	public void setEnd_time(Time end_time) {
+	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
 	}
 	public Integer isReserve_state() {

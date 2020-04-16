@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
-    this.loadAvailableTimes();
+    this.loadAvailableTimes(null,null);
   }
 
   ListParkings() {
@@ -203,16 +203,21 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  loadAvailableTimes(){
+  loadAvailableTimes(zone,date){
     console.log("bienvenido");
     this._dashboard.listTimes(2,'2020-04-24').subscribe(
       data =>{
-        console.log(data);
+        console.log(data)
+        console.log(Object.keys(data).length)
+        console.log(Object.keys(data))
+        console.log(data[33]);
+        console.log(data[33].length);
       },
       error=>{
-
+        console.log(error);
       });  
   }
+
 
   
 }

@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,77 +48,71 @@ public class Dashboard_Controller {
     private Reserve_detail_Repository reserve_detail_repository;
     
     @GetMapping("/dashboard/{id}/{date}")
-	public ResponseEntity<String> getAvailableTimesForSpace(@PathVariable(value = "id") Long zone_id, @PathVariable(value = "date") String date){
-    	String availableTimes = "{\"";
-    	HashMap<Long,Integer[][]> container = null;
+	public ResponseEntity<HashMap<Long,ArrayList<Integer[][]>>> getAvailableTimesForSpace(@PathVariable(value = "id") Long zone_id, @PathVariable(value = "date") String date){
+    	HashMap<Long,ArrayList<Integer[][]>> container = null;
 		List<Space> spaces = space_repository.findByZone(zone_id);
 		if(spaces.size() > 0 ) {
+			container = new HashMap<>();
 			for(int i = 0; i < spaces.size(); i++) {				
 				int firstAvailable = 0;
-				System.out.println("***************************xxxxxxxx"+date+"---------"+spaces.get(i).getId_space());
-				System.out.println("XAXAXAXXXAXAXAXAXAXXAXXAX");
 				List<Reserve_detail> details = reserve_detail_repository.findByDateAndSpace(date, spaces.get(i).getId_space());
-				System.out.println("-------------------------------------");
-				System.out.println("***************************oooo"+details.size());
-				System.out.println("***************************xxxxxxxx"+details.get(0));
 				if(details.size() > 0) {
 					firstAvailable = getBase(6,20, details.get(0).getStart_time());
-					System.out.println("***************************"+firstAvailable);
 					if(firstAvailable != 0) {
-						Integer range[][] = null;						
-						for(int j = 0; j < details.size(); j++) {							
+						ArrayList<Integer[][]> rangeContainer = new ArrayList<>();
+						Integer range[][];						
+						for(int j = 0; j < details.size(); j++) {
+							range = new Integer[1][2];
 							if(j == 0) {
-								range[j][0] = firstAvailable;
-								range[j][1] = details.get(j).getStart_time().getHours();
-							}else {
-								range[j][0] = details.get(j-1).getEnd_time().getHours();
-								range[j][1] = details.get(j).getStart_time().getHours();
+								range[0][0] = firstAvailable;
+								range[0][1] = timeToInt(details.get(j).getStart_time());
+							}else{
+								range[0][0] = timeToInt(details.get(j-1).getEnd_time());								
+								range[0][1] = timeToInt(details.get(j).getStart_time());								
 							}
+							rangeContainer.add(range);
+						}						
+						if(timeToInt(details.get(details.size()-1).getEnd_time())<20) {
+							range = new Integer[1][2];
+							range[0][0] = timeToInt(details.get(details.size()-1).getEnd_time());								
+							range[0][1] = 20;
+							rangeContainer.add(range);
 						}
-						System.out.println(range.length);
-						container.put(spaces.get(i).getId_space(), range);
-					}	
+						container.put(spaces.get(i).getId_space(),rangeContainer);
+					}
 				}
-				/*if(firstAvailable != null) {
-					container.put(spaces.get(i).getId_space(), value)
-				}*/
 			}			
 		}
-		availableTimes = availableTimes+"\"}";
-		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		System.out.println(container.get(33));
-		return ResponseEntity.ok().body(null);
+		//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		/*int tamano = container.get(Long.parseLong("33")).size();
+		for(int i = 0; i < tamano; i++) {
+			System.out.println(container.get(Long.parseLong("33")).get(i)[0][0]+"<->"+container.get(Long.parseLong("33")).get(i)[0][1]);
+		}*/
+		return ResponseEntity.ok().body(container);
 	}
     
-    private int getBase(int initial, int _final, Time reserve_start_time) {
+    private int getBase(int initial, int _final, String reserve_start_time) {
     	Time hour1 = null;
     	if(initial < 10) {
     		hour1 = Time.valueOf("0"+String.valueOf(initial)+":00:00");
     	}else {
     		hour1 = Time.valueOf(String.valueOf(initial)+":00:00");
     	}    	
-    	Time hour2 = Time.valueOf(String.valueOf(_final)+":00:00");
-    	if(hour1.before(hour2)) {
+    	//Time hour2 = Time.valueOf(String.valueOf(_final)+":00:00");
+    	if(hour1.before(Time.valueOf(reserve_start_time))) {
     		return initial;
-    	} else if(hour1 == hour2) {
+    	} else if(initial == _final) {
     		return 0;
     	}
     	return getBase(initial+1, _final, reserve_start_time);
     }
     
-    /*private Integer[][] getRange(int _initial, int _final, List<Reserve_detail> _details, int i, int y){
-    	Integer[][] hoursContainer = null;
-    	Time hour1 = null;
-    	if(_initial < 10) {
-    		hour1 = Time.valueOf("0"+String.valueOf(_initial)+":00:00");
+    private int timeToInt(String time) {
+    	if(time.charAt(0) == '0') {
+    		return time.charAt(1) - '0';
     	}else {
-    		hour1 = Time.valueOf(String.valueOf(_initial)+":00:00");
+    		return Integer.parseInt(time.substring(0,2));
     	}    	
-    	Time hour2 = Time.valueOf(String.valueOf(_final)+":00:00");
-    	if(hour1.before(_details.get(i).getStart_time())) {
-    		hoursContainer[i][y] = _initial;
-    		return hoursContainer;
-    	}
-    	 return getRange(_initial+1, _final, _details, i+1);
-    }*/
+    }
+    
 }
