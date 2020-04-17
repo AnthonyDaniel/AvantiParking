@@ -303,6 +303,8 @@ export class DashboardComponent implements OnInit {
       start_time:"6:00",
       end_time:"12:00",
       space:"3",
+      reserve_state:1,
+      end_date_extend:null,
       user:this.userInf.id,
       vehicle:this.formAddReserve.vehicle
     }
