@@ -3,6 +3,7 @@ import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.s
 import { MyReservesServiceService } from 'src/app/services/my-reserves-service.service';
 
 import Swal from 'sweetalert2';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-my-reserves',
@@ -12,6 +13,9 @@ import Swal from 'sweetalert2';
 export class MyReservesComponent implements OnInit {
 
   public parkings
+  private u: any;
+  private current:any;
+  private img;
 
   constructor(public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
   public vehicleModel = {
@@ -41,6 +45,8 @@ export class MyReservesComponent implements OnInit {
     this.ListParkings();
     this.listarReservas();
   }
+
+  
 
   ListParkings() {
     this._parking.listParkingLot().subscribe(
@@ -116,7 +122,10 @@ export class MyReservesComponent implements OnInit {
   }
   listarReservas(){
     console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''")
+
     this._myReserves.listUserReserves(4).subscribe(
+   
+
       data=>{
         this.reservas = data
         //console.log(data)
