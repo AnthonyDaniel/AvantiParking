@@ -12,6 +12,7 @@ import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { $ } from 'protractor';
 import * as moment from 'moment';
+import { ServiceSpaceService } from 'src/app/services/service-space.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
   private u: any;
   private current:any;
   public vehicles;
+  public dashboards;
 
 
   public formAddReserve = {
@@ -73,9 +75,20 @@ export class DashboardComponent implements OnInit {
     quantity: null,
     start: null,
   }
+  public spaceModel = {
+    id_space: null,
+    name: null,
+    type: null,
+    state: null,
+    zone: this.zoneModel,
+  }
+  public modelDashboard = {
+    space: null,
+    avaible: null,
+  }
   public calendarModel;
-
- 
+  public spaces:any =[];
+  private zoneToken;
 
   public error: String;
   public success: String;
@@ -86,7 +99,7 @@ export class DashboardComponent implements OnInit {
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
-    public datepipe: DatePipe, public _dashboard: DashboardServiceService
+    public datepipe: DatePipe, public _dashboard: DashboardServiceService, public space: ServiceSpaceService
     ) { 
 
       const now = new Date();
@@ -110,8 +123,8 @@ export class DashboardComponent implements OnInit {
     this.ListParkings();
     this.ListZones();
     //this.loadAvailableTimes(null,null);
+    this.loadAvailableTimesV2();
   }
-
   ListParkings() {
     this._parking.listParkingLot().subscribe(
       data => {
@@ -244,6 +257,7 @@ export class DashboardComponent implements OnInit {
       console.log("bienvenido");
       this._dashboard.listTimes(zone,this.calendarModel).subscribe(
         data =>{
+          
           console.log(data)
           console.log('Espacios por zona '+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
           console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
@@ -253,11 +267,12 @@ export class DashboardComponent implements OnInit {
           console.log("Segundo rango para el espacio id:5 Rango [Inicio:"+data[5][1][0][0]+" Fin:"+data[5][1][0][1]+"]")
   
           let keysArray = Object.keys(data) // todos los id del espacio
+          this.dashboards = keysArray;
           for(let space of keysArray){ 
             let ranges = data[space] //contenedor de rangos
-            console.log(ranges)
             for(let range of ranges){
-              console.log("Rangos para espacio "+space+" Rango "+range+" [Inicio: "+range[0][0]+" Fin: "+range[0][1]+"]");           
+              console.log("Rangos para espacio "+space+" Rango "+range+" [Inicio: "+range[0][0]+" Fin: "+range[0][1]+"]");
+                    
             }          
           }        
         },
