@@ -13,7 +13,18 @@ export class MyReservesServiceService {
   constructor(private http: HttpClient) {
     this.url = API.domain;
    }
-   listMyReservesById(){
-     
-   }
+
+  listUserReserves(user_id){
+    return this.http.get(`${this.url}/api/reserves/user/${user_id}`, {headers:this.httpHeaders})
+  }
+
+  listUserValidReservesDetails(reserve_id){
+    return this.http.get(`${this.url}/api/reserves/valid/${reserve_id}`, {headers:this.httpHeaders})
+  }
+
+  listUserUnValidReservesDetails(reserve_id){
+    return this.http.get(`${this.url}/api/reserves/unvalid/${reserve_id}`, {headers:this.httpHeaders})
+  }
+
+  
 }
