@@ -275,17 +275,17 @@ export class DashboardComponent implements OnInit {
             this.rangeS.end =  range[0][1];
             //console.log("000Rangos para espacio "+space+" Rango"+range+" [Inicio:"+this.rangeS.begin+" Fin:"+this.rangeS.end+"]");
             this.rangeSContainer.push(this.rangeS);
-            //console.log("asii"+this.rangeSContainer[0].begin+" asi no "+this.rangeSContainer[0].end);
+            console.log("asii"+this.rangeSContainer[0].begin+" asi no "+this.rangeSContainer[0].end);
           }
           for(let cc of this.rangeSContainer){
-            //console.log("dddSpace:"+this.dashboardSpace.id+"-"+cc.begin+"-"+cc.end)
+          console.log("dddSpace:"+this.dashboardSpace.id+"-"+cc.begin+"-"+cc.end)
           } 
           this.dashboardSpace.range = this.rangeSContainer;
-          //console.log("Space:"+this.dashboardSpace.id+"Rango"+this.dashboardSpace.range[0].begin+"-"+this.dashboardSpace.range[0].end)
+          console.log("Space:"+this.dashboardSpace.id+"Rango"+this.dashboardSpace.range[0].begin+"-"+this.dashboardSpace.range[0].end)
           this.spacesContainer.push(this.dashboardSpace);    
         }  
         for(let cc of this.spacesContainer){
-          //console.log(cc)
+          console.log(cc)
         }      
       },
       error=>{

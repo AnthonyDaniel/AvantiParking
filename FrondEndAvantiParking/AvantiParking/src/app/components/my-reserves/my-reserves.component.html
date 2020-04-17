@@ -20,12 +20,11 @@
                             <h3 class="card-header-title pt-3"><strong>DATE</strong></h3>
                         </div>
                         <div class="card-body"> 
-                          
                           <p class="card-text"><strong>DATE: </strong>{{detail.date}} </p>
                           <p class="card-text"><strong>SPACE: </strong>{{detail.space.name}} </p>
                           <p class="card-text"><strong>TIME: </strong>{{detail.start_time}} - {{detail.end_time}} </p>
                           <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle.license_plate}} </p>
-                          <p class="card-text"><strong>CREATED: </strong>{{reserva.created_at}} </p>
+                          <p class="card-text"><strong>CREATED: </strong>{{reserva.created_at}} </p>                     
                          
                          
                           <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteParkingLot(parking.id_parking_lot)">
