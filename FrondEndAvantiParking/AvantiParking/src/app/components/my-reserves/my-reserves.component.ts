@@ -112,7 +112,7 @@ export class MyReservesComponent implements OnInit {
   }
   listarReservas(){
     console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''")
-    this._myReserves.listUserReserves(1).subscribe(
+    this._myReserves.listUserReserves(4).subscribe(
       data=>{
         this.reserva = data
         //console.log(data)
