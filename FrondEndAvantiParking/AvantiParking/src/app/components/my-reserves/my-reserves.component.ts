@@ -17,7 +17,7 @@ export class MyReservesComponent implements OnInit {
   private current:any;
   private img;
 
-  constructor(public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
+  constructor(public user: UserService, public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
   public vehicleModel = {
     id: null,
     increment: null
@@ -28,25 +28,42 @@ export class MyReservesComponent implements OnInit {
     vehicule: this.vehicleModel,
   }
 
-  
-
   public reserveModel:any = {
     id_reservation: null,
     created_at: null,
     user: this.userModel,
     vehicle: this.vehicleModel,
   }
+  public userInf = {
+    id: null,
+    name: null,
+    imageUrl: null,
+    headquarter: ''
+  };
 
   public reservas:any=[]
   public detailValid:any=[]
   public detailUnValid:any=[]
 
   ngOnInit() {
+    this.user.loadImg().subscribe(data => {
+      this.loadUser(data);
+    });
     this.ListParkings();
     this.listarReservas();
   }
-
-  
+  loadUser(data) {
+    this.userInf = data;
+    this.userInf.id = data.id;
+    this.u = data;
+    this.img = data.imageUrl;
+    if (data.headquarter == null) {
+      this.userInf.headquarter = '';
+    } else {
+      this.userInf.headquarter = data.headquarter;
+      this.current = data.headquarter.name;
+    }
+  }
 
   ListParkings() {
     this._parking.listParkingLot().subscribe(
@@ -121,12 +138,16 @@ export class MyReservesComponent implements OnInit {
     );
   }
   listarReservas(){
+    var us = this.userInf.id;
+    console.log(us)
     console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''")
 
-    this._myReserves.listUserReserves(4).subscribe(
-   
+    this._myReserves.listUserReserves(this.userInf.id).subscribe(
+    
+    
 
       data=>{
+        
         this.reservas = data
         //console.log(data)
         for(let res of this.reservas){
