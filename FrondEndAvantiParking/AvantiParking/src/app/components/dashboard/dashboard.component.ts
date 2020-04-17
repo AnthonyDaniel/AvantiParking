@@ -79,17 +79,17 @@ export class DashboardComponent implements OnInit {
   }
   public calendarModel;
 
-  public rangeS = {
+  /*public rangeS = {
     begin:null,
     end:null,
-  }
-  public rangeSContainer:any=[]
+  }*/
+  /*public rangeSContainer:any=[]
 
   public dashboardSpace = {
     id: null,
     name: null,
     range: this.rangeSContainer,
-  }
+  }*/
 
   public spacesContainer:any=[];
 
@@ -225,34 +225,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
-
-  // loadAvailableTimes(zone,date){
-  //   console.log("bienvenido");
-  //   this._dashboard.listTimes(2,'2020-04-24').subscribe(
-  //     data =>{
-  //       console.log(data)
-  //       console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
-  //       console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
-  //       console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
-  //       console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
-  //       console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
-  //       console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")
-  //       let keysArray = Object.keys(data)
-  //       for(let space of keysArray){
-  //         let ranges = data[space]
-  //         console.log(ranges)
-  //         for(let range of ranges){
-  //           console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+range[0][0]+" Fin:"+range[0][1]+"]");           
-  //         }          
-  //       }        
-  //     },
-  //     error=>{
-  //       console.log(error);
-  //     });  
-  // }
-
   loadAvailableTimes(zone,date){
-      console.log("bienvenido");
+    console.log("bienvenido");
     this._dashboard.listTimes(2,'2020-04-24').subscribe(
       data =>{
         console.log(data)
@@ -264,25 +238,40 @@ export class DashboardComponent implements OnInit {
         console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")*/
         let keysArray = Object.keys(data)
         //this.dashboards = keysArray;
-        let contador = 0;
+        //this.rangeSContainer = [];
         for(let space of keysArray){
+          let contenedor:any =[];
+          let espacio = {
+            id: null,
+            name: null,
+            zone: null,
+            range: null,
+          }
+          espacio.id = space;
           let ranges = data[space]
           //console.log(space)          
-          this.dashboardSpace.id = space;
-          this.rangeSContainer = [];
-          for(let range of ranges){            
-            this.rangeS.begin =  range[0][0];
-            this.rangeS.end =  range[0][1];
-            //console.log("000Rangos para espacio "+space+" Rango"+range+" [Inicio:"+this.rangeS.begin+" Fin:"+this.rangeS.end+"]");
-            this.rangeSContainer.push(this.rangeS);
-            console.log("asii"+this.rangeSContainer[0].begin+" asi no "+this.rangeSContainer[0].end);
+          //this.dashboardSpace.id = space;          
+          for(let range of ranges){ 
+            let  rangeS = {
+              begin:null,
+              end:null
+            };
+           // console.log("----Rangos para espacio "+space+" Rango"+range+" [Inicio:"+rangeS.begin+" Fin:"+rangeS.end+"]");          
+            rangeS.begin =  range[0][0];
+            rangeS.end =  range[0][1];
+            //console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+rangeS.begin+" Fin:"+rangeS.end+"]");
+            //this.rangeSContainer.push(rangeS);
+            contenedor.push(range);
+            //console.log("asii"+this.rangeSContainer[0].begin+" asi no "+this.rangeSContainer[0].end);
           }
-          for(let cc of this.rangeSContainer){
+          /*for(let cc of this.rangeSContainer){
           console.log("dddSpace:"+this.dashboardSpace.id+"-"+cc.begin+"-"+cc.end)
-          } 
-          this.dashboardSpace.range = this.rangeSContainer;
-          console.log("Space:"+this.dashboardSpace.id+"Rango"+this.dashboardSpace.range[0].begin+"-"+this.dashboardSpace.range[0].end)
-          this.spacesContainer.push(this.dashboardSpace);    
+          } */
+          //this.dashboardSpace.range = this.rangeSContainer;
+          //console.log("Space:"+this.dashboardSpace.id+"Rango"+this.dashboardSpace.range[0].begin+"-"+this.dashboardSpace.range[0].end)
+          //this.spacesContainer.push(this.dashboardSpace); 
+          espacio.range = contenedor;  
+          this.spacesContainer.push(espacio);  
         }  
         for(let cc of this.spacesContainer){
           console.log(cc)
@@ -292,7 +281,7 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       });  
   }
-
+  
 
   /*loadAvailableTimesV2(){
     let zone = this.zoneModel.id_zone;

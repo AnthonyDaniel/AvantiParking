@@ -67,12 +67,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let dashboard of spacesContainer">
-              <td>{{dashboard.id}}</td><!--id  del espacio-->
+            <tr *ngFor="let space of spacesContainer">
+              <td>{{space.id}}</td><!--id  del espacio-->
               <td>
                 <table>
                     <tr>
-                      <td *ngFor="let list of dashboard.range">{{list.begin}} {{list.end}}</td>
+                      <td *ngFor="let list of space.range">{{list[0][0]}} - {{list[0][1]}}</td>
                     </tr>
                 </table>
               </td>
