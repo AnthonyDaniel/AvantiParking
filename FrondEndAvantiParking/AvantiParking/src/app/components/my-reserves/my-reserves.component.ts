@@ -3,6 +3,7 @@ import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.s
 import { MyReservesServiceService } from 'src/app/services/my-reserves-service.service';
 
 import Swal from 'sweetalert2';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-my-reserves',
@@ -12,8 +13,11 @@ import Swal from 'sweetalert2';
 export class MyReservesComponent implements OnInit {
 
   public parkings
+  private u: any;
+  private current:any;
+  private img;
 
-  constructor(public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
+  constructor(public user: UserService, public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
 
   public userModel = { //copia de un modelo de headquarters
     id: null
@@ -22,7 +26,12 @@ export class MyReservesComponent implements OnInit {
   public vehicleModel = {
     increment: null
   }
-
+  public userInf = {
+    id: null,
+    name: null,
+    imageUrl: null,
+    headquarter: ''
+  };
   public reserveModel:any = {
     id_reservation: null,
     created_at: null,
@@ -37,6 +46,20 @@ export class MyReservesComponent implements OnInit {
   ngOnInit() {
     this.ListParkings();
     this.listarReservas();
+  }
+
+  loadUser(data) {
+    this.userInf = data;
+    this.userInf.id = data.id;
+    this.u = data;
+    this.img = data.imageUrl;
+    
+    if (data.headquarter == null) {
+      this.userInf.headquarter = '';
+    } else {
+      this.userInf.headquarter = data.headquarter;
+      this.current = data.headquarter.name;
+    }
   }
 
   ListParkings() {
@@ -113,9 +136,11 @@ export class MyReservesComponent implements OnInit {
   listarReservas(){
     console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''")
     this._myReserves.listUserReserves(1).subscribe(
+   
       data=>{
         this.reserva = data
-        //console.log(data)
+        console.log(this.userInf.id)
+        console.log(data)
         for(let res of this.reserva){
           console.log("id reserva"+res.id_reservation)
           console.log("id user "+res.user.id)
