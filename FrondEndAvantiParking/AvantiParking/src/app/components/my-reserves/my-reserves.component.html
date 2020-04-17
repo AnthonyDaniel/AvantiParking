@@ -14,18 +14,15 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td *ngFor="let parking of parkings ">
+                    <td *ngFor="let reserva of reservas ">
                       <div class="card text-center " style="width: 18rem;">
                         <div class="card-header text-white rounded pb-5 text-center">
                             <h3 class="card-header-title pt-3"><strong>DATE</strong></h3>
                         </div>
                         <div class="card-body"> 
-                          <h5 class="card-title">{{parking.name}}</h5>
-                          <p class="card-text"><strong>VEHICLE: </strong>{{parking.name}} </p>
-                          <p class="card-text"><strong>PARKING: </strong>{{parking.name}} </p>
-                          <p class="card-text"><strong>SPACE: </strong>{{parking.name}} </p>
-                          <p class="card-text"><strong>START TIME: </strong>{{parking.name}}</p>
-                          <p class="card-text"><strong>END TIME: </strong>{{parking.name}}</p>
+                          <h5 class="card-title">{{reserva.user.name}}</h5>
+                          <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle.license_plate}} </p>
+                          <p class="card-text"><strong>HEADQUARTER: </strong>{{reserva.user.headquarter.name}} </p>
                           <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteParkingLot(parking.id_parking_lot)">
                               <i class="fas fa-trash-alt"></i>
                             <strong>CANCEL</strong></button>

@@ -14,14 +14,17 @@ export class MyReservesComponent implements OnInit {
   public parkings
 
   constructor(public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
-
-  public userModel = { //copia de un modelo de headquarters
-    id: null
-  }
-
   public vehicleModel = {
+    id: null,
     increment: null
   }
+  public userModel = { //copia de un modelo de headquarters
+    id: null,
+    name: null,
+    vehicule: this.vehicleModel,
+  }
+
+  
 
   public reserveModel:any = {
     id_reservation: null,
@@ -30,7 +33,7 @@ export class MyReservesComponent implements OnInit {
     vehicle: this.vehicleModel,
   }
 
-  public reserva:any=[]
+  public reservas:any=[]
   public detailValid:any=[]
   public detailUnValid:any=[]
 
@@ -88,6 +91,7 @@ export class MyReservesComponent implements OnInit {
         console.log(this.detailValid)
         for(let det of this.detailValid){
           console.log("fecha de la reserva vigente "+ det.date+" inicio "+  det.start_time+" id detail "+ det.id_reserve_detail)
+          
         }        
       },
       error=>{
@@ -114,9 +118,9 @@ export class MyReservesComponent implements OnInit {
     console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''")
     this._myReserves.listUserReserves(4).subscribe(
       data=>{
-        this.reserva = data
+        this.reservas = data
         //console.log(data)
-        for(let res of this.reserva){
+        for(let res of this.reservas){
           console.log("id reserva"+res.id_reservation)
           console.log("id user "+res.user.id)
           console.log("placa vehiculo "+res.vehicle.license_plate)
