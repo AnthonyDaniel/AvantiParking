@@ -21,14 +21,17 @@
                         </div>
                         <div class="card-body"> 
                           <h5 class="card-title">{{reserva.user.name}}</h5>
-                          <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle.license_plate}} </p>
-                          <p class="card-text"><strong>HEADQUARTER: </strong>{{reserva.user.headquarter.name}} </p>
+                          <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle}} </p>
+                          <p class="card-text"><strong>CREATED: </strong>{{reserva.created_at}} </p>
+                          <p class="card-text"><strong>HEADQUARTER: </strong>{{reserva.user}} </p>
+                          <p *ngFor="let detail of detailValid" class="card-text"><strong>DATE: </strong>{{detail.date}} </p>
+                          <p *ngFor="let detail of detailValid" class="card-text"><strong>DATE: </strong>{{detail.space.name}} </p>
                           <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteParkingLot(parking.id_parking_lot)">
                               <i class="fas fa-trash-alt"></i>
                             <strong>CANCEL</strong></button>
                         </div>
                       </div>
-                        </td>
+                    </td>
                       </tr>
                     </tbody>
                   </table>

@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit {
   private current:any;
   public vehicles;
   public dashboards: any = [];
+  
 
   public formAddReserve = {
     vehicle: null,
@@ -78,6 +79,20 @@ export class DashboardComponent implements OnInit {
   }
   public calendarModel;
 
+  public rangeS = {
+    begin:null,
+    end:null,
+  }
+  public rangeSContainer:any=[]
+
+  public dashboardSpace = {
+    id: null,
+    name: null,
+    range: this.rangeSContainer,
+  }
+
+  public spacesContainer:any=[];
+
  
 
   public error: String;
@@ -112,7 +127,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
-    //this.loadAvailableTimes(null,null);
+    this.loadAvailableTimes(null,null);
   }
 
   ListParkings() {
@@ -241,20 +256,37 @@ export class DashboardComponent implements OnInit {
     this._dashboard.listTimes(2,'2020-04-24').subscribe(
       data =>{
         console.log(data)
-        console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
+        /*console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
         console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
         console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
         console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
         console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
-        console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")
+        console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")*/
         let keysArray = Object.keys(data)
+        //this.dashboards = keysArray;
+        let contador = 0;
         for(let space of keysArray){
           let ranges = data[space]
-          console.log(ranges)
-          for(let range of ranges){
-            console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+range[0][0]+" Fin:"+range[0][1]+"]");           
-          }          
-        }        
+          //console.log(space)          
+          this.dashboardSpace.id = space;
+          this.rangeSContainer = [];
+          for(let range of ranges){            
+            this.rangeS.begin =  range[0][0];
+            this.rangeS.end =  range[0][1];
+            //console.log("000Rangos para espacio "+space+" Rango"+range+" [Inicio:"+this.rangeS.begin+" Fin:"+this.rangeS.end+"]");
+            this.rangeSContainer.push(this.rangeS);
+            //console.log("asii"+this.rangeSContainer[0].begin+" asi no "+this.rangeSContainer[0].end);
+          }
+          for(let cc of this.rangeSContainer){
+            //console.log("dddSpace:"+this.dashboardSpace.id+"-"+cc.begin+"-"+cc.end)
+          } 
+          this.dashboardSpace.range = this.rangeSContainer;
+          //console.log("Space:"+this.dashboardSpace.id+"Rango"+this.dashboardSpace.range[0].begin+"-"+this.dashboardSpace.range[0].end)
+          this.spacesContainer.push(this.dashboardSpace);    
+        }  
+        for(let cc of this.spacesContainer){
+          //console.log(cc)
+        }      
       },
       error=>{
         console.log(error);
@@ -262,7 +294,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  loadAvailableTimesV2(){
+  /*loadAvailableTimesV2(){
     let zone = this.zoneModel.id_zone;
     if( zone != null && this.calendarModel != null){
       console.log('***********');
@@ -295,7 +327,7 @@ export class DashboardComponent implements OnInit {
     } 
    
      
-  }
+  }*/
 
 
   addReserve(){

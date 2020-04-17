@@ -120,9 +120,9 @@ export class MyReservesComponent implements OnInit {
   listValidUnvalidDetails(reserve_id){
     this._myReserves.listUserUnValidReservesDetails(reserve_id).subscribe(
       data=>{
-        this.detailValid = data
-        console.log(this.detailValid)
-        for(let det of this.detailValid){
+        this.detailUnValid = data
+        console.log(this.detailUnValid)
+        for(let det of this.detailUnValid){
           console.log("fecha del detalle reserva no vigente "+ det.date+" inicio "+  det.start_time+" id detail "+ det.id_reserve_detail)
         }        
       },
@@ -134,12 +134,8 @@ export class MyReservesComponent implements OnInit {
   listarReservas(){
     var us = this.formUser.id;
     console.log(this.formUser.id)
-    this._myReserves.listUserReserves(this.formUser.id).subscribe(
-    
-    
-
+    this._myReserves.listUserReserves(this.formUser.id).subscribe(   
       data=>{
-        
         this.reservas = data
         //console.log(data)
         for(let res of this.reservas){

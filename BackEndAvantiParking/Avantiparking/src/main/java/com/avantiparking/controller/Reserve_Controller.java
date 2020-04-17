@@ -79,6 +79,12 @@ public class Reserve_Controller {
 	}
 	**********************************/
 	@PostMapping("/reserve")
+	public Reserve  addReservation(@Valid @RequestBody Reserve reserve) {
+		/*Reserve reserve = reserveRepository.fin*/
+		return reserve_Repository.save(reserve);
+	}
+	
+	@PostMapping("/reserve/detail")
 	public Reserve_detail  addReservation(@Valid @RequestBody Reserve_detail reserve_detail) {
 		/*Reserve reserve = reserveRepository.fin*/
 		return reserve_detail_Repository.save(reserve_detail);

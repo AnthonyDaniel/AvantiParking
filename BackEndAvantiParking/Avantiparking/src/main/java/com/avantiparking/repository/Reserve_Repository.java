@@ -16,6 +16,9 @@ public interface Reserve_Repository extends JpaRepository<Reserve,Long> {
 	@Query(value = information+" where user = ?1", nativeQuery = true)
 	List<Reserve> findAllUserReservations(Long user_id);
 	
+	@Query(value = information+" where created_at = ?1 and user = ?2 and vehicle = ?3", nativeQuery = true)
+	List<Reserve> findAllUserReservations(String date, Long user_id, Long vehicle_id);
+	
 	/*@Query(value = information+" where date < current_date() and user=?1", nativeQuery = true)
 	List<Reserve> findCompletedReservationsByUser(Long user_id);*/
 	

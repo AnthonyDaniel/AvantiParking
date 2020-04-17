@@ -67,9 +67,15 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let dashboard of dashboards">
-              <td></td><!--id  del espacio-->
-              <td></td>
+            <tr *ngFor="let dashboard of spacesContainer">
+              <td>{{dashboard.id}}</td><!--id  del espacio-->
+              <td>
+                <table>
+                    <tr>
+                      <td *ngFor="let list of dashboard.range">{{list.begin}} {{list.end}}</td>
+                    </tr>
+                </table>
+              </td>
               <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve" (click)="dataCalendar()">
                   <strong>RESERVE</strong></button>
               </td>
