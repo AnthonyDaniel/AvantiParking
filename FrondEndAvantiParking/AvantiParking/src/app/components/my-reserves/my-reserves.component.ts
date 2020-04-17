@@ -12,16 +12,19 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MyReservesComponent implements OnInit {
 
-  public parkings
   private u: any;
   private current:any;
   private img;
+
 
   constructor(public user: UserService, public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
   public vehicleModel = {
     id: null,
     increment: null
   }
+  public formUser = {
+    id: null
+  };
   public userModel = { //copia de un modelo de headquarters
     id: null,
     name: null,
@@ -46,34 +49,25 @@ export class MyReservesComponent implements OnInit {
   public detailUnValid:any=[]
 
   ngOnInit() {
-    this.user.loadImg().subscribe(data => {
-      this.loadUser(data);
-    });
-    this.ListParkings();
-    this.listarReservas();
+   this.getData();
+  
+    
   }
   loadUser(data) {
-    this.userInf = data;
-    this.userInf.id = data.id;
-    this.u = data;
-    this.img = data.imageUrl;
-    if (data.headquarter == null) {
-      this.userInf.headquarter = '';
-    } else {
-      this.userInf.headquarter = data.headquarter;
-      this.current = data.headquarter.name;
-    }
+    this.formUser.id = data.id;  
+    console.log(this.formUser.id)  
   }
 
-  ListParkings() {
-    this._parking.listParkingLot().subscribe(
-      data => {
-        this.parkings = data;
-      },
-      error => console.log(error)
-    )
+  getData() {
+    this.user.loadImg().subscribe(data => {
+      this.loadUser(data);
+      this.listarReservas();
+    },
+      error => {
+        console.log(error);
+      });
   }
-
+ 
 
   deleteParkingLot(_formParkingLot) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -138,11 +132,9 @@ export class MyReservesComponent implements OnInit {
     );
   }
   listarReservas(){
-    var us = this.userInf.id;
-    console.log(us)
-    console.log("'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''")
-
-    this._myReserves.listUserReserves(this.userInf.id).subscribe(
+    var us = this.formUser.id;
+    console.log(this.formUser.id)
+    this._myReserves.listUserReserves(this.formUser.id).subscribe(
     
     
 
