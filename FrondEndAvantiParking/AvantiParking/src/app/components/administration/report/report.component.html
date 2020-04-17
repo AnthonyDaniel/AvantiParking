@@ -14,7 +14,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"></h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                class="fas fa-download fa-sm text-white-50"></i>Download report</a>
           </div>
           <div class="row">
             <div class="col-xl-3 col-md-6 mb-4">
@@ -112,10 +112,55 @@
                 </div>
               </div>
             </div>
-      
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <hr>
+  <br>
+  <p class="text-center">
+    Generate a report by dates, this report will include the data of each place, such as parking lots, areas and spaces, which will break down the relevant information on the use of parking spaces, in addition to all active reservations and those that already they are not active, with the respective username.
+  </p>
+  <br>
+  <div class="row  justify-content-center">
+    <div class="col-md-4 col-sm-6">
+      <label>Initial date</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="dd/mm/yyyy" name="d1" #c2="ngModel" [minDate]="minDate" readonly
+              [maxDate]="maxDate" [(ngModel)]="initDate" (click)="d1.toggle()" ngbDatepicker #d1="ngbDatepicker" >
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar"  (click)="d1.toggle()" type="button"  ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 col-sm-6">
+      <label>Final date</label>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [minDate]="minDate" readonly
+              [maxDate]="maxDate" [(ngModel)]="finalDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker" >
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary calendar"  (click)="d2.toggle()" type="button"  ></button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-4">
+      <br>
+      <button class="btn btn-delete btn-block mt-2 btn-outline-danger" (click)="generateReport()">
+        <strong>Generate report</strong>
+      </button>
+      <br>
+      <br>
+    </div>
+
   </div>
 </div>

@@ -21,6 +21,12 @@ export class ReportComponent implements OnInit {
   private countUsers = 0;
   private countReservations = 0;
 
+  private minDate = undefined;
+  private maxDate = undefined;
+
+  private initDate = null;
+  private finalDate = null;
+
   constructor(public headquarter: ServiceHeadquarterService,
     public parking: ServiceParkingLotService,
     public zone: ServiceZoneService,
@@ -106,5 +112,9 @@ export class ReportComponent implements OnInit {
         this.countReservations++;
       }, 700);
     });
+  }
+  generateReport(){
+    console.log(this.initDate);
+    console.log(this.finalDate);
   }
 }

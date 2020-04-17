@@ -15,7 +15,7 @@ export class ReportsService {
       this.url = API.domain;
    }
     listReservation() {
-      return this.http.get(`${this.url}/api/reservation`,{headers:this.httpHeaders});
+      return this.http.get(`${this.url}/api/reservations`,{headers:this.httpHeaders});
    }
  
 }
