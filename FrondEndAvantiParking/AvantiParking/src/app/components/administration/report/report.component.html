@@ -1,76 +1,89 @@
 <button class="botonF1" routerLink="">
-    <span><i class="fas fa-arrow-left    "></i></span>
-  </button>
-  <div class="container">
-    <br>
-    <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
-      <h3 class="font-weight-bold"> REPORTS</h3>
-    </section>
-    <div class="row">
-      <div class="col-sm-4 col-md-6 mt-3">
-        <input type="text" class="form-control" name="filterHeadquarters" placeholder="Search..." >
-      </div>
-      <div class="col-sm-8 col-md-6 mt-3">
-        <button type="button" class="btnAdd btn btn-primary btn-block" data-toggle="modal" data-target="#addHeadquarter">
-          <strong><i class="fas fa-plus-square"></i> NEW REPORT</strong>
-        </button>
-      </div>
-    </div>
-    <br>
-    <div>
-      <div class="table-responsive mt-5 ml-2 mr-2">
-        <table class="table table-bordered table-hover">
-          <thead class="tableThead thead">
-            <tr>
-              <th scope="col"><strong>NONE</strong></th>
-              <th scope="col"><strong>NONE</strong></th>
-              <th scope="col"><strong>NONE</strong></th>
-              <th scope="col"><strong>NONE</strong></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr >
-              <td> {{headquarter.name}}</td>
-              <td> {{headquarter.country}}</td>
-              <td> {{headquarter.city}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <div class="my-3"></div>
-    </div>
+  <span><i class="fas fa-arrow-left    "></i></span>
+</button>
+<div class="container">
+  <br>
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+    <h3 class="font-weight-bold"> REPORTS</h3>
+  </section>
 
-    <!--Modal add headquarter-->
-    <div class="modal fade" id="addHeadquarter" tabindex="-1" role="dialog" aria-labelledby="addHeadquarter"
-      aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title justify-content-center"><strong>ADD REPORT</strong></h5>
-            <button type="button" id="closeModal1" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+  <div id="wrapper">
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <div class="container-fluid">
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
-          <div class="modal-body">
-            <form class="form-row justify-content-sm-center">
-              <div class="form-group col-md-12">
-                <label>NONE</label>
-                <input type="text" class="form-control" required>
+          <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Headquarter</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{countHeadquarter}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-home fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group col-md-12">
-                <label>NONE</label>
-                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Parking</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{countParking}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-parking fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group col-md-12">
-                <label>NONE</label>
-                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Zones</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{countZone}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-map-marker fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-6">
-                <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"><i class="fas fa-plus-square"></i> ADD</button>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Spaces</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{countSpaces}}</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-map-pin fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </form>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
