@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
   private u: any;
   private current:any;
   public vehicles;
-
+  public dashboards: any = [];
 
   public formAddReserve = {
     vehicle: null,
@@ -280,6 +280,7 @@ export class DashboardComponent implements OnInit {
           console.log("Segundo rango para el espacio id:5 Rango [Inicio:"+data[5][1][0][0]+" Fin:"+data[5][1][0][1]+"]")
   
           let keysArray = Object.keys(data) // todos los id del espacio
+          this.dashboards = keysArray;
           for(let space of keysArray){ 
             let ranges = data[space] //contenedor de rangos
             console.log(ranges)
