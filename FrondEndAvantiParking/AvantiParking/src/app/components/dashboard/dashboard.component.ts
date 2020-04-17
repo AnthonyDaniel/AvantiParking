@@ -112,7 +112,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
-    this.loadAvailableTimes(null,null);
+    //this.loadAvailableTimes(null,null);
   }
 
   ListParkings() {
@@ -316,5 +316,7 @@ export class DashboardComponent implements OnInit {
     );
     console.log(i);
   }
+
+  
 
 }

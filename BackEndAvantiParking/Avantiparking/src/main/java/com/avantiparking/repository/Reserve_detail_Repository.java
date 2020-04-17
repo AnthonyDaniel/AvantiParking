@@ -17,5 +17,14 @@ public interface Reserve_detail_Repository extends JpaRepository<Reserve_detail,
 	
 	@Query(value = information+" where date = ?1 and space = ?2 order by start_time asc", nativeQuery = true)
 	List<Reserve_detail> findByDateAndSpace(String date, Long space_id);
+	
+	@Query(value = information+" where reserve = ?1", nativeQuery = true)
+	List<Reserve_detail> findAllByReserve(Long reserve_id);
+	
+	@Query(value = information+" where reserve = ?1 and reserve_state = 0", nativeQuery = true)
+	List<Reserve_detail> findAllValidByReserve(Long reserve_id);
+	
+	@Query(value = information+" where reserve = ?1 and reserve_state = 1", nativeQuery = true)
+	List<Reserve_detail> findAllUnValidByReserve(Long reserve_id);
 
 }
