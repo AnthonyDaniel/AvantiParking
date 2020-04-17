@@ -14,18 +14,20 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td *ngFor="let reserva of reservas ">
+                    <td *ngFor="let detail of detailValid ">
                       <div class="card text-center " style="width: 18rem;">
                         <div class="card-header text-white rounded pb-5 text-center">
                             <h3 class="card-header-title pt-3"><strong>DATE</strong></h3>
                         </div>
                         <div class="card-body"> 
-                          <h5 class="card-title">{{reserva.user.name}}</h5>
-                          <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle}} </p>
+                          
+                          <p class="card-text"><strong>DATE: </strong>{{detail.date}} </p>
+                          <p class="card-text"><strong>SPACE: </strong>{{detail.space.name}} </p>
+                          <p class="card-text"><strong>TIME: </strong>{{detail.start_time}} - {{detail.end_time}} </p>
+                          <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle.license_plate}} </p>
                           <p class="card-text"><strong>CREATED: </strong>{{reserva.created_at}} </p>
-                          <p class="card-text"><strong>HEADQUARTER: </strong>{{reserva.user}} </p>
-                          <p *ngFor="let detail of detailValid" class="card-text"><strong>DATE: </strong>{{detail.date}} </p>
-                          <p *ngFor="let detail of detailValid" class="card-text"><strong>DATE: </strong>{{detail.space.name}} </p>
+                         
+                         
                           <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteParkingLot(parking.id_parking_lot)">
                               <i class="fas fa-trash-alt"></i>
                             <strong>CANCEL</strong></button>
