@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.avantiparking.exception.Resource_Not_Found;
+import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Parking_lot;
 import com.avantiparking.repository.Parking_lot_Repository;
 
@@ -38,22 +39,26 @@ public class Parking_lot_Controller {
 
 	@GetMapping("/parking_lot/{id}")
 	public ResponseEntity<Parking_lot> getParking_lotById(@PathVariable(value = "id") Long id_parking_lot)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Parking_lot parking_lot = parking_lot_repository.findById(id_parking_lot)
-				.orElseThrow(() -> new Resource_Not_Found("Id_parking_lot not found for this id :: " + id_parking_lot));
+				.orElseThrow(() -> new ResourceNotFoundException("Id_parking_lot not found for this id :: " + id_parking_lot));
 		return ResponseEntity.ok().body(parking_lot);
 	}
 
-	@PostMapping("/parking_lot")
+	@PostMapping("/parking_lot")//se revisa que no este registrado (por name) para esa sede, devuelve un parking lot vacio si encontro coincidencia
 	public Parking_lot createParking_lot(@Valid @RequestBody Parking_lot parking_lot) {
-		return parking_lot_repository.save(parking_lot);
+		Optional<Parking_lot> exists= parking_lot_repository.finByNameAndHQ(parking_lot.getName(),parking_lot.getHeadquarter().getId_headquarter());
+		if(!exists.isPresent()) {
+			return parking_lot_repository.save(parking_lot);
+		}
+		return new Parking_lot(null, null);
 	}
 
 	@PutMapping("/parking_lot/{id}")
 	public ResponseEntity<Parking_lot> updateParking_lot(@PathVariable(value = "id") Long id_parking_lot,
-			@Valid @RequestBody Parking_lot park) throws Resource_Not_Found {
+			@Valid @RequestBody Parking_lot park) throws ResourceNotFoundException {
 		Parking_lot parking_lot = parking_lot_repository.findById(id_parking_lot)
-				.orElseThrow(() -> new Resource_Not_Found("Parking lot not found for this id :: " + id_parking_lot));
+				.orElseThrow(() -> new ResourceNotFoundException("Parking lot not found for this id :: " + id_parking_lot));
 
 		parking_lot.setName(park.getName());
 		parking_lot.setHeadquarter(park.getHeadquarter());
@@ -63,9 +68,9 @@ public class Parking_lot_Controller {
 
 	@DeleteMapping("/parking_lot/{id_parking_lot}")
 	public Map<String, Boolean> deleteParking_lot(@PathVariable(value = "id_parking_lot") Long id_parking_lot)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Parking_lot parking_lot = parking_lot_repository.findById(id_parking_lot)
-				.orElseThrow(() -> new Resource_Not_Found("Parking_lot not found for this id : " + id_parking_lot));
+				.orElseThrow(() -> new ResourceNotFoundException("Parking_lot not found for this id : " + id_parking_lot));
 
 		parking_lot_repository.delete(parking_lot);
 		Map<String, Boolean> response = new HashMap<>();

@@ -1,151 +1,379 @@
--- MySQL Workbench Forward Engineering
+﻿-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-03-2020 a las 05:38:01
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema avantiparking
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema avantiparking
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `avantiparking` DEFAULT CHARACTER SET latin1 ;
-USE `avantiparking` ;
-
--- -----------------------------------------------------
--- Table `avantiparking`.`headquarter`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`headquarter` (
-  `id_headquarter` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `city` VARCHAR(45) NOT NULL,
-  `country` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_headquarter`))
-ENGINE = InnoDB;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `avantiparking`.`parking_lot`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`parking_lot` (
-  `id_parking_lot` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  `headquarter` INT NOT NULL,
-  PRIMARY KEY (`id_parking_lot`),
-  INDEX `fk_parking_lot_headquarter_idx` (`headquarter` ASC) ,
-  CONSTRAINT `fk_parking_lot_headquarter`
-    FOREIGN KEY (`headquarter`)
-    REFERENCES `avantiparking`.`headquarter` (`id_headquarter`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de datos: `avantiparking`
+--
 
--- -----------------------------------------------------
--- Table `avantiparking`.`zone`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`zone` (
-  `id_zone` INT NOT NULL,
-  `name` VARCHAR(10) NOT NULL,
-  `parking_lot` INT NOT NULL,
-  PRIMARY KEY (`id_zone`),
-  INDEX `fk_zone_parking_lot1_idx` (`parking_lot` ASC) ,
-  CONSTRAINT `fk_zone_parking_lot1`
-    FOREIGN KEY (`parking_lot`)
-    REFERENCES `avantiparking`.`parking_lot` (`id_parking_lot`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `email_notifications`
+--
 
--- -----------------------------------------------------
--- Table `avantiparking`.`space`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`space` (
-  `id_space` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `type` VARCHAR(45) NOT NULL,
-  `state` TINYINT NOT NULL,
-  `user` VARCHAR(45),
-  `zone` INT NOT NULL,
-  PRIMARY KEY (`id_space`),
-  INDEX `fk_space_zone1_idx` (`zone` ASC) ,
-  CONSTRAINT `fk_space_zone1`
-    FOREIGN KEY (`zone`)
-    REFERENCES `avantiparking`.`zone` (`id_zone`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+CREATE TABLE `email_notifications` (
+  `id` int(11) NOT NULL,
+  `to_email` varchar(120) DEFAULT NULL,
+  `subject` varchar(120) DEFAULT NULL,
+  `text` text DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `viewed` tinyint(1) DEFAULT 0,
+  `date` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `email_notifications`
+--
 
--- -----------------------------------------------------
--- Table `avantiparking`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`user` (
-  `user_name` VARCHAR(45) NOT NULL,
-  `role` TINYINT NOT NULL,
-  `registered` DATE NOT NULL,
-  `headquarter` INT,
-  PRIMARY KEY (`user_name`),
-    INDEX `fk_user_headquarter_idx` (`headquarter` ASC) ,
-  CONSTRAINT `fk_user_headquarter`
-    FOREIGN KEY (`headquarter`)
-    REFERENCES `avantiparking`.`headquarter` (`id_headquarter`))
-ENGINE = InnoDB;
+INSERT INTO `email_notifications` (`id`, `to_email`, `subject`, `text`, `user_id`, `viewed`, `date`) VALUES
+(3, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(4, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(5, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(6, 'anthony.marin@decimoinc.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(7, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(8, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, '0000-00-00 00:00:00'),
+(9, 'anthonymmarinbolivar@gmail.com', 'Prueba de notificaciones', 'Este es el 1', 3, 0, NULL);
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `avantiparking`.`vehicle`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`vehicle` (
-  `license_plate` VARCHAR(45) NOT NULL,
-  `brand` VARCHAR(45) NOT NULL,
-  `model` VARCHAR(45) NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`license_plate`),
-  INDEX `fk_vehicle_user1_idx` (`user` ASC) ,
-  CONSTRAINT `fk_vehicle_user1`
-    FOREIGN KEY (`user`)
-    REFERENCES `avantiparking`.`user` (`user_name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Estructura de tabla para la tabla `headquarter`
+--
 
+CREATE TABLE `headquarter` (
+  `id_headquarter` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `city` varchar(45) NOT NULL,
+  `country` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- -----------------------------------------------------
--- Table `avantiparking`.`reserve`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `avantiparking`.`reserve` (
-  `id_reservation` INT NOT NULL,
-  `date` DATE NOT NULL,
-  `start_time` TIME NOT NULL,
-  `end_time` TIME NOT NULL,
-  `created_at` DATE NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
-  `vehicle` VARCHAR(45) NULL,
-  `space` INT NOT NULL,
-  PRIMARY KEY (`id_reservation`),
-  INDEX `fk_reserve_user1_idx` (`user` ASC),
-  INDEX `fk_reserve_vehicle1_idx` (`vehicle` ASC) ,
-  INDEX `fk_reserve_space1_idx` (`space` ASC) ,
-  CONSTRAINT `fk_reserve_user1`
-    FOREIGN KEY (`user`)
-    REFERENCES `avantiparking`.`user` (`user_name`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserve_vehicle1`
-    FOREIGN KEY (`vehicle`)
-    REFERENCES `avantiparking`.`vehicle` (`license_plate`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_reserve_space1`
-    FOREIGN KEY (`space`)
-    REFERENCES `avantiparking`.`space` (`id_space`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hibernate_sequence`
+--
+
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `hibernate_sequence`
+--
+
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parking_lot`
+--
+
+CREATE TABLE `parking_lot` (
+  `id_parking_lot` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `headquarter` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reserve`
+--
+
+CREATE TABLE `reserve` (
+  `id_reservation` int(11) NOT NULL,
+  `created_at` date NOT NULL,
+  `user` int(11) NOT NULL,
+  `vehicle` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reserve_detail`
+--
+
+CREATE TABLE `reserve_detail` (
+  `id_reserve_detail` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `reserve_state` tinyint(4) NOT NULL,
+  `end_date_extend` date,
+  `space` int(11) NOT NULL,
+`reserve` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `space`
+--
+
+CREATE TABLE `space` (
+  `id_space` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `type` varchar(45) NOT NULL,
+  `state` tinyint(4) NOT NULL,
+  `user` int(11) DEFAULT NULL,
+  `zone` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `role` tinyint(4) DEFAULT NULL,
+  `registered` datetime NOT NULL DEFAULT current_timestamp(),
+  `provider` varchar(255) NOT NULL,
+  `provider_id` varchar(255) DEFAULT NULL,
+  `headquarter` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `image_url`, `name`, `role`, `registered`, `provider`, `provider_id`, `headquarter`) VALUES
+(3, 'anthonymmarinbolivar@gmail.com', 'https://lh3.googleusercontent.com/a-/AOh14Gi37ow_5wX2aUf0OGn0PCQzAjHRXr2XORty2uk4lUs', 'Anthony M', 0, '2020-03-12 19:39:30', 'google', '104381904823282008651', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehicle`
+--
+
+CREATE TABLE `vehicle` (
+  `increment` int(11) NOT NULL,
+  `license_plate` varchar(45) NOT NULL,
+  `brand` varchar(45) NOT NULL,
+  `model` varchar(45) NOT NULL,
+  `user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `zone`
+--
+
+CREATE TABLE `zone` (
+  `id_zone` int(11) NOT NULL,
+  `name` varchar(10) NOT NULL,
+  `parking_lot` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `start` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `email_notifications`
+--
+ALTER TABLE `email_notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_email_notifications_user1_idx` (`user_id`);
+
+--
+-- Indices de la tabla `headquarter`
+--
+ALTER TABLE `headquarter`
+  ADD PRIMARY KEY (`id_headquarter`);
+
+--
+-- Indices de la tabla `parking_lot`
+--
+ALTER TABLE `parking_lot`
+  ADD PRIMARY KEY (`id_parking_lot`),
+  ADD KEY `fk_parking_lot_headquarter_idx` (`headquarter`);
+
+--
+-- Indices de la tabla `reserve`
+--
+ALTER TABLE `reserve`
+  ADD PRIMARY KEY (`id_reservation`),
+  ADD KEY `fk_reserve_user1_idx` (`user`),
+  ADD KEY `fk_reserve_vehicle1_idx` (`vehicle`);
+
+--
+-- Indices de la tabla `reserve_detail`
+--
+ALTER TABLE `reserve_detail`
+  ADD PRIMARY KEY (`id_reserve_detail`),
+  ADD KEY `fk_reserveDetail_space1_idx` (`space`),
+  ADD KEY `fk_reserveDetail_reserve_idx` (`reserve`);
+
+--
+-- Indices de la tabla `space`
+--
+ALTER TABLE `space`
+  ADD PRIMARY KEY (`id_space`),
+  ADD KEY `fk_space_zone1_idx` (`zone`),
+  ADD KEY `fk_space_user_idx` (`user`);
+
+--
+-- Indices de la tabla `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `fk_user_headquarter_idx` (`headquarter`);
+
+--
+-- Indices de la tabla `vehicle`
+--
+ALTER TABLE `vehicle`
+  ADD PRIMARY KEY (`increment`),
+  ADD UNIQUE KEY `license_plate` (`license_plate`),
+  ADD KEY `fk_vehicle_user1_idx` (`user`);
+
+--
+-- Indices de la tabla `zone`
+--
+ALTER TABLE `zone`
+  ADD PRIMARY KEY (`id_zone`),
+  ADD KEY `fk_zone_parking_lot1_idx` (`parking_lot`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `email_notifications`
+--
+ALTER TABLE `email_notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `headquarter`
+--
+ALTER TABLE `headquarter`
+  MODIFY `id_headquarter` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `parking_lot`
+--
+ALTER TABLE `parking_lot`
+  MODIFY `id_parking_lot` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `reserve`
+--
+ALTER TABLE `reserve`
+  MODIFY `id_reservation` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `reserve_detail`
+--
+ALTER TABLE `reserve_detail`
+  MODIFY `id_reserve_detail` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `space`
+--
+ALTER TABLE `space`
+  MODIFY `id_space` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `vehicle`
+--
+ALTER TABLE `vehicle`
+  MODIFY `increment` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `zone`
+--
+ALTER TABLE `zone`
+  MODIFY `id_zone` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `email_notifications`
+--
+ALTER TABLE `email_notifications`
+  ADD CONSTRAINT `FKd86c7fpsvwwnxq215gspj8dg6` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `parking_lot`
+--
+ALTER TABLE `parking_lot`
+  ADD CONSTRAINT `FKioqp07pvsr26gwpfjfys1uslq` FOREIGN KEY (`headquarter`) REFERENCES `headquarter` (`id_headquarter`);
+
+--
+-- Filtros para la tabla `reserve`
+--
+ALTER TABLE `reserve`
+  ADD CONSTRAINT `FK9p0j7pl3dqli4q1pa0d0gu7om` FOREIGN KEY (`vehicle`) REFERENCES `vehicle` (`increment`),
+  ADD CONSTRAINT `FKgy7m20tr83hy2grolgcjem5m7` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `reserve_detail`
+--
+ALTER TABLE `reserve_detail`
+  ADD CONSTRAINT `fk_reserveDetail_space1` FOREIGN KEY (`space`) REFERENCES `space` (`id_space`),
+  ADD CONSTRAINT `fk_reserveDetail_reserve` FOREIGN KEY (`reserve`) REFERENCES `reserve` (`id_reservation`);
+--
+-- Filtros para la tabla `space`
+--
+ALTER TABLE `space`
+  ADD CONSTRAINT `FKht2b1xbdmbsufqijafwuvvix8` FOREIGN KEY (`zone`) REFERENCES `zone` (`id_zone`);
+
+--
+-- Filtros para la tabla `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `FKmfioxmifjm40a1j0t54vo2r7s` FOREIGN KEY (`headquarter`) REFERENCES `headquarter` (`id_headquarter`);
+
+--
+-- Filtros para la tabla `vehicle`
+--
+ALTER TABLE `vehicle`
+  ADD CONSTRAINT `FKafmyw13bui0mea0w4d3css2sr` FOREIGN KEY (`user`) REFERENCES `user` (`id`);
+
+--
+-- Filtros para la tabla `zone`
+--
+ALTER TABLE `zone`
+  ADD CONSTRAINT `FKdf15k78mv3n5pt2214c63ohnc` FOREIGN KEY (`parking_lot`) REFERENCES `parking_lot` (`id_parking_lot`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

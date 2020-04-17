@@ -3,6 +3,7 @@ package com.avantiparking.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.avantiparking.exception.Resource_Not_Found;
+import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Headquarter;
 import com.avantiparking.repository.Headquarter_Repository;
 
@@ -40,22 +41,26 @@ public class Headquarter_Controller {
 
 	@GetMapping("/headquarter/{id}")
 	public ResponseEntity<Headquarter> getHeadquarterById(@PathVariable(value = "id") Long id_headquarter)
-			throws Resource_Not_Found{
+			throws ResourceNotFoundException{
 		Headquarter headquarter = headquarter_repository.findById(id_headquarter)
-				.orElseThrow(() -> new Resource_Not_Found("Headquarter not found for this id :: " + id_headquarter));
+				.orElseThrow(() -> new ResourceNotFoundException("Headquarter not found for this id :: " + id_headquarter));
 		return ResponseEntity.ok().body(headquarter);
 	}
 
-	@PostMapping("/headquarter")
+	@PostMapping("/headquarter")//se revisa que no este registrado (por nombre), devuelve una sede vacio si encontro coincidencia
 	public Headquarter createHeadquarter(@Valid @RequestBody Headquarter headquarter) {
-		return headquarter_repository.save(headquarter);
+		Optional<Headquarter> exists= headquarter_repository.findByName(headquarter.getName());
+		if(!exists.isPresent()) {
+			return headquarter_repository.save(headquarter);
+		}
+		return new Headquarter(null,null,null);		
 	}
 
 	@PutMapping("/headquarter/{id_headquarter}")
 	public ResponseEntity<Headquarter> updateHeadquarter(@PathVariable(value = "id_headquarter") Long id_headquarter,
-			@Valid @RequestBody Headquarter headq) throws Resource_Not_Found {
+			@Valid @RequestBody Headquarter headq) throws ResourceNotFoundException {
 		Headquarter headquarter = headquarter_repository.findById(id_headquarter)
-				.orElseThrow(() -> new Resource_Not_Found("Headquarter not found for this id :: " + id_headquarter));
+				.orElseThrow(() -> new ResourceNotFoundException("Headquarter not found for this id :: " + id_headquarter));
 
 		headquarter.setName(headq.getName());
 		headquarter.setCity(headq.getCity());
@@ -66,9 +71,9 @@ public class Headquarter_Controller {
 
 	@DeleteMapping("/headquarter/{id_headquarter}")
 	public Map<String, Boolean> deleteHeadquarter(@PathVariable(value = "id_headquarter") Long id_headquarter)
-			throws Resource_Not_Found {
+			throws ResourceNotFoundException {
 		Headquarter headquarter = headquarter_repository.findById(id_headquarter)
-				.orElseThrow(() -> new Resource_Not_Found("Headquarter not found for this id :: " + id_headquarter));
+				.orElseThrow(() -> new ResourceNotFoundException("Headquarter not found for this id :: " + id_headquarter));
 
 		headquarter_repository.delete(headquarter);
 		Map<String, Boolean> response = new HashMap<>();

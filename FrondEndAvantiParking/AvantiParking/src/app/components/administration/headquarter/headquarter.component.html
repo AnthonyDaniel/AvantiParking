@@ -1,47 +1,119 @@
-<br>
+<button class="botonF1" routerLink="">
+  <span><i class="fas fa-arrow-left    "></i></span>
+</button>
 <div class="container">
-  <section id="jumbotronHeader" class="col-md-12 mb-4 jumbotron  justify-content-center text-center" >
-    <h3 class="font-weight-bold" id="text"> HEADQUARTER ADMINISTRATION</h3>
-</section>
-</div>
-
-<div class="container">
-
-  <div class="row justify-content-end">
-    <div class="col-sm-8 col-md-4 mt-3 ">
-      <input type="text" class="form-control" id="search" placeholder="Search" value="" required="">
+  <br>
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+    <h3 class="font-weight-bold"> HEADQUARTER ADMINISTRATION</h3>
+  </section>
+  <div class="row">
+    <div class="col-sm-4 col-md-6 mt-3">
+      <input type="text" class="form-control" name="filterHeadquarters" placeholder="Search..."  maxlength="40" 
+        [(ngModel)]="filterHeadquarters">
     </div>
-    <div class="col-sm-8 col-md-6 mt-3 ">
-      <button type="button" class="btn btn-primary" id="btnAdd" data-toggle="modal" data-target="#exampleModal">
-        <strong id="text">NEW HEADQUARTER</strong>
+    <div class="col-sm-8 col-md-6 mt-3">
+      <button type="button" class="btnAdd btn btn-primary btn-block" data-toggle="modal" data-target="#addHeadquarter">
+        <strong><i class="fas fa-plus-square"></i> NEW HEADQUARTER</strong>
       </button>
     </div>
   </div>
-
   <br>
+  <div>
+    <div class="table-responsive mt-5 ml-2 mr-2">
+      <table class="table table-bordered table-hover">
+        <thead class="tableThead thead">
+          <tr>
+            <th scope="col"><strong>NAME</strong></th>
+            <th scope="col"><strong>COUNTRY</strong></th>
+            <th scope="col"><strong>CITY</strong></th>
+            <th scope="col"><strong>ACTION</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let headquarter of headquarters | headquarterPipe:filterHeadquarters">
+            <td> {{headquarter.name}}</td>
+            <td> {{headquarter.country}}</td>
+            <td> {{headquarter.city}}</td>
+            <td>
+              <button (click)=" dataHeadquarterFormEdit(headquarter)" class="btn-edit btn btn-block btn-outline-primary"
+                id="" data-toggle="modal" data-target="#editHeadquarter"><strong><i class="fas fa-angle-double-right"></i>EDIT</strong></button>
+              <button (click)="deleteHeadquarter(headquarter.id_headquarter)"
+                class="btn-delete btn btn-block btn-outline-danger"><strong><i class="fas fa-trash-alt"></i>DELETE</strong></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="my-3"></div>
+  </div>
 
-  <table class="table table-bordered table-hover table-responsive-lg mt-5 ml-2 mr-2">
-    <thead class="thead" id="tHead">
-      <tr>
-        <th scope="col" id="text">ID</th>
-        <th scope="col" id="text">NAME</th>
-        <th scope="col" id="text">COUNTRY</th>
-        <th scope="col" id="text">CITY</th>
-        <th scope="col" id="text">ACTION</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="text" class="form-control"></td>
-        <td><input type="text" class="form-control"></td>
-        <td><input type="text" class="form-control"></td>
-        <td><input type="text" class="form-control"></td>
-        <td>
-          <button class="btn  btn-outline-primary" id="btn-edit"><strong id="text">EDIT</strong></button>
-          <button class="btn btn-outline-danger" id="btn-delete"><strong id="text">DELETE</strong></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!--Modal edit headquarter-->
+  <div class="modal fade" id="editHeadquarter" tabindex="-1" role="dialog" aria-labelledby="editHeadquarter"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ">EDIT HEADQUARTER</h5>
+          <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editHeadquarterForm=ngForm (ngSubmit)="editHeadquarter()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>NAME</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="editFormHeadquarter.name"  maxlength="40"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>COUNTRY</label>
+              <input type="text" class="form-control" name="country" [(ngModel)]="editFormHeadquarter.country"  maxlength="20"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>CITY</label>
+              <input type="text" class="form-control" name="city" [(ngModel)]="editFormHeadquarter.city"  maxlength="20"  required>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!editHeadquarterForm.valid"> EDIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <!--Modal add headquarter-->
+  <div class="modal fade" id="addHeadquarter" tabindex="-1" role="dialog" aria-labelledby="addHeadquarter"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title justify-content-center"><strong>ADD HEADQUARTER</strong></h5>
+          <button type="button" id="closeModal1" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #addHeadquarterForm=ngForm (ngSubmit)="addHeadquarter()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>Name</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="addFormHeadquarter.name"  maxlength="40"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>COUNTRY</label>
+              <input type="text" class="form-control" name="country" [(ngModel)]="addFormHeadquarter.country"  maxlength="20"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>CITY</label>
+              <input type="text" class="form-control" name="city" [(ngModel)]="addFormHeadquarter.city"  maxlength="20"  required>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!addHeadquarterForm.valid"><i class="fas fa-plus-square"></i> ADD</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

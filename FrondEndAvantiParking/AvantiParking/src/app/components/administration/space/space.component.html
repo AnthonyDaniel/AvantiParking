@@ -1,1 +1,185 @@
-<p>space works!</p>
+<button class="botonF1" routerLink="/administration/zone">
+        <span><i class="fas fa-arrow-left    "></i></span>
+</button>
+<div class="container">
+        <br>
+        <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+                <h3 class="font-weight-bold"> SPACE ADMINISTRATION</h3>
+        </section>
+        <div class="row ">
+                <div class="col-sm-4 col-md-4 mt-3">
+                        <input class="form-control" name="filterSpace" placeholder="Search..."  maxlength="40" 
+                                [(ngModel)]="filterSpace">
+                </div>
+                <div class="col-sm-8 col-md-4 mt-3">
+                        <div>
+                                <!--Modal button of add space-->
+                                <button class="btnAdd btn btn-block btn-outline-secondary text-uppercase"
+                                        data-toggle="modal" data-target="#addSpace">
+                                        <i class="fas fa-plus-square"></i> Add Space
+                                </button>
+                        </div>
+                </div>
+                <div class="col-sm-8 col-md-4 mt-3">
+                        <div>
+                                <button class="btn btn-delete btn-block btn-outline-danger"
+                                        (click)="deleteAll()">
+                                        <strong><i class="fas fa-trash-alt"></i>DELETE ALL</strong>
+                                </button>
+                        </div>
+                </div>
+                <div class="table-responsive">
+                        <table class="table table-bordered table-hover mt-5 mb-5">
+                                <thead class="tableThead thead">
+                                        <tr>
+                                                <th scope="col">Space Name</th>
+                                                <th scope="col">Type</th>
+                                                <th scope="col">State</th>
+                                                <th scope="col">User</th>
+                                                <th scope="col">Zone</th>
+                                                <th scope="col">Actions</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr *ngFor="let space of spaces | spacePipe:filterSpace">
+                                                <td>{{space.name}}</td>
+                                                <td>{{space.type}}</td>
+                                                <td *ngIf="space.state === false">Available</td>
+                                                <td *ngIf="space.state === true">Occupied</td>
+                                                <td>{{space.user}}</td>
+                                                <td>{{space.zone.name}}</td>
+                                                <td>
+                                                        <button (click)="dataSpaceFormEdit(space)"
+                                                                class="btn  btn-edit btn-block btn-outline-primary"
+                                                                data-toggle="modal" data-target="#editSpace">
+                                                                <strong><i
+                                                                                class="fas fa-angle-double-right"></i>EDIT</strong>
+                                                        </button>
+                                                        <button class="btn btn-delete btn-block btn-outline-danger"
+                                                                (click)="deleteSpace(space.id_space)">
+                                                                <strong><i class="fas fa-trash-alt"></i>DELETE</strong>
+                                                        </button>
+                                                </td>
+                                        </tr>
+
+                                </tbody>
+                        </table>
+                </div>
+
+                <!--Modal Add Space-->
+                <div class="modal fade" id="addSpace" tabindex="-1" role="dialog" aria-labelledby="addSpace"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <h5 class="modal-title justify-content-center"><strong>ADD
+                                                                SPACE</strong></h5>
+                                                <button type="button" id="closeModal6" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <form #addSpaceForm=ngForm (ngSubmit)="onSubmit()"
+                                                        class="form-row justify-content-sm-center">
+
+                                                        <div class="form-group col-md-12">
+                                                                <label>Space Name</label>
+                                                                <input type="text" name="name" class="form-control"  maxlength="10" 
+                                                                        [(ngModel)]="addFormSpace.name" required>
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                                <label>State</label>
+                                                                <select class="custom-select" name="state"
+                                                                        [(ngModel)]="addFormSpace.state" required>
+                                                                        
+                                                                        <option>Available</option>
+                                                                        <option>Occupied</option>
+                                                                </select>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                                <label>Type</label>
+                                                                <select class="custom-select" name="type"
+                                                                        [(ngModel)]="addFormSpace.type" required>
+                                                                        
+                                                                        <option>Regular</option>
+                                                                        <option>Special</option>
+                                                                </select>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                                <label>User</label>
+                                                                <input type="text" class="form-control" name="user"  maxlength="30"
+                                                                        [(ngModel)]="addFormSpace.user">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                                <button type="submit"
+                                                                        class="btnAddSpace btn btn-block btn-outline-secondary"
+                                                                        [disabled]="!addSpaceForm.valid"><i
+                                                                                class="fas fa-plus-square"></i>
+                                                                        Add</button>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                <!--Modal Edit Space-->
+                <div class="modal fade" id="editSpace" tabindex="-1" role="dialog" aria-labelledby="editSpace"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                        <div class="modal-header">
+                                                <h5 class="modal-title justify-content-center"><strong>EDIT
+                                                                SPACE</strong></h5>
+                                                <button type="button"  id="closeModal7" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <form (ngSubmit)="editSpaceForm()"
+                                                        class="form-row justify-content-sm-center">
+                                                        <div class="form-group col-md-12">
+                                                                <label>Space Name</label>
+                                                                <input type="text" class="form-control" name="name"  maxlength="10" 
+                                                                        [(ngModel)]="editFormSpace.name" required>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                                <label>Type</label>
+                                                                <select class="custom-select" name="type"
+                                                                        [(ngModel)]="editFormSpace.type">
+                                                                        
+                                                                        <option>Regular</option>
+                                                                        <option>Special</option>
+                                                                </select>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                                <label>State</label>
+                                                                <select class="custom-select" name="state"
+                                                                        [(ngModel)]="editFormSpace.state">
+                                                                        
+                                                                        <option>Available</option>
+                                                                        <option>Occupied</option>
+
+                                                                </select>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                                <label>user</label>
+                                                                <input type="text" class="form-control" name="user"  maxlength="30"
+                                                                        [(ngModel)]="editFormSpace.user">
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-2">
+                                                                <button type="submit"
+                                                                        class="btnEditSpace btn btn-block btn-outline-secondary"><i
+                                                                                class="fas fa-plus-square"></i>
+                                                                        Edit</button>
+                                                        </div>
+                                                </form>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+
+        </div>
+</div>

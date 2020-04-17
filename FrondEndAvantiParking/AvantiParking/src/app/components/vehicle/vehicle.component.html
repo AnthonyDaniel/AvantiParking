@@ -1,0 +1,117 @@
+<div class="container">
+    <br>
+    <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+      <h3 class="font-weight-bold"> MY VEHICLES</h3>
+    </section>
+    <div class="row">
+      <div class="col-sm-4 col-md-6 mt-3">
+        <input type="text" class="form-control" name="filterVehicles" placeholder="Search..."  maxlength="40" 
+          [(ngModel)]="filterVehicles">
+      </div>
+      <div class="col-sm-8 col-md-6 mt-3">
+        <button type="button" class="btnAdd btn btn-primary btn-block" data-toggle="modal" data-target="#addVehicle">
+          <strong><i class="fas fa-plus-square"></i> NEW VEHICLE</strong>
+        </button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="table-responsive mt-5 ml-2 mr-2">
+        <table class="table table-bordered table-hover">
+          <thead class="tableThead thead">
+            <tr>
+              <th scope="col"><strong>LICENCE PLATE</strong></th>
+              <th scope="col"><strong>BRAND</strong></th>
+              <th scope="col"><strong>MODEL</strong></th>
+              <th scope="col"><strong>ACTION</strong></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let vehicle of vehicles | vehiclePipe:filterVehicles">
+              <td> {{vehicle.license_plate}}</td>
+              <td> {{vehicle.brand}}</td>
+              <td> {{vehicle.model}}</td>
+              <td>
+                <button (click)=" dataVehicleFormEdit(vehicle)" class="btn-edit btn btn-block btn-outline-primary"
+                id="" data-toggle="modal" data-target="#editVehicle"><strong><i class="fas fa-angle-double-right"></i>EDIT</strong></button>
+                <button (click)="deleteVehicle(vehicle.license_plate)"
+                class="btn-delete btn btn-block btn-outline-danger"><strong><i class="fas fa-trash-alt"></i>DELETE</strong></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <div class="my-3"></div>
+    </div>
+
+    
+  <!--Modal add vehicle-->
+  <div class="modal fade" id="addVehicle" tabindex="-1" role="dialog" aria-labelledby="addVehicle"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title justify-content-center"><strong>ADD VEHICLE</strong></h5>
+        <button type="button" id="closeModal1" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addVehicleForm=ngForm (ngSubmit)="addVehicle()" class="form-row justify-content-sm-center">
+          <div class="form-group col-md-12">
+            <label>LICENCE PLATE</label>
+            <input type="text" class="form-control" name="licence_plate" [(ngModel)]="addFormVehicle.license_plate"  maxlength="20"  required>
+          </div>
+          <div class="form-group col-md-12">
+            <label>BRAND</label>
+            <input type="text" class="form-control" name="brand" [(ngModel)]="addFormVehicle.brand"  maxlength="20"  required>
+          </div>
+          <div class="form-group col-md-12">
+            <label>MODEL</label>
+            <input type="text" class="form-control" name="model" [(ngModel)]="addFormVehicle.model"  maxlength="20"  required>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+              [disabled]="!addVehicleForm.valid"><i class="fas fa-plus-square"></i> ADD</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!--Modal edit Vehicle-->
+  <div class="modal fade" id="editVehicle" tabindex="-1" role="dialog" aria-labelledby="editVehicle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ">EDIT VEHICLE</h5>
+          <button type="button" id="closeModal" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editVehicleForm=ngForm (ngSubmit)="editVehicle()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>LICENSE PLATE</label>
+              <input type="text" class="form-control" name="license_plate" [(ngModel)]="editFormVehicle.license_plate"  maxlength="20"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>BRAND</label>
+              <input type="text" class="form-control" name="brand" [(ngModel)]="editFormVehicle.brand"  maxlength="20"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>MODEL</label>
+              <input type="text" class="form-control" name="model" [(ngModel)]="editFormVehicle.model"  maxlength="20"  required>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!editVehicleForm.valid"> EDIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,27 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-
-
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import * as API from './api.modules';
 @Injectable({
-  providedIn: 'root'
+   providedIn: 'root'
 })
 export class ServiceHeadquarterService {
-  private baseUrl: 'http://localhost:8080/api/headquarter/headquarter';
+   baseUrl: any = "http://localhost:8080/api/headquarter";
+   public url: any; // objeto creado para almacenar la url de dominio global
+   httpHeaders = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+   });
 
-  constructor(private http: HttpClient) {
-
+   constructor(private http: HttpClient) {
+      this.url = API.domain; // se asigna el valor de la url
    }
-   addHeadquarter(data:any){
-      return this.http.post(`${this.baseUrl}/addHeadquarter`, data)
+   getByID(id:any){
+      return this.http.get(`${this.url}/api/headquarter/${id}`, {headers:this.httpHeaders})
    }
-   listHeadquarter(){
-      return this.http.get(`${this.baseUrl}/listHeadquarter`)
+   addHeadquarter(data: any) {
+      return this.http.post(`${this.url}/api/headquarter`, data,{headers:this.httpHeaders});
    }
-   editHeadquarter(data){
-      return this.http.put(`${this.baseUrl}/editHeadquarter`,data)
+   listHeadquarter() {
+      return this.http.get(`${this.url}/api/headquarter`, {headers:this.httpHeaders})
    }
-   deleteHeadquarter(data){
-      return this.http.delete(`${this.baseUrl}/deleteHeadquarter`,data)
+   editHeadquarter(id, data) {
+      return this.http.put(`${this.url}/api/headquarter/` + id, data,{headers:this.httpHeaders})
+   }
+   deleteHeadquarter(data) {
+      return this.http.delete(`${this.url}/api/headquarter/` + data,{headers:this.httpHeaders})
    }
 }

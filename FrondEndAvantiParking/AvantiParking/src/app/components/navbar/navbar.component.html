@@ -1,54 +1,122 @@
-
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark navbarcolor">
-
     <a class="navbar-brand" routerLink="/">
         <img src="https://www.avantica.net/hubfs/Redesign-2018-assets/avantica-copy@3x.png" id="logo">
     </a>
     <button class="navbar-toggler" id="togglee" type="button" (click)="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
     </button>
-    
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngClass]="{'show': navbarOpen}">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/reserve" data-toggle="tooltip" data-placement="left"
-                    title="Make parking lot reservations" *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong id="link">RESERVE</strong> 
+                <a class="nav-link" routerLink="/dashboard" data-toggle="tooltip" data-placement="left"
+                    title="Make parking lot reservations" *ngIf="loggedIn" (click)="toggleNavbar()">
+                    <strong id="link">DASHBOARD</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/vehicle" data-toggle="tooltip" data-placement="left"
-                    title="See your vehicles." *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">VEHICLE</strong>
+                    title="See your vehicles." *ngIf="loggedIn" (click)="toggleNavbar()">
+                    <strong id="link">VEHICLE</strong>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/reports" data-toggle="tooltip" data-placement="left"
-                    title="Generate your reports" *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">REPORTS</strong>
+                <a class="nav-link" routerLink="/administration/report" data-toggle="tooltip" data-placement="left"
+                    title="Generate your reports" *ngIf="loggedIn" (click)="toggleNavbar()">
+                    <strong id="link">REPORTS</strong>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/my-reserves" data-toggle="tooltip" data-placement="left"
+                    title="Generate your reports" *ngIf="loggedIn" (click)="toggleNavbar()">
+                    <strong id="link">MY RESERVES</strong>
                 </a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-o">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/administration/headquarter" data-toggle="tooltip" data-placement="left"
-                    title="Register and enjoy AvantiParking" *ngIf="!loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">ADMINISTRATION</strong>
+            <li class="nav-item dropdownbtn-group dropleft">
+                <a class="nav-link dropdown-toggle notification" id="navbarDropdown" role="button" *ngIf="loggedIn"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{userInf.imageUrl}}" class="rounded-circle" width="40px">
+                    <span class="badgeProfile" *ngIf="notifications>0">{{notifications}}</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " routerLink="/user/login" data-toggle="tooltip" data-placement="left"
-                    title="Log in to AvantiParking" *ngIf="loggedIn" (click)="toggleNavbar()">
-                    <strong  id="link">LOGIN</strong>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tooltip" data-placement="left" title="Sign off" href="#"
-                    (click)="logout($event)" *ngIf="!loggedIn">
-                    <strong  id="link">LOGOUT</strong> 
-                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="loggedIn">
+                    <a class="dropdown-item disabled" *ngIf="loggedIn">
+                        <i class="far fa-user-circle"></i>{{userInf.name}}</a>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
+                        data-target="#Notifications">
+                        <a class="notification" (click)="notificationViewed(userInf.id)">
+                            <i class="fas fa-bell"></i><span>Notifications</span>
+                            <span class="badge" *ngIf="notifications>0">{{notifications}}</span>
+                        </a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item btn" *ngIf="loggedIn" (click)="toggleNavbar()" data-toggle="modal"
+                        data-target="#Settings">
+                        <i class="fas fa-cog"></i> Settings
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" data-toggle="tooltip" routerLink="/" (click)="logout($event)">
+                        <i class="fas fa-sign-out-alt"></i>LOGOUT
+                    </a>
+                </div>
             </li>
         </ul>
     </div>
 </nav>
 <div class="margin"></div>
+
+<div class="modal fade" id="Settings" tabindex="-1" role="dialog" aria-labelledby="Settings" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>SETTINGS</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-user-panel *ngIf="loggedIn"></app-user-panel>
+                <app-admin-panel *ngIf="admin"></app-admin-panel>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Notifications" tabindex="-1" role="dialog" aria-labelledby="Notifications"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel"><strong>NOTIFICATIONS</strong></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                    <h6 class="border-bottom border-gray pb-2 mb-0">Recent Notifications</h6>
+                    <div *ngFor="let n of notificationsArray">
+                        <div class="toast-header">
+                            <strong class="mr-auto">{{n.subject}}</strong>
+                            <small>{{n.date}}</small>
+                            <button (click)="deleteNotifications(n)" type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">
+                            {{n.text}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+.btnAddZone{
+    background-color: #fff;
+    color: #89CA8E;
+    border-color: #89CA8E;
+    
+}
+.btnEditZone{
+	background-color: #fff;
+    color: #00ACCF;
+    border-color: #00ACCF;
+}
+
+.btnAddZone:hover{
+    color: white;
+    background-color: #89CA8E;
+}
+.btnEditZone:hover{
+    color: white;
+	background-color: #00ACCF; 
+}
+.botonF1{
+    width:60px;
+    height:60px;
+    border-radius:100%;
+    background:#2F2D46;
+    left:0;
+    bottom:20;
+    position: absolute;
+    margin-left: 16px;
+    margin-top: 40px;
+    border:none;
+    outline:none;
+    color:#FFF;
+    font-size:36px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition:.3s;  
+  }
+  span{
+    transition:.5s;  
+  }
+  .botonF1:hover span{
+    transform:rotate(360deg);
+  }
+  .botonF1:active{
+    transform:scale(1.1);
+  }

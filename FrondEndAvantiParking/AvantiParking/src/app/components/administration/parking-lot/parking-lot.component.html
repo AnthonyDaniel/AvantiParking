@@ -1,1 +1,114 @@
-<p>parking-lot works!</p>
+<button class="botonF1" routerLink="">
+  <span><i class="fas fa-arrow-left    "></i></span>
+</button>
+<div class="container">
+  <br>
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+    <h3 class="font-weight-bold"> PARKING LOT ADMINISTRATION</h3>
+  </section>
+  <div class="row justify-content-end">
+    <div class="col-sm-4 col-md-6 mt-3">
+      <input type="text" class="form-control" name="filterParkingLot" placeholder="Search..."  maxlength="40" 
+        [(ngModel)]="filterParkingLot">
+    </div>
+    <div class="col-sm-8 col-md-6 mt-3 ">
+      <button type="button" class="btnAdd btn btn-primary btn-block" data-toggle="modal" data-target="#addParkingLot">
+        <strong><i class="fas fa-plus-square"></i> NEW PARKING LOT</strong>
+      </button>
+    </div>
+  </div>
+  <br>
+  <div>
+    <div class="table-responsive mt-5 mb-5">
+      <table class="table table-bordered table-hover ">
+        <thead class="tableThead thead">
+          <tr>
+            <th scope="col"><strong>NAME</strong></th>
+            <th scope="col"><strong>HEADQUARTER</strong></th>
+            <th scope="col"><strong>ACTION</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let parking of parkings | parkingLotPipe:filterParkingLot">
+            <td>{{parking.name}}</td>
+            <td>{{parking.headquarter.name}}</td>
+            <td>
+              <button (click)="dataParkingLotFormEdit(parking)" class="btn-edit btn btn-block btn-outline-primary" id=""
+                data-toggle="modal" data-target="#editParkingLot"><strong><i class="fas fa-angle-double-right"></i>EDIT</strong></button>
+              <button (click)="deleteParkingLot(parking.id_parking_lot)"
+                class="btn-delete btn btn-block btn-outline-danger" id="" data-toggle="modal"
+                data-target="#deleteParkingLot"><strong><i class="fas fa-trash-alt"></i>DELETE</strong></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Modal de add parking-->
+  <div class="modal fade" id="addParkingLot" tabindex="-1" role="dialog" aria-labelledby="addParkingLot"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title justify-content-center"><strong>ADD PARKING LOT</strong></h5>
+          <button type="button" id="closeModal2" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #addParkingLotForm=ngForm (ngSubmit)="addParkingLot()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>NAME</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="addFormParkingLot.name"  maxlength="40"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>HEADQUARTER</label>
+              <select class="custom-select" name="headquarter" [(ngModel)]="addFormParkingLot.headquarter.id_headquarter"
+                required>
+                <option selected>Choose...</option>
+                <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}} {{headquarter.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!addParkingLotForm.valid"><i class="fas fa-plus-square"></i> ADD</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Modal edit parkingLot-->
+  <div class="modal fade" id="editParkingLot" tabindex="-1" role="dialog" aria-labelledby="editParkingLot"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title justify-content-center"><strong>EDIT PARKING LOT</strong></h5>
+          <button type="button" id="closeModal3" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editParkingLotForm=ngForm (ngSubmit)="editParkingLot()" class="form-row justify-content-sm-center">
+            <div class="form-group col-md-12">
+              <label>NAME</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="editFormParkingLot.name"  maxlength="40"  required>
+            </div>
+            <div class="form-group col-md-12">
+              <label>HEADQUARTER</label>
+              <select class="custom-select" name="headquarter" [(ngModel)]="editFormParkingLot.headquarter.id_headquarter"
+                required>
+                <option selected>Choose...</option>
+                <option value="{{headquarter.id_headquarter}}" *ngFor="let headquarter of headquarters">{{headquarter.id_headquarter}} {{headquarter.name}}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btnModalAdd btn btn-block btn-outline-secondary"
+                [disabled]="!editParkingLotForm.valid"><i class="fas fa-plus-square"></i> EDIT</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

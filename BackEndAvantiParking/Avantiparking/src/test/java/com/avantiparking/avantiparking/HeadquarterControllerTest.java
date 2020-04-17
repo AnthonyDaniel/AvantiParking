@@ -50,18 +50,6 @@ public class HeadquarterControllerTest {
 	}
 	
 	@Test
-	public void testCreateHeadquarter() {
-		Headquarter headquarter = new Headquarter();
-		headquarter.setName("AvantiBagaces");
-		headquarter.setCity("Bagaces");
-		headquarter.setCountry("CR");
-
-		ResponseEntity<Headquarter> postResponse = restTemplate.postForEntity(getRootUrl() + "/headquarter", headquarter, Headquarter.class);
-		assertNotNull(postResponse);
-		assertNotNull(postResponse.getBody());
-	}
-	
-	@Test
 	public void testUpdateHeadquarter() {
 		int id = 2;
 		Headquarter headquarter = restTemplate.getForObject(getRootUrl() + "/headquarter/" + id, Headquarter.class);

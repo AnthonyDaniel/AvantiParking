@@ -4,6 +4,12 @@
 @import '~open-iconic/font/css/open-iconic-bootstrap.css';
 
 /*Clases genericas*/
+*{
+    font-family: "Open Sans"; 
+    font-style: normal; 
+    font-weight: 500; 
+}
+
 .ng-invalid:not(form){
     border-left:5px solid red;
 }
@@ -11,3 +17,63 @@
 .ng-valid:not(form){
     border-left:5px solid green;
 }
+/*CONTAINER*/
+.container{
+    margin-bottom: 10%;
+}
+/*jumboytons*/
+.jumbotronHeader{
+	color: #EF4023;/*color de letra*/
+	background-color: F2F2F2;
+}
+.jumbotronHeaderModal{
+    background-color: #2F2D46;
+    color: #EF4023;/*color de letra*/
+}
+.modal-header{
+    background-color: #2F2D46;
+    color: #EF4023;/*color de letra*/
+}
+.btnModalAdd{
+    background-color: #fff;
+    color:#89CA8E;
+    border-color: #89CA8E;
+}
+.btnModalAdd:hover{
+    color: white;
+    background-color: #89CA8E;
+    border-color: #89CA8E;
+}
+/*buttons*/
+.btnAdd{
+    background-color: #fff;
+    color:#454685;
+    border-color: #454685;
+}
+.btnAdd:hover{
+	color: white;
+	background-color: #454685;
+}
+.btn-edit:hover{
+	color: white;
+	background-color: #00ACCF;
+}
+.btn-delete:hover{
+	color: white;
+	background-color: #EF4023;
+}
+
+.btn-search{
+	border-radius: 12px;
+}
+.btn-search:hover{
+	color: white;
+	background-color: #454685;
+
+}
+/*table*/
+.tableThead{
+    background-color: #2F2D46;
+    color:#fff;
+}
+

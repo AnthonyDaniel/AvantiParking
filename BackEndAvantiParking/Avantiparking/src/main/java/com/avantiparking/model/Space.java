@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,14 +23,15 @@ public class Space {
 	private boolean state;
 	@Column(name = "user", nullable = true)
 	private String user;
-	@Column(name = "zone", nullable = false)
-	private int zone;
+	@ManyToOne
+	@JoinColumn(name="zone")
+	private Zone zone;
 
 	public Space() {
 
 	}
 
-	public Space(String name, String type, boolean state, String user, int zone) {
+	public Space(String name, String type, boolean state, String user, Zone zone) {
 		this.name = name;
 		this.type = type;
 		this.state = state;
@@ -61,7 +64,7 @@ public class Space {
 		this.type = type;
 	}
 
-	public boolean isState() {
+	public boolean getState() {
 		return state;
 	}
 
@@ -77,11 +80,11 @@ public class Space {
 		this.user = user;
 	}
 
-	public int getZone() {
+	public Zone getZone() {
 		return zone;
 	}
 
-	public void setZone(int zone) {
+	public void setZone(Zone zone) {
 		this.zone = zone;
 	}
 
