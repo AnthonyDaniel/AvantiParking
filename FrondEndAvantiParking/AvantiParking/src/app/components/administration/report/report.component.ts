@@ -3,6 +3,9 @@ import { ServiceHeadquarterService } from 'src/app/services/service-headquarter.
 import { ServiceParkingLotService } from 'src/app/services/service-parking-lot.service';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
+import { UserService } from 'src/app/services/user.service';
+import { MyReservesServiceService } from 'src/app/services/my-reserves-service.service';
+import { ReportsService } from 'src/app/services/reports.service';
 
 @Component({
   selector: 'app-report',
@@ -15,8 +18,16 @@ export class ReportComponent implements OnInit {
   private countParking = 0;
   private countZone = 0;
   private countSpaces = 0;
+  private countUsers = 0;
+  private countReservations = 0;
 
-  constructor(public headquarter: ServiceHeadquarterService,public parking: ServiceParkingLotService,public zone: ServiceZoneService,public space: ServiceSpaceService) { }
+  constructor(public headquarter: ServiceHeadquarterService,
+    public parking: ServiceParkingLotService,
+    public zone: ServiceZoneService,
+    public space: ServiceSpaceService,
+    public user: UserService,
+    public reseve: MyReservesServiceService,
+    public report: ReportsService) { }
 
   ngOnInit() {
    this.loadDashboard();
@@ -41,6 +52,16 @@ export class ReportComponent implements OnInit {
     this.space.listSpace().subscribe(
       data=>{
         this.loadCountSpaces(data);
+      }
+    );
+    this.user.getAll().subscribe(
+      data=>{
+        this.loadCountUsers(data);
+      }
+    );
+    this.report.listReservation().subscribe(
+      data=>{
+        this.loadCountReservations(data);
       }
     );
   }
@@ -69,6 +90,20 @@ export class ReportComponent implements OnInit {
     data.forEach(element => {
       setTimeout(() => {
         this.countSpaces++;
+      }, 700);
+    });
+  }
+  loadCountUsers(data){
+    data.forEach(element => {
+      setTimeout(() => {
+        this.countUsers++;
+      }, 700);
+    });
+  }
+    loadCountReservations(data){
+    data.forEach(element => {
+      setTimeout(() => {
+        this.countReservations++;
       }, 700);
     });
   }
