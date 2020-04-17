@@ -82,10 +82,23 @@ export class DashboardComponent implements OnInit {
     state: null,
     zone: this.zoneModel,
   }
-  public modelDashboard = {
-    space: null,
-    avaible: null,
+  public reserveModel = {
+    id_reservation: null,
+    created_at: null,
+    user: this.userInf.id,
+    vehicule: null,
   }
+  public reserve_detail_model = {
+    id_reserve_detail: null,
+    date: null,
+    start_time: null,
+    end_time: null,
+    reserve_state: null,
+    //end_date_extend: null,
+    space: this.spaceModel.id_space,
+    reserve: this.reserveModel.id_reservation,
+  }
+  
   public calendarModel;
   public spaces:any =[];
   private zoneToken;
@@ -257,7 +270,7 @@ export class DashboardComponent implements OnInit {
       console.log("bienvenido");
       this._dashboard.listTimes(zone,this.calendarModel).subscribe(
         data =>{
-          
+
           console.log(data)
           console.log('Espacios por zona '+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
           console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
