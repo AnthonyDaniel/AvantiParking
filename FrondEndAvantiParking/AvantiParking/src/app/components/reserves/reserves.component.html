@@ -1,0 +1,100 @@
+<button class="botonF1" routerLink="/dashboard">
+  <span><i class="fas fa-arrow-left    "></i></span>
+</button>
+<div class="container">
+  <br>
+  <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
+    <h3 class="font-weight-bold">RESERVE</h3>
+  </section>
+  <div class="row justify-content-center">
+    <div class="col-sm-12 col-md-12">
+      <div class="card mb-5 fondo ">
+        <div class="card-body">
+          <h5 class="card-title text-center font-weight-bold">Space reservation for avantiparking</h5>
+          <!--Inicia formulario-->
+          <form>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="custom-select" name="vehicle" required [(ngModel)]="formAddReserve.vehicle">
+                  <option selected>Choose...</option>
+                  <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2">
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Fecha</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="date" class="form-control" name="fecha_actividad" placeholder="Fecha">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control" name="cedula" placeholder="nombre sede" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Parking</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control" name="cedula" placeholder="nombre parqueo" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Zone</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control" name="cedula" placeholder="nombre zona" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Space number</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control" name="cedula" placeholder="numero de espacio" disabled>
+              </div>
+            </div>
+            <!--Botones-->
+            <div class="row text-center">
+
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">RESERVE</button>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">RESERVATION BY
+                  EXTENDED DATE</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
