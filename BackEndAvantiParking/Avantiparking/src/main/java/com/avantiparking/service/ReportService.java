@@ -37,7 +37,7 @@ public class ReportService {
 
 	public List<Reserve_detail> generateReport(String date1, String date2) {
 
-		List<Reserve_detail> reportForReserveDetailActives = new LinkedList<Reserve_detail>();
+		List<Reserve_detail> reportForReserveDetailAll = new LinkedList<Reserve_detail>();
 
 		Date _date1;
 		Date _date2;
@@ -52,6 +52,7 @@ public class ReportService {
 			_date2 = fecha2.parse(date2);
 
 			_date1 = sumarRestarDiasFecha(_date1, -1);
+			_date2 = sumarRestarDiasFecha(_date2, 1);
 			
 			InitDate = convert(_date1);
 			FinalDate = convert(_date2);
@@ -63,17 +64,17 @@ public class ReportService {
 		if (InitDate.before(FinalDate) || InitDate.equals(FinalDate)) {
 
 			List<Reserve_detail> reserve_details = reserve_detail_Repository.findAll();
-			// Reserve actives
+			// Reserve all in this date
 			for (Reserve_detail i : reserve_details) {
-				if (i.isReserve_state() == 1) {
+				
 					if ((i.getDate().after(InitDate) || i.getDate().equals(InitDate))
 							&& (i.getDate().before(FinalDate) || i.getDate().equals(FinalDate))) {
-						reportForReserveDetailActives.add(i);
+						reportForReserveDetailAll.add(i);
 					}
-				}
+				
 			}
 
-			return reportForReserveDetailActives;
+			return reportForReserveDetailAll;
 		}
 
 		return null;
