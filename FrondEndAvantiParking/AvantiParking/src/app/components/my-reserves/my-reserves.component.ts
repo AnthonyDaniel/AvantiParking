@@ -4,6 +4,7 @@ import { MyReservesServiceService } from 'src/app/services/my-reserves-service.s
 
 import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user.service';
+import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 
 @Component({
   selector: 'app-my-reserves',
@@ -15,9 +16,9 @@ export class MyReservesComponent implements OnInit {
   private u: any;
   private current:any;
   private img;
+  public vehicles;
 
-
-  constructor(public user: UserService, public _parking: ServiceParkingLotService, public _myReserves:MyReservesServiceService) { }
+  constructor(public user: UserService, public _parking: ServiceParkingLotService,  public _vehicle: VehicleServiceService,public _myReserves:MyReservesServiceService) { }
   public vehicleModel = {
     id: null,
     increment: null
@@ -37,6 +38,11 @@ export class MyReservesComponent implements OnInit {
     user: this.userModel,
     vehicle: this.vehicleModel,
   }
+  public editFormReserve:any = {
+    space: null,
+   
+  };
+
   public userInf = {
     id: null,
     name: null,
@@ -62,14 +68,24 @@ export class MyReservesComponent implements OnInit {
     this.user.loadImg().subscribe(data => {
       this.loadUser(data);
       this.listarReservas();
+      this.listVehicles();
     },
       error => {
         console.log(error);
       });
   }
- 
+  listVehicles() {
+    this._vehicle.listVehicle(this.userInf.id).subscribe(
+      data => {
+        this.vehicles = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 
-  deleteParkingLot(_formParkingLot) {
+  deleteReserve(_formReserve) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         cancelButton: 'btn btn-secondary'
@@ -79,15 +95,15 @@ export class MyReservesComponent implements OnInit {
 
     Swal.fire({
       title: 'Are you sure?',
-      text: "You will not be able to reverse this! If you eliminate this parking, areas and parking areas will be permanently deleted!!!",
+      text: "You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#EF4023',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes, cancel it!',
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        this._parking.deleteParkingLot(_formParkingLot).subscribe(
+        this._parking.deleteParkingLot(_formReserve).subscribe(
           data => {
             this.ngOnInit();
             Swal.fire(
@@ -137,7 +153,6 @@ export class MyReservesComponent implements OnInit {
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
       data=>{
         this.reservas = data
-        //console.log(data)
         for(let res of this.reservas){
           console.log("id reserva"+res.id_reservation)
           console.log("id user "+res.user.id)
@@ -152,4 +167,8 @@ export class MyReservesComponent implements OnInit {
     );
     
   }
+  editReserve() {
+
+  }
+ 
 }

@@ -10,8 +10,8 @@ import { VehicleServiceService } from 'src/app/services/vehicle-service.service'
 import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
-import { $ } from 'protractor';
 import * as moment from 'moment';
+import { ServiceSpaceService } from 'src/app/services/service-space.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,12 +27,12 @@ export class DashboardComponent implements OnInit {
   public zones
   private img;
   public headquarters;
+  public spaces:any;
   private u: any;
   private current:any;
   public vehicles;
   public dashboards: any = [];
   
-
   public formAddReserve = {
     vehicle: null,
     startTime:null,
@@ -50,11 +50,16 @@ export class DashboardComponent implements OnInit {
     parking: null,
     zone: null
   }
-  // public formOpenReserve = {
-  //   parking: null,
-  // }
   public dashboardForm={
     reserveDate: null
+  }
+  public spaceModel = { 
+    id_space: null,
+    name: null,
+    type: null,
+    user: null,
+    state: null,
+    zone: null
   }
 
   public hqModel = { //copia de un modelo de headquarters
@@ -79,21 +84,7 @@ export class DashboardComponent implements OnInit {
   }
   public calendarModel;
 
-  /*public rangeS = {
-    begin:null,
-    end:null,
-  }*/
-  /*public rangeSContainer:any=[]
-
-  public dashboardSpace = {
-    id: null,
-    name: null,
-    range: this.rangeSContainer,
-  }*/
-
   public spacesContainer:any=[];
-
- 
 
   public error: String;
   public success: String;
@@ -104,7 +95,7 @@ export class DashboardComponent implements OnInit {
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
-    public datepipe: DatePipe, public _dashboard: DashboardServiceService
+    public datepipe: DatePipe, public _dashboard: DashboardServiceService,public space: ServiceSpaceService
     ) { 
 
       const now = new Date();
@@ -113,8 +104,6 @@ export class DashboardComponent implements OnInit {
       config.minDate={year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
       
       config.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate()}
-
-    
       
     }
     
@@ -127,7 +116,48 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
-    this.loadAvailableTimes(null,null);
+    
+    
+  }
+  listSpaces(){
+ 
+    this.space.listSpaces(this.zoneModel.id_zone).subscribe(
+      data=>{
+        this.spaces = data;
+       
+        console.log(data)
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+    
+    /*this.space.listSpaces(this.zoneModel.id_zone).subscribe(
+      data=>{
+     
+       let spaces=Object.keys(data)
+        console.log(data)
+      
+        for(let space of spaces){
+       
+          let espacio = {
+            id: null,
+            name: null,
+            type: null,
+            user: null,
+            state: null,
+            zone: null
+           
+          }
+          espacio.name = space;
+        
+          this.spacesContainer.push(espacio);  
+      }
+    },
+      error=>{
+        console.log(error);
+      }
+    );*/
   }
 
   ListParkings() {
@@ -182,9 +212,9 @@ export class DashboardComponent implements OnInit {
   headquarterUser(data) {
     this.userInf.headquarter = data.name;
   }
-
-
-  
+  dataSpace(space){
+    this.spaceModel=space;
+  }
   responseSuccess(data) {
     this.success = data.data;
     this.status = "success";
@@ -196,38 +226,29 @@ export class DashboardComponent implements OnInit {
 
   dataReserve(object,value) { // object es igual a todo el modelo de datos para parqueo/zona/sede y value es el valaor del combo box
     if(object == this.hqModel){
-      console.log("hq",object);
     }else if(object == this.parkingLotModel){
-      console.log("parking lot",object);
     }else if(object == this.zoneModel){
-      console.log("zone",object);
     }
 
   }
-  
   
   dataCalendar(){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate);
     console.log(this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day);
     var monthWithoutCero: string= this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
-    
-    console.log('mes sin el 0: '+ monthWithoutCero)
     var monthWithCero: string  = '0'+this.dashboardForm.reserveDate.month // mes con el 0(mes: 04,05,06)
-    console.log('algo '+ monthWithCero)
-    console.log('exc luego de la igualacion de algo '+ monthWithoutCero)
     if (monthWithoutCero[0] != monthWithCero[1]  && this.dashboardForm.reserveDate.month <10) {
       this.dashboardForm.reserveDate.month = '0'+this.dashboardForm.reserveDate.month;
     }
     this.calendarModel = this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
-    console.log(this.calendarModel);
-
-    
+   
 
   }
 
-  loadAvailableTimes(zone,date){
-    console.log("bienvenido");
-    this._dashboard.listTimes(2,'2020-04-24').subscribe(
+  loadAvailableTimes(){
+    let zone = this.zoneModel.id_zone;
+  
+    this._dashboard.listTimes(zone,this.calendarModel).subscribe(
       data =>{
         console.log(data)
         /*console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
@@ -248,7 +269,9 @@ export class DashboardComponent implements OnInit {
             range: null,
           }
           espacio.id = space;
+          
           let ranges = data[space]
+          
           //console.log(space)          
           //this.dashboardSpace.id = space;          
           for(let range of ranges){ 
@@ -275,11 +298,13 @@ export class DashboardComponent implements OnInit {
         }  
         for(let cc of this.spacesContainer){
           console.log(cc)
+          console.log(this.spaceModel.id_space)
         }      
       },
       error=>{
         console.log(error);
       });  
+
   }
   
 
@@ -320,11 +345,13 @@ export class DashboardComponent implements OnInit {
 
 
   addReserve(){
+    console.log(this.spaceModel.id_space)
+
     var i ={
       date:this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day,
       start_time:"6:00",
       end_time:"12:00",
-      space:"3",
+      space:this.spaceModel.id_space,
       user:this.userInf.id,
       vehicle:this.formAddReserve.vehicle
     }

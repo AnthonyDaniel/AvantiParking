@@ -13,30 +13,132 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td *ngFor="let detail of detailValid ">
+                  <tr *ngFor="let detail of detailValid ">
+                    <td *ngFor="let resev of reservas ">
                       <div class="card text-center " style="width: 18rem;">
                         <div class="card-header text-white rounded pb-5 text-center">
-                            <h3 class="card-header-title pt-3"><strong>DATE</strong></h3>
+                            <h3 class="card-header-title pt-3"><strong>{{detail.date}} </strong></h3>
                         </div>
-                        <div class="card-body"> 
-                          <p class="card-text"><strong>DATE: </strong>{{detail.date}} </p>
-                          <p class="card-text"><strong>SPACE: </strong>{{detail.space.name}} </p>
+                        <div class="card-body" > 
+
+                          <p class="card-text"><strong>SPACE: </strong> {{detail.space.name}} </p>
                           <p class="card-text"><strong>TIME: </strong>{{detail.start_time}} - {{detail.end_time}} </p>
-                          <p class="card-text"><strong>VEHICLE: </strong>{{reserva.vehicle.license_plate}} </p>
-                          <p class="card-text"><strong>CREATED: </strong>{{reserva.created_at}} </p>                     
+                          <p class="card-text"><strong>VEHICLE: </strong>{{resev.vehicle.license_plate}} </p>
+                          <p class="card-text"><strong>CREATED: </strong>{{resev.created_at}} </p>                    
                          
                          
-                          <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteParkingLot(parking.id_parking_lot)">
+                          <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteReserve(detail.id_reserve_detail)">
                               <i class="fas fa-trash-alt"></i>
                             <strong>CANCEL</strong></button>
+                         
+                            <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve">
+                              <strong>MODIFY</strong></button>
                         </div>
                       </div>
                     </td>
-                      </tr>
+                  </tr>
                     </tbody>
                   </table>
        </div>
    </div>
 </div>
     
+
+<!-- Modal -->
+<div class="modal fade" id="reserve" tabindex="-1" role="dialog" aria-labelledby="reserve" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Reserve</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+          <h5 class="card-title text-center font-weight-bold">Space reservation for avantiparking</h5>
+          <!--Inicia formulario-->
+          <form>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="custom-select" name="vehicle" required >
+                  <option selected>Choose...</option>
+                  <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2" >
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
+              <div class="col-sm-8 col-lg-10">
+                <select class="form-control" id="exampleFormControlSelect2" >
+                  <option selected>Choose...</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Date</label>
+              <div class="col-sm-8 col-lg-10">
+                <input type="text" class="form-control"  name="calendarModel"  disabled >
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
+              <div class="col-sm-8 col-lg-10">
+                <input  name="headquarter" type="text" class="form-control"  disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label"  >Parking</label>
+              <div class="col-sm-8 col-lg-10">
+                <input name="parking" type="text" class="form-control"  disabled required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Zone</label>
+              <div class="col-sm-8 col-lg-10">
+                <input  name="zone" type="text" class="form-control" disabled>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-lg-2 col-form-label">Space number</label>
+              <div class="col-sm-8 col-lg-10">
+                <input name="space" type="text" class="form-control"  disabled>
+              </div>
+            </div>
+            <!--Botones-->
+            <div class="row text-center">
+
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" >Reserve</button>
+              </div>
+              <div class="col-sm-6 col-md-6">
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary">Extended Reservation</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

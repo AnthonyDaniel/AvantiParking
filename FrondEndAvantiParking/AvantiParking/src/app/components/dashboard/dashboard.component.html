@@ -48,7 +48,7 @@
 
     <div class="col-md-2">
       <br>
-      <button class="btn btn-delete btn-block btn-outline-danger" (click)="dataCalendar()" (click)="loadAvailableTimesV2()">
+      <button class="btn btn-delete btn-block btn-outline-danger" (click)="listSpaces()" (click)="dataCalendar()" (click)="loadAvailableTimes()">
         <strong>VIEW DASHBOARD</strong>
       </button><br><br>
     </div>
@@ -58,7 +58,7 @@
   <div class="row justify-content-center">
     <div class="col-md-10 ">
       <div class="table-responsive">
-        <table class="table table-bordered table-hover ">
+        <table class="table table-bordered table-hover rounded ">
           <thead class="tableThead thead">
             <tr>
               <th scope="col"><strong>SPACE</strong></th>
@@ -66,17 +66,18 @@
               <th scope="col"><strong>RESERVE</strong></th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let space of spacesContainer">
-              <td>{{space.id}}</td><!--id  del espacio-->
+          <tbody >
+            <tr *ngFor=" let space of spaces">
+              <td >{{space.name}}</td>
               <td>
                 <table>
-                    <tr>
-                      <td *ngFor="let list of space.range">{{list[0][0]}} - {{list[0][1]}}</td>
+                    <tr *ngFor=" let s of spacesContainer">
+                      <td  *ngFor="let list of s.range">
+                        {{list[0][0]}} - {{list[0][1]}}</td>
                     </tr>
                 </table>
               </td>
-              <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve" (click)="dataCalendar()">
+              <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve" (click)="dataSpace(space)" (click)="dataCalendar()">
                   <strong>RESERVE</strong></button>
               </td>
             </tr>
@@ -167,7 +168,7 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Space number</label>
               <div class="col-sm-8 col-lg-10">
-                <input type="text" class="form-control"  placeholder="numero de espacio" disabled>
+                <input [(ngModel)]="spaceModel.name" name="space" type="text" class="form-control"  disabled>
               </div>
             </div>
             <!--Botones-->
