@@ -8,6 +8,7 @@ import * as XLSX from 'xlsx';
 })
 export class ReportsService {
    public url: any;
+
    httpHeaders = new HttpHeaders({
       'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
    });
@@ -30,7 +31,7 @@ export class ReportsService {
      const data: Blob = new Blob([buffer], {type: this.fileType});
      FileSaver.saveAs(data, fileName + this.fileExtension);
    }
-   
+  
     listReservation() {
       return this.http.get(`${this.url}/api/reservations`,{headers:this.httpHeaders});
    }

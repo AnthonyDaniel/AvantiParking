@@ -18,6 +18,7 @@ import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Headquarter;
 import com.avantiparking.model.Parking_lot;
 import com.avantiparking.model.Reserve;
+import com.avantiparking.model.Reserve_detail;
 import com.avantiparking.repository.Headquarter_Repository;
 import com.avantiparking.repository.Reserve_Repository;
 import com.avantiparking.repository.Reserve_detail_Repository;
@@ -40,13 +41,16 @@ public class Reports_Controller {
     @Autowired
     private ReportService reportService;
 
+    @Autowired
+    private Reserve_detail_Repository reserve_detail_Repository;
+    
 	@GetMapping("/reservations")
 	public List<Reserve> getAllParking_lot() {
 		return reserveRepository.findAll();
 	}
 
 	@GetMapping("/generate/report/{date}/{date2}")
-	public String genereReport(@PathVariable(value = "date") String date, @PathVariable(value = "date2") String date2) {
+	public List<Reserve_detail> genereReport(@PathVariable(value = "date") String date, @PathVariable(value = "date2") String date2) {
 		return reportService.generateReport(date, date2);
 	}
 
