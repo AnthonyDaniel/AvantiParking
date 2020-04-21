@@ -38,10 +38,6 @@ export class MyReservesComponent implements OnInit {
     user: this.userModel,
     vehicle: this.vehicleModel,
   }
-  public editFormReserve:any = {
-    space: null,
-   
-  };
 
   public userInf = {
     id: null,
@@ -166,9 +162,6 @@ export class MyReservesComponent implements OnInit {
       }
     );
     
-  }
-  editReserve() {
-
   }
  
 }
