@@ -37,6 +37,7 @@ export class MyReservesComponent implements OnInit {
     created_at: null,
     user: this.userModel,
     vehicle: this.vehicleModel,
+
   }
 
   public userInf = {
@@ -55,12 +56,12 @@ export class MyReservesComponent implements OnInit {
   
     
   }
-  loadUser(data) {
+  loadUser(data) { //metodo para cargar la informacion del usuari
     this.formUser.id = data.id;  
     console.log(this.formUser.id)  
   }
 
-  getData() {
+  getData() { // metodo para listar todos las listas con datos
     this.user.loadImg().subscribe(data => {
       this.loadUser(data);
       this.listarReservas();
@@ -70,7 +71,7 @@ export class MyReservesComponent implements OnInit {
         console.log(error);
       });
   }
-  listVehicles() {
+  listVehicles() { //metodo para listar vehiculos
     this._vehicle.listVehicle(this.userInf.id).subscribe(
       data => {
         this.vehicles = data;
@@ -117,9 +118,11 @@ export class MyReservesComponent implements OnInit {
     this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(
       data=>{
         this.detailValid = data
-        console.log(this.detailValid)
+        console.log("toda la data de detailvalid"+ this.detailValid)
         for(let det of this.detailValid){
           console.log("fecha de la reserva vigente "+ det.date+" inicio "+  det.start_time+" id detail "+ det.id_reserve_detail)
+          console.log(det.reserve.vehicle.license_plate)
+          
           
         }        
       },
