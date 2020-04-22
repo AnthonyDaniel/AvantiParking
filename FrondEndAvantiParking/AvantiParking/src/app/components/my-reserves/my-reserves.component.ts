@@ -47,15 +47,14 @@ export class MyReservesComponent implements OnInit {
     headquarter: ''
   };
 
-  public reservas:any=[]
+  public reserves:any=[]
   public detailValid:any=[]
   public detailUnValid:any=[]
 
   ngOnInit() {
-   this.getData();
-  
-    
+    this.getData();    
   }
+
   loadUser(data) { //metodo para cargar la informacion del usuari
     this.formUser.id = data.id;  
     console.log(this.formUser.id)  
@@ -72,7 +71,7 @@ export class MyReservesComponent implements OnInit {
       });
   }
   listVehicles() { //metodo para listar vehiculos
-    this._vehicle.listVehicle(this.userInf.id).subscribe(
+    this._vehicle.listVehicle("vehiculo").subscribe(
       data => {
         this.vehicles = data;
       },
@@ -148,23 +147,28 @@ export class MyReservesComponent implements OnInit {
   }
   listarReservas(){
     var us = this.formUser.id;
-    console.log(this.formUser.id)
+    console.log("jaja",this.formUser.id)
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
-      data=>{
-        this.reservas = data
-        for(let res of this.reservas){
+      data=>{        
+        this.reserves = data;
+        console.log(this.reserves);
+        for(let reserve of this.reserves){
+          console.log(reserve);
+          this.listValidDetails(reserve.id_reservation);
+        }        
+        /*for(let res of this.reservas){
           console.log("id reserva"+res.id_reservation)
           console.log("id user "+res.user.id)
           console.log("placa vehiculo "+res.vehicle.license_plate)
           this.listValidDetails(res.id_reservation);
           this.listValidUnvalidDetails(res.id_reservation);
-        }
+        }*/
       },
       error=>{
         console.log(error)
       }
     );
-    
+        
   }
  
 }
