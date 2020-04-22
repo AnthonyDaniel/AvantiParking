@@ -9,7 +9,7 @@ import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
 import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
-import { DatePipe } from '@angular/common';
+import { DatePipe} from '@angular/common';
 import * as moment from 'moment';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 
@@ -17,7 +17,7 @@ import { ServiceSpaceService } from 'src/app/services/service-space.service';
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [DatePipe]//necesario para conversion de date a string
+  providers: [DatePipe],//necesario para conversion de date a string
   
 })
 
@@ -86,6 +86,16 @@ export class DashboardComponent implements OnInit {
 
   public spacesContainer:any=[];
 
+  public spaceRange:any=[];
+  public selectableRange:any=[];
+  public start_time;
+  public end_time
+
+  public displayRangeModel ={
+    begin:null,
+    options:[]
+  }
+
   public error: String;
   public success: String;
   public status: String;
@@ -115,17 +125,14 @@ export class DashboardComponent implements OnInit {
     });
     this.ListHeadquarters();
     this.ListParkings();
-    this.ListZones();
-    
-    
+    this.ListZones();    
   }
+
   listSpaces(){
  
     this.space.listSpaces(this.zoneModel.id_zone).subscribe(
       data=>{
-        this.spaces = data;
-       
-        console.log(data)
+        this.spaces = data; 
       },
       error=>{
         console.log(error);
@@ -213,7 +220,40 @@ export class DashboardComponent implements OnInit {
     this.userInf.headquarter = data.name;
   }
   dataSpace(space){
-    this.spaceModel=space;
+    this.end_time= null;
+    this.start_time = null;
+    this.spaceRange = [];
+    this.spaceModel.id_space = space.id_space;
+    this.spaceModel.name = space.name;
+    this.spaceModel.type = space.type;
+    this.spaceModel.user = space.user;
+    this.spaceModel.state = space.state;
+    this.spaceModel.zone = space.zone;
+    for(let range of space.range){
+      for(var i = range[0][0]; i < range[0][1];i++){
+        let displayRange ={
+          begin:null,
+          options:[]
+        }
+        displayRange.begin = i;
+        for(var j = i+1; j <= range[0][1];j++){          
+          console.log("this",j);
+          displayRange.options.push(j);
+        }   
+        console.log("rango",displayRange);
+        this.spaceRange.push(displayRange);   
+      }      
+    }
+    this.formAddReserve.space = this.spaceModel.id_space;   
+  }
+  setStartTime(spaceRange){
+    this.formAddReserve.startTime = spaceRange.begin+":00:00"; 
+    this.selectableRange = spaceRange.options;
+    console.log(this.selectableRange);
+  }
+  setEndTime(endTime){
+    this.formAddReserve.endTime= endTime+":00:00";
+    console.log(this.formAddReserve);
   }
   responseSuccess(data) {
     this.success = data.data;
@@ -246,60 +286,41 @@ export class DashboardComponent implements OnInit {
   }
 
   loadAvailableTimes(){
-    let zone = this.zoneModel.id_zone;
-  
+    let zone = this.zoneModel.id_zone;  
     this._dashboard.listTimes(zone,this.calendarModel).subscribe(
       data =>{
-        console.log(data)
-        /*console.log('Espacios por zona'+Object.keys(data).length)//para agarrar la cantidad de espacios que tienen espacios disponibles
-        console.log(Object.keys(data))//estas son los Id de los espacios de la zona que recibe de parametro
-        console.log(data[33])//para accdeder al elemento(espacio) 33. es el id del espacio no el nombre del espacio
-        console.log(data[33].length)//para ver la cantidad de espacios disponibles del espacio con id 33
-        console.log("Primer rango para el espacio id:33 Rango [Inicio:"+data[33][0][0][0]+" Fin:"+data[33][0][0][1]+"]")
-        console.log("Segundo rango para el espacio id:33 Rango [Inicio:"+data[33][1][0][0]+" Fin:"+data[33][1][0][1]+"]")*/
-        let keysArray = Object.keys(data)
-        //this.dashboards = keysArray;
-        //this.rangeSContainer = [];
-        for(let space of keysArray){
+        this.spacesContainer = [];
+        let keysArray = Object.keys(data);
+        for(let space of keysArray){  
+          let tempSpace = this.spaces.find(element => element.id_space == space);    
           let contenedor:any =[];
           let espacio = {
-            id: null,
-            name: null,
-            zone: null,
+            id_space: null,
+            name: tempSpace.name,
+            state:tempSpace.state,
+            type:tempSpace.type,
+            user:tempSpace.user,
+            zone: tempSpace.zone,
             range: null,
           }
-          espacio.id = space;
-          
-          let ranges = data[space]
-          
-          //console.log(space)          
-          //this.dashboardSpace.id = space;          
+          espacio.id_space = space;
+          let ranges = data[space]        
           for(let range of ranges){ 
             let  rangeS = {
               begin:null,
               end:null
-            };
-           // console.log("----Rangos para espacio "+space+" Rango"+range+" [Inicio:"+rangeS.begin+" Fin:"+rangeS.end+"]");          
+            };      
             rangeS.begin =  range[0][0];
             rangeS.end =  range[0][1];
-            //console.log("Rangos para espacio "+space+" Rango"+range+" [Inicio:"+rangeS.begin+" Fin:"+rangeS.end+"]");
-            //this.rangeSContainer.push(rangeS);
             contenedor.push(range);
-            //console.log("asii"+this.rangeSContainer[0].begin+" asi no "+this.rangeSContainer[0].end);
           }
-          /*for(let cc of this.rangeSContainer){
-          console.log("dddSpace:"+this.dashboardSpace.id+"-"+cc.begin+"-"+cc.end)
-          } */
-          //this.dashboardSpace.range = this.rangeSContainer;
-          //console.log("Space:"+this.dashboardSpace.id+"Rango"+this.dashboardSpace.range[0].begin+"-"+this.dashboardSpace.range[0].end)
-          //this.spacesContainer.push(this.dashboardSpace); 
           espacio.range = contenedor;  
           this.spacesContainer.push(espacio);  
         }  
-        for(let cc of this.spacesContainer){
+        /*for(let cc of this.spacesContainer){
           console.log(cc)
-          console.log(this.spaceModel.id_space)
-        }      
+          //console.log(this.spaceModel.id_space)
+        }  */   
       },
       error=>{
         console.log(error);

@@ -67,13 +67,12 @@
             </tr>
           </thead>
           <tbody >
-            <tr *ngFor=" let space of spaces">
-              <td >{{space.name}}</td>
+            <tr *ngFor=" let space of spacesContainer">
+              <td >{{space.id_space}}</td>
               <td>
                 <table>
-                    <tr *ngFor=" let s of spacesContainer">
-                      <td  *ngFor="let list of s.range">
-                        {{list[0][0]}} - {{list[0][1]}}</td>
+                    <tr>
+                      <td *ngFor=" let range of space.range"> {{range[0][0]}}:00 - {{range[0][1]}}:00</td>
                     </tr>
                 </table>
               </td>
@@ -102,13 +101,13 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">Space reservation for avantiparking</h5>
+          <h5 class="card-title text-center font-weight-bold">Reserve your space</h5>
           <!--Inicia formulario-->
           <form>
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="custom-select" name="vehicle" required [(ngModel)]="formAddReserve.vehicle">
+                <select class="custom-select" name="vehicle" [(ngModel)]="formAddReserve.vehicle">
                   <option selected>Choose...</option>
                   <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
                   </option>
@@ -118,26 +117,18 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="form-control" id="exampleFormControlSelect2" >
+                <select class="form-control" name="start_time" required [(ngModel)]="start_time" (change)=" setStartTime(start_time,$event.target.value)">
                   <option selected>Choose...</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option *ngFor="let range of spaceRange" [ngValue]="range" >{{range.begin}}:00</option>
                 </select>
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="form-control" id="exampleFormControlSelect2" >
+                <select class="form-control" name="end_time" required [(ngModel)]="end_time" (change)=" setEndTime(end_time,$event.target.value)">
                   <option selected>Choose...</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option *ngFor="let opt of selectableRange" [ngValue]="opt" >{{opt}}:00</option>
                 </select>
               </div>
             </div>
@@ -154,7 +145,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label"  >Parking</label>
+              <label class="col-sm-4 col-lg-2 col-form-label" >Parking</label>
               <div class="col-sm-8 col-lg-10">
                 <input [(ngModel)]="parkingLotModel.name" name="parking" type="text" class="form-control"  disabled required>
               </div>
