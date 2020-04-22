@@ -105,16 +105,17 @@
           <!--Inicia formulario-->
           <form>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Vehicles</label>
+              <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="custom-select" name="vehicle" [(ngModel)]="formAddReserve.vehicle" required>
+                <select class="custom-select" name="vehicle" [(ngModel)]="formAddReserve.vehicle">
+                  <option selected>Choose...</option>
                   <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
                   </option>
                 </select>
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Start Time</label>
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
               <div class="col-sm-8 col-lg-10">
                 <select class="form-control" name="start_time" required [(ngModel)]="start_time" (change)=" setStartTime(start_time,$event.target.value)">
                   <option selected>Choose...</option>
@@ -123,7 +124,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">End Time</label>
+              <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
               <div class="col-sm-8 col-lg-10">
                 <select class="form-control" name="end_time" required [(ngModel)]="end_time" (change)=" setEndTime(end_time,$event.target.value)">
                   <option selected>Choose...</option>
@@ -134,7 +135,7 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Date</label>
               <div class="col-sm-8 col-lg-10">
-                <input type="text" class="form-control" [(ngModel)]="calendarModel"  name="calendarModel"  disabled required>
+                <input type="text" class="form-control" [(ngModel)]="calendarModel"  name="calendarModel"  disabled >
               </div>
             </div>
             <div class="form-group row">

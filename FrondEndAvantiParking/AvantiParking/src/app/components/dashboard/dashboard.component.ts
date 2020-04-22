@@ -286,55 +286,45 @@ export class DashboardComponent implements OnInit {
   }
 
   loadAvailableTimes(){
-    let zone = this.zoneModel.id_zone;
-    if (zone !=null && this.calendarModel != null  ) {
-      this._dashboard.listTimes(zone,this.calendarModel).subscribe(
-        data =>{
-          this.spacesContainer = [];
-          let keysArray = Object.keys(data);
-          for(let space of keysArray){  
-            let tempSpace = this.spaces.find(element => element.id_space == space);    
-            let contenedor:any =[];
-            let espacio = {
-              id_space: null,
-              name: tempSpace.name,
-              state:tempSpace.state,
-              type:tempSpace.type,
-              user:tempSpace.user,
-              zone: tempSpace.zone,
-              range: null,
-            }
-            espacio.id_space = space;
-            let ranges = data[space]        
-            for(let range of ranges){ 
-              let  rangeS = {
-                begin:null,
-                end:null
-              };      
-              rangeS.begin =  range[0][0];
-              rangeS.end =  range[0][1];
-              contenedor.push(range);
-            }
-            espacio.range = contenedor;  
-            this.spacesContainer.push(espacio);  
-          }  
-          /*for(let cc of this.spacesContainer){
-            console.log(cc)
-            //console.log(this.spaceModel.id_space)
-          }  */   
-        },
-        error=>{
-          console.log(error);
-        });  
-    }else{
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'No reservation will be shown until you filter the fields to show',
-        confirmButtonColor: '#EF4023'
-      })
-    }  
-    
+    let zone = this.zoneModel.id_zone;  
+    this._dashboard.listTimes(zone,this.calendarModel).subscribe(
+      data =>{
+        this.spacesContainer = [];
+        let keysArray = Object.keys(data);
+        for(let space of keysArray){  
+          let tempSpace = this.spaces.find(element => element.id_space == space);    
+          let contenedor:any =[];
+          let espacio = {
+            id_space: null,
+            name: tempSpace.name,
+            state:tempSpace.state,
+            type:tempSpace.type,
+            user:tempSpace.user,
+            zone: tempSpace.zone,
+            range: null,
+          }
+          espacio.id_space = space;
+          let ranges = data[space]        
+          for(let range of ranges){ 
+            let  rangeS = {
+              begin:null,
+              end:null
+            };      
+            rangeS.begin =  range[0][0];
+            rangeS.end =  range[0][1];
+            contenedor.push(range);
+          }
+          espacio.range = contenedor;  
+          this.spacesContainer.push(espacio);  
+        }  
+        /*for(let cc of this.spacesContainer){
+          console.log(cc)
+          //console.log(this.spaceModel.id_space)
+        }  */   
+      },
+      error=>{
+        console.log(error);
+      });  
 
   }
   
@@ -376,39 +366,25 @@ export class DashboardComponent implements OnInit {
 
 
   addReserve(){
-    console.log("trae el espacio:"+this.formAddReserve.space)
-    if ( this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day != null &&
-    this.formAddReserve.startTime != null && this.formAddReserve.endTime != null &&
-    this.formAddReserve.space != null && this.userInf.id != null && this.formAddReserve.vehicle !=  null
-    ) {
-      var i ={
-        date:this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day,
-        start_time: this.formAddReserve.startTime,
-        end_time:this.formAddReserve.endTime,
-        space:this.formAddReserve.space,
-        user:this.userInf.id,
-        vehicle:this.formAddReserve.vehicle
-      }
-      
-      this._dashboard.createReserve(i).subscribe(
-        data=>{
-         
-        },
-        error=>{
-          console.log(error);
-        }
-      );
-      console.log(i);
-    }else{
-      console.log("faltan parametros por llenar")
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'The space, start time, end time and vehicle fields are required',
-        confirmButtonColor: '#EF4023'
-      })
+    console.log(this.spaceModel.id_space)
+
+    var i ={
+      date:this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day,
+      start_time:"6:00",
+      end_time:"12:00",
+      space:this.spaceModel.id_space,
+      user:this.userInf.id,
+      vehicle:this.formAddReserve.vehicle
     }
-    
+    this._dashboard.createReserve(i).subscribe(
+      data=>{
+       
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+    console.log(i);
   }
 
   
