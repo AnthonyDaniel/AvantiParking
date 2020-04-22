@@ -101,7 +101,7 @@
       </div>
       <div class="modal-body">
         <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">Reserve your space</h5>
+          <h5 class="card-title text-center font-weight-bold">Reserve a space</h5>
           <!--Inicia formulario-->
           <form>
             <div class="form-group row">
@@ -115,7 +115,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Hora Inicio</label>
+              <label class="col-sm-4 col-lg-2 col-form-label">Start time</label>
               <div class="col-sm-8 col-lg-10">
                 <select class="form-control" name="start_time" required [(ngModel)]="start_time" (change)=" setStartTime(start_time,$event.target.value)">
                   <option selected>Choose...</option>
@@ -124,7 +124,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Hora Final</label>
+              <label class="col-sm-4 col-lg-2 col-form-label">End time</label>
               <div class="col-sm-8 col-lg-10">
                 <select class="form-control" name="end_time" required [(ngModel)]="end_time" (change)=" setEndTime(end_time,$event.target.value)">
                   <option selected>Choose...</option>
