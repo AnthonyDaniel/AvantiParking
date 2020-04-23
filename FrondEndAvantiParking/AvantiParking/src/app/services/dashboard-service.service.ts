@@ -18,7 +18,7 @@ export class DashboardServiceService {
    listTimes(id,date){// lista todos los espacios
     return this.http.get(`${this.url}/api/dashboard/`+id+`/`+date,{headers:this.httpHeaders});
   }
-  createReserve(data){
-    return this.http.post(`${this.url}/api/reserve`,data,{headers:this.httpHeaders});
+  createReserve(created_at, user, vehicle,detail:any){
+    return this.http.post(`${this.url}/api/reserves`,detail,{headers:this.httpHeaders});
   }
 }

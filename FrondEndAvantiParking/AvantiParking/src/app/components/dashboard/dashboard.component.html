@@ -68,7 +68,7 @@
           </thead>
           <tbody >
             <tr *ngFor=" let space of spacesContainer">
-              <td >{{space.id_space}}</td>
+              <td >{{space.name}}</td>
               <td>
                 <table>
                     <tr>
@@ -107,7 +107,7 @@
             <div class="form-group row">
               <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
               <div class="col-sm-8 col-lg-10">
-                <select class="custom-select" name="vehicle" [(ngModel)]="formAddReserve.vehicle">
+                <select class="custom-select" name="vehicle" [(ngModel)]="formAddReserve.vehicle.increment">
                   <option selected>Choose...</option>
                   <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
                   </option>

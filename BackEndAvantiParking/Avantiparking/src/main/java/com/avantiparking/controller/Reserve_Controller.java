@@ -1,6 +1,7 @@
 package com.avantiparking.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Reserve;
 import com.avantiparking.model.Reserve_detail;
 import com.avantiparking.model.Space;
+import com.avantiparking.model.User;
 import com.avantiparking.model.Vehicle;
 import com.avantiparking.repository.Reserve_Repository;
 import com.avantiparking.repository.Reserve_detail_Repository;
@@ -81,6 +83,28 @@ public class Reserve_Controller {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	
+	@PostMapping("/reserves")
+	public Reserve_detail addReservation(@Valid @RequestBody Reserve_detail _detail) {
+		System.out.println("xddddddddddddddddddddddd");
+		/*Reserve reserve = new Reserve();
+		reserve.setCreated_at(created_at);
+		
+		User user = new User();
+		user.setId(user_id);
+		
+		reserve.setUser(user);
+		
+		Vehicle vehicle = new Vehicle();
+		vehicle.setIncrement(vehicle_id);
+		
+		reserve.setVehicle(vehicle);
+		reserve = reserve_Repository.save(reserve);
+		
+		_detail.setReserve(reserve);
+		return reserve_detail_Repository.save(_detail);*/
+		return new Reserve_detail();
+	}
     
 	/*@GetMapping("/reserves/completed/user/{user}")
 	public List<Reserve> reservationsCompletedByUser(@PathVariable(value = "user")Long user_id) {		
@@ -97,17 +121,17 @@ public class Reserve_Controller {
 		return null;
 	}
 	**********************************/
-	@PostMapping("/reserve")
+	/*@PostMapping("/reserve")
 	public Reserve  addReservation(@Valid @RequestBody Reserve reserve) {
-		/*Reserve reserve = reserveRepository.fin*/
+		//Reserve reserve = reserveRepository.fin
 		return reserve_Repository.save(reserve);
 	}
 	
 	@PostMapping("/reserve/detail")
 	public Reserve_detail  addReservation(@Valid @RequestBody Reserve_detail reserve_detail) {
-		/*Reserve reserve = reserveRepository.fin*/
+		//Reserve reserve = reserveRepository.fin
 		return reserve_detail_Repository.save(reserve_detail);
-	}
+	}*/
 	
 	@PutMapping("/reserve")
 	public List<Reserve> modifyReservation() {

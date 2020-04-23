@@ -32,13 +32,26 @@ export class DashboardComponent implements OnInit {
   private current:any;
   public vehicles;
   public dashboards: any = [];
-  
-  public formAddReserve = {
-    vehicle: null,
-    startTime:null,
-    endTime:null,
-    space:null
+    
+
+  public formAddReserve= {
+    id_reservation: null,
+    created_at: null,
+    user:{id: null},
+    vehicle: {increment:null}
   }
+
+  public formAddDetail = {
+    id_reserve_detail: null,
+    date: null,
+    start_time:null,
+    end_time:null,
+    reserve_state:null,
+    end_date_extend:null,
+    space:null,
+    reserve:this.formAddReserve
+  }
+
   public userInf = {
     id: null,
     name: null,
@@ -236,24 +249,22 @@ export class DashboardComponent implements OnInit {
           options:[]
         }
         displayRange.begin = i;
-        for(var j = i+1; j <= range[0][1];j++){          
-          console.log("this",j);
+        for(var j = i+1; j <= range[0][1];j++){      
           displayRange.options.push(j);
         }   
-        console.log("rango",displayRange);
         this.spaceRange.push(displayRange);   
       }      
     }
-    this.formAddReserve.space = this.spaceModel.id_space;   
+    this.formAddDetail.space = this.spaceModel;   
   }
   setStartTime(spaceRange){
-    this.formAddReserve.startTime = spaceRange.begin+":00:00"; 
+    this.formAddDetail.start_time = spaceRange.begin+":00:00"; 
     this.selectableRange = spaceRange.options;
     console.log(this.selectableRange);
   }
   setEndTime(endTime){
-    this.formAddReserve.endTime= endTime+":00:00";
-    console.log(this.formAddReserve);
+    this.formAddDetail.end_time= endTime+":00:00";
+    console.log(this.formAddDetail);
   }
   responseSuccess(data) {
     this.success = data.data;
@@ -375,10 +386,41 @@ export class DashboardComponent implements OnInit {
 
 
   addReserve(){
-    console.log("trae el espacio:"+this.formAddReserve.space)
-    if ( this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day != null &&
-    this.formAddReserve.startTime != null && this.formAddReserve.endTime != null &&
-    this.formAddReserve.space != null && this.userInf.id != null && this.formAddReserve.vehicle !=  null
+    if(this.formAddDetail.start_time == null || this.formAddDetail.end_time ==null){
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Start time and end time are required!',
+        confirmButtonColor: '#EF4023'
+      })
+    }else{
+      let date = new Date();
+      let formattedDate;
+      if(date.getMonth()< 10){
+        formattedDate = date.getFullYear()+"-0"+date.getMonth()+"-"+date.getDate() ;
+      }else{
+        formattedDate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate() ;
+      }
+      console.log("created at:",date.getDate());
+      this.formAddDetail.date = this.calendarModel;
+      this.formAddDetail.reserve_state = 0;
+      this.formAddReserve.user.id = this.userInf.id;
+      this.formAddReserve.created_at = formattedDate;    
+      console.log("Data of reserve",this.formAddReserve)
+      console.log("Data of detail",this.formAddDetail)
+      this._dashboard.createReserve(this.formAddReserve.created_at,this.formAddReserve.user.id,
+        this.formAddReserve.vehicle.increment,this.formAddDetail).subscribe(
+        data=>{
+          console.log(data);
+        },
+        error=>{
+          console.log(error);
+        }
+      );
+      }    
+    /*if ( this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day != null &&
+    this.formAddDetail.startTime != null && this.formAddDetail.endTime != null &&
+    this.formAddDetail.space != null && this.userInf.id != null && this.formAddDetail.vehicle !=  null
     ) {
       var i ={
         date:this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day,
@@ -417,7 +459,7 @@ export class DashboardComponent implements OnInit {
         text: 'The space, start time, end time and vehicle fields are required',
         confirmButtonColor: '#EF4023'
       })
-    }
+    }*/
   }
 
   
