@@ -27,6 +27,7 @@ import com.avantiparking.repository.UserRepository;
 import com.avantiparking.repository.Vehicle_Repository;
 import com.avantiparking.repository.Zone_Repository;
 import com.avantiparking.service.EmailService;
+import com.avantiparking.service.ReportService;
 //import com.avantiparking.service.ReportService;
 
 @RestController
@@ -38,8 +39,8 @@ public class Reports_Controller {
 	@Autowired
 	private Reserve_Repository reserveRepository;
 
-    /*@Autowired
-    private ReportService reportService;*/
+    @Autowired
+    private ReportService reportService;
 
     @Autowired
     private Reserve_detail_Repository reserve_detail_Repository;
@@ -49,9 +50,9 @@ public class Reports_Controller {
 		return reserveRepository.findAll();
 	}
 
-	/*@GetMapping("/generate/report/{date}/{date2}")
+	@GetMapping("/generate/report/{date}/{date2}")
 	public List<Reserve_detail> genereReport(@PathVariable(value = "date") String date, @PathVariable(value = "date2") String date2) {
 		return reportService.generateReport(date, date2);
-	}*/
+	}
 
 }
