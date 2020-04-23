@@ -47,9 +47,10 @@ export class MyReservesComponent implements OnInit {
     headquarter: ''
   };
 
-  public reserves:any=[]
-  public detailValid:any=[]
-  public detailUnValid:any=[]
+  public reserves:any=[];
+
+  public unvalidDetail:any[];
+  public validDetail:any=[];
 
   ngOnInit() {
     this.getData();    
@@ -113,41 +114,8 @@ export class MyReservesComponent implements OnInit {
     })
   }
 
-  listValidDetails(reserve_id){
-    this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(
-      data=>{
-        this.detailValid = data
-        console.log("toda la data de detailvalid"+ this.detailValid)
-        for(let det of this.detailValid){
-          console.log("fecha de la reserva vigente "+ det.date+" inicio "+  det.start_time+" id detail "+ det.id_reserve_detail)
-          console.log(det.reserve.vehicle.license_plate)
-          
-          
-        }        
-      },
-      error=>{
-        console.log(error)
-      }
-    );
-  }
-
-  listValidUnvalidDetails(reserve_id){
-    this._myReserves.listUserUnValidReservesDetails(reserve_id).subscribe(
-      data=>{
-        this.detailUnValid = data
-        console.log(this.detailUnValid)
-        for(let det of this.detailUnValid){
-          console.log("fecha del detalle reserva no vigente "+ det.date+" inicio "+  det.start_time+" id detail "+ det.id_reserve_detail)
-        }        
-      },
-      error=>{
-        console.log(error)
-      }
-    );
-  }
   listarReservas(){
-    var us = this.formUser.id;
-    console.log("jaja",this.formUser.id)
+    var us = this.formUser.id;//?
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
       data=>{        
         this.reserves = data;
@@ -155,14 +123,7 @@ export class MyReservesComponent implements OnInit {
         for(let reserve of this.reserves){
           console.log(reserve);
           this.listValidDetails(reserve.id_reservation);
-        }        
-        /*for(let res of this.reservas){
-          console.log("id reserva"+res.id_reservation)
-          console.log("id user "+res.user.id)
-          console.log("placa vehiculo "+res.vehicle.license_plate)
-          this.listValidDetails(res.id_reservation);
-          this.listValidUnvalidDetails(res.id_reservation);
-        }*/
+        }
       },
       error=>{
         console.log(error)
@@ -170,5 +131,40 @@ export class MyReservesComponent implements OnInit {
     );
         
   }
+
+  listValidDetails(reserve_id){
+    this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(
+      data=>{ 
+        let detail:any = [];      
+        detail = data;
+        if(detail.length > 0){          
+          for(let item of detail){            
+            this.validDetail.push(item);
+          } 
+        }             
+      },
+      error=>{
+        console.log(error)
+      }
+    );
+  }
+
+  //si fuera necesaria
+  /*listValidUnvalidDetails(reserve_id){
+    this._myReserves.listUserUnValidReservesDetails(reserve_id).subscribe(
+      data=>{
+        let detail:any = [];      
+        detail = data;
+        if(detail.length > 0){ ;
+          for(let item of detail){            
+            this.unvalidDetail.push(item);
+          } 
+        }              
+      },
+      error=>{
+        console.log(error)
+      }
+    );
+  } */ 
  
 }
