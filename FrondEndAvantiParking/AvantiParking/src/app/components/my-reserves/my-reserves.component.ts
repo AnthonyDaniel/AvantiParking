@@ -58,7 +58,6 @@ export class MyReservesComponent implements OnInit {
 
   loadUser(data) { //metodo para cargar la informacion del usuari
     this.formUser.id = data.id;  
-    console.log(this.formUser.id)  
   }
 
   getData() { // metodo para listar todos las listas con datos
@@ -119,9 +118,7 @@ export class MyReservesComponent implements OnInit {
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
       data=>{        
         this.reserves = data;
-        console.log(this.reserves);
         for(let reserve of this.reserves){
-          console.log(reserve);
           this.listValidDetails(reserve.id_reservation);
         }
       },
@@ -134,7 +131,8 @@ export class MyReservesComponent implements OnInit {
 
   listValidDetails(reserve_id){
     this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(
-      data=>{ 
+      data=>{
+        this.validDetail = [];
         let detail:any = [];      
         detail = data;
         if(detail.length > 0){          
@@ -166,5 +164,16 @@ export class MyReservesComponent implements OnInit {
       }
     );
   } */ 
- 
+
+  cancelReserve(reserve_detail){
+    this._myReserves.cancelReserve(reserve_detail).subscribe(
+      data=>{
+        this.ngOnInit();
+        console.log(data);
+      },
+      error=>{
+        console.log(error);
+      }
+    );
+  }
 }

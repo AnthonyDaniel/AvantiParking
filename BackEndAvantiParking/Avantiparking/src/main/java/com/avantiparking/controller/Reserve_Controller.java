@@ -3,12 +3,14 @@ package com.avantiparking.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.avantiparking.exception.ResourceNotFoundException;
 import com.avantiparking.model.Reserve;
 import com.avantiparking.model.Reserve_detail;
 import com.avantiparking.model.Space;
+import com.avantiparking.model.Vehicle;
 import com.avantiparking.repository.Reserve_Repository;
 import com.avantiparking.repository.Reserve_detail_Repository;
 import com.avantiparking.repository.Space_Repository;
@@ -54,13 +58,28 @@ public class Reserve_Controller {
 	
 	@GetMapping("/reserves/valid/{reserve}")
 	public ResponseEntity<List<Reserve_detail>> getAllValidReservationsForUser(@PathVariable(value = "reserve")Long reserve_id) {
-		System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
 		return ResponseEntity.ok().body(reserve_detail_Repository.findAllValidByReserve(reserve_id));
 	}
 	
 	@GetMapping("/reserves/unvalid/{reserve}")
 	public ResponseEntity<List<Reserve_detail>> getAllUnValidReservationsForUser(@PathVariable(value = "reserve")Long reserve_id) {
 		return ResponseEntity.ok().body(reserve_detail_Repository.findAllUnValidByReserve(reserve_id));
+	}
+	
+	@DeleteMapping("/reserves/{id}")
+	public Map<String, Boolean> deleteVehicle(@PathVariable(value = "id") Long detail_id)
+			throws ResourceNotFoundException {
+		Reserve_detail detail = reserve_detail_Repository.findById(detail_id)
+				.orElseThrow(() -> new ResourceNotFoundException("Reserve detail not found for this id : " + detail_id));
+		Long reserve_id = detail.getReserve().getId_reservation();
+		reserve_detail_Repository.delete(detail);
+		List<Reserve_detail> list = reserve_detail_Repository.findAllByReserve(reserve_id);
+		if(list.size() == 0) {
+			reserve_Repository.deleteById(reserve_id);
+		}
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
 	}
     
 	/*@GetMapping("/reserves/completed/user/{user}")

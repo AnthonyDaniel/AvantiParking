@@ -76,10 +76,10 @@ public class Vehicle_Controller {
 	@DeleteMapping("/vehicle/{plate}")
 	public Map<String, Boolean> deleteVehicle(@PathVariable(value = "plate") String plate_vehicle)
 			throws ResourceNotFoundException {
-		Vehicle space = vehicle_repository.findVehicle(plate_vehicle)
+		Vehicle vehicle = vehicle_repository.findVehicle(plate_vehicle)
 				.orElseThrow(() -> new ResourceNotFoundException("Vehicle not found for this plate : " + plate_vehicle));
 
-		vehicle_repository.delete(space);
+		vehicle_repository.delete(vehicle);
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;

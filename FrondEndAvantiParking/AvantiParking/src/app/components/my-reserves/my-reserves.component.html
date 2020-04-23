@@ -24,7 +24,7 @@
                           <p class="card-text"><strong>TIME: </strong> {{detail.start_time}} - {{detail.end_time}} </p>
                           <p class="card-text"><strong>VEHICLE: </strong>{{detail.reserve.vehicle.license_plate}} </p>
                           <p class="card-text"><strong>CREATED: </strong>{{detail.reserve.created_at}} </p>  
-                          <button class="btn btn-delete btn-block btn-outline-danger" (click)="deleteReserve(detail.id_reserve_detail)">
+                          <button class="btn btn-delete btn-block btn-outline-danger" (click)="cancelReserve(detail.id_reserve_detail)">
                               <i class="fas fa-trash-alt"></i>
                             <strong>CANCEL</strong></button>
                         </div>

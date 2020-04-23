@@ -21,7 +21,7 @@ public class Reserve_detail {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id_reserve_detail ;
+	private Long id_reserve_detail ;
 	@Column(name = "date", nullable = false)
 	private Date date;	
 	@Column(name = "start_time", nullable = false)
@@ -43,10 +43,10 @@ public class Reserve_detail {
 		
 	}
 	
-	public int getId_reserve_detail() {
+	public Long getId_reserve_detail() {
 		return id_reserve_detail;
 	}
-	public void setId_reserve_detail(int id_reserve_detail) {
+	public void setId_reserve_detail(Long id_reserve_detail) {
 		this.id_reserve_detail = id_reserve_detail;
 	}
 	public Date getDate() {

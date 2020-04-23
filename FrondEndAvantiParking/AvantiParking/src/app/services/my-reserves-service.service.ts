@@ -26,5 +26,9 @@ export class MyReservesServiceService {
     return this.http.get(`${this.url}/api/reserves/unvalid/${reserve_id}`, {headers:this.httpHeaders})
   }
 
+  cancelReserve(detail_id){
+    return this.http.delete(`${this.url}/api/reserves/${detail_id}`, {headers:this.httpHeaders})
+  }
+
   
 }
