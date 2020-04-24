@@ -45,3 +45,8 @@
   .botonF1:active{
     transform:scale(1.1);
   }
+
+  .custom-select:disabled {
+    color: #000910 !important;
+    background-color: #ffffff !important;
+}

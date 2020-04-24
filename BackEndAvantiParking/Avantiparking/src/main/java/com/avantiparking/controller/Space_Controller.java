@@ -73,6 +73,7 @@ public class Space_Controller {
 		space.setName(_space.getName());
 		space.setState(_space.getState());
 		space.setType(_space.getType());
+		System.out.print(space.getUser());
 		space.setUser(_space.getUser());
 		space.setZone(_space.getZone());
 		final Space updatedSpace = space_repository.save(space);

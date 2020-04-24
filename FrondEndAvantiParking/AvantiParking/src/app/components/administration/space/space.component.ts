@@ -3,6 +3,7 @@ import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import * as $ from 'jquery';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-space',
@@ -13,7 +14,7 @@ import * as $ from 'jquery';
   providedIn: 'root'
 })
 export class SpaceComponent implements OnInit {
-  constructor(public space: ServiceSpaceService, public _zone: ServiceZoneService) { }
+  constructor(private user: UserService,public space: ServiceSpaceService, public _zone: ServiceZoneService) { }
   //modelo zona
   public formZone = {
     id_zone: null,
@@ -62,9 +63,17 @@ export class SpaceComponent implements OnInit {
   public spaces:any =[];
   public zones;
 
+  public users: any = [];
+  public filterUser = "";
+
   ngOnInit() {
+    this.user.getAll().subscribe(data => { this.users = data});
     this.listSpace();
     this.ListZone();
+  }
+
+  searchUser(){
+    
   }
 
   listSpace() {//mejor hacer el filtro en el backend ?
@@ -78,16 +87,6 @@ export class SpaceComponent implements OnInit {
         console.log(error);
       }
     );
-    /*this.spaces =[];
-    this.space.listSpace().subscribe(
-      data => {
-        this.ListSpaceInZone(data);
-      },
-      error => {
-        console.log(error);
-      }
-
-    );*/
   }
 
   ListSpaceInZone(spaces) {
@@ -118,6 +117,11 @@ export class SpaceComponent implements OnInit {
     } else if (this.addFormSpace.state == 'Occupied') {
       this.addFormSpace.state = 1;
     }
+
+    if(this.addFormSpace.user==""){
+      this.addFormSpace.user=null;
+     }
+
     this.space.addSpace(this.addFormSpace).subscribe(
       data => {
         this.nullSpace = data;
@@ -220,6 +224,9 @@ export class SpaceComponent implements OnInit {
      var o = JSON.parse(i);
      this.editFormSpace.zone.id_zone=o.id_zone;
     
+     if(this.editFormSpace.user==""){
+      this.editFormSpace.user=null;
+     }
     this.space.editSpace(this.editFormSpace.id_space, this.editFormSpace).subscribe(
       data => {
         $("#closeModal7").click();
@@ -248,6 +255,7 @@ export class SpaceComponent implements OnInit {
     }else{
       this.editFormSpace.state =  'Available';
     }
+   
     this.editFormSpace.id_space = _spaceAux.id_space;
     this.editFormSpace.name = _spaceAux.name;
     this.editFormSpace.type = _spaceAux.type;
