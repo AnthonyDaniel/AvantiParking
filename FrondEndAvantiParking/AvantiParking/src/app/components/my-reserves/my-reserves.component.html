@@ -13,8 +13,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr  *ngFor="let detail of validDetail">
-                    <td>
+                  <tr>
+                    <td *ngFor="let detail of validDetail">
                       <div class="card text-center " style="width: 18rem;">
                         <div class="card-header text-white rounded pb-5 text-center">
                             <h3 class="card-header-title pt-3"><strong>{{detail.date}} </strong></h3>
@@ -22,7 +22,8 @@
                         <div class="card-body" >
                           <p class="card-text"><strong>SPACE: </strong> {{detail.space.name}} </p>
                           <p class="card-text"><strong>TIME: </strong> {{detail.start_time}} - {{detail.end_time}} </p>
-                          <p class="card-text"><strong>VEHICLE: </strong>{{detail.reserve.vehicle.license_plate}} </p>
+                          <p *ngIf="detail.reserve.vehicle != null; else elseBlock" class="card-text"><strong>VEHICLE: </strong>{{detail.reserve.vehicle.license_plate}} </p>
+                          <ng-template #elseBlock><p class="card-text"><strong>VEHICLE: </strong>Not selected</p></ng-template>
                           <p class="card-text"><strong>CREATED: </strong>{{detail.reserve.created_at}} </p>  
                           <button class="btn btn-delete btn-block btn-outline-danger" (click)="cancelReserve(detail.id_reserve_detail)">
                               <i class="fas fa-trash-alt"></i>

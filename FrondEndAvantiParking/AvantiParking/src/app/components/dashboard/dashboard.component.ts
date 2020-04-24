@@ -12,6 +12,7 @@ import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe} from '@angular/common';
 import * as moment from 'moment';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-dashboard',
@@ -405,13 +406,21 @@ export class DashboardComponent implements OnInit {
       this.formAddDetail.date = this.calendarModel;
       this.formAddDetail.reserve_state = 0;
       this.formAddReserve.user.id = this.userInf.id;
-      this.formAddReserve.created_at = formattedDate;    
+      this.formAddReserve.created_at = formattedDate;
       console.log("Data of reserve",this.formAddReserve)
       console.log("Data of detail",this.formAddDetail)
       this._dashboard.createReserve(this.formAddReserve.created_at,this.formAddReserve.user.id,
         this.formAddReserve.vehicle.increment,this.formAddDetail).subscribe(
         data=>{
-          console.log(data);
+          $("#closeReserveModal").click();
+            Swal.fire({
+              type: 'success',
+              title: 'Your reservation has been saved!',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            this.ngOnInit();
+          console.log("response",data);
         },
         error=>{
           console.log(error);

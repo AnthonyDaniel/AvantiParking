@@ -87,23 +87,15 @@ public class Reserve_Controller {
 	@PostMapping("/reserves")
 	public Reserve_detail addReservation(@Valid @RequestBody Reserve_detail _detail) {
 		System.out.println("xddddddddddddddddddddddd");
-		/*Reserve reserve = new Reserve();
-		reserve.setCreated_at(created_at);
 		
-		User user = new User();
-		user.setId(user_id);
-		
-		reserve.setUser(user);
-		
-		Vehicle vehicle = new Vehicle();
-		vehicle.setIncrement(vehicle_id);
-		
-		reserve.setVehicle(vehicle);
+		Reserve reserve = _detail.getReserve();
+		if(_detail.getReserve().getVehicle().getIncrement() == null) {
+			reserve.setVehicle(null);
+		}
 		reserve = reserve_Repository.save(reserve);
 		
 		_detail.setReserve(reserve);
-		return reserve_detail_Repository.save(_detail);*/
-		return new Reserve_detail();
+		return reserve_detail_Repository.save(_detail);
 	}
     
 	/*@GetMapping("/reserves/completed/user/{user}")

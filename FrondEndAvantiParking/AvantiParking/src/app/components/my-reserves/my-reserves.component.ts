@@ -117,12 +117,14 @@ export class MyReservesComponent implements OnInit {
   listarReservas(){
     var us = this.formUser.id;//?
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
-      data=>{        
+      data=>{   
+        this.validDetail = [];  
         this.reserves = data;
         for(let reserve of this.reserves){
-          this.listValidDetails(reserve.id_reservation);
-          console.log(this.listValidDetails(reserve.id_reservation))
+          this.listValidDetails(reserve.id_reservation);          
         }
+        console.log("reserves:",this.reserves);
+        console.log("details: ",this.validDetail);
       },
       error=>{
         console.log(error)
@@ -134,14 +136,13 @@ export class MyReservesComponent implements OnInit {
   listValidDetails(reserve_id){
     this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(
       data=>{
-        this.validDetail = [];
         let detail:any = [];      
         detail = data;
         if(detail.length > 0){          
           for(let item of detail){            
             this.validDetail.push(item);
           } 
-        }             
+        }                     
       },
       error=>{
         console.log(error)
