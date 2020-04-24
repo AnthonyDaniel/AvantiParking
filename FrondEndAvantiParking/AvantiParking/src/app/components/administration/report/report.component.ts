@@ -8,6 +8,7 @@ import { MyReservesServiceService } from 'src/app/services/my-reserves-service.s
 import { ReportsService } from 'src/app/services/reports.service';
 import Swal from 'sweetalert2';
 import * as $ from 'jquery';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-report',
@@ -25,6 +26,9 @@ export class ReportComponent implements OnInit {
 
   private activeUser = [];
   private reportComplete = [];
+
+  private d1:string;
+  private d2:string;
 
   private minDate = undefined;
   private maxDate = undefined;
@@ -124,6 +128,8 @@ export class ReportComponent implements OnInit {
     if (this.initDate != null && this.finalDate != null) {
       let d1 = this.initDate.year + "-" + this.initDate.month + "-" + this.initDate.day;
       let d2 = this.finalDate.year + "-" + this.finalDate.month + "-" + this.finalDate.day;
+      this.d1=d1;
+      this.d2=d2;
       this.report.generateReport(d1, d2).subscribe(
         data => {
           this.loadReport(data);
@@ -159,7 +165,7 @@ export class ReportComponent implements OnInit {
       });
       console.log(data);
       console.log(this.activeUser);
-    
+
       if (this.reportComplete.length == 0) {
         Swal.fire({
           type: 'error',
@@ -171,6 +177,24 @@ export class ReportComponent implements OnInit {
     }
   }
   download() {
+    let reportExcel = []
+    this.reportComplete.forEach(element=>{
+      if(element.reserve.vehice!=null){
+        reportExcel.push({"REPORT START DATE":this.d1,"REPORT END DATE":this.d2,"ID":element.reserve.user.id,"NAME":element.reserve.user.name,"EMAIL":element.reserve.user.email,
+        "DATE":element.date,"START TIME": element.start_time,"END TIME":element.end_time,"DATE EXTEND":element.end_date_extend,
+        "VEHICLE":element.reserve.vehice.license_plate,"HEADQUARTER":element.space.zone.parking_lot.headquarter.name,
+        "PARKING_LOT":element.space.zone.parking_lot.name,"ZONE":element.space.zone.name,"SPACE":element.space.name});  
+      }else{
+        reportExcel.push({"REPORT START DATE":this.d1,"REPORT END DATE":this.d2,"ID":element.reserve.user.id,"NAME":element.reserve.user.name,"EMAIL":element.reserve.user.email,
+        "DATE":element.date,"START TIME": element.start_time,"END TIME":element.end_time,"DATE EXTEND":element.end_date_extend,
+        "VEHICLE":"NONE","HEADQUARTER":element.space.zone.parking_lot.headquarter.name,
+        "PARKING_LOT":element.space.zone.parking_lot.name,"ZONE":element.space.zone.name,"SPACE":element.space.name});  
+      }
+ 
+    });
 
+    console.log(reportExcel);
+
+    this.report.exportExcel(reportExcel, 'REPORT');
   }
 }
