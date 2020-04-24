@@ -169,14 +169,39 @@ export class MyReservesComponent implements OnInit {
   } */ 
 
   cancelReserve(reserve_detail){
-    this._myReserves.cancelReserve(reserve_detail).subscribe(
-      data=>{
-        this.ngOnInit();
-        console.log(data);
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        cancelButton: 'btn btn-secondary'
       },
-      error=>{
-        console.log(error);
+      buttonsStyling: false
+    })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "No podrás revertir esto. ¡Tu reserva será cancelada!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#EF4023',
+      confirmButtonText: 'Yes, delete it!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this._myReserves.cancelReserve(reserve_detail).subscribe(
+          data=>{
+            this.ngOnInit();
+            Swal.fire(
+              'Deleted!',
+              'Your reservation has been successfully canceled',
+              'success'
+            )
+           
+          },
+          error=>{
+            console.log(error);
+          }
+        );
       }
-    );
+    })
+
+    
   }
 }
