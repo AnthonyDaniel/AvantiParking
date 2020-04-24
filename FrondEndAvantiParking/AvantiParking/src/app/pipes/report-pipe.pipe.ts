@@ -8,7 +8,6 @@ export class ReportPipePipe implements PipeTransform {
     if (arg === '' || arg.length < 1) return value;
     const report = [];
     for (const u of value) {
-      console.log(u);
       if (u.end_date_extend == null) {
         u.end_date_extend = "";
       }
