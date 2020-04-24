@@ -121,7 +121,7 @@
     and those that are no longer active, with the respective username.
     <br>
     In addition, we will give you the possibility to search for an element that
-     you want to find in the result of the report, with the possibility of downloading it in an Excel sheet.
+    you want to find in the result of the report, with the possibility of downloading it in an Excel sheet.
   </p>
   <br>
   <div class="row  justify-content-center">
@@ -162,7 +162,10 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" *ngIf="reportComplete.length>0">
+  <div class="text-center">
+    <h1><STRONG>REPORT</STRONG> </h1>
+  </div>
   <div class="row">
     <div class="col-sm-4 col-md-6 mt-3">
       <input type="text" class="form-control" name="filterReport" placeholder="Search..." maxlength="40"
@@ -176,19 +179,58 @@
       </div>
     </div>
   </div>
+  <div class="table-responsive justify-content-center">
+    <table class="table table-bordered table-hover">
+      <thead class="tableThead thead">
+        <tr>
+          <th class="text-center" COLSPAN="3" scope="col"><strong>ACTIVE USERS</strong></th>
+        </tr>
+        <tr>
+          <th scope="col"><strong>ID</strong></th>
+          <th scope="col"><strong>NAME</strong></th>
+          <th scope="col"><strong>EMAIL</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let i of activeUser">
+          <td>{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="table-responsive">
     <table class="table table-bordered table-hover">
       <thead class="tableThead thead">
         <tr>
-          <th scope="col"><strong>NONE</strong></th>
-          <th scope="col"><strong>NONE</strong></th>
-          <th scope="col"><strong>NONE</strong></th>
-          <th scope="col"><strong>NONE</strong></th>
+          <th class="text-center" COLSPAN="10" scope="col"><strong>RESERVES</strong></th>
+        </tr>
+        <tr>
+          <th scope="col"><strong>USER ID</strong></th>
+          <th scope="col"><strong>DATE</strong></th>
+          <th scope="col"><strong>START TIME</strong></th>
+          <th scope="col"><strong>END TIME</strong></th>
+          <th scope="col"><strong>EXTEND DATE</strong></th>
+          <th scope="col"><strong>VEHICLE</strong></th>
+          <th scope="col"><strong>HEADQUARTER</strong></th>
+          <th scope="col"><strong>PARKING LOT</strong></th>
+          <th scope="col"><strong>ZONE</strong></th>
+          <th scope="col"><strong>SPACE</strong></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-
+        <tr *ngFor="let i of reportComplete">
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
+          <td>{{i.reserve.user.id}}</td>
         </tr>
       </tbody>
     </table>

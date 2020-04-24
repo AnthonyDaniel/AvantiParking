@@ -23,6 +23,9 @@ export class ReportComponent implements OnInit {
   private countUsers = 0;
   private countReservations = 0;
 
+  private activeUser = [];
+  private reportComplete = [];
+
   private minDate = undefined;
   private maxDate = undefined;
 
@@ -123,7 +126,7 @@ export class ReportComponent implements OnInit {
       let d2 = this.finalDate.year + "-" + this.finalDate.month + "-" + this.finalDate.day;
       this.report.generateReport(d1, d2).subscribe(
         data => {
-          console.log(data);
+          this.loadReport(data);
         },
         error => {
           Swal.fire({
@@ -141,6 +144,30 @@ export class ReportComponent implements OnInit {
         showConfirmButton: true,
         timer: 15000
       })
+    }
+  }
+  loadReport(data) {
+    let myObj = [];
+    if (data != null) {
+      this.reportComplete = data;
+
+      this.reportComplete.forEach(element => {
+        if (!(element.reserve.user in myObj)) {
+          myObj[element.reserve.user] = true
+          this.activeUser.push(element.reserve.user)
+        }
+      });
+      console.log(data);
+      console.log(this.activeUser);
+    
+      if (this.reportComplete.length == 0) {
+        Swal.fire({
+          type: 'error',
+          title: 'No data to report',
+          showConfirmButton: true,
+          timer: 15000
+        })
+      }
     }
   }
   download() {
