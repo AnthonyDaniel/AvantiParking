@@ -26,7 +26,7 @@ export class MyReservesComponent implements OnInit {
   public formUser = {
     id: null
   };
-  public userModel = { //copia de un modelo de headquarters
+  public userModel = { 
     id: null,
     name: null,
     vehicule: this.vehicleModel,
@@ -56,8 +56,9 @@ export class MyReservesComponent implements OnInit {
     this.getData();    
   }
 
-  loadUser(data) { //metodo para cargar la informacion del usuari
-    this.formUser.id = data.id;  
+  loadUser(data) { //metodo para cargar la informacion del usuario
+    this.formUser.id = data.id; 
+    console.log(this.formUser.id) 
   }
 
   getData() { // metodo para listar todos las listas con datos
@@ -120,6 +121,7 @@ export class MyReservesComponent implements OnInit {
         this.reserves = data;
         for(let reserve of this.reserves){
           this.listValidDetails(reserve.id_reservation);
+          console.log(this.listValidDetails(reserve.id_reservation))
         }
       },
       error=>{
