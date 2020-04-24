@@ -8,8 +8,8 @@ import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
-import {NgbModule, NgbDatepickerConfig} from '@ng-bootstrap/ng-bootstrap';
-import { DatePipe} from '@angular/common';
+import { NgbModule, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import * as $ from 'jquery';
@@ -19,7 +19,7 @@ import * as $ from 'jquery';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
   providers: [DatePipe],//necesario para conversion de date a string
-  
+
 })
 
 export class DashboardComponent implements OnInit {
@@ -28,29 +28,29 @@ export class DashboardComponent implements OnInit {
   public zones
   private img;
   public headquarters;
-  public spaces:any;
+  public spaces: any;
   private u: any;
-  private current:any;
+  private current: any;
   public vehicles;
   public dashboards: any = [];
-    
 
-  public formAddReserve= {
+
+  public formAddReserve = {
     id_reservation: null,
     created_at: null,
-    user:{id: null},
-    vehicle: {increment:null}
+    user: { id: null },
+    vehicle: { increment: null }
   }
 
   public formAddDetail = {
     id_reserve_detail: null,
     date: null,
-    start_time:null,
-    end_time:null,
-    reserve_state:null,
-    end_date_extend:null,
-    space:null,
-    reserve:this.formAddReserve
+    start_time: null,
+    end_time: null,
+    reserve_state: null,
+    end_date_extend: null,
+    space: null,
+    reserve: this.formAddReserve
   }
 
   public userInf = {
@@ -64,10 +64,10 @@ export class DashboardComponent implements OnInit {
     parking: null,
     zone: null
   }
-  public dashboardForm={
+  public dashboardForm = {
     reserveDate: null
   }
-  public spaceModel = { 
+  public spaceModel = {
     id_space: null,
     name: null,
     type: null,
@@ -98,16 +98,16 @@ export class DashboardComponent implements OnInit {
   }
   public calendarModel;
 
-  public spacesContainer:any=[];
+  public spacesContainer: any = [];
 
-  public spaceRange:any=[];
-  public selectableRange:any=[];
+  public spaceRange: any = [];
+  public selectableRange: any = [];
   public start_time;
   public end_time
 
-  public displayRangeModel ={
-    begin:null,
-    options:[]
+  public displayRangeModel = {
+    begin: null,
+    options: []
   }
 
   public error: String;
@@ -117,20 +117,20 @@ export class DashboardComponent implements OnInit {
   maxDate = undefined;
 
   constructor(public user: UserService, private router: Router, private auth: AuthService,
-    public _parking: ServiceParkingLotService,public _headquarter: ServiceHeadquarterService,
+    public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
-    public datepipe: DatePipe, public _dashboard: DashboardServiceService,public space: ServiceSpaceService
-    ) { 
+    public datepipe: DatePipe, public _dashboard: DashboardServiceService, public space: ServiceSpaceService
+  ) {
 
-      const now = new Date();
-      const since = moment().add(30,'d').toDate();
-    
-      config.minDate={year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
-      
-      config.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate()}
-      
-    }
-    
+    const now = new Date();
+    const since = moment().add(30, 'd').toDate();
+
+    config.minDate = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
+
+    config.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
+
+  }
+
 
   ngOnInit() {
     this.user.loadImg().subscribe(data => {
@@ -139,20 +139,20 @@ export class DashboardComponent implements OnInit {
     });
     this.ListHeadquarters();
     this.ListParkings();
-    this.ListZones();    
+    this.ListZones();
   }
 
-  listSpaces(){
- 
+  listSpaces() {
+
     this.space.listSpaces(this.zoneModel.id_zone).subscribe(
-      data=>{
-        this.spaces = data; 
+      data => {
+        this.spaces = data;
       },
-      error=>{
+      error => {
         console.log(error);
       }
     );
-    
+
     /*this.space.listSpaces(this.zoneModel.id_zone).subscribe(
       data=>{
      
@@ -190,7 +190,7 @@ export class DashboardComponent implements OnInit {
     )
   }
 
-  ListHeadquarters(){
+  ListHeadquarters() {
     this._headquarter.listHeadquarter().subscribe(
       data => {
         this.headquarters = data;
@@ -233,8 +233,8 @@ export class DashboardComponent implements OnInit {
   headquarterUser(data) {
     this.userInf.headquarter = data.name;
   }
-  dataSpace(space){
-    this.end_time= null;
+  dataSpace(space) {
+    this.end_time = null;
     this.start_time = null;
     this.spaceRange = [];
     this.spaceModel.id_space = space.id_space;
@@ -243,28 +243,28 @@ export class DashboardComponent implements OnInit {
     this.spaceModel.user = space.user;
     this.spaceModel.state = space.state;
     this.spaceModel.zone = space.zone;
-    for(let range of space.range){
-      for(var i = range[0][0]; i < range[0][1];i++){
-        let displayRange ={
-          begin:null,
-          options:[]
+    for (let range of space.range) {
+      for (var i = range[0][0]; i < range[0][1]; i++) {
+        let displayRange = {
+          begin: null,
+          options: []
         }
         displayRange.begin = i;
-        for(var j = i+1; j <= range[0][1];j++){      
+        for (var j = i + 1; j <= range[0][1]; j++) {
           displayRange.options.push(j);
-        }   
-        this.spaceRange.push(displayRange);   
-      }      
+        }
+        this.spaceRange.push(displayRange);
+      }
     }
-    this.formAddDetail.space = this.spaceModel;   
+    this.formAddDetail.space = this.spaceModel;
   }
-  setStartTime(spaceRange){
-    this.formAddDetail.start_time = spaceRange.begin+":00:00"; 
+  setStartTime(spaceRange) {
+    this.formAddDetail.start_time = spaceRange.begin + ":00:00";
     this.selectableRange = spaceRange.options;
     console.log(this.selectableRange);
   }
-  setEndTime(endTime){
-    this.formAddDetail.end_time= endTime+":00:00";
+  setEndTime(endTime) {
+    this.formAddDetail.end_time = endTime + ":00:00";
     console.log(this.formAddDetail);
   }
   responseSuccess(data) {
@@ -276,79 +276,81 @@ export class DashboardComponent implements OnInit {
     this.status = "error";
   }
 
-  dataReserve(object,value) { // object es igual a todo el modelo de datos para parqueo/zona/sede y value es el valaor del combo box
-    if(object == this.hqModel){
-    }else if(object == this.parkingLotModel){
-    }else if(object == this.zoneModel){
+  dataReserve(object, value) { // object es igual a todo el modelo de datos para parqueo/zona/sede y value es el valaor del combo box
+    if (object == this.hqModel) {
+    } else if (object == this.parkingLotModel) {
+    } else if (object == this.zoneModel) {
     }
 
   }
-  
-  dataCalendar(){ //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
+
+  dataCalendar() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate);
-    console.log(this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day);
-    var monthWithoutCero: string= this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
-    var monthWithCero: string  = '0'+this.dashboardForm.reserveDate.month // mes con el 0(mes: 04,05,06)
-    if (monthWithoutCero[0] != monthWithCero[1]  && this.dashboardForm.reserveDate.month <10) {
-      this.dashboardForm.reserveDate.month = '0'+this.dashboardForm.reserveDate.month;
+    if (this.dashboardForm.reserveDate != null) {
+      var monthWithoutCero: string = this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
+      var monthWithCero: string = '0' + this.dashboardForm.reserveDate.month // mes con el 0(mes: 04,05,06)
+      if (monthWithoutCero[0] != monthWithCero[1] && this.dashboardForm.reserveDate.month < 10) {
+        this.dashboardForm.reserveDate.month = '0' + this.dashboardForm.reserveDate.month;
+      }
+      this.calendarModel = this.dashboardForm.reserveDate.year + '-' + this.dashboardForm.reserveDate.month + '-' + this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
     }
-    this.calendarModel = this.dashboardForm.reserveDate.year +'-'+this.dashboardForm.reserveDate.month +'-' +this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
-   
+
+
 
   }
 
-  loadAvailableTimes(){
+  loadAvailableTimes() {
     let zone = this.zoneModel.id_zone;
-    if (zone !=null && this.calendarModel != null  ) {
-      this._dashboard.listTimes(zone,this.calendarModel).subscribe(
-        data =>{
+    if (zone != null && this.calendarModel != null) {
+      this._dashboard.listTimes(zone, this.calendarModel).subscribe(
+        data => {
           this.spacesContainer = [];
           let keysArray = Object.keys(data);
-          for(let space of keysArray){  
-            let tempSpace = this.spaces.find(element => element.id_space == space);    
-            let contenedor:any =[];
+          for (let space of keysArray) {
+            let tempSpace = this.spaces.find(element => element.id_space == space);
+            let contenedor: any = [];
             let espacio = {
               id_space: null,
               name: tempSpace.name,
-              state:tempSpace.state,
-              type:tempSpace.type,
-              user:tempSpace.user,
+              state: tempSpace.state,
+              type: tempSpace.type,
+              user: tempSpace.user,
               zone: tempSpace.zone,
               range: null,
             }
             espacio.id_space = space;
-            let ranges = data[space]        
-            for(let range of ranges){ 
-              let  rangeS = {
-                begin:null,
-                end:null
-              };      
-              rangeS.begin =  range[0][0];
-              rangeS.end =  range[0][1];
+            let ranges = data[space]
+            for (let range of ranges) {
+              let rangeS = {
+                begin: null,
+                end: null
+              };
+              rangeS.begin = range[0][0];
+              rangeS.end = range[0][1];
               contenedor.push(range);
             }
-            espacio.range = contenedor;  
-            this.spacesContainer.push(espacio);  
-          }  
+            espacio.range = contenedor;
+            this.spacesContainer.push(espacio);
+          }
           /*for(let cc of this.spacesContainer){
             console.log(cc)
             //console.log(this.spaceModel.id_space)
-          }  */   
+          }  */
         },
-        error=>{
+        error => {
           console.log(error);
-        });  
-    }else{
+        });
+    } else {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
         text: 'No reservation will be shown until you filter the fields to show',
         confirmButtonColor: '#EF4023'
       })
-    }  
+    }
 
   }
-  
+
 
   /*loadAvailableTimesV2(){
     let zone = this.zoneModel.id_zone;
@@ -386,37 +388,37 @@ export class DashboardComponent implements OnInit {
   }*/
 
 
-  addReserve(){
-    if(this.formAddDetail.start_time == null || this.formAddDetail.end_time ==null){
+  addReserve() {
+    if (this.formAddDetail.start_time == null || this.formAddDetail.end_time == null) {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
         text: 'Start time and end time are required!',
         confirmButtonColor: '#EF4023'
       })
-    }else{
+    } else {
       let date = new Date();
-      console.log("aqui",date.getMonth())
+      console.log("aqui", date.getMonth())
       let month;
-      month = date.getMonth()+1;//agarra un mes menos? 
+      month = date.getMonth() + 1;//agarra un mes menos? 
       let formattedDate;
-      if(month< 10){
-        
-        formattedDate = date.getFullYear()+"-0"+month+"-"+ date.getDate();
-      }else{
-        formattedDate = date.getFullYear()+"-"+month+"-"+ date.getDate();
+      if (month < 10) {
+
+        formattedDate = date.getFullYear() + "-0" + month + "-" + date.getDate();
+      } else {
+        formattedDate = date.getFullYear() + "-" + month + "-" + date.getDate();
       }
       console.log(date, formattedDate);
       this.formAddDetail.date = this.calendarModel;
       this.formAddDetail.reserve_state = 0;
       this.formAddReserve.user.id = this.userInf.id;
       this.formAddReserve.created_at = formattedDate;
-      console.log("Data of reserve",this.formAddReserve)
-      console.log("Data of detail",this.formAddDetail)
-      this._dashboard.createReserve(this.formAddReserve.created_at,this.formAddReserve.user.id,
-        this.formAddReserve.vehicle.increment,this.formAddDetail).subscribe(
-        data=>{
-          $("#closeReserveModal").click();
+      console.log("Data of reserve", this.formAddReserve)
+      console.log("Data of detail", this.formAddDetail)
+      this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
+        this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
+          data => {
+            $("#closeReserveModal").click();
             Swal.fire({
               type: 'success',
               title: 'Your reservation has been saved!',
@@ -425,13 +427,13 @@ export class DashboardComponent implements OnInit {
             })
             this.ngOnInit();
             this.loadAvailableTimes();
-          console.log("response",data);
-        },
-        error=>{
-          console.log(error);
-        }
-      );
-      }    
+            console.log("response", data);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+    }
     /*if ( this.dashboardForm.reserveDate.year+"-"+this.dashboardForm.reserveDate.month+"-"+this.dashboardForm.reserveDate.day != null &&
     this.formAddDetail.startTime != null && this.formAddDetail.endTime != null &&
     this.formAddDetail.space != null && this.userInf.id != null && this.formAddDetail.vehicle !=  null
@@ -476,6 +478,6 @@ export class DashboardComponent implements OnInit {
     }*/
   }
 
-  
+
 
 }
