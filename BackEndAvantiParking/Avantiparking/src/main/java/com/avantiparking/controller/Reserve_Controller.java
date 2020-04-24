@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -86,15 +87,23 @@ public class Reserve_Controller {
 	
 	@PostMapping("/reserves")
 	public Reserve_detail addReservation(@Valid @RequestBody Reserve_detail _detail) {
-		System.out.println("xddddddddddddddddddddddd");
-		
-		Reserve reserve = _detail.getReserve();
+		Optional<Reserve> exists;
 		if(_detail.getReserve().getVehicle().getIncrement() == null) {
-			reserve.setVehicle(null);
+			exists = reserve_Repository.findReservationNullVehicle(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at());
+		}else {
+			exists = reserve_Repository.findReservation(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at(), 
+					_detail.getReserve().getVehicle().getIncrement());
 		}
-		reserve = reserve_Repository.save(reserve);
-		
-		_detail.setReserve(reserve);
+		if(!exists.isPresent()) {
+			Reserve reserve = _detail.getReserve();
+			if(_detail.getReserve().getVehicle().getIncrement() == null) {
+				reserve.setVehicle(null);
+			}
+			reserve = reserve_Repository.save(reserve);
+			_detail.setReserve(reserve);
+		}else {
+			_detail.setReserve(exists.get());
+		}
 		return reserve_detail_Repository.save(_detail);
 	}
     

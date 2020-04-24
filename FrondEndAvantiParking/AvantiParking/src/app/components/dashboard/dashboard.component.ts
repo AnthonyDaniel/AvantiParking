@@ -396,13 +396,17 @@ export class DashboardComponent implements OnInit {
       })
     }else{
       let date = new Date();
+      console.log("aqui",date.getMonth())
+      let month;
+      month = date.getMonth()+1;//agarra un mes menos? 
       let formattedDate;
-      if(date.getMonth()< 10){
-        formattedDate = date.getFullYear()+"-0"+date.getMonth()+"-"+date.getDate() ;
+      if(month< 10){
+        
+        formattedDate = date.getFullYear()+"-0"+month+"-"+ date.getDate();
       }else{
-        formattedDate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate() ;
+        formattedDate = date.getFullYear()+"-"+month+"-"+ date.getDate();
       }
-      console.log("created at:",date.getDate());
+      console.log(date, formattedDate);
       this.formAddDetail.date = this.calendarModel;
       this.formAddDetail.reserve_state = 0;
       this.formAddReserve.user.id = this.userInf.id;
