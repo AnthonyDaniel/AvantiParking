@@ -424,6 +424,7 @@ export class DashboardComponent implements OnInit {
               timer: 1500
             })
             this.ngOnInit();
+            this.loadAvailableTimes();
           console.log("response",data);
         },
         error=>{
