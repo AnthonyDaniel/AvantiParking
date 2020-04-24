@@ -70,7 +70,7 @@ public class Reserve_Controller {
 	}
 	
 	@DeleteMapping("/reserves/{id}")
-	public Map<String, Boolean> deleteVehicle(@PathVariable(value = "id") Long detail_id)
+	public Map<String, Boolean> deleteDetail(@PathVariable(value = "id") Long detail_id)
 			throws ResourceNotFoundException {
 		Reserve_detail detail = reserve_detail_Repository.findById(detail_id)
 				.orElseThrow(() -> new ResourceNotFoundException("Reserve detail not found for this id : " + detail_id));

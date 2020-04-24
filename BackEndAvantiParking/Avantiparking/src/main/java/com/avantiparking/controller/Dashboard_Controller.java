@@ -54,45 +54,47 @@ public class Dashboard_Controller {
 		if(spaces.size() > 0 ) {
 			container = new HashMap<>();
 			boolean flag = false;
-			for(int i = 0; i < spaces.size(); i++) {				
-				int available = 0;
-				List<Reserve_detail> details = reserve_detail_repository.findByDateAndSpace(date, spaces.get(i).getId_space());
-				ArrayList<Integer[][]> rangeContainer = new ArrayList<>();
-				Integer range[][];
-				if(details.size() == 0){
-					range = new Integer[1][2];
-					range[0][0]=6;
-					range[0][1]=20;
-					rangeContainer.add(range);
-					container.put(spaces.get(i).getId_space(),rangeContainer);
-				}else if(details.size() > 0) {
-					for(int j = 0; j <details.size();j++) {
+			for(int i = 0; i < spaces.size(); i++) {	
+				if(spaces.get(i).getUser() == null) {
+					int available = 0;
+					List<Reserve_detail> details = reserve_detail_repository.findByDateAndSpace(date, spaces.get(i).getId_space());
+					ArrayList<Integer[][]> rangeContainer = new ArrayList<>();
+					Integer range[][];
+					if(details.size() == 0){
 						range = new Integer[1][2];
-						if(j == 0) {
-							available = getBase("06:00:00", "20:00:00", details.get(j).getStart_time());
-						}else {
-							available = getBase(details.get(j-1).getEnd_time(), "20:00:00", details.get(j).getStart_time());
-						}
-						if(available != 0) {
-							flag = true;
-							range[0][0]=available;
-							range[0][1]=timeToInt(details.get(j).getStart_time());
-							rangeContainer.add(range);
-							if(j == details.size()-1) {
-								if(timeToInt(details.get(j).getEnd_time()) < 20) {
-									range = new Integer[1][2];
-									range[0][0] = timeToInt(details.get(j).getEnd_time());								
-									range[0][1] = 20;
-									rangeContainer.add(range);
-								}							
+						range[0][0]=6;
+						range[0][1]=20;
+						rangeContainer.add(range);
+						container.put(spaces.get(i).getId_space(),rangeContainer);
+					}else if(details.size() > 0) {
+						for(int j = 0; j <details.size();j++) {
+							range = new Integer[1][2];
+							if(j == 0) {
+								available = getBase("06:00:00", "20:00:00", details.get(j).getStart_time());
+							}else {
+								available = getBase(details.get(j-1).getEnd_time(), "20:00:00", details.get(j).getStart_time());
+							}
+							if(available != 0) {
+								flag = true;
+								range[0][0]=available;
+								range[0][1]=timeToInt(details.get(j).getStart_time());
+								rangeContainer.add(range);
+								if(j == details.size()-1) {
+									if(timeToInt(details.get(j).getEnd_time()) < 20) {
+										range = new Integer[1][2];
+										range[0][0] = timeToInt(details.get(j).getEnd_time());								
+										range[0][1] = 20;
+										rangeContainer.add(range);
+									}							
+								}
 							}
 						}
+						if(flag) {
+							container.put(spaces.get(i).getId_space(),rangeContainer);
+							flag = false;
+						}
 					}
-					if(flag) {
-						container.put(spaces.get(i).getId_space(),rangeContainer);
-						flag = false;
-					}
-				}
+				}			
 			}			
 		}
 		return ResponseEntity.ok().body(container);
