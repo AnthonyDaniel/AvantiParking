@@ -193,9 +193,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let i of activeUser">
-          <td>{{i.id}}</td>
-          <td>{{i.name}}</td>
-          <td>{{i.email}}</td>
+          <td class="text-center">{{i.id}}</td>
+          <td class="text-center">{{i.name}}</td>
+          <td class="text-center">{{i.email}}</td>
         </tr>
       </tbody>
     </table>
@@ -220,17 +220,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let i of reportComplete">
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
-          <td>{{i.reserve.user.id}}</td>
+        <tr *ngFor="let i of reportComplete  | ReportPipe:filter">
+          <td class="text-center">{{i.reserve.user.id}}</td>
+          <td class="text-center">{{i.date}}</td>
+          <td class="text-center">{{i.start_time}}</td>
+          <td class="text-center">{{i.end_time}}</td>
+          <td class="text-center">{{i.end_date_extend}}</td>
+          <td class="text-center" *ngIf="i.reserve.vehicle!=null">{{i.reserve.vehicle.license_plate}}</td>
+          <td class="text-center" *ngIf="i.reserve.vehicle==null"></td>
+          <td class="text-center">{{i.space.zone.parking_lot.headquarter.name}}</td>
+          <td class="text-center">{{i.space.zone.parking_lot.name}}</td>
+          <td class="text-center">{{i.space.zone.name}}</td>
+          <td class="text-center">{{i.space.name}}</td>
         </tr>
       </tbody>
     </table>

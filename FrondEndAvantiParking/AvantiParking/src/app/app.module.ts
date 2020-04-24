@@ -22,6 +22,7 @@ import { AdminPanelComponent } from './components/administration/admin-panel/adm
 import { ZonePipePipe } from './pipes/zone-pipe.pipe';
 import { SpacePipePipe } from './pipes/space-pipe.pipe';
 import { UserPipePipe } from './pipes/user-pipe.pipe';
+import { ReportPipePipe } from './pipes/report-pipe.pipe';
 import { Oauth2Component } from './components/oauth2/oauth2/oauth2.component';
 import { LoginComponent } from './components/login/login.component';
 import { UsersComponent } from './components/administration/users/users.component';
@@ -49,6 +50,7 @@ import { MyReservesComponent } from './components/my-reserves/my-reserves.compon
     AdminPanelComponent,
     ZonePipePipe,
     SpacePipePipe,
+    ReportPipePipe,
     Oauth2Component,
     LoginComponent,
     UsersComponent,
