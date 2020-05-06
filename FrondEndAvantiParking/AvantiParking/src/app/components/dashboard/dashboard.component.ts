@@ -8,9 +8,10 @@ import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
-import { NgbModule, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
+import 'moment-recur-ts';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import * as $ from 'jquery';
 
@@ -113,9 +114,8 @@ export class DashboardComponent implements OnInit {
   public error: String;
   public success: String;
   public status: String;
-  minDate = undefined;
-  maxDate = undefined;
-
+  minDate: NgbDateStruct;
+  maxDate:NgbDateStruct;
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
@@ -124,11 +124,18 @@ export class DashboardComponent implements OnInit {
 
     const now = new Date();
     const since = moment().add(30, 'd').toDate();
-
+    const since2 = moment().add(2,'d').recur().every(7).days();
+    let since3 = moment().recur().every(7).days();
+since3.matches()
+console.log(since3)
     config.minDate = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
 
     config.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
 
+    this.minDate={ year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
+    
+    this.maxDate = { year: now.getFullYear(), month: now.getMonth()+1, day: now.getDate()  }
+    console.log(this.dashboardForm.reserveDate)
   }
 
 
@@ -140,6 +147,7 @@ export class DashboardComponent implements OnInit {
     this.ListHeadquarters();
     this.ListParkings();
     this.ListZones();
+    
   }
 
   listSpaces() {
@@ -153,32 +161,6 @@ export class DashboardComponent implements OnInit {
       }
     );
 
-    /*this.space.listSpaces(this.zoneModel.id_zone).subscribe(
-      data=>{
-     
-       let spaces=Object.keys(data)
-        console.log(data)
-      
-        for(let space of spaces){
-       
-          let espacio = {
-            id: null,
-            name: null,
-            type: null,
-            user: null,
-            state: null,
-            zone: null
-           
-          }
-          espacio.name = space;
-        
-          this.spacesContainer.push(espacio);  
-      }
-    },
-      error=>{
-        console.log(error);
-      }
-    );*/
   }
 
   ListParkings() {
@@ -283,7 +265,6 @@ export class DashboardComponent implements OnInit {
     }
 
   }
-
   dataCalendar() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate);
     if (this.dashboardForm.reserveDate != null) {
