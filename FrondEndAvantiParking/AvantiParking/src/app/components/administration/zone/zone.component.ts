@@ -65,16 +65,14 @@ export class ZoneComponent implements OnInit {
     this._zone.listZone().subscribe(
       data => {
         this.zones = data;
-      },
-      error => console.log(error)
+      }
     )
   }
   ListParkingLot() {
     this.parking_lot.listParkingLot().subscribe(
       data => {
         this.parkings = data;
-      },
-      error => console.log(error)
+      }
     )
   }
   onSubmit() {
@@ -162,7 +160,6 @@ export class ZoneComponent implements OnInit {
         this.ngOnInit();
       },
       error => {
-        console.log(error);
       }
     );
   }
@@ -178,7 +175,6 @@ export class ZoneComponent implements OnInit {
     this.status = "success";
   }
   responseError(error) {
-    console.log(error)
     this.error = error.error.error;
     this.status = "error";
   }

@@ -84,7 +84,6 @@ export class SpaceComponent implements OnInit {
         this.spaces = data;
       },
       error=>{
-        console.log(error);
       }
     );
   }
@@ -105,8 +104,7 @@ export class SpaceComponent implements OnInit {
     this._zone.listZone().subscribe(
       data => {
         this.zones = data;
-      },
-      error => console.log(error)
+      }
     )
   }
 
@@ -198,10 +196,8 @@ export class SpaceComponent implements OnInit {
       if (result.value) {
         this.space.deleteAllZoneSpaces(this.zoneToken.id_zone).subscribe(
           data=>{
-            console.log(data);
           },
           error=>{
-            console.log(error);
           }
         );
         Swal.fire(
@@ -239,13 +235,11 @@ export class SpaceComponent implements OnInit {
         this.listSpace();
       },
       error => {
-        console.log(error);
       }
     );
   }
 
   reloadTable(data){
-    console.log(data)
     this.ngOnInit();
   }
 
@@ -269,7 +263,6 @@ export class SpaceComponent implements OnInit {
   }
 
   responseError(error) {
-    console.log(error)
     this.error = error.error.error;
     this.status = "error";
   }

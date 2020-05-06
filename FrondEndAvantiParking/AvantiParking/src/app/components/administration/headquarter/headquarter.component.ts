@@ -53,7 +53,6 @@ export class HeadquarterComponent implements OnInit {
         this.headquarters = data;
       },
       error => {
-        console.log(error);
       }
     );
   }
@@ -130,7 +129,6 @@ export class HeadquarterComponent implements OnInit {
         this.ngOnInit();
       },
       error => {
-        console.log(error);
       }
     );
   }

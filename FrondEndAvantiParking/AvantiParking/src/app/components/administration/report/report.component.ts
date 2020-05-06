@@ -163,8 +163,6 @@ export class ReportComponent implements OnInit {
           this.activeUser.push(element.reserve.user)
         }
       });
-      console.log(data);
-      console.log(this.activeUser);
 
       if (this.reportComplete.length == 0) {
         Swal.fire({
@@ -192,8 +190,6 @@ export class ReportComponent implements OnInit {
       }
  
     });
-
-    console.log(reportExcel);
 
     this.report.exportExcel(reportExcel, 'REPORT');
   }

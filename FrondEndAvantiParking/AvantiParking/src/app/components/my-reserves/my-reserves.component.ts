@@ -58,7 +58,6 @@ export class MyReservesComponent implements OnInit {
 
   loadUser(data) { //metodo para cargar la informacion del usuario
     this.formUser.id = data.id; 
-    console.log(this.formUser.id) 
   }
 
   getData() { // metodo para listar todos las listas con datos
@@ -68,7 +67,6 @@ export class MyReservesComponent implements OnInit {
       this.listVehicles();
     },
       error => {
-        console.log(error);
       });
   }
   listVehicles() { //metodo para listar vehiculos
@@ -77,7 +75,6 @@ export class MyReservesComponent implements OnInit {
         this.vehicles = data;
       },
       error => {
-        console.log(error);
       }
     );
   }
@@ -123,11 +120,8 @@ export class MyReservesComponent implements OnInit {
         for(let reserve of this.reserves){
           this.listValidDetails(reserve.id_reservation);          
         }
-        console.log("reserves:",this.reserves);
-        console.log("details: ",this.validDetail);
       },
       error=>{
-        console.log(error)
       }
     );
         
@@ -145,7 +139,6 @@ export class MyReservesComponent implements OnInit {
         }                     
       },
       error=>{
-        console.log(error)
       }
     );
   }
@@ -163,7 +156,6 @@ export class MyReservesComponent implements OnInit {
         }              
       },
       error=>{
-        console.log(error)
       }
     );
   } */ 
@@ -196,7 +188,6 @@ export class MyReservesComponent implements OnInit {
            
           },
           error=>{
-            console.log(error);
           }
         );
       }

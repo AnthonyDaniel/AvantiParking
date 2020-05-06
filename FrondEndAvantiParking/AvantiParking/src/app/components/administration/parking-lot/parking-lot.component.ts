@@ -57,16 +57,14 @@ export class ParkingLotComponent implements OnInit {
     this._parking.listParkingLot().subscribe(
       data => {
         this.parkings = data;
-      },
-      error => console.log(error)
+      }
     )
   }
   ListHeadquarters() {
     this._headquarter.listHeadquarter().subscribe(
       data => {
         this.headquarters = data;
-      },
-      error => console.log(error)
+      }
     )
   }
   addParkingLot() {
@@ -141,7 +139,6 @@ export class ParkingLotComponent implements OnInit {
         this.ngOnInit();
       },
       error => {
-        console.log(error);
       }
     );
   }

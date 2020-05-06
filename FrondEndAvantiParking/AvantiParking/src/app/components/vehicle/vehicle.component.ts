@@ -61,7 +61,6 @@ export class VehicleComponent implements OnInit {
       this.listVehicles();
     },
       error => {
-        console.log(error);
       });
   }
 
@@ -71,7 +70,6 @@ export class VehicleComponent implements OnInit {
         this.vehicles = data;
       },
       error => {
-        console.log(error);
       }
     );
   }
@@ -105,7 +103,6 @@ export class VehicleComponent implements OnInit {
         }
       },
       error => {
-        console.log(error);
       }
     );
   }
@@ -156,7 +153,6 @@ export class VehicleComponent implements OnInit {
         this.ngOnInit();
       },
       error => {
-        console.log(error);
       }
     );
   }
