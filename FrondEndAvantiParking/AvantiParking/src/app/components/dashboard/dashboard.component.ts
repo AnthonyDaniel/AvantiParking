@@ -238,11 +238,20 @@ console.log(this.minDate2)
     this.formAddDetail.space = this.spaceModel;
   }
   setStartTime(spaceRange) {
-    this.formAddDetail.start_time = spaceRange.begin + ":00:00";
+   // this.formAddDetail.start_time = spaceRange.begin + ":00:00";
+    if(spaceRange.begin < 10){      
+      this.formAddDetail.start_time = "0"+spaceRange.begin + ":00:00";
+    }else{      
+      this.formAddDetail.start_time = spaceRange.begin + ":00:00";
+    }
     this.selectableRange = spaceRange.options;
   }
   setEndTime(endTime) {
-    this.formAddDetail.end_time = endTime + ":00:00";
+    if(endTime < 10){      
+      this.formAddDetail.end_time = "0"+endTime + ":00:00";
+    }else{      
+      this.formAddDetail.end_time = endTime + ":00:00";
+    }
   }
   responseSuccess(data) {
     this.success = data.data;
@@ -367,23 +376,34 @@ console.log(this.minDate2)
       this.formAddReserve.user.id = this.userInf.id;
       this.formAddReserve.created_at = formattedDate;
 
-
+      
+      console.log("aqui--", this.formAddDetail.start_time);
       this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
         this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
           data => {
-            $("#closeReserveModal").click();
-            Swal.fire({
-              type: 'success',
-              title: 'Your reservation has been saved!',
-              showConfirmButton: false,
-              timer: 1500
-            })
+            let response:any = data;
+            if(response.id_reserve_detail != null){
+              $("#closeReserveModal").click();
+              Swal.fire({
+                type: 'success',
+                title: 'Your reservation has been saved!',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            }else{
+              $("#closeReserveModal").click();
+              Swal.fire({
+                type: 'error',
+                title: 'Somebody might have taken your space! Please reload.',
+                showConfirmButton: true
+              })
+            }            
             this.ngOnInit();
             this.loadAvailableTimes();
 
           },
           error => {
-
+            console.log(error);
           }
         );
     }
@@ -438,7 +458,7 @@ console.log(this.minDate2)
 
           },
           error => {
-
+            console.log(error);
           }
         );
     }

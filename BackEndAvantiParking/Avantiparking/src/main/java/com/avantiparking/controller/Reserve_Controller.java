@@ -1,6 +1,8 @@
 package com.avantiparking.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -87,35 +89,78 @@ public class Reserve_Controller {
 	
 	@PostMapping("/reserves")
 	public Reserve_detail addReservation(@Valid @RequestBody Reserve_detail _detail) {
-		Optional<Reserve> exists;
-		if(_detail.getReserve().getVehicle().getIncrement() == null) {
-			exists = reserve_Repository.findReservationNullVehicle(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at());
-		}else {
-			exists = reserve_Repository.findReservation(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at(), 
-					_detail.getReserve().getVehicle().getIncrement());
-		}
-		if(!exists.isPresent()) {
-			Reserve reserve = _detail.getReserve();
+		if(!spaceTaken(_detail)) {
+			Optional<Reserve> exists;
 			if(_detail.getReserve().getVehicle().getIncrement() == null) {
-				reserve.setVehicle(null);
+				exists = reserve_Repository.findReservationNullVehicle(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at());
+			}else {
+				exists = reserve_Repository.findReservation(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at(), 
+						_detail.getReserve().getVehicle().getIncrement());
 			}
-			reserve = reserve_Repository.save(reserve);
-			_detail.setReserve(reserve);
-		}else {
-			_detail.setReserve(exists.get());
+			if(!exists.isPresent()) {
+				Reserve reserve = _detail.getReserve();
+				if(_detail.getReserve().getVehicle().getIncrement() == null) {
+					reserve.setVehicle(null);
+				}
+				reserve = reserve_Repository.save(reserve);
+				_detail.setReserve(reserve);
+			}else {
+				_detail.setReserve(exists.get());
+			}
+			return reserve_detail_Repository.save(_detail);
 		}
-		return reserve_detail_Repository.save(_detail);
+		return new Reserve_detail();
 	}
-    
+	private boolean spaceTaken(Reserve_detail _detail){
+		LocalDate date = _detail.getDate().toLocalDate();
+		String month;
+		if(date.getMonthValue() < 10) {
+			month = "0"+date.getMonthValue();
+		}else {
+			month = String.valueOf(date.getMonthValue());
+		}
+		String dateS = date.getYear()+"-"+month+"-"+ (date.getDayOfMonth()+1);// se suma uno porque devuelve uno menos
+		int start = timeToInt(_detail.getStart_time());
+		int end = timeToInt(_detail.getEnd_time());
+		List<Reserve_detail> details = reserve_detail_Repository.findByDateAndSpace(dateS, _detail.getSpace().getId_space());
+		for(int i=0; i<details.size();i++) {
+			int startOld = timeToInt(details.get(i).getStart_time());
+			int endOld = timeToInt(details.get(i).getEnd_time());
+			if(end < start) {
+				return true;
+			}
+			if(startOld == start || endOld == end) {
+				return true;
+			}
+			if((startOld < start) && (start < endOld)){
+				return true;
+			}
+			if((start < startOld) && (startOld < end)){
+				return true;
+			}
+			if((start < startOld) && (endOld < end)){
+				return true;
+			}
+		}		
+		return false;
+	}
+	
+	private int timeToInt(String time) {
+    	if(time.charAt(0) == '0') {
+    		return time.charAt(1) - '0';
+    	}else {
+    		return Integer.parseInt(time.substring(0,2));
+    	}    	
+    }
 	/*@GetMapping("/reserves/completed/user/{user}")
 	public List<Reserve> reservationsCompletedByUser(@PathVariable(value = "user")Long user_id) {		
 		return reserve_Repository.findCompletedReservationsByUser(user_id);
 	}*/
 	
-	@GetMapping("/currentReservations/{id}")
+	/*@GetMapping("/currentReservations/{id}")
 	public List<Reserve> currentReservations() {
 		return null;
-	}
+	}*/
     /******************************************
 	@PostMapping("/reserve")//list?
 	public List<Reserve> addReservation(@Valid @RequestBody Reserve reserve) {
@@ -134,9 +179,9 @@ public class Reserve_Controller {
 		return reserve_detail_Repository.save(reserve_detail);
 	}*/
 	
-	@PutMapping("/reserve")
+	/*@PutMapping("/reserve")
 	public List<Reserve> modifyReservation() {
 		return null;
-	}
+	}*/
     
 }
