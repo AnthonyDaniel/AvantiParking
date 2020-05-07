@@ -67,7 +67,6 @@ export class DashboardComponent implements OnInit {
   public dashboardForm = {
     reserveDate: null
   }
- 
   public spaceModel = {
     id_space: null,
     name: null,
@@ -98,7 +97,7 @@ export class DashboardComponent implements OnInit {
     start: null,
   }
   public calendarModel;
-  public dashboardForm2;
+  
   public spacesContainer: any = [];
 
   public spaceRange: any = [];
@@ -114,8 +113,8 @@ export class DashboardComponent implements OnInit {
   public error: String;
   public success: String;
   public status: String;
-  minDate2 = undefined;
-  maxDate2 = undefined;
+  minDate2 =  null;
+  maxDate2 = null;
 
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService,
@@ -146,11 +145,10 @@ export class DashboardComponent implements OnInit {
 
   calendarDates(){
     const since = moment().add(15, 'd').toDate();
-console.log(this.dashboardForm2)
-    this.minDate2 = this.dashboardForm2; 
-console.log(this.minDate2)
+    const now = moment().toDate();
+    let number = this.dashboardForm.reserveDate.day;
+    this.minDate2 = { year: now.getFullYear(), month: now.getMonth() + 1, day: number }
     this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
-    console.log(this.dashboardForm.reserveDate)
   }
 
   listSpaces() {
@@ -272,8 +270,6 @@ console.log(this.minDate2)
 
   dataCalendar() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.dashboardForm.reserveDate)
-    this.dashboardForm2 = this.dashboardForm.reserveDate.year + '-' + this.dashboardForm.reserveDate.month + '-' + this.dashboardForm.reserveDate.day;;
-   console.log(this.dashboardForm2)
     if (this.dashboardForm.reserveDate != null) {
      
       var monthWithoutCero: string = this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
@@ -410,6 +406,7 @@ console.log(this.minDate2)
   }
 
   addExtendedReserve() {
+   
     if (this.formAddDetail.start_time == null || this.formAddDetail.end_time == null) {
       Swal.fire({
         type: 'error',
