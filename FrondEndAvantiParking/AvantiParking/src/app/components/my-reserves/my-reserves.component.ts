@@ -119,7 +119,7 @@ export class MyReservesComponent implements OnInit {
         this.validDetail = [];  
         this.reserves = data;
         for(let reserve of this.reserves){
-          this.emply = true;
+          this.emply = false;
           this.listValidDetails(reserve.id_reservation);          
         }
       },
