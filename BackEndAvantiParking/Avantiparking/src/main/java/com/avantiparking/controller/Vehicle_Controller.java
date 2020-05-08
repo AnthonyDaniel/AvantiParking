@@ -76,6 +76,7 @@ public class Vehicle_Controller {
 	@DeleteMapping("/vehicle/{plate}")
 	public Map<String, Boolean> deleteVehicle(@PathVariable(value = "plate") String plate_vehicle)
 			throws ResourceNotFoundException {
+		System.out.print(plate_vehicle);
 		Vehicle vehicle = vehicle_repository.findVehicle(plate_vehicle)
 				.orElseThrow(() -> new ResourceNotFoundException("Vehicle not found for this plate : " + plate_vehicle));
 

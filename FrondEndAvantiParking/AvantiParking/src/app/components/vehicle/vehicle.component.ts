@@ -133,6 +133,14 @@ export class VehicleComponent implements OnInit {
               'Your file has been deleted.',
               'success'
             )
+          },
+          error=>{
+            Swal.fire({
+              type: 'error',
+              title: 'Oops...',
+              text: 'The vehicle cannot be eliminated, since it is in a reservation',
+              confirmButtonColor: '#EF4023'
+            })
           }
         )
       }

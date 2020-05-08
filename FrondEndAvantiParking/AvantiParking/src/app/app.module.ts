@@ -32,6 +32,7 @@ import { VehiclePipePipe } from './pipes/vehicle-pipe.pipe';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReportComponent } from './components/administration/report/report.component';
 import { MyReservesComponent } from './components/my-reserves/my-reserves.component';
+import { HandbookComponent } from './components/handbook/handbook.component';
 
 
 
@@ -61,6 +62,7 @@ import { MyReservesComponent } from './components/my-reserves/my-reserves.compon
     DashboardComponent,
     ReportComponent,
     MyReservesComponent,
+    HandbookComponent,
   ],
   imports: [
     BrowserModule,

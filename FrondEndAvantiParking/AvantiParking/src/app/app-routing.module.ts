@@ -15,6 +15,7 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AdminAfterService } from './services/admin-after.service';
 import { ReportComponent } from './components/administration/report/report.component';
 import { MyReservesComponent } from './components/my-reserves/my-reserves.component';
+import { HandbookComponent } from './components/handbook/handbook.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent,canActivate: [AfterLoginService]},
   { path: 'my-reserves', component: MyReservesComponent,canActivate: [AfterLoginService]},
   { path: 'oauth2/redirect', component: Oauth2Component,canActivate: [BeforeLoginService]},
+  { path: 'handbook', component: HandbookComponent},
   { path: '**', component: ErrorComponent}
 ]
 

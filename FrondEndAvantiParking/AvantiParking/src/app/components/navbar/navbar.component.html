@@ -20,12 +20,6 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/administration/report" data-toggle="tooltip" data-placement="left"
-                    title="Generate your reports" *ngIf="loggedIn" (click)="toggleNavbar()">
-                    <strong id="link">REPORTS</strong>
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" routerLink="/my-reserves" data-toggle="tooltip" data-placement="left"
                     title="Generate your reports" *ngIf="loggedIn" (click)="toggleNavbar()">
                     <strong id="link">MY RESERVES</strong>
@@ -33,6 +27,12 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-o">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/handbook" data-toggle="tooltip" data-placement="left"
+                    title="Generate your reports" *ngIf="!loggedIn" (click)="toggleNavbar()">
+                    <strong id="link"><i class="far fa-question-circle"></i>HELP</strong>
+                </a>
+            </li>
             <li class="nav-item dropdownbtn-group dropleft">
                 <a class="nav-link dropdown-toggle notification" id="navbarDropdown" role="button" *ngIf="loggedIn"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,6 +55,10 @@
                         data-target="#Settings">
                         <i class="fas fa-cog"></i> Settings
                     </div>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" routerLink="/handbook" data-toggle="tooltip" (click)="toggleNavbar()">
+                        <i class="far fa-question-circle"></i>HELP
+                    </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" data-toggle="tooltip" routerLink="/" (click)="logout($event)">
                         <i class="fas fa-sign-out-alt"></i>LOGOUT
@@ -103,7 +107,8 @@
                         <div class="toast-header">
                             <strong class="mr-auto">{{n.subject}}</strong>
                             <small>{{n.date}}</small>
-                            <button (click)="deleteNotifications(n)" type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <button (click)="deleteNotifications(n)" type="button" class="ml-2 mb-1 close"
+                                data-dismiss="toast" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
