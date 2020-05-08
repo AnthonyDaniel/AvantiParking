@@ -415,53 +415,113 @@ export class DashboardComponent implements OnInit {
       this.formAddReserve.created_at = formattedDate;
       this.formAddDetail.end_date_extend= this.calendarModelExtend;
 
-
       console.log("aqui--", this.formAddDetail.start_time);
-      this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
-        this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
-          data => {
-            let response:any = data;
-            if(response.id_reserve_detail != null){
-              $("#closeReserveModal").click();
-              Swal.fire({
-                type: 'success',
-                title: 'Your reservation has been saved!',
-                showConfirmButton: false,
-                timer: 1500
-              });
 
-
-              let email={
-                id:null,
-                to:this.userNotifications.email,
-                subject:"RESERVE " + this.formAddDetail.date,
-                text:"Your reservation has been saved!",
-                viewed:false,
-                user_id:{
-                  id:this.userNotifications.id
+      if(this.formAddDetail.end_date_extend == null){
+        this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
+          this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
+            data => {
+              let response:any = data;
+              if(response.id_reserve_detail != null){
+                $("#closeReserveModal").click();
+                Swal.fire({
+                  type: 'success',
+                  title: 'Your reservation has been saved!',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+  
+  
+                let email={
+                  id:null,
+                  to:this.userNotifications.email,
+                  subject:"RESERVE " + this.formAddDetail.date,
+                  text:"Your reservation has been saved!",
+                  viewed:false,
+                  user_id:{
+                    id:this.userNotifications.id
+                  }
                 }
-              }
-              this.emails.sendEmail(email).subscribe(
-                data => {
-                }
-              );
-
-            }else{
-              $("#closeReserveModal").click();
-              Swal.fire({
-                type: 'error',
-                title: 'Somebody might have taken your space! Please reload.',
-                showConfirmButton: true
-              })
-            }            
-            this.ngOnInit();
-            this.loadAvailableTimes();
-
-          },
-          error => {
-            console.log(error);
-          }
+                this.emails.sendEmail(email).subscribe(
+                  data => {
+                  }
+                );
+  
+              }else{
+                $("#closeReserveModal").click();
+                Swal.fire({
+                  type: 'error',
+                  title: 'Somebody might have taken your space! Please reload.',
+                  showConfirmButton: true
+                })
+              }            
+              this.ngOnInit();
+              this.loadAvailableTimes();
+  
+            },
+            error => {
+              console.log(error);
+            }
         );
+      }else{
+        this._dashboard.createReserve2(this.formAddDetail).subscribe(
+            data => {
+              let response:any = data;
+              console.log(response);
+              let keys = Object.keys(response);
+              console.log(keys);
+              let flag = false; 
+              let message = "Dates";
+              for(let key of keys){
+                //response.get(key);
+                if(response[key]==false){
+                  flag = true;
+                  message = message+" "+key+","
+                }
+                console.log(key,response[key]);
+              }
+              message = message + " couldn't be reserved. "
+              if(!flag){
+                $("#closeReserveModal").click();
+                Swal.fire({
+                  type: 'success',
+                  title: 'Your reservation has been saved!',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+  
+  
+                let email={
+                  id:null,
+                  to:this.userNotifications.email,
+                  subject:"RESERVE " + this.formAddDetail.date,
+                  text:"Your reservation has been saved!",
+                  viewed:false,
+                  user_id:{
+                    id:this.userNotifications.id
+                  }
+                }
+                this.emails.sendEmail(email).subscribe(
+                  data => {
+                  }
+                );
+  
+              }else{
+                $("#closeReserveModal").click();
+                Swal.fire({
+                  type: 'error',
+                  title: message +'Somebody might have taken your space! Please reload.',
+                  showConfirmButton: true
+                })
+              }            
+              this.ngOnInit();
+              this.loadAvailableTimes();  
+            },
+            error => {
+              console.log(error);
+            }
+        );
+      } 
     }
   }
 }

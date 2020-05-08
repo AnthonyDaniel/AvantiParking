@@ -21,4 +21,7 @@ export class DashboardServiceService {
   createReserve(created_at, user, vehicle,detail:any){
     return this.http.post(`${this.url}/api/reserves`,detail,{headers:this.httpHeaders});
   }
+  createReserve2(detail:any){
+    return this.http.post(`${this.url}/api/reserves/extended`,detail,{headers:this.httpHeaders});
+  }
 }
