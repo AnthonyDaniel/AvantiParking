@@ -61,7 +61,6 @@ export class ReportComponent implements OnInit {
 
   loadUser(data) {
     this.userInf = data;
-    console.log(this.userInf);
   }
 
   loadDashboard() {
