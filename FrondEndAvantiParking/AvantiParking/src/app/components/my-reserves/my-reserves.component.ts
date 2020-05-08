@@ -5,6 +5,7 @@ import { MyReservesServiceService } from 'src/app/services/my-reserves-service.s
 import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-my-reserves',
@@ -19,7 +20,8 @@ export class MyReservesComponent implements OnInit {
   public vehicles;
   public emply =true;
 
-  constructor(public user: UserService, public _parking: ServiceParkingLotService,  public _vehicle: VehicleServiceService,public _myReserves:MyReservesServiceService) { }
+  constructor(public user: UserService, public _parking: ServiceParkingLotService,  public _vehicle: VehicleServiceService,public _myReserves:MyReservesServiceService,
+    public emails: NotificationsService) { }
   public vehicleModel = {
     id: null,
     increment: null
@@ -49,7 +51,7 @@ export class MyReservesComponent implements OnInit {
   };
 
   public reserves:any=[];
-
+public userNotifications;
   public unvalidDetail:any[];
   public validDetail:any=[];
 
@@ -59,6 +61,7 @@ export class MyReservesComponent implements OnInit {
 
   loadUser(data) { //metodo para cargar la informacion del usuario
     this.formUser.id = data.id; 
+    this.userNotifications=data;
   }
 
   getData() { // metodo para listar todos las listas con datos
@@ -187,7 +190,20 @@ export class MyReservesComponent implements OnInit {
               'Your reservation has been successfully canceled',
               'success'
             )
-           
+            let email={
+              id:null,
+              to:this.userNotifications.email,
+              subject:"RESERVE CANCELE",
+              text:"Your reservation has been successfully canceled!",
+              viewed:false,
+              user_id:{
+                id:this.userNotifications.id
+              }
+            }
+            this.emails.sendEmail(email).subscribe(
+              data => {
+              }
+            );
           },
           error=>{
           }
