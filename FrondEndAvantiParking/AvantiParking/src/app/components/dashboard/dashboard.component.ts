@@ -14,6 +14,7 @@ import * as moment from 'moment';
 import 'moment-recur-ts';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import * as $ from 'jquery';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,6 +35,7 @@ export class DashboardComponent implements OnInit {
   private current: any;
   public vehicles;
   public dashboards: any = [];
+  public userNotifications;
 
 
   public formAddReserve = {
@@ -125,7 +127,8 @@ export class DashboardComponent implements OnInit {
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
-    public datepipe: DatePipe, public _dashboard: DashboardServiceService, public space: ServiceSpaceService
+    public datepipe: DatePipe, public _dashboard: DashboardServiceService, public space: ServiceSpaceService,
+    public emails: NotificationsService
   ) {
 
   }
@@ -218,6 +221,7 @@ export class DashboardComponent implements OnInit {
 
   loadUser(data) {
     this.userInf = data;
+    this.userNotifications = data;
     this.userInf.id = data.id;
     this.u = data;
     this.img = data.imageUrl;
@@ -411,7 +415,7 @@ export class DashboardComponent implements OnInit {
       this.formAddReserve.created_at = formattedDate;
       this.formAddDetail.end_date_extend= this.calendarModelExtend;
 
-      
+
       console.log("aqui--", this.formAddDetail.start_time);
       this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
         this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
@@ -424,7 +428,24 @@ export class DashboardComponent implements OnInit {
                 title: 'Your reservation has been saved!',
                 showConfirmButton: false,
                 timer: 1500
-              })
+              });
+
+
+              let email={
+                id:null,
+                to:this.userNotifications.email,
+                subject:"RESERVE " + this.formAddDetail.date,
+                text:"Your reservation has been saved!",
+                viewed:false,
+                user_id:{
+                  id:this.userNotifications.id
+                }
+              }
+              this.emails.sendEmail(email).subscribe(
+                data => {
+                }
+              );
+
             }else{
               $("#closeReserveModal").click();
               Swal.fire({
