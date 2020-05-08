@@ -17,6 +17,7 @@ export class MyReservesComponent implements OnInit {
   private current:any;
   private img;
   public vehicles;
+  public emply =true;
 
   constructor(public user: UserService, public _parking: ServiceParkingLotService,  public _vehicle: VehicleServiceService,public _myReserves:MyReservesServiceService) { }
   public vehicleModel = {
@@ -118,6 +119,7 @@ export class MyReservesComponent implements OnInit {
         this.validDetail = [];  
         this.reserves = data;
         for(let reserve of this.reserves){
+          this.emply = true;
           this.listValidDetails(reserve.id_reservation);          
         }
       },
