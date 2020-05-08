@@ -8,9 +8,10 @@ import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
-import { NgbModule, NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
+import 'moment-recur-ts';
 import { ServiceSpaceService } from 'src/app/services/service-space.service';
 import * as $ from 'jquery';
 
@@ -67,6 +68,9 @@ export class DashboardComponent implements OnInit {
   public dashboardForm = {
     reserveDate: null
   }
+  public extendReserveForm = {
+    extendReserveDate: null
+  }
   public spaceModel = {
     id_space: null,
     name: null,
@@ -97,6 +101,7 @@ export class DashboardComponent implements OnInit {
     start: null,
   }
   public calendarModel;
+  public calendarModelExtend;
   
   public spacesContainer: any = [];
 
@@ -115,23 +120,15 @@ export class DashboardComponent implements OnInit {
   public status: String;
   minDate2 =  null;
   maxDate2 = null;
-
+  minDate : NgbDateStruct;
+  maxDate : NgbDateStruct;
   constructor(public user: UserService, private router: Router, private auth: AuthService,
     public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
     public datepipe: DatePipe, public _dashboard: DashboardServiceService, public space: ServiceSpaceService
   ) {
 
-    const now = new Date();
-    const since = moment().add(30, 'd').toDate();
-
-    config.minDate = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
-    console.log(config.minDate)
-
-    config.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
-
   }
-
 
   ngOnInit() {
     this.user.loadImg().subscribe(data => {
@@ -141,14 +138,39 @@ export class DashboardComponent implements OnInit {
     this.listHeadquarters();
     this.listParkings();
     this.listZones();
+    this.dashboardCalendarDates();
+  }
+  dashboardCalendarDates(){
+    const now = new Date();
+    const since = moment().add(30, 'd').toDate();
+
+    this.minDate = { year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate() }
+    console.log(this.minDate)
+
+    this.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
   }
 
   calendarDates(){
-    const since = moment().add(15, 'd').toDate();
+      
+    const since2 = moment().add(2,'d').recur().every(7).days();
+   
+    console.log(this.dashboardForm.reserveDate)
+    let fecha = this.dashboardForm.reserveDate.month + '/' + this.dashboardForm.reserveDate.day + '/' + this.dashboardForm.reserveDate.year;
+    //let fecha3 = this.dashboardForm.reserveDate.month + 1 + '/' + this.dashboardForm.reserveDate.day + 28 + '/' + this.dashboardForm.reserveDate.year;
+    //console.log(fecha3)
+    let fecha2= "06/04/2020";
+
+    let since3 = moment().recur(fecha,fecha2).every(7).days();
+    let allDates = since3.all("L");
+    console.log(allDates)
+
+    const since = moment().add(30, 'd').toDate();
     const now = moment().toDate();
     let number = this.dashboardForm.reserveDate.day;
+    console.log(number)
     this.minDate2 = { year: now.getFullYear(), month: now.getMonth() + 1, day: number }
     this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
+   
   }
 
   listSpaces() {
@@ -286,7 +308,24 @@ export class DashboardComponent implements OnInit {
       console.log(this.calendarModel)
     }
   }
-
+  dataCalendarExtend() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
+    console.log(this.extendReserveForm.extendReserveDate)
+    if (this.extendReserveForm.extendReserveDate != null) {
+     
+      var monthWithoutCero: string = this.extendReserveForm.extendReserveDate.month; // mes sin el 0(mes: 4,5,6)
+      var monthWithCero: string = '0' + this.extendReserveForm.extendReserveDate.month // mes con el 0(mes: 04,05,06)
+      var dayWithoutCero: string = this.extendReserveForm.extendReserveDate.day; // mes sin el 0(mes: 4,5,6)
+      var dayWithCero: string = '0' + this.extendReserveForm.extendReserveDate.day // mes con el 0(mes: 04,05,06)
+      if (monthWithoutCero[0] != monthWithCero[1] && this.extendReserveForm.extendReserveDate.month < 10) {
+        this.extendReserveForm.extendReserveDate.month = '0' + this.extendReserveForm.extendReserveDate.month;
+      }
+      if (dayWithoutCero[0] != dayWithCero[1] && this.extendReserveForm.extendReserveDate.day < 10) {
+        this.extendReserveForm.extendReserveDate.day = '0' + this.extendReserveForm.extendReserveDate.day;
+      }
+      this.calendarModelExtend = this.extendReserveForm.extendReserveDate.year + '-' + this.extendReserveForm.extendReserveDate.month + '-' + this.extendReserveForm.extendReserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
+      console.log(this.calendarModelExtend)
+    }
+  }
   loadAvailableTimes() {
     let zone = this.zoneModel.id_zone;
     if (zone != null && this.calendarModel != null) {
@@ -337,9 +376,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
-
-
   addReserve() {
+  
     if (this.formAddDetail.start_time == null || this.formAddDetail.end_time == null) {
       Swal.fire({
         type: 'error',
@@ -371,6 +409,7 @@ export class DashboardComponent implements OnInit {
       this.formAddDetail.reserve_state = 0;
       this.formAddReserve.user.id = this.userInf.id;
       this.formAddReserve.created_at = formattedDate;
+      this.formAddDetail.end_date_extend= this.calendarModelExtend;
 
       
       console.log("aqui--", this.formAddDetail.start_time);
@@ -394,62 +433,6 @@ export class DashboardComponent implements OnInit {
                 showConfirmButton: true
               })
             }            
-            this.ngOnInit();
-            this.loadAvailableTimes();
-
-          },
-          error => {
-            console.log(error);
-          }
-        );
-    }
-  }
-
-  addExtendedReserve() {
-   
-    if (this.formAddDetail.start_time == null || this.formAddDetail.end_time == null) {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'Start time and end time are required!',
-        confirmButtonColor: '#EF4023'
-      })
-    } else {
-      let date = new Date();
-
-      let month;
-      month = date.getMonth() + 1;//agarra un mes menos? 
-      let formattedDate;
-      if (month < 10) {
-        if (date.getDate() < 10) {
-          formattedDate = date.getFullYear() + "-0" + month + "-0" + date.getDate();
-        } else {
-          formattedDate = date.getFullYear() + "-0" + month + "-" + date.getDate();
-        }
-      } else {
-        if (date.getDate() < 10) {
-          formattedDate = date.getFullYear() + "-" + month + "-0" + date.getDate();
-        } else {
-          formattedDate = date.getFullYear() + "-" + month + "-" + date.getDate();
-        }
-      }
-
-      this.formAddDetail.date = this.calendarModel;
-      this.formAddDetail.reserve_state = 0;
-      this.formAddReserve.user.id = this.userInf.id;
-      this.formAddReserve.created_at = formattedDate;
-
-
-      this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
-        this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
-          data => {
-            $("#closeReserveModal").click();
-            Swal.fire({
-              type: 'success',
-              title: 'Your reservation has been saved!',
-              showConfirmButton: false,
-              timer: 1500
-            })
             this.ngOnInit();
             this.loadAvailableTimes();
 

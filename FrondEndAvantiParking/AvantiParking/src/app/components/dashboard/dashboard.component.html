@@ -6,7 +6,7 @@
       <form class="form-inline">
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" readonly
+            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"  [minDate]="minDate" [maxDate]="maxDate"  readonly
              [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker" >
             <div class="input-group-append">
               <button class="btn btn-outline-secondary calendar"  (click)="d2.toggle()" type="button"  ></button>
@@ -64,7 +64,7 @@
               <th scope="col"><strong>SPACE</strong></th>
               <th scope="col"><strong>AVAILABLE</strong></th>
               <th scope="col"><strong>RESERVE</strong></th>
-              <th scope="col"><strong>EXTENDED RESERVE</strong></th>
+              
             </tr>
           </thead>
           <tbody >
@@ -80,9 +80,7 @@
               <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#reserve" (click)="dataSpace(space)" (click)="dataCalendar()">
                   <strong>RESERVE</strong></button>
               </td>
-              <td> <button class="btn btn-delete btn-block btn-outline-danger" data-toggle="modal" data-target="#extendedReserve" (click)="dataSpace(space)" (click)="dataCalendar()">
-                <strong>EXTENDED RESERVE</strong></button>
-            </td>
+           
             </tr>
           </tbody>
         </table>
@@ -143,104 +141,16 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
+              <label class="col-sm-4 col-lg-2 col-form-label">End Date Extend</label>
               <div class="col-sm-8 col-lg-10">
-                <input [(ngModel)]="hqModel.name" name="headquarter" type="text" class="form-control"  disabled>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label" >Parking</label>
-              <div class="col-sm-8 col-lg-10">
-                <input [(ngModel)]="parkingLotModel.name" name="parking" type="text" class="form-control"  disabled required>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Zone</label>
-              <div class="col-sm-8 col-lg-10">
-                <input [(ngModel)]="zoneModel.name" name="zone" type="text" class="form-control" disabled>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Space number</label>
-              <div class="col-sm-8 col-lg-10">
-                <input [(ngModel)]="spaceModel.name" name="space" type="text" class="form-control"  disabled>
-              </div>
-            </div>
-            <!--Botones-->
-            <div class="row text-center">
-
-              <div class="col-sm-6 col-md-12">
-                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" (click)="addReserve()" >Reserve</button>
-              </div>
-              <div class="col-sm-6 col-md-6">
-                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" hidden>Extended Reservation</button>
-              </div>
-
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Extended Reserve-->
-<div class="modal fade" id="extendedReserve" tabindex="-1" role="dialog" aria-labelledby="reserve" aria-hidden="true">
-  <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" >Reserve</h5>
-        <button type="button" id="closeReserveModal" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-          <h5 class="card-title text-center font-weight-bold">Reserve a space</h5>
-          <!--Inicia formulario-->
-          <form>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Vehiculos</label>
-              <div class="col-sm-8 col-lg-10">
-                <select class="custom-select" name="vehicle" [(ngModel)]="formAddReserve.vehicle.increment">
-                  <option selected>Choose...</option>
-                  <option value="{{vehicle.increment}}" *ngFor="let vehicle of vehicles">{{vehicle.license_plate}}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Start time</label>
-              <div class="col-sm-8 col-lg-10">
-                <select class="form-control" name="start_time" required [(ngModel)]="start_time" (change)=" setStartTime(start_time,$event.target.value)">
-                  <option selected>Choose...</option>
-                  <option *ngFor="let range of spaceRange" [ngValue]="range" >{{range.begin}}:00</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">End time</label>
-              <div class="col-sm-8 col-lg-10">
-                <select class="form-control" name="end_time" required [(ngModel)]="end_time" (change)=" setEndTime(end_time,$event.target.value)">
-                  <option selected>Choose...</option>
-                  <option *ngFor="let opt of selectableRange" [ngValue]="opt" >{{opt}}:00</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Date</label>
-              <div class="col-sm-8 col-lg-10">
-                <form class="form-inline">
-                  <div class="form-group">
+              
                     <div class="input-group">
                       <input class="form-control" placeholder="yyyy-mm-dd"
-                             name="dp"  [minDate]="minDate2" [maxDate]="maxDate2" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                             name="dp"  [minDate]="minDate2" [maxDate]="maxDate2" [(ngModel)]="extendReserveForm.extendReserveDate" ngbDatepicker #d="ngbDatepicker">
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                       </div>
                     </div>
-                  </div>
-                </form>
                 
               </div>
             </div>
@@ -272,10 +182,7 @@
             <div class="row text-center">
 
               <div class="col-sm-6 col-md-12">
-                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" (click)="addReserve()" >Reserve</button>
-              </div>
-              <div class="col-sm-6 col-md-6">
-                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" hidden>Extended Reservation</button>
+                <button type="submit" class="py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary" (click)="dataCalendar2()" (click)="addReserve()" >Reserve</button>
               </div>
 
             </div>
@@ -285,3 +192,4 @@
     </div>
   </div>
 </div>
+
