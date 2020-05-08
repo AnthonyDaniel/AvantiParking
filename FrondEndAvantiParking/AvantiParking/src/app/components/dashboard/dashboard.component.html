@@ -143,7 +143,7 @@
                 <input type="text" class="form-control" [(ngModel)]="calendarModel"  name="calendarModel"  disabled >
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row" hidden>
               <label class="col-sm-4 col-lg-2 col-form-label">End Date Extend</label>
               <div class="col-sm-8 col-lg-10">
               
@@ -157,10 +157,10 @@
                 
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-2 col-form-label">Headquarter</label>
+            <div class="form-group row" hidden>
+              <label class="col-sm-4 col-lg-2 col-form-label" >Headquarter</label>
               <div class="col-sm-8 col-lg-10">
-                <input [(ngModel)]="hqModel.name" name="headquarter" type="text" class="form-control"  disabled>
+                <input [(ngModel)]="hqModel.name" name="headquarter" type="text" class="form-control"   disabled>
               </div>
             </div>
             <div class="form-group row">

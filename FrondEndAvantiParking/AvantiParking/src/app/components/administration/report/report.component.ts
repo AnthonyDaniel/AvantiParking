@@ -167,13 +167,14 @@ export class ReportComponent implements OnInit {
     }
   }
   loadReport(data) {
+    this.activeUser=[];
     let myObj = [];
     if (data != null) {
       this.reportComplete = data;
-
+  
       this.reportComplete.forEach(element => {
-        if (!(element.reserve.user in myObj)) {
-          myObj[element.reserve.user] = true
+        if (!(element.reserve.user.email in myObj)) {
+          myObj[element.reserve.user.email] = true
           this.activeUser.push(element.reserve.user)
         }
       });
