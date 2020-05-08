@@ -9,6 +9,7 @@ import { ReportsService } from 'src/app/services/reports.service';
 import Swal from 'sweetalert2';
 import * as $ from 'jquery';
 import { element } from 'protractor';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-report',
@@ -27,14 +28,15 @@ export class ReportComponent implements OnInit {
   private activeUser = [];
   private reportComplete = [];
 
-  private d1:string;
-  private d2:string;
+  private d1: string;
+  private d2: string;
 
   private minDate = undefined;
   private maxDate = undefined;
 
   private initDate = null;
   private finalDate = null;
+  private userInf = null; 
 
   private filter = "";
 
@@ -44,10 +46,22 @@ export class ReportComponent implements OnInit {
     public space: ServiceSpaceService,
     public user: UserService,
     public reseve: MyReservesServiceService,
-    public report: ReportsService) { }
+    public report: ReportsService,
+    public emails: NotificationsService) { }
 
   ngOnInit() {
     this.loadDashboard();
+
+    this.user.loadImg().subscribe(
+      data=>{
+        this.loadUser(data);
+      }
+    );
+  }
+
+  loadUser(data) {
+    this.userInf = data;
+    console.log(this.userInf);
   }
 
   loadDashboard() {
@@ -128,8 +142,8 @@ export class ReportComponent implements OnInit {
     if (this.initDate != null && this.finalDate != null) {
       let d1 = this.initDate.year + "-" + this.initDate.month + "-" + this.initDate.day;
       let d2 = this.finalDate.year + "-" + this.finalDate.month + "-" + this.finalDate.day;
-      this.d1=d1;
-      this.d2=d2;
+      this.d1 = d1;
+      this.d2 = d2;
       this.report.generateReport(d1, d2).subscribe(
         data => {
           this.loadReport(data);
@@ -174,23 +188,31 @@ export class ReportComponent implements OnInit {
       }
     }
   }
-  download() {
-    let reportExcel = []
-    this.reportComplete.forEach(element=>{
-      if(element.reserve.vehice!=null){
-        reportExcel.push({"REPORT START DATE":this.d1,"REPORT END DATE":this.d2,"ID":element.reserve.user.id,"NAME":element.reserve.user.name,"EMAIL":element.reserve.user.email,
-        "DATE":element.date,"START TIME": element.start_time,"END TIME":element.end_time,"DATE EXTEND":element.end_date_extend,
-        "VEHICLE":element.reserve.vehice.license_plate,"HEADQUARTER":element.space.zone.parking_lot.headquarter.name,
-        "PARKING_LOT":element.space.zone.parking_lot.name,"ZONE":element.space.zone.name,"SPACE":element.space.name});  
-      }else{
-        reportExcel.push({"REPORT START DATE":this.d1,"REPORT END DATE":this.d2,"ID":element.reserve.user.id,"NAME":element.reserve.user.name,"EMAIL":element.reserve.user.email,
-        "DATE":element.date,"START TIME": element.start_time,"END TIME":element.end_time,"DATE EXTEND":element.end_date_extend,
-        "VEHICLE":"NONE","HEADQUARTER":element.space.zone.parking_lot.headquarter.name,
-        "PARKING_LOT":element.space.zone.parking_lot.name,"ZONE":element.space.zone.name,"SPACE":element.space.name});  
+  sendEmail() {
+    let report = document.getElementById("report");
+    let email={
+      id:null,
+      to:this.userInf.email,
+      subject:"REPORT " + this.d1 + " " + this.d2,
+      text:"The report has been sent to your email",
+      html:report.innerHTML,
+      viewed:false,
+      user_id:{
+        id:this.userInf.id
       }
- 
-    });
-
-    this.report.exportExcel(reportExcel, 'REPORT');
+    }
+    this.emails.sendEmail(email).subscribe(
+      data => {
+        Swal.fire({
+          type: 'success',
+          title: 'The report has been sent to your email',
+          showConfirmButton: true,
+          timer: 15000
+        })
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }

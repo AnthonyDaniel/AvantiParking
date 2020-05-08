@@ -4,10 +4,10 @@ spring:
         username: root
         password: 
     mail:
-        host: smtp-relay.sendinblue.com
+        host: in-v3.mailjet.com
         port: 587
-        username: anthonymmarinbolivar@gmail.com
-        password: JzdTS36jxEXqOIGy
+        username: a9183edea445a2346abdb068d8eed198
+        password: d9f033b49ac3cfe3711a8edd1881ef3e
         properties:
             mail:
                 smtp:

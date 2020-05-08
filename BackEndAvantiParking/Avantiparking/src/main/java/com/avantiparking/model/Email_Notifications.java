@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "email_notifications")
@@ -27,6 +28,9 @@ public class Email_Notifications {
 	
 	@Column(name = "text")
 	private String text;
+	
+	@Transient
+	private String html;
 	
 	@Column(name = "date")
 	private String date;
@@ -47,6 +51,14 @@ public class Email_Notifications {
 		this.subject = subject;
 	}
 	
+	public String getHtml() {
+		return html;
+	}
+
+	public void setHtml(String html) {
+		this.html = html;
+	}
+
 	public String getText() {
 		return text;
 	}

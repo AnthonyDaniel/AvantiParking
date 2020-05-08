@@ -2,7 +2,7 @@ package com.avantiparking.template;
 
 public class TemplateEmail {
 
-	public String TempleteEmailAvantiParking(String title, String content, String redirect, boolean btnRedirect,
+	public String TempleteEmailAvantiParking(String title, String content,String _html, String redirect, boolean btnRedirect,
 			String nameBtn) {
 
 		String html = "<!DOCTYPE html>"
@@ -299,7 +299,7 @@ public class TemplateEmail {
 				+ "                                        <p class=\"size-30\" style=\"Margin-top: 0; color: #8e959c; font-weight: bold; Margin-bottom: 20px; font-size: 26px; line-height: 34px; text-align: center;\" lang=\"x-size-30\"><span th:text=\"\"></span> "
 				+ title + "</p>"
 				+ "                                        <p style=\"Margin-top: 0;Margin-bottom: 0;\"><span th:text=\"\"></span> "
-				+ content + "</p>" + "                                    </div>" + ""
+				+ content + "</p>" + "                                    </div>" + ""+ _html+""
 				+ "                                </div>" + ""
 				+ "                                <!--[if (mso)|(IE)]></td></tr></table><![endif]-->"
 				+ "                            </div>" + "                        </div>" + ""

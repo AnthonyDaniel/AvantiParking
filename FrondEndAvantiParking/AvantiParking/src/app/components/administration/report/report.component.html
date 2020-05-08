@@ -174,66 +174,68 @@
     <div class="col-sm-8 col-md-6 mt-3">
       <div class="d-sm-flex align-items-center text-white justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"></h1>
-        <a (click)="download()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white"></i>Download report</a>
+        <a (click)="sendEmail()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-download fa-sm text-white"></i>Send report to email</a>
       </div>
     </div>
   </div>
-  <div class="table-responsive justify-content-center">
-    <table class="table table-bordered table-hover">
-      <thead class="tableThead thead">
-        <tr>
-          <th class="text-center" COLSPAN="3" scope="col"><strong>ACTIVE USERS</strong></th>
-        </tr>
-        <tr>
-          <th scope="col"><strong>ID</strong></th>
-          <th scope="col"><strong>NAME</strong></th>
-          <th scope="col"><strong>EMAIL</strong></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let i of activeUser">
-          <td class="text-center">{{i.id}}</td>
-          <td class="text-center">{{i.name}}</td>
-          <td class="text-center">{{i.email}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-      <thead class="tableThead thead">
-        <tr>
-          <th class="text-center" COLSPAN="10" scope="col"><strong>RESERVES</strong></th>
-        </tr>
-        <tr>
-          <th scope="col"><strong>USER ID</strong></th>
-          <th scope="col"><strong>DATE</strong></th>
-          <th scope="col"><strong>START TIME</strong></th>
-          <th scope="col"><strong>END TIME</strong></th>
-          <th scope="col"><strong>EXTEND DATE</strong></th>
-          <th scope="col"><strong>VEHICLE</strong></th>
-          <th scope="col"><strong>HEADQUARTER</strong></th>
-          <th scope="col"><strong>PARKING LOT</strong></th>
-          <th scope="col"><strong>ZONE</strong></th>
-          <th scope="col"><strong>SPACE</strong></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let i of reportComplete  | ReportPipe:filter">
-          <td class="text-center">{{i.reserve.user.id}}</td>
-          <td class="text-center">{{i.date}}</td>
-          <td class="text-center">{{i.start_time}}</td>
-          <td class="text-center">{{i.end_time}}</td>
-          <td class="text-center">{{i.end_date_extend}}</td>
-          <td class="text-center" *ngIf="i.reserve.vehicle!=null">{{i.reserve.vehicle.license_plate}}</td>
-          <td class="text-center" *ngIf="i.reserve.vehicle==null"></td>
-          <td class="text-center">{{i.space.zone.parking_lot.headquarter.name}}</td>
-          <td class="text-center">{{i.space.zone.parking_lot.name}}</td>
-          <td class="text-center">{{i.space.zone.name}}</td>
-          <td class="text-center">{{i.space.name}}</td>
-        </tr>
-      </tbody>
-    </table>
+  <div id="report">
+    <div class="table-responsive justify-content-center">
+      <table class="table table-bordered table-hover">
+        <thead class="tableThead thead">
+          <tr>
+            <th class="text-center" COLSPAN="3" scope="col"><strong>ACTIVE USERS</strong></th>
+          </tr>
+          <tr>
+            <th scope="col"><strong>ID</strong></th>
+            <th scope="col"><strong>NAME</strong></th>
+            <th scope="col"><strong>EMAIL</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of activeUser">
+            <td class="text-center">{{i.id}}</td>
+            <td class="text-center">{{i.name}}</td>
+            <td class="text-center">{{i.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="tableThead thead">
+          <tr>
+            <th class="text-center" COLSPAN="10" scope="col"><strong>RESERVES</strong></th>
+          </tr>
+          <tr>
+            <th scope="col"><strong>USER ID</strong></th>
+            <th scope="col"><strong>DATE</strong></th>
+            <th scope="col"><strong>START TIME</strong></th>
+            <th scope="col"><strong>END TIME</strong></th>
+            <th scope="col"><strong>EXTEND DATE</strong></th>
+            <th scope="col"><strong>VEHICLE</strong></th>
+            <th scope="col"><strong>HEADQUARTER</strong></th>
+            <th scope="col"><strong>PARKING LOT</strong></th>
+            <th scope="col"><strong>ZONE</strong></th>
+            <th scope="col"><strong>SPACE</strong></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of reportComplete  | ReportPipe:filter">
+            <td class="text-center">{{i.reserve.user.id}}</td>
+            <td class="text-center">{{i.date}}</td>
+            <td class="text-center">{{i.start_time}}</td>
+            <td class="text-center">{{i.end_time}}</td>
+            <td class="text-center">{{i.end_date_extend}}</td>
+            <td class="text-center" *ngIf="i.reserve.vehicle!=null">{{i.reserve.vehicle.license_plate}}</td>
+            <td class="text-center" *ngIf="i.reserve.vehicle==null"></td>
+            <td class="text-center">{{i.space.zone.parking_lot.headquarter.name}}</td>
+            <td class="text-center">{{i.space.zone.parking_lot.name}}</td>
+            <td class="text-center">{{i.space.zone.name}}</td>
+            <td class="text-center">{{i.space.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
