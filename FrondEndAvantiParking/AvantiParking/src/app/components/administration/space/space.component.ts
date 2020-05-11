@@ -48,7 +48,8 @@ export class SpaceComponent implements OnInit {
     user: null,
     zone: this.formZone
   }
-
+  startIndex = 0;
+  endIndex = 10;
   private zoneToken;
 
 
@@ -86,6 +87,13 @@ export class SpaceComponent implements OnInit {
       error=>{
       }
     );
+  }
+  getArrayForNumber(length){
+    return new Array(length/10);
+  }
+  updateIndex(pageIndex){
+    this.startIndex = pageIndex*10;
+    this.endIndex = this.startIndex + 10;
   }
 
   ListSpaceInZone(spaces) {

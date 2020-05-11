@@ -40,7 +40,7 @@
                                         </tr>
                                 </thead>
                                 <tbody>
-                                        <tr *ngFor="let space of spaces | spacePipe:filterSpace">
+                                        <tr *ngFor="let space of spaces | spacePipe:filterSpace | slice:startIndex:endIndex">
                                                 <td>{{space.name}}</td>
                                                 <td>{{space.type}}</td>
                                                 <td *ngIf="space.state === false">Available</td>
@@ -54,7 +54,6 @@
                                                                         {{u.email}}
                                                                 </option>
                                                         </select>
-
                                                 </td>
                                                 <td>{{space.zone.name}}</td>
                                                 <td>
@@ -72,7 +71,18 @@
                                         </tr>
 
                                 </tbody>
+                                <tfoot>
+                                        <td colspan="6">
+                                                <nav class="row justify-content-center">
+                                                        <ul class="pagination ">
+                                                          <li *ngFor="let i of getArrayForNumber(spaces.length); let in = index" class="page-item">
+                                                                  <a class="page-link " (click)="updateIndex(in)">{{in+1}}</a></li>    
+                                                        </ul>
+                                                </nav>
+                                        </td>
+                                </tfoot>
                         </table>
+                        
                 </div>
 
                 <!--Modal Add Space-->
