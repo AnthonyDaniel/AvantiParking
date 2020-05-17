@@ -76,11 +76,9 @@ public class Dashboard_Controller {
 							}
 							if(available != 0) {
 								if(available == 6) {
-									System.out.println("jijijijijijijijijijijij");
 									Time end = Time.valueOf(details.get(j).getEnd_time());
 									Time max = Time.valueOf("20:00:00");
 									if(end.before(max)) {
-										System.out.println("xaxaxaxaxaaxax");
 										flag = true;
 										range[0][0]=timeToInt(details.get(j).getEnd_time());
 										range[0][1]=20;
