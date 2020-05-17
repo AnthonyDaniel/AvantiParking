@@ -75,18 +75,31 @@ public class Dashboard_Controller {
 								available = getBase(details.get(j-1).getEnd_time(), "20:00:00", details.get(j).getStart_time());
 							}
 							if(available != 0) {
-								flag = true;
-								range[0][0]=available;
-								range[0][1]=timeToInt(details.get(j).getStart_time());
-								rangeContainer.add(range);
-								if(j == details.size()-1) {
-									if(timeToInt(details.get(j).getEnd_time()) < 20) {
-										range = new Integer[1][2];
-										range[0][0] = timeToInt(details.get(j).getEnd_time());								
-										range[0][1] = 20;
+								if(available == 6) {
+									System.out.println("jijijijijijijijijijijij");
+									Time end = Time.valueOf(details.get(j).getEnd_time());
+									Time max = Time.valueOf("20:00:00");
+									if(end.before(max)) {
+										System.out.println("xaxaxaxaxaaxax");
+										flag = true;
+										range[0][0]=timeToInt(details.get(j).getEnd_time());
+										range[0][1]=20;
 										rangeContainer.add(range);
-									}							
-								}
+									}	
+								}else {
+									flag = true;
+									range[0][0]=available;
+									range[0][1]=timeToInt(details.get(j).getStart_time());
+									rangeContainer.add(range);
+									if(j == details.size()-1) {
+										if(timeToInt(details.get(j).getEnd_time()) < 20) {
+											range = new Integer[1][2];
+											range[0][0] = timeToInt(details.get(j).getEnd_time());								
+											range[0][1] = 20;
+											rangeContainer.add(range);
+										}							
+									}
+								}								
 							}
 						}
 						if(flag) {
@@ -103,9 +116,13 @@ public class Dashboard_Controller {
     private int getBase(String initial, String _final, String reserve_start_time) {
     	Time hour1 = Time.valueOf(initial);
     	Time hour2 = Time.valueOf(_final);
+    	Time hour3 = Time.valueOf(reserve_start_time);
     	int hour = timeToInt(initial);
-    	if(hour1.before(Time.valueOf(reserve_start_time))) {
-    		return hour;
+    	if(hour3.equals(Time.valueOf("06:00:00"))) {
+    		return 6;
+    	}
+    	if(hour1.before(hour3)) {
+    		return timeToInt(initial);
     	}
     	if(hour1.equals(hour2)) {
     		return 0;
