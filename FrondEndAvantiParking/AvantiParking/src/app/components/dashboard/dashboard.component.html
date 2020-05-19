@@ -51,7 +51,7 @@
 
     <div class="col-md-2">
       <br>
-      <button class="btn btn-delete btn-block btn-outline-danger" (click)="listSpaces()" (click)="dataCalendar()" (click)="calendarDates()" (click)="loadAvailableTimes()">
+      <button class="btn btn-delete btn-block btn-outline-danger" (click)="listSpaces()" (click)="dataCalendar()"  (click)="loadAvailableTimes()">
         <strong>VIEW DASHBOARD</strong>
       </button><br><br>
     </div>
@@ -148,7 +148,7 @@
               <div class="col-sm-8 col-lg-10">
                     <div class="input-group">
                       <input class="form-control" placeholder="yyyy-mm-dd"
-                             name="dp"  [minDate]="minDate2" [maxDate]="maxDate2" [(ngModel)]="extendReserveForm.extendReserveDate" ngbDatepicker #d="ngbDatepicker">
+                             name="dp"  [minDate]="minDate2" [maxDate]="maxDate2" [markDisabled]="isDisabled" [(ngModel)]="extendReserveForm.extendReserveDate" ngbDatepicker #d="ngbDatepicker" readonly>
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                       </div>

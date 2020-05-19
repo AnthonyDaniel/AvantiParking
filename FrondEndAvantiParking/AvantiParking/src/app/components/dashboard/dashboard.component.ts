@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { ServiceZoneService } from 'src/app/services/service-zone.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import { DashboardServiceService } from 'src/app/services/dashboard-service.service';
-import { NgbModule, NgbDatepickerConfig, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDatepickerConfig, NgbDateStruct, NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import * as moment from 'moment';
 import 'moment-recur-ts';
@@ -128,7 +128,7 @@ export class DashboardComponent implements OnInit {
     public _parking: ServiceParkingLotService, public _headquarter: ServiceHeadquarterService,
     public _zone: ServiceZoneService, private config: NgbDatepickerConfig, public _vehicle: VehicleServiceService,
     public datepipe: DatePipe, public _dashboard: DashboardServiceService, public space: ServiceSpaceService,
-    public emails: NotificationsService
+    public emails: NotificationsService, public calendarService:NgbCalendar
   ) {
 
   }
@@ -153,11 +153,13 @@ export class DashboardComponent implements OnInit {
     this.maxDate = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
   }
 
+  isDisabled;
+  arrayAux:any;
   calendarDates(){
       
     const since2 = moment().add(2,'d').recur().every(7).days();
    
-    console.log(this.dashboardForm.reserveDate)
+    //console.log(this.dashboardForm.reserveDate)
     let fecha = this.dashboardForm.reserveDate.month + '/' + this.dashboardForm.reserveDate.day + '/' + this.dashboardForm.reserveDate.year;
     //let fecha3 = this.dashboardForm.reserveDate.month + 1 + '/' + this.dashboardForm.reserveDate.day + 28 + '/' + this.dashboardForm.reserveDate.year;
     //console.log(fecha3)
@@ -173,7 +175,12 @@ export class DashboardComponent implements OnInit {
     console.log(number)
     this.minDate2 = { year: now.getFullYear(), month: now.getMonth() + 1, day: number }
     this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
-   
+    let selectedDate = new NgbDate(this.arrayAux[0],this.arrayAux[1],this.arrayAux[2]);
+    //console.log("jinx",this.arrayAux);
+   // console.log("jajaj",this.dashboardForm.reserveDate);
+    //console.log("aquiii",selectedDate);
+    this.isDisabled = (date: NgbDate, current: {month: number}) => 
+      this.calendarService.getWeekday(selectedDate) != this.calendarService.getWeekday(date);
   }
 
   listSpaces() {
@@ -295,22 +302,30 @@ export class DashboardComponent implements OnInit {
   }
 
   dataCalendar() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
-    console.log(this.dashboardForm.reserveDate)
-    if (this.dashboardForm.reserveDate != null) {
-     
+    //console.log("dataCalendar",this.dashboardForm.reserveDate)
+    if (this.dashboardForm.reserveDate != null) {      
+      this.arrayAux = [this.dashboardForm.reserveDate.year ,parseInt(this.dashboardForm.reserveDate.month) ,this.dashboardForm.reserveDate.day]  //fecha inicial para calcular extendida
       var monthWithoutCero: string = this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
       var monthWithCero: string = '0' + this.dashboardForm.reserveDate.month // mes con el 0(mes: 04,05,06)
       var dayWithoutCero: string = this.dashboardForm.reserveDate.day; // mes sin el 0(mes: 4,5,6)
       var dayWithCero: string = '0' + this.dashboardForm.reserveDate.day // mes con el 0(mes: 04,05,06)
+      this.calendarModel = this.dashboardForm.reserveDate.year + '-';
       if (monthWithoutCero[0] != monthWithCero[1] && this.dashboardForm.reserveDate.month < 10) {
-        this.dashboardForm.reserveDate.month = '0' + this.dashboardForm.reserveDate.month;
+        //this.dashboardForm.reserveDate.month = '0' + this.dashboardForm.reserveDate.month;
+        this.calendarModel = this.calendarModel + '0' + this.dashboardForm.reserveDate.month+ '-';
+      }else{
+        this.calendarModel = this.calendarModel + this.dashboardForm.reserveDate.month+'-';
       }
       if (dayWithoutCero[0] != dayWithCero[1] && this.dashboardForm.reserveDate.day < 10) {
-        this.dashboardForm.reserveDate.day = '0' + this.dashboardForm.reserveDate.day;
+        //this.dashboardForm.reserveDate.day = '0' + this.dashboardForm.reserveDate.day;
+        this.calendarModel = this.calendarModel + '0' + this.dashboardForm.reserveDate.day;
+      }else{
+        this.calendarModel = this.calendarModel + this.dashboardForm.reserveDate.day;
       }
-      this.calendarModel = this.dashboardForm.reserveDate.year + '-' + this.dashboardForm.reserveDate.month + '-' + this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
+      //this.calendarModel = this.dashboardForm.reserveDate.year + '-' + this.dashboardForm.reserveDate.month + '-' + this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
       console.log(this.calendarModel)
     }
+    this.calendarDates(); //limitar calendario de extendida
   }
   dataCalendarExtend() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
     console.log(this.extendReserveForm.extendReserveDate)
@@ -513,7 +528,8 @@ export class DashboardComponent implements OnInit {
                   title: message +'Somebody might have taken your space! Please reload.',
                   showConfirmButton: true
                 })
-              }            
+              }
+              this.extendReserveForm.extendReserveDate = null;
               this.ngOnInit();
               this.loadAvailableTimes();  
             },
