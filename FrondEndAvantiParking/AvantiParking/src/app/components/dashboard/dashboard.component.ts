@@ -161,11 +161,11 @@ export class DashboardComponent implements OnInit {
     let fecha = this.dashboardForm.reserveDate.month + '/' + this.dashboardForm.reserveDate.day + '/' + this.dashboardForm.reserveDate.year;
     //let fecha3 = this.dashboardForm.reserveDate.month + 1 + '/' + this.dashboardForm.reserveDate.day + 28 + '/' + this.dashboardForm.reserveDate.year;
     //console.log(fecha3)
-    let fecha2= "06/04/2020";
+    // let fecha2= "06/04/2020";
 
-    let since3 = moment().recur(fecha,fecha2).every(7).days();
-    let allDates = since3.all("L");
-    console.log(allDates)
+    // let since3 = moment().recur(fecha,fecha2).every(7).days();
+    // let allDates = since3.all("L");
+    // console.log(allDates)
 
     const since = moment().add(30, 'd').toDate();
     const now = moment().toDate();
