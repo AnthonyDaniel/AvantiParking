@@ -76,14 +76,16 @@ public class Dashboard_Controller {
 							}
 							if(available != 0) {
 								if(available == 6) {
-									Time end = Time.valueOf(details.get(j).getEnd_time());
-									Time max = Time.valueOf("20:00:00");
-									if(end.before(max)) {
-										flag = true;
-										range[0][0]=timeToInt(details.get(j).getEnd_time());
-										range[0][1]=20;
-										rangeContainer.add(range);
-									}	
+									if(details.size() == 1) {
+										Time end = Time.valueOf(details.get(j).getEnd_time());
+										Time max = Time.valueOf("20:00:00");
+										if(end.before(max)) {
+											flag = true;
+											range[0][0]=timeToInt(details.get(j).getEnd_time());
+											range[0][1]=20;
+											rangeContainer.add(range);
+										}	
+									}									
 								}else {
 									flag = true;
 									range[0][0]=available;
