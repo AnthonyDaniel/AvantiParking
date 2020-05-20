@@ -172,7 +172,7 @@ export class DashboardComponent implements OnInit {
     const since = moment().add(30, 'd').toDate();
     const now = moment().toDate();
     let number = this.dashboardForm.reserveDate.day;
-    console.log(number)
+    //console.log(number)
     this.minDate2 = { year: now.getFullYear(), month: now.getMonth() + 1, day: number }
     this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
     let selectedDate = new NgbDate(this.arrayAux[0],this.arrayAux[1],this.arrayAux[2]);
@@ -323,12 +323,12 @@ export class DashboardComponent implements OnInit {
         this.calendarModel = this.calendarModel + this.dashboardForm.reserveDate.day;
       }
       //this.calendarModel = this.dashboardForm.reserveDate.year + '-' + this.dashboardForm.reserveDate.month + '-' + this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
-      console.log(this.calendarModel)
+      //console.log(this.calendarModel)
     }
     this.calendarDates(); //limitar calendario de extendida
   }
   dataCalendarExtend() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
-    console.log(this.extendReserveForm.extendReserveDate)
+    //console.log(this.extendReserveForm.extendReserveDate)
     if (this.extendReserveForm.extendReserveDate != null) {
      
       var monthWithoutCero: string = this.extendReserveForm.extendReserveDate.month; // mes sin el 0(mes: 4,5,6)
