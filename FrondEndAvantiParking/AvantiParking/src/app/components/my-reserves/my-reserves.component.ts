@@ -50,8 +50,9 @@ export class MyReservesComponent implements OnInit {
     headquarter: ''
   };
 
-  public reserves:any=[];
-public userNotifications;
+  public reserves:any=[]
+  
+  public userNotifications;
   public unvalidDetail:any[];
   public validDetail:any=[];
 
@@ -121,10 +122,16 @@ public userNotifications;
       data=>{   
         this.validDetail = [];  
         this.reserves = data;
+       
+        console.log(this.reserves.created_at)
         for(let reserve of this.reserves){
           this.emply = false;
-          this.listValidDetails(reserve.id_reservation);          
+          this.listValidDetails(reserve.id_reservation);   
+          reserve.created_at = reserve.created_at + " 1"
+          console.log(reserve.created_at)       
+
         }
+     
       },
       error=>{
       }
@@ -141,7 +148,8 @@ public userNotifications;
           for(let item of detail){            
             this.validDetail.push(item);
           } 
-        }                     
+        }        
+        console.log(this.validDetail)             
       },
       error=>{
       }

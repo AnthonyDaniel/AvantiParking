@@ -36,7 +36,7 @@
       <label>PARKING LOT</label>
       <select class="custom-select" name="parking lot" required [(ngModel)]="parkingLotModel" (change)=" dataReserve(parkingLotModel,$event.target.value)">
         <option selected>Choose...</option>
-        <option *ngFor="let parking of parkings" [ngValue]="parking"  >{{parking.id_parking_lot}}
+        <option *ngFor="let parking of parkings" [ngValue]="parking"  >
           {{parking.name}}</option>
       </select>
     </div>
@@ -45,7 +45,7 @@
       <label>ZONE</label>
       <select class="custom-select" name="zone" required [(ngModel)]="zoneModel" (change)=" dataReserve(zoneModel,$event.target.value)" >
         <option selected>Choose...</option>
-        <option *ngFor="let zone of zones" [ngValue]="zone" >{{zone.parking_lot.name}} {{zone.name}}</option>
+        <option *ngFor="let zone of zones" [ngValue]="zone" > {{zone.name}}</option>
       </select>
     </div>
 

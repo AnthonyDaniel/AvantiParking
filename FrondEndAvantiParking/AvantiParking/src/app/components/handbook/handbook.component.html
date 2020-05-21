@@ -1,11 +1,13 @@
 <button class="botonF1" routerLink="">
     <span><i class="fas fa-arrow-left    "></i></span>
 </button>
-<div class="container">
+<div class="container" >
     <br>
     <section class="jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center">
       <h3 class="font-weight-bold">HANDBOOK</h3>
     </section>
+    
+    <!--HandBook Users -->
     <div class="accordion" id="accordionExample">
         <div class="card">
             <div class="card-header" id="">
@@ -113,6 +115,207 @@
                 <img src="assets/Notifications/2.png" class="img-fluid" alt="Responsive image">
                 <div class="card-body">
                     #2-These would be the notifications, once we open them, the number of messages will stop coming out, in the upper right corner, in addition, we have the possibility to click on the "X" of each message, to delete it, simply the we can leave there.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading5">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                        Where can I reserve a parking space?
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+                <img src="assets/Dashboard/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-The first thing we must do is go to the navbar and touch the "Dashboard" button, then fill in all the fields and then press the button "View Dashboard".
+                </div>
+                <img src="assets/Dashboard/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #2-We choose the field that we want to reserve and press the button, , which will display the following form.
+                </div>
+                <img src="assets/Dashboard/3.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #3-In this form, we fill in the respective data of your vehicle, choose the start time and the end time, once all the data is in, we touch the "Reserve" button.
+                </div>
+                <img src="assets/Dashboard/4.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #4-If we want to add an extended reservation then in the "end for extended" field, we choose a final date for this reservation.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="heading6">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                        Where can I see all my reservations?
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+                <img src="assets/Reserves/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-We must to go to the navbar and touch the "My Reserves" button, here you will see a list of all our reservations made.
+                </div>
+            </div>
+        </div>
+           <!--HandBook Users Administrator-->
+        <div class="card" *ngIf="loggedIn && type">
+            <div class="card-header" id="heading7">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                        Add a headquarter
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
+                <img src="assets/Headquarter/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-Access to each window will appear in the administrator user menu, choose the "headqarter" option.
+                </div>
+                <img src="assets/Headquarter/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #2-Once, on this screen, all we have to do is touch the "New Headquarter" button, which will display the following form.
+                </div>
+                <img src="assets/Headquarter/3.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #3-In this form, we fill in the respective data of headquarter, once all the data is in, we touch the "Add" button.
+                </div>
+                <img src="assets/Headquarter/4.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #4-In addition to adding headquarters, we can intuitively edit and delete them.
+                </div>
+            </div>
+        </div>
+        <div class="card" *ngIf="loggedIn && type">
+            <div class="card-header" id="heading8">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                        Add a parking
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#accordionExample">
+                <img src="assets/Parking/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-There is also an access in the setting button, which opens a window with different accesses, we choose "parking-lot"
+                </div>
+                <img src="assets/Parking/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #2-Once, on this screen, all we have to do is touch the "New Parking Lot" button, which will display the following form.
+                </div>
+                <img src="assets/Parking/3.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #3-In this form, we fill in the respective data of parking lot, once all the data is in, we touch the "Add" button.
+                </div>
+                <img src="assets/Parking/4.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #4-In addition to adding oarkings, we can intuitively edit and delete them.
+                </div>
+            </div>
+        </div>
+        <div class="card"  *ngIf="loggedIn && type">
+            <div class="card-header" id="heading9">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                        Add a zone
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse9" class="collapse" aria-labelledby="heading9" data-parent="#accordionExample">
+                <img src="assets/Zone/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-Access to each window will appear in the administrator user menu, choose the "Zone" option.
+                </div>
+                <img src="assets/Zone/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #2-Once, on this screen, all we have to do is touch the "New Zone" button, which will display the following form.
+                </div>
+                <img src="assets/Zone/3.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #3-In this form, we fill in the respective data of the zone, once all the data is in, we touch the "Add" button.
+                </div>
+                <img src="assets/Zone/4.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #4-In the table we must press the eye icon to see the spaces in that zone.
+                </div>
+            </div>
+        </div>
+        <div class="card"  *ngIf="loggedIn && type">
+            <div class="card-header" id="heading10">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                        Add spaces
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse10" class="collapse" aria-labelledby="heading10" data-parent="#accordionExample">
+                <img src="assets/Spaces/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-Once in the window of spaces, we can also add other spaces by pressing the button "Add Space", which will display the following form.
+                </div>
+                <img src="assets/Spaces/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #2-In this form, we fill in the respective data of your vehicle, once all the data is in, we touch the "Add" button
+                </div>
+                <img src="assets/Spaces/3.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #3-.By clicking on the edit button, a form will be displayed with the information of the chosen space, here you can modify your data
+                </div>
+                <img src="assets/Spaces/4.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #4-When you want to delete a space a warning will be issued, if you want to continue press "yes, delete it!"
+                </div>
+            </div>
+        </div>
+        <div class="card"  *ngIf="loggedIn && type">
+            <div class="card-header" id="heading11">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                        Change user´s roll
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#accordionExample">
+                <img src="assets/User_roll/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-Access to each window will appear in the administrator user menu, choose the "Assign or modify roles" option.
+                </div>
+                <img src="assets/User_roll/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #2-Once, on this screen, all we have to do is touch the "Admin" button if we want to grant administrator permissions, or press "Regular" button if we want to remove administrator permissions
+                </div>
+            </div>
+        </div>
+        <div class="card"  *ngIf="loggedIn && type">
+            <div class="card-header" id="heading12">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                        data-target="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                        Make a report
+                    </button>
+                </h2>
+            </div>
+            <div id="collapse12" class="collapse" aria-labelledby="heading12" data-parent="#accordionExample">
+                <img src="assets/Report/1.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #1-Access to each window will appear in the administrator user menu, choose the "Report" option.
+                </div>
+                <img src="assets/Report/2.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #3-To make a report, you must choose a start date and an end date, then press the "Generate Report" button
+                </div>
+                <img src="assets/Report/3.png" class="img-fluid" alt="Responsive image">
+                <div class="card-body">
+                    #4-A table will appear with the information of the report, finally press the "generate report" button.
                 </div>
             </div>
         </div>
