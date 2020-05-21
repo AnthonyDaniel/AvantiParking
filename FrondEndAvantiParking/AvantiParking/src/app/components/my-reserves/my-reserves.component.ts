@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { UserService } from 'src/app/services/user.service';
 import { VehicleServiceService } from 'src/app/services/vehicle-service.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { stream } from 'xlsx/types';
 
 @Component({
   selector: 'app-my-reserves',
@@ -121,17 +122,13 @@ export class MyReservesComponent implements OnInit {
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
       data=>{   
         this.validDetail = [];  
-        this.reserves = data;
-       
-        console.log(this.reserves.created_at)
+        this.reserves = data;       
+        //console.log(this.reserves.created_at)
         for(let reserve of this.reserves){
           this.emply = false;
           this.listValidDetails(reserve.id_reservation);   
-          reserve.created_at = reserve.created_at + " 1"
-          console.log(reserve.created_at)       
-
+          //console.log(reserve.created_at)   
         }
-     
       },
       error=>{
       }
@@ -145,7 +142,10 @@ export class MyReservesComponent implements OnInit {
         let detail:any = [];      
         detail = data;
         if(detail.length > 0){          
-          for(let item of detail){            
+          for(let item of detail){    
+            let dateAux = item.date.substring(0,7)+'-'+ (parseInt(item.date.substring(8))+1);
+            item.date = dateAux;
+            item.reserve.created_at = item.reserve.created_at.substring(0,10);                  
             this.validDetail.push(item);
           } 
         }        
