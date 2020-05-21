@@ -45,6 +45,6 @@ app:
     tokenExpirationMsec: 864000000
   oauth2:
     authorizedRedirectUris:
-      - http://localhost:4200/oauth2/redirect
+      - https://test-avantiparking.web.app/oauth2/redirect
       
           
