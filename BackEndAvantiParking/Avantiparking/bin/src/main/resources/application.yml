@@ -1,13 +1,16 @@
 spring:
     datasource:
-        url: jdbc:mysql://localhost:3306/avantiparking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-        username: root
-        password: 
+        #url: jdbc:mysql://localhost:3306/avantiparking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #username: root
+        #password:
+        url: jdbc:mysql://avantiparking-db.mariadb.database.azure.com:3306/avantiparking?useUnicode=true&useJDBCCompliantTimezoneShift=true&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: master@avantiparking-db
+        password: Aekm2020 
     mail:
-        host: smtp-relay.sendinblue.com
+        host: in-v3.mailjet.com
         port: 587
-        username: anthonymmarinbolivar@gmail.com
-        password: JzdTS36jxEXqOIGy
+        username: a9183edea445a2346abdb068d8eed198
+        password: d9f033b49ac3cfe3711a8edd1881ef3e
         properties:
             mail:
                 smtp:
@@ -42,6 +45,6 @@ app:
     tokenExpirationMsec: 864000000
   oauth2:
     authorizedRedirectUris:
-      - http://localhost:4200/oauth2/redirect
+      - https://test-avantiparking.web.app/oauth2/redirect
       
           
