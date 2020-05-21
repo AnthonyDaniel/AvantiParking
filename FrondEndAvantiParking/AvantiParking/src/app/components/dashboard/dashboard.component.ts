@@ -26,13 +26,13 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 
 export class DashboardComponent implements OnInit {
 
-  public parkings
-  public zones
+  public parkings :any;
+  public zones:any;
   private img;
-  public headquarters;
+  public headquarters = [];
   public spaces: any;
   private u: any;
-  private current: any;
+  //private current: any;
   public vehicles;
   public dashboards: any = [];
   public userNotifications;
@@ -55,13 +55,7 @@ export class DashboardComponent implements OnInit {
     space: null,
     reserve: this.formAddReserve
   }
-
-  public userInf = {
-    id: null,
-    name: null,
-    imageUrl: null,
-    headquarter: ''
-  };
+ 
   private formReserve = {
     parking_lot_id: null,
     parking: null,
@@ -88,6 +82,13 @@ export class DashboardComponent implements OnInit {
     country: null,
     city: null,
   }
+
+  public userInf = {
+    id: null,
+    name: null,
+    imageUrl: null,
+    headquarter: this.hqModel
+  };
 
   public parkingLotModel = { //copia de un modelo de parking
     id_parking_lot: null,
@@ -139,8 +140,8 @@ export class DashboardComponent implements OnInit {
       this.listVehicles();
     });
     this.listHeadquarters();
-    this.listParkings();
-    this.listZones();
+    //this.listParkings();
+    //this.listZones();
     this.dashboardCalendarDates();
   }
   dashboardCalendarDates(){
@@ -192,30 +193,64 @@ export class DashboardComponent implements OnInit {
      }
       );
   }
-
-  listParkings() {
-    this._parking.listParkingLot().subscribe(
-      data => {
-        this.parkings = data;
-      }
-    )
-  }
+  
+  /*headquarterUser(data) {
+    this.userInf.headquarter = data.name;
+  }*/
 
   listHeadquarters() {
+    this.headquarters = [];
     this._headquarter.listHeadquarter().subscribe(
       data => {
-        this.headquarters = data;
+        let hqs:any = data ;
+        if(this.userInf.headquarter!= null){          
+          console.log("jiji");
+          this.headquarters.push(this.userInf.headquarter); 
+          for(let hq of hqs){
+            if(hq.id_headquarter != this.userInf.headquarter.id_headquarter){
+              this.headquarters.push(hq)
+            }
+          }  
+        }else{
+          this.headquarters = hqs;
+        }  
+        this.hqModel = this.headquarters[0];  
+        this.listParkings(this.hqModel);    
+        console.log(this.headquarters);        
+      },
+      error =>{
+        console.log(error);
       }
     );
   }
 
-  listZones() {
-    this._zone.listZone().subscribe(
+  listParkings(headquarter) {
+    this._parking.listParkingLotHQ(headquarter.id_headquarter).subscribe(
       data => {
-        this.zones = data;
+        console.log(data);
+        this.parkings = data;
+        this.parkingLotModel = this.parkings[0];
+        this.listZones(this.parkingLotModel);
+      },
+      error => {
+        console.log(error);
       }
     )
   }
+
+  listZones(parking_lot) {
+    this._zone.listZoneByPKLot(parking_lot.id_parking_lot).subscribe(
+      data => {
+        console.log("data",data);
+        this.zones = data;
+        this.zoneModel = this.zones[0];
+      },
+      error =>{
+        console.log("error",error);
+      }
+    )
+  }
+
   listVehicles() {
     this._vehicle.listVehicle(this.userInf.id).subscribe(
       data => {
@@ -233,16 +268,14 @@ export class DashboardComponent implements OnInit {
     this.u = data;
     this.img = data.imageUrl;
     if (data.headquarter == null) {
-      this.userInf.headquarter = '';
+      this.userInf.headquarter = null;
     } else {
       this.userInf.headquarter = data.headquarter;
-      this.current = data.headquarter.name;
+      //this.current = data.headquarter.name;
     }
   }
 
-  headquarterUser(data) {
-    this.userInf.headquarter = data.name;
-  }
+  
   dataSpace(space) {
     this.end_time = null;
     this.start_time = null;

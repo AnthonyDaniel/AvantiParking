@@ -75,7 +75,7 @@ public class Dashboard_Controller {
 								available = getBase(details.get(j-1).getEnd_time(), "20:00:00", details.get(j).getStart_time());
 							}
 							if(available != 0) {
-								if(available == 6) {
+								if(available == -1) {
 									if(details.size() == 1) {
 										Time end = Time.valueOf(details.get(j).getEnd_time());
 										Time max = Time.valueOf("20:00:00");
@@ -119,7 +119,7 @@ public class Dashboard_Controller {
     	Time hour3 = Time.valueOf(reserve_start_time);
     	int hour = timeToInt(initial);
     	if(hour3.equals(Time.valueOf("06:00:00"))) {
-    		return 6;
+    		return -1;
     	}
     	if(hour1.before(hour3)) {
     		return timeToInt(initial);

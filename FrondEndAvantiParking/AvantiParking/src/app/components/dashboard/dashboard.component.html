@@ -22,11 +22,8 @@
     <div class="col-md-2">
       <label>CURRENT LOCATION</label>
       <select class="custom-select" id="inputGroupSelect04" name="headquarter" required 
-      [(ngModel)]="hqModel" (change)=" dataReserve(hqModel,$event.target.value)" aria-label="">
-        <option selected="true" *ngIf="current !=null">Current
-          {{current}}
-        </option>
-        <option *ngFor="let headquarter of headquarters" [ngValue]="headquarter" >{{headquarter.name}}
+      [(ngModel)]="hqModel" (change)=" listParkings(hqModel,$event.target.value)" aria-label="">
+        <option *ngFor="let headquarter of headquarters" [ngValue]="headquarter">{{headquarter.name}}
           {{headquarter.city}}
           {{headquarter.country}}</option>
       </select>
@@ -34,7 +31,7 @@
 
     <div class="col-md-2">
       <label>PARKING LOT</label>
-      <select class="custom-select" name="parking lot" required [(ngModel)]="parkingLotModel" (change)=" dataReserve(parkingLotModel,$event.target.value)">
+      <select class="custom-select" name="parking lot" required [(ngModel)]="parkingLotModel" (change)=" listZones(parkingLotModel,$event.target.value)">
         <option selected>Choose...</option>
         <option *ngFor="let parking of parkings" [ngValue]="parking"  >
           {{parking.name}}</option>

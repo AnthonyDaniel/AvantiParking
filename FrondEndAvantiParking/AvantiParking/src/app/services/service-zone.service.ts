@@ -19,6 +19,9 @@ export class ServiceZoneService {
   listZone(){
     return this.http.get(`${this.url}/api/zone`,{headers:this.httpHeaders});
   }
+  listZoneByPKLot(id){
+    return this.http.get(`${this.url}/api/zone/lot/`+id,{headers:this.httpHeaders});
+  }
   editZone(id,data){
     return this.http.put(`${this.url}/api/zone/`+id,data,{headers:this.httpHeaders});
  }

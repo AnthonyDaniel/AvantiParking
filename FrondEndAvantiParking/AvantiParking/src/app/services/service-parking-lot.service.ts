@@ -21,6 +21,9 @@ export class ServiceParkingLotService {
    listParkingLot() {
       return this.http.get(`${this.url}/api/parking_lot`,{headers:this.httpHeaders})
    }
+   listParkingLotHQ(id) {
+      return this.http.get(`${this.url}/api/parking_lot/hq/`+ id,{headers:this.httpHeaders})
+   }
    editParkingLot(id, data) {
       return this.http.put(`${this.url}/api/parking_lot/` + id, data,{headers:this.httpHeaders});
    }

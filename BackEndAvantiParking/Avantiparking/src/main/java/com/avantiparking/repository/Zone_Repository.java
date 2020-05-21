@@ -1,5 +1,6 @@
 package com.avantiparking.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,9 @@ public interface Zone_Repository extends JpaRepository<Zone, Long> {
 final String information = "select * from zone";
 	
 	@Query(value = information+" where name = ?1 and parking_lot = ?2", nativeQuery = true)
-	Optional<Zone> findByNameAndParkingLot(String name, Long parking_lot);	
+	Optional<Zone> findByNameAndParkingLot(String name, Long parking_lot);
+	
+	@Query(value = information+" where parking_lot = ?1", nativeQuery = true)
+	List<Zone> findByParkingLot(Long parking_lot);
 
 }

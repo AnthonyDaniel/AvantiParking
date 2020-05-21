@@ -40,6 +40,11 @@ public class Zone_Controller {
 	public List<Zone> getAllZones() {
 		return zone_repository.findAll();
 	}
+	
+	@GetMapping("/zone/lot/{id}")
+	public List<Zone> getZonesByLot(@PathVariable(value = "id") Long id_Zone) {
+		return zone_repository.findByParkingLot(id_Zone);
+	}
 
 	@GetMapping("/zone/{id}")
 	public ResponseEntity<Zone> getZoneById(@PathVariable(value = "id") Long id_Zone)

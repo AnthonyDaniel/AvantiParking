@@ -36,6 +36,11 @@ public class Parking_lot_Controller {
 	public List<Parking_lot> getAllParking_lot() {
 		return parking_lot_repository.findAll();
 	}
+	
+	@GetMapping("/parking_lot/hq/{id}")
+	public List<Parking_lot> getAllParking_lotByHQ(@PathVariable(value = "id") Long id_headquarter) {
+		return parking_lot_repository.findByHQ(id_headquarter);
+	}
 
 	@GetMapping("/parking_lot/{id}")
 	public ResponseEntity<Parking_lot> getParking_lotById(@PathVariable(value = "id") Long id_parking_lot)
@@ -47,7 +52,7 @@ public class Parking_lot_Controller {
 
 	@PostMapping("/parking_lot")//se revisa que no este registrado (por name) para esa sede, devuelve un parking lot vacio si encontro coincidencia
 	public Parking_lot createParking_lot(@Valid @RequestBody Parking_lot parking_lot) {
-		Optional<Parking_lot> exists= parking_lot_repository.finByNameAndHQ(parking_lot.getName(),parking_lot.getHeadquarter().getId_headquarter());
+		Optional<Parking_lot> exists= parking_lot_repository.findByNameAndHQ(parking_lot.getName(),parking_lot.getHeadquarter().getId_headquarter());
 		if(!exists.isPresent()) {
 			return parking_lot_repository.save(parking_lot);
 		}
