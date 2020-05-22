@@ -180,7 +180,7 @@
     </div>
   </div>
   <div id="report">
-    <div class="table-responsive justify-content-center">
+    <div class="table-responsive justify-content-center" hidden>
       <table class="table table-bordered table-hover">
         <thead class="tableThead thead">
           <tr>
@@ -208,7 +208,7 @@
             <th class="text-center" COLSPAN="10" scope="col"><strong>RESERVES</strong></th>
           </tr>
           <tr>
-            <th scope="col"><strong>USER ID</strong></th>
+            <th scope="col"><strong>USER EMAIL</strong></th>
             <th scope="col"><strong>DATE</strong></th>
             <th scope="col"><strong>START TIME</strong></th>
             <th scope="col"><strong>END TIME</strong></th>
@@ -222,7 +222,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let i of reportComplete  | ReportPipe:filter">
-            <td class="text-center">{{i.reserve.user.id}}</td>
+            <td class="text-center">{{i.reserve.user.email}}</td>
             <td class="text-center">{{i.date}}</td>
             <td class="text-center">{{i.start_time}}</td>
             <td class="text-center">{{i.end_time}}</td>

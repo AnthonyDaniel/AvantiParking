@@ -41,10 +41,8 @@ public class Email_Controller {
 		
 		TemplateEmail i = new TemplateEmail();
 	
-		String emailHtml = i.TempleteEmailAvantiParking(email.getSubject(),email.getText(),email.getHtml(), "http://localhost:4200", true, "Go to AvantiParking");
-		
-		//String emailHtml = "<h1>Hola</h1>";
-		
+		String emailHtml = i.TempleteEmailAvantiParking(email.getSubject(),email.getText(),email.getHtml(), "https://test-avantiparking.web.app/", true, "Go to AvantiParking");
+
         emailRepository.save(email);
         
         emailService.sendMail(email.getTo(),email.getSubject(),emailHtml);

@@ -120,6 +120,8 @@ export class SpaceComponent implements OnInit {
       this.addFormSpace.user=null;
      }
 
+     console.log(this.addFormSpace);
+
     this.space.addSpace(this.addFormSpace).subscribe(
       data => {
         this.nullSpace = data;

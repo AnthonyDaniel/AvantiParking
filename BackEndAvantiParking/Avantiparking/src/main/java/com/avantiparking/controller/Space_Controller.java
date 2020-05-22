@@ -36,7 +36,6 @@ public class Space_Controller {
 
 	@GetMapping("/space")
 	public List<Space> getAllSpaces() {
-		
 		return space_repository.findAll();
 	}
 

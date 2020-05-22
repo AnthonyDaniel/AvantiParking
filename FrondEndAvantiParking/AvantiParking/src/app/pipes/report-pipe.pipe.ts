@@ -11,7 +11,7 @@ export class ReportPipePipe implements PipeTransform {
       if (u.end_date_extend == null) {
         u.end_date_extend = "";
       }
-      var user = u.reserve.user.id + "";
+      var user = u.reserve.user.email + "";
       if (u.date.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.end_date_extend.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
         u.end_time.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.start_time.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
         user.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.space.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 ||
