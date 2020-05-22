@@ -418,6 +418,13 @@ export class DashboardComponent implements OnInit {
         },
         error => {
         });
+    }else {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'No reservation will be shown until you filter the fields to show',
+        confirmButtonColor: '#EF4023'
+      })
     } 
 
   }
