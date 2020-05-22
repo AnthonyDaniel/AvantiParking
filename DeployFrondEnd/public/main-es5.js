@@ -409,7 +409,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n  <br>\r\n  <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n    <h3 class=\"font-weight-bold\"> PARKING LOT ADMINISTRATION</h3>\r\n  </section>\r\n  <div class=\"row justify-content-end\">\r\n    <div class=\"col-sm-4 col-md-6 mt-3\">\r\n      <input type=\"text\" class=\"form-control\" name=\"filterParkingLot\" placeholder=\"Search...\"  maxlength=\"40\" \r\n        [(ngModel)]=\"filterParkingLot\">\r\n    </div>\r\n    <div class=\"col-sm-8 col-md-6 mt-3 \">\r\n      <button type=\"button\" class=\"btnAdd btn btn-primary btn-block\" data-toggle=\"modal\" data-target=\"#addParkingLot\">\r\n        <strong><i class=\"fas fa-plus-square\"></i> NEW PARKING LOT</strong>\r\n      </button>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <div>\r\n    <div class=\"table-responsive mt-5 mb-5\">\r\n      <table class=\"table table-bordered table-hover \">\r\n        <thead class=\"tableThead thead\">\r\n          <tr>\r\n            <th scope=\"col\"><strong>NAME</strong></th>\r\n            <th scope=\"col\"><strong>HEADQUARTER</strong></th>\r\n            <th scope=\"col\"><strong>ACTION</strong></th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let parking of parkings | parkingLotPipe:filterParkingLot\">\r\n            <td>{{parking.name}}</td>\r\n            <td>{{parking.headquarter.name}}</td>\r\n            <td>\r\n              <button (click)=\"dataParkingLotFormEdit(parking)\" class=\"btn-edit btn btn-block btn-outline-primary\" id=\"\"\r\n                data-toggle=\"modal\" data-target=\"#editParkingLot\"><strong><i class=\"fas fa-angle-double-right\"></i>EDIT</strong></button>\r\n              <button (click)=\"deleteParkingLot(parking.id_parking_lot)\"\r\n                class=\"btn-delete btn btn-block btn-outline-danger\" id=\"\" data-toggle=\"modal\"\r\n                data-target=\"#deleteParkingLot\"><strong><i class=\"fas fa-trash-alt\"></i>DELETE</strong></button>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n  <!--Modal de add parking-->\r\n  <div class=\"modal fade\" id=\"addParkingLot\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"addParkingLot\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h5 class=\"modal-title justify-content-center\"><strong>ADD PARKING LOT</strong></h5>\r\n          <button type=\"button\" id=\"closeModal2\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form #addParkingLotForm=ngForm (ngSubmit)=\"addParkingLot()\" class=\"form-row justify-content-sm-center\">\r\n            <div class=\"form-group col-md-12\">\r\n              <label>NAME</label>\r\n              <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"addFormParkingLot.name\"  maxlength=\"40\"  required>\r\n            </div>\r\n            <div class=\"form-group col-md-12\">\r\n              <label>HEADQUARTER</label>\r\n              <select class=\"custom-select\" name=\"headquarter\" [(ngModel)]=\"addFormParkingLot.headquarter.id_headquarter\"\r\n                required>\r\n                <option selected>Choose...</option>\r\n                <option value=\"{{headquarter.id_headquarter}}\" *ngFor=\"let headquarter of headquarters\">{{headquarter.id_headquarter}} {{headquarter.name}}</option>\r\n              </select>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <button type=\"submit\" class=\"btnModalAdd btn btn-block btn-outline-secondary\"\r\n                [disabled]=\"!addParkingLotForm.valid\"><i class=\"fas fa-plus-square\"></i> ADD</button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!--Modal edit parkingLot-->\r\n  <div class=\"modal fade\" id=\"editParkingLot\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editParkingLot\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h5 class=\"modal-title justify-content-center\"><strong>EDIT PARKING LOT</strong></h5>\r\n          <button type=\"button\" id=\"closeModal3\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form #editParkingLotForm=ngForm (ngSubmit)=\"editParkingLot()\" class=\"form-row justify-content-sm-center\">\r\n            <div class=\"form-group col-md-12\">\r\n              <label>NAME</label>\r\n              <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"editFormParkingLot.name\"  maxlength=\"40\"  required>\r\n            </div>\r\n            <div class=\"form-group col-md-12\">\r\n              <label>HEADQUARTER</label>\r\n              <select class=\"custom-select\" name=\"headquarter\" [(ngModel)]=\"editFormParkingLot.headquarter.id_headquarter\"\r\n                required>\r\n                <option selected>Choose...</option>\r\n                <option value=\"{{headquarter.id_headquarter}}\" *ngFor=\"let headquarter of headquarters\">{{headquarter.id_headquarter}} {{headquarter.name}}</option>\r\n              </select>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <button type=\"submit\" class=\"btnModalAdd btn btn-block btn-outline-secondary\"\r\n                [disabled]=\"!editParkingLotForm.valid\"><i class=\"fas fa-plus-square\"></i> EDIT</button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n  <br>\r\n  <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n    <h3 class=\"font-weight-bold\"> PARKING LOT ADMINISTRATION</h3>\r\n  </section>\r\n  <div class=\"row justify-content-end\">\r\n    <div class=\"col-sm-4 col-md-6 mt-3\">\r\n      <input type=\"text\" class=\"form-control\" name=\"filterParkingLot\" placeholder=\"Search...\"  maxlength=\"40\" \r\n        [(ngModel)]=\"filterParkingLot\">\r\n    </div>\r\n    <div class=\"col-sm-8 col-md-6 mt-3 \">\r\n      <button type=\"button\" class=\"btnAdd btn btn-primary btn-block\" data-toggle=\"modal\" data-target=\"#addParkingLot\">\r\n        <strong><i class=\"fas fa-plus-square\"></i> NEW PARKING LOT</strong>\r\n      </button>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <div>\r\n    <div class=\"table-responsive mt-5 mb-5\">\r\n      <table class=\"table table-bordered table-hover \">\r\n        <thead class=\"tableThead thead\">\r\n          <tr>\r\n            <th scope=\"col\"><strong>NAME</strong></th>\r\n            <th scope=\"col\"><strong>HEADQUARTER</strong></th>\r\n            <th scope=\"col\"><strong>ACTION</strong></th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let parking of parkings | parkingLotPipe:filterParkingLot\">\r\n            <td>{{parking.name}}</td>\r\n            <td>{{parking.headquarter.name}}</td>\r\n            <td>\r\n              <button (click)=\"dataParkingLotFormEdit(parking)\" class=\"btn-edit btn btn-block btn-outline-primary\" id=\"\"\r\n                data-toggle=\"modal\" data-target=\"#editParkingLot\"><strong><i class=\"fas fa-angle-double-right\"></i>EDIT</strong></button>\r\n              <button (click)=\"deleteParkingLot(parking.id_parking_lot)\"\r\n                class=\"btn-delete btn btn-block btn-outline-danger\" id=\"\" data-toggle=\"modal\"\r\n                data-target=\"#deleteParkingLot\"><strong><i class=\"fas fa-trash-alt\"></i>DELETE</strong></button>\r\n            </td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n  <!--Modal de add parking-->\r\n  <div class=\"modal fade\" id=\"addParkingLot\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"addParkingLot\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h5 class=\"modal-title justify-content-center\"><strong>ADD PARKING LOT</strong></h5>\r\n          <button type=\"button\" id=\"closeModal2\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form #addParkingLotForm=ngForm (ngSubmit)=\"addParkingLot()\" class=\"form-row justify-content-sm-center\">\r\n            <div class=\"form-group col-md-12\">\r\n              <label>NAME</label>\r\n              <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"addFormParkingLot.name\"  maxlength=\"40\"  required>\r\n            </div>\r\n            <div class=\"form-group col-md-12\">\r\n              <label>HEADQUARTER</label>\r\n              <select class=\"custom-select\" name=\"headquarter\" [(ngModel)]=\"addFormParkingLot.headquarter.id_headquarter\"\r\n                required>\r\n                <option selected>Choose...</option>\r\n                <option value=\"{{headquarter.id_headquarter}}\" *ngFor=\"let headquarter of headquarters\"> {{headquarter.name}}</option>\r\n              </select>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <button type=\"submit\" class=\"btnModalAdd btn btn-block btn-outline-secondary\"\r\n                [disabled]=\"!addParkingLotForm.valid\"><i class=\"fas fa-plus-square\"></i> ADD</button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <!--Modal edit parkingLot-->\r\n  <div class=\"modal fade\" id=\"editParkingLot\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editParkingLot\"\r\n    aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n      <div class=\"modal-content\">\r\n        <div class=\"modal-header\">\r\n          <h5 class=\"modal-title justify-content-center\"><strong>EDIT PARKING LOT</strong></h5>\r\n          <button type=\"button\" id=\"closeModal3\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n          </button>\r\n        </div>\r\n        <div class=\"modal-body\">\r\n          <form #editParkingLotForm=ngForm (ngSubmit)=\"editParkingLot()\" class=\"form-row justify-content-sm-center\">\r\n            <div class=\"form-group col-md-12\">\r\n              <label>NAME</label>\r\n              <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"editFormParkingLot.name\"  maxlength=\"40\"  required>\r\n            </div>\r\n            <div class=\"form-group col-md-12\">\r\n              <label>HEADQUARTER</label>\r\n              <select class=\"custom-select\" name=\"headquarter\" [(ngModel)]=\"editFormParkingLot.headquarter.id_headquarter\"\r\n                required>\r\n                <option selected>Choose...</option>\r\n                <option value=\"{{headquarter.id_headquarter}}\" *ngFor=\"let headquarter of headquarters\">{{headquarter.id_headquarter}} {{headquarter.name}}</option>\r\n              </select>\r\n            </div>\r\n            <div class=\"col-md-6\">\r\n              <button type=\"submit\" class=\"btnModalAdd btn btn-block btn-outline-secondary\"\r\n                [disabled]=\"!editParkingLotForm.valid\"><i class=\"fas fa-plus-square\"></i> EDIT</button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>";
     /***/
   },
 
@@ -429,7 +429,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n  <br>\r\n  <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n    <h3 class=\"font-weight-bold\"> REPORTS</h3>\r\n  </section>\r\n\r\n  <div id=\"wrapper\">\r\n    <div id=\"content-wrapper\" class=\"d-flex flex-column\">\r\n      <div id=\"content\">\r\n        <div class=\"container-fluid\">\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-primary shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Headquarter</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countHeadquarter}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-home fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-success shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-warning  text-uppercase mb-1\">Parking</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countParking}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-parking fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-success shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-success text-uppercase mb-1\">Zones</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countZone}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-map-marker fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-warning shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-warning text-uppercase mb-1\">Spaces</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countSpaces}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-map-pin fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-6 col-md-6 mb-4\">\r\n              <div class=\"card border-left-primary shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Users</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countUsers}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-users fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-6 col-md-6 mb-4\">\r\n              <div class=\"card border-left-primary shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Reservations</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countReservations}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-bookmark fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <hr>\r\n  <br>\r\n  <p class=\"text-center\">\r\n    Generate a report by dates, this report will include the data of each place,\r\n    which will break down relevant information on the use of parking spaces, in addition to all active reservations\r\n    and those that are no longer active, with the respective username.\r\n    <br>\r\n    In addition, we will give you the possibility to search for an element that\r\n    you want to find in the result of the report, with the possibility of downloading it in an Excel sheet.\r\n  </p>\r\n  <br>\r\n  <div class=\"row  justify-content-center\">\r\n    <div class=\"col-md-4 col-sm-6\">\r\n      <label>Initial date</label>\r\n      <form class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <div class=\"input-group\">\r\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d1\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\r\n              [maxDate]=\"maxDate\" [(ngModel)]=\"initDate\" (click)=\"d1.toggle()\" ngbDatepicker #d1=\"ngbDatepicker\">\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d1.toggle()\" type=\"button\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n    <div class=\"col-md-4 col-sm-6\">\r\n      <label>Final date</label>\r\n      <form class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <div class=\"input-group\">\r\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d2\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\r\n              [maxDate]=\"maxDate\" [(ngModel)]=\"finalDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\">\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d2.toggle()\" type=\"button\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">\r\n      <br>\r\n      <button class=\"btn btn-delete btn-block mt-2 btn-outline-danger\" (click)=\"generateReport()\">\r\n        <strong>Generate report</strong>\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"container\" *ngIf=\"reportComplete.length>0\">\r\n  <div class=\"text-center\">\r\n    <h1><STRONG>REPORT</STRONG> </h1>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-4 col-md-6 mt-3\">\r\n      <input type=\"text\" class=\"form-control\" name=\"filterReport\" placeholder=\"Search...\" maxlength=\"40\"\r\n        [(ngModel)]=\"filter\">\r\n    </div>\r\n    <div class=\"col-sm-8 col-md-6 mt-3\">\r\n      <div class=\"d-sm-flex align-items-center text-white justify-content-between mb-4\">\r\n        <h1 class=\"h3 mb-0 text-gray-800\"></h1>\r\n        <a (click)=\"sendEmail()\" class=\"d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm\"><i\r\n            class=\"fas fa-download fa-sm text-white\"></i>Send report to email</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div id=\"report\">\r\n    <div class=\"table-responsive justify-content-center\">\r\n      <table class=\"table table-bordered table-hover\">\r\n        <thead class=\"tableThead thead\">\r\n          <tr>\r\n            <th class=\"text-center\" COLSPAN=\"3\" scope=\"col\"><strong>ACTIVE USERS</strong></th>\r\n          </tr>\r\n          <tr>\r\n            <th scope=\"col\"><strong>ID</strong></th>\r\n            <th scope=\"col\"><strong>NAME</strong></th>\r\n            <th scope=\"col\"><strong>EMAIL</strong></th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let i of activeUser\">\r\n            <td class=\"text-center\">{{i.id}}</td>\r\n            <td class=\"text-center\">{{i.name}}</td>\r\n            <td class=\"text-center\">{{i.email}}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <div class=\"table-responsive\">\r\n      <table class=\"table table-bordered table-hover\">\r\n        <thead class=\"tableThead thead\">\r\n          <tr>\r\n            <th class=\"text-center\" COLSPAN=\"10\" scope=\"col\"><strong>RESERVES</strong></th>\r\n          </tr>\r\n          <tr>\r\n            <th scope=\"col\"><strong>USER ID</strong></th>\r\n            <th scope=\"col\"><strong>DATE</strong></th>\r\n            <th scope=\"col\"><strong>START TIME</strong></th>\r\n            <th scope=\"col\"><strong>END TIME</strong></th>\r\n            <th scope=\"col\"><strong>EXTEND DATE</strong></th>\r\n            <th scope=\"col\"><strong>VEHICLE</strong></th>\r\n            <th scope=\"col\"><strong>HEADQUARTER</strong></th>\r\n            <th scope=\"col\"><strong>PARKING LOT</strong></th>\r\n            <th scope=\"col\"><strong>ZONE</strong></th>\r\n            <th scope=\"col\"><strong>SPACE</strong></th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let i of reportComplete  | ReportPipe:filter\">\r\n            <td class=\"text-center\">{{i.reserve.user.id}}</td>\r\n            <td class=\"text-center\">{{i.date}}</td>\r\n            <td class=\"text-center\">{{i.start_time}}</td>\r\n            <td class=\"text-center\">{{i.end_time}}</td>\r\n            <td class=\"text-center\">{{i.end_date_extend}}</td>\r\n            <td class=\"text-center\" *ngIf=\"i.reserve.vehicle!=null\">{{i.reserve.vehicle.license_plate}}</td>\r\n            <td class=\"text-center\" *ngIf=\"i.reserve.vehicle==null\"></td>\r\n            <td class=\"text-center\">{{i.space.zone.parking_lot.headquarter.name}}</td>\r\n            <td class=\"text-center\">{{i.space.zone.parking_lot.name}}</td>\r\n            <td class=\"text-center\">{{i.space.zone.name}}</td>\r\n            <td class=\"text-center\">{{i.space.name}}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n  <br>\r\n  <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n    <h3 class=\"font-weight-bold\"> REPORTS</h3>\r\n  </section>\r\n\r\n  <div id=\"wrapper\">\r\n    <div id=\"content-wrapper\" class=\"d-flex flex-column\">\r\n      <div id=\"content\">\r\n        <div class=\"container-fluid\">\r\n\r\n          <div class=\"row\">\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-primary shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Headquarter</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countHeadquarter}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-home fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-success shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-warning  text-uppercase mb-1\">Parking</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countParking}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-parking fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-success shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-success text-uppercase mb-1\">Zones</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countZone}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-map-marker fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-3 col-md-6 mb-4\">\r\n              <div class=\"card border-left-warning shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-warning text-uppercase mb-1\">Spaces</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countSpaces}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-map-pin fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-6 col-md-6 mb-4\">\r\n              <div class=\"card border-left-primary shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Users</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countUsers}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-users fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"col-xl-6 col-md-6 mb-4\">\r\n              <div class=\"card border-left-primary shadow h-100 py-2\">\r\n                <div class=\"card-body\">\r\n                  <div class=\"row no-gutters align-items-center\">\r\n                    <div class=\"col mr-2\">\r\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Reservations</div>\r\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countReservations}}</div>\r\n                    </div>\r\n                    <div class=\"col-auto\">\r\n                      <i class=\"fas fa-bookmark fa-2x text-gray-300\"></i>\r\n                    </div>\r\n                  </div>\r\n                </div>\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <hr>\r\n  <br>\r\n  <p class=\"text-center\">\r\n    Generate a report by dates, this report will include the data of each place,\r\n    which will break down relevant information on the use of parking spaces, in addition to all active reservations\r\n    and those that are no longer active, with the respective username.\r\n    <br>\r\n    In addition, we will give you the possibility to search for an element that\r\n    you want to find in the result of the report, with the possibility of downloading it in an Excel sheet.\r\n  </p>\r\n  <br>\r\n  <div class=\"row  justify-content-center\">\r\n    <div class=\"col-md-4 col-sm-6\">\r\n      <label>Initial date</label>\r\n      <form class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <div class=\"input-group\">\r\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d1\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\r\n              [maxDate]=\"maxDate\" [(ngModel)]=\"initDate\" (click)=\"d1.toggle()\" ngbDatepicker #d1=\"ngbDatepicker\">\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d1.toggle()\" type=\"button\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n    <div class=\"col-md-4 col-sm-6\">\r\n      <label>Final date</label>\r\n      <form class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <div class=\"input-group\">\r\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d2\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\r\n              [maxDate]=\"maxDate\" [(ngModel)]=\"finalDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\">\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d2.toggle()\" type=\"button\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n\r\n    <div class=\"col-md-4\">\r\n      <br>\r\n      <button class=\"btn btn-delete btn-block mt-2 btn-outline-danger\" (click)=\"generateReport()\">\r\n        <strong>Generate report</strong>\r\n      </button>\r\n    </div>\r\n  </div>\r\n</div>\r\n<div class=\"container\" *ngIf=\"reportComplete.length>0\">\r\n  <div class=\"text-center\">\r\n    <h1><STRONG>REPORT</STRONG> </h1>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col-sm-4 col-md-6 mt-3\">\r\n      <input type=\"text\" class=\"form-control\" name=\"filterReport\" placeholder=\"Search...\" maxlength=\"40\"\r\n        [(ngModel)]=\"filter\">\r\n    </div>\r\n    <div class=\"col-sm-8 col-md-6 mt-3\">\r\n      <div class=\"d-sm-flex align-items-center text-white justify-content-between mb-4\">\r\n        <h1 class=\"h3 mb-0 text-gray-800\"></h1>\r\n        <a (click)=\"sendEmail()\" class=\"d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm\"><i\r\n            class=\"fas fa-download fa-sm text-white\"></i>Send report to email</a>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div id=\"report\">\r\n    <div class=\"table-responsive justify-content-center\" hidden>\r\n      <table class=\"table table-bordered table-hover\">\r\n        <thead class=\"tableThead thead\">\r\n          <tr>\r\n            <th class=\"text-center\" COLSPAN=\"3\" scope=\"col\"><strong>ACTIVE USERS</strong></th>\r\n          </tr>\r\n          <tr>\r\n            <th scope=\"col\"><strong>ID</strong></th>\r\n            <th scope=\"col\"><strong>NAME</strong></th>\r\n            <th scope=\"col\"><strong>EMAIL</strong></th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let i of activeUser\">\r\n            <td class=\"text-center\">{{i.id}}</td>\r\n            <td class=\"text-center\">{{i.name}}</td>\r\n            <td class=\"text-center\">{{i.email}}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <div class=\"table-responsive\">\r\n      <table class=\"table table-bordered table-hover\">\r\n        <thead class=\"tableThead thead\">\r\n          <tr>\r\n            <th class=\"text-center\" COLSPAN=\"10\" scope=\"col\"><strong>RESERVES</strong></th>\r\n          </tr>\r\n          <tr>\r\n            <th scope=\"col\"><strong>USER EMAIL</strong></th>\r\n            <th scope=\"col\"><strong>DATE</strong></th>\r\n            <th scope=\"col\"><strong>START TIME</strong></th>\r\n            <th scope=\"col\"><strong>END TIME</strong></th>\r\n            <th scope=\"col\"><strong>EXTEND DATE</strong></th>\r\n            <th scope=\"col\"><strong>VEHICLE</strong></th>\r\n            <th scope=\"col\"><strong>HEADQUARTER</strong></th>\r\n            <th scope=\"col\"><strong>PARKING LOT</strong></th>\r\n            <th scope=\"col\"><strong>ZONE</strong></th>\r\n            <th scope=\"col\"><strong>SPACE</strong></th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let i of reportComplete  | ReportPipe:filter\">\r\n            <td class=\"text-center\">{{i.reserve.user.email}}</td>\r\n            <td class=\"text-center\">{{i.date}}</td>\r\n            <td class=\"text-center\">{{i.start_time}}</td>\r\n            <td class=\"text-center\">{{i.end_time}}</td>\r\n            <td class=\"text-center\">{{i.end_date_extend}}</td>\r\n            <td class=\"text-center\" *ngIf=\"i.reserve.vehicle!=null\">{{i.reserve.vehicle.license_plate}}</td>\r\n            <td class=\"text-center\" *ngIf=\"i.reserve.vehicle==null\"></td>\r\n            <td class=\"text-center\">{{i.space.zone.parking_lot.headquarter.name}}</td>\r\n            <td class=\"text-center\">{{i.space.zone.parking_lot.name}}</td>\r\n            <td class=\"text-center\">{{i.space.zone.name}}</td>\r\n            <td class=\"text-center\">{{i.space.name}}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>";
     /***/
   },
 
@@ -489,7 +489,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n        <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n        <br>\r\n        <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n                <h3 class=\"font-weight-bold\"> ZONE ADMINISTRATION</h3>\r\n        </section>\r\n        <div class=\"row justify-content-end\">\r\n                <div class=\"col-sm-4 col-md-6 mt-3\">\r\n                        <input class=\"form-control\" name=\"filterZone\" placeholder=\"Search...\"  maxlength=\"40\" \r\n                                [(ngModel)]=\"filterZone\">\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-6 mt-3\">\r\n                        <!--Modal button of add space-->\r\n                        <button type=\"button\" class=\"btnAdd btn btn-block btn-outline-secondary text-uppercase\" data-toggle=\"modal\"\r\n                                data-target=\"#addZone\">\r\n                                 <strong><i class=\"fas fa-plus-square\"></i> Add Zone</strong> \r\n                        </button>\r\n                </div>\r\n        </div>\r\n\r\n        <div class=\"table-responsive\">\r\n                <table class=\"table table-bordered table-hover mt-5 mb-5\">\r\n                        <thead class=\"tableThead thead\">\r\n                                <tr>\r\n                                        <th scope=\"col\">Zone Name</th>\r\n                                        <th scope=\"col\">Parking Lot</th>\r\n                                        <th scope=\"col\">Spaces</th>\r\n                                        <th scope=\"col\">Actions</th>\r\n                                </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                                <tr *ngFor=\"let zone of zones | zonePipe:filterZone \">\r\n                                        <td>{{zone.name}}</td>\r\n                                        <td>\r\n                                                {{zone.parking_lot.name}}\r\n                                        </td>\r\n                                        <td valign=\"middle\" style=\"vertical-align:middle;\"\r\n                                                class=\"m-auto p-auto justify-content-center\">\r\n                                                <button class=\"m-auto p-auto btn btn-block text-primary\"\r\n                                                        (click)=\"spaces(zone)\" routerLink=\"/administration/space\">\r\n                                                        <i class=\"fas fa-eye fa-lg\" style=\"width:12; height:12;\"></i>\r\n                                                </button>\r\n                                        </td>\r\n                                        <td>\r\n                                                <button (click)=\"dataZoneFormEdit(zone)\"\r\n                                                        class=\"btn btn-edit btn-block btn-outline-primary\"\r\n                                                        data-toggle=\"modal\" data-target=\"#editZone\">\r\n                                                        <strong><i class=\"fas fa-angle-double-right\"></i>EDIT</strong>\r\n                                                </button>\r\n                                                <button class=\"btn btn-delete btn-block btn-outline-danger\"\r\n                                                        (click)=\"delete(zone.id_zone)\">\r\n                                                        <strong><i class=\"fas fa-trash-alt\"></i>DELETE</strong>\r\n                                                </button>\r\n                                        </td>\r\n                                </tr>\r\n\r\n\r\n                        </tbody>\r\n                </table>\r\n        </div>\r\n\r\n        <!--Modal de add zone-->\r\n        <div class=\"modal fade\" id=\"addZone\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"addZone\" aria-hidden=\"true\">\r\n                <div class=\"modal-dialog\" role=\"document\">\r\n                        <div class=\"modal-content\">\r\n                                <div class=\"modal-header\">\r\n                                        <h5 class=\"modal-title justify-content-center\"><strong>ADD ZONE</strong></h5>\r\n                                        <button type=\"button\" id=\"closeModal5\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                                                <span aria-hidden=\"true\">&times;</span>\r\n                                        </button>\r\n                                </div>\r\n                                <div class=\"modal-body\">\r\n                                        <form #addZoneForm=ngForm (ngSubmit)=\"onSubmit()\"\r\n                                                class=\"form-row justify-content-sm-center\">\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Zone Name</label>\r\n                                                        <input type=\"text\" class=\"form-control\" name=\"name\"  maxlength=\"10\" \r\n                                                                [(ngModel)]=\"addFormZone.name\" required>\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Quantity</label>\r\n                                                        <input type=\"number\" maxlength=\"3\"   min=\"0\" max=\"100\" class=\"form-control\"\r\n                                                                name=\"quality\" [(ngModel)]=\"addFormZone.quantity\"\r\n                                                                required />\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Start with...</label>\r\n                                                        <input type=\"number\"  maxlength=\"3\"  class=\"form-control\"\r\n                                                                name=\"start\" [(ngModel)]=\"addFormZone.start\" required />\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Parking Lot</label>\r\n                                                        <select class=\"custom-select\" name=\"parking_lot\"\r\n                                                                [(ngModel)]=\"addFormZone.parking_lot.id_parking_lot\"\r\n                                                                required>\r\n                                                               \r\n                                                                <option value=\"{{parking_lot.id_parking_lot}}\"\r\n                                                                        *ngFor=\"let parking_lot of parkings\">\r\n                                                                        {{parking_lot.id_parking_lot}}\r\n                                                                        {{parking_lot.name}} \r\n                                                                        {{parking_lot.headquarter.country}}</option>\r\n                                                        </select>\r\n                                                </div>\r\n\r\n                                                <div class=\"col-md-6\">\r\n                                                        <button type=\"submit\"\r\n                                                                class=\"btnAddZone btn btn-block btn-outline-secondary\"\r\n                                                                [disabled]=\"!addZoneForm.valid\"><i\r\n                                                                        class=\"fas fa-plus-square\"></i> Add</button>\r\n                                                </div>\r\n                                        </form>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n        <!--Modal edit zone-->\r\n        <div class=\"modal fade\" id=\"editZone\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editZone\" aria-hidden=\"true\">\r\n                <div class=\"modal-dialog\" role=\"document\">\r\n                        <div class=\"modal-content\">\r\n                                <div class=\"modal-header\">\r\n                                        <h5 class=\"modal-title justify-content-center\"><strong>EDIT ZONE</strong></h5>\r\n                                        <button type=\"button\" id=\"closeModal4\" (click)=\"ngOnInit()\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                                                <span aria-hidden=\"true\">&times;</span>\r\n                                        </button>\r\n                                </div>\r\n                                <div class=\"modal-body\">\r\n                                        <form #editZoneForm=ngForm (ngSubmit)=\"editZone()\"\r\n                                                class=\"form-row justify-content-sm-center\">\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Zone Name</label>\r\n                                                        <input type=\"text\" class=\"form-control\"  maxlength=\"10\"  name=\"name\"\r\n                                                                [(ngModel)]=\"editFormZone.name\" required>\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Parking Lot</label>\r\n                                                        <select class=\"custom-select\" name=\"parking_lot\"\r\n                                                                [(ngModel)]=\"editFormZone.parking_lot.id_parking_lot\"\r\n                                                                required>\r\n                                                                <option selected>Choose...</option>\r\n                                                                <option value=\"{{parking_lot.id_parking_lot}}\" *ngFor=\"let parking_lot of parkings\">\r\n                                                                                {{parking_lot.id_parking_lot}}  {{parking_lot.name}} </option>\r\n                                                        </select>\r\n                                                </div>\r\n\r\n                                                <div class=\"col-md-6\">\r\n                                                        <button type=\"submit\"\r\n                                                                class=\"btnEditZone btn btn-block btn-outline-secondary\"\r\n                                                                [disabled]=\"!editZoneForm.valid\" ><i\r\n                                                                        class=\"fas fa-plus-square\"></i><Strong>Edit</Strong></button>\r\n                                                </div>\r\n                                        </form>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n</div>";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n        <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n        <br>\r\n        <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n                <h3 class=\"font-weight-bold\"> ZONE ADMINISTRATION</h3>\r\n        </section>\r\n        <div class=\"row justify-content-end\">\r\n                <div class=\"col-sm-4 col-md-6 mt-3\">\r\n                        <input class=\"form-control\" name=\"filterZone\" placeholder=\"Search...\"  maxlength=\"40\" \r\n                                [(ngModel)]=\"filterZone\">\r\n                </div>\r\n                <div class=\"col-sm-8 col-md-6 mt-3\">\r\n                        <!--Modal button of add space-->\r\n                        <button type=\"button\" class=\"btnAdd btn btn-block btn-outline-secondary text-uppercase\" data-toggle=\"modal\"\r\n                                data-target=\"#addZone\">\r\n                                 <strong><i class=\"fas fa-plus-square\"></i> Add Zone</strong> \r\n                        </button>\r\n                </div>\r\n        </div>\r\n\r\n        <div class=\"table-responsive\">\r\n                <table class=\"table table-bordered table-hover mt-5 mb-5\">\r\n                        <thead class=\"tableThead thead\">\r\n                                <tr>\r\n                                        <th scope=\"col\">Zone Name</th>\r\n                                        <th scope=\"col\">Parking Lot</th>\r\n                                        <th scope=\"col\">Spaces</th>\r\n                                        <th scope=\"col\">Actions</th>\r\n                                </tr>\r\n                        </thead>\r\n                        <tbody>\r\n                                <tr *ngFor=\"let zone of zones | zonePipe:filterZone \">\r\n                                        <td>{{zone.name}}</td>\r\n                                        <td>\r\n                                                {{zone.parking_lot.name}}\r\n                                        </td>\r\n                                        <td valign=\"middle\" style=\"vertical-align:middle;\"\r\n                                                class=\"m-auto p-auto justify-content-center\">\r\n                                                <button class=\"m-auto p-auto btn btn-block text-primary\"\r\n                                                        (click)=\"spaces(zone)\" routerLink=\"/administration/space\">\r\n                                                        <i class=\"fas fa-eye fa-lg\" style=\"width:12; height:12;\"></i>\r\n                                                </button>\r\n                                        </td>\r\n                                        <td>\r\n                                                <button (click)=\"dataZoneFormEdit(zone)\"\r\n                                                        class=\"btn btn-edit btn-block btn-outline-primary\"\r\n                                                        data-toggle=\"modal\" data-target=\"#editZone\">\r\n                                                        <strong><i class=\"fas fa-angle-double-right\"></i>EDIT</strong>\r\n                                                </button>\r\n                                                <button class=\"btn btn-delete btn-block btn-outline-danger\"\r\n                                                        (click)=\"delete(zone.id_zone)\">\r\n                                                        <strong><i class=\"fas fa-trash-alt\"></i>DELETE</strong>\r\n                                                </button>\r\n                                        </td>\r\n                                </tr>\r\n\r\n\r\n                        </tbody>\r\n                </table>\r\n        </div>\r\n\r\n        <!--Modal de add zone-->\r\n        <div class=\"modal fade\" id=\"addZone\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"addZone\" aria-hidden=\"true\">\r\n                <div class=\"modal-dialog\" role=\"document\">\r\n                        <div class=\"modal-content\">\r\n                                <div class=\"modal-header\">\r\n                                        <h5 class=\"modal-title justify-content-center\"><strong>ADD ZONE</strong></h5>\r\n                                        <button type=\"button\" id=\"closeModal5\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                                                <span aria-hidden=\"true\">&times;</span>\r\n                                        </button>\r\n                                </div>\r\n                                <div class=\"modal-body\">\r\n                                        <form #addZoneForm=ngForm (ngSubmit)=\"onSubmit()\"\r\n                                                class=\"form-row justify-content-sm-center\">\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Zone Name</label>\r\n                                                        <input type=\"text\" class=\"form-control\" name=\"name\"  maxlength=\"10\" \r\n                                                                [(ngModel)]=\"addFormZone.name\" required>\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Quantity</label>\r\n                                                        <input type=\"number\" maxlength=\"3\"   min=\"0\" max=\"100\" class=\"form-control\"\r\n                                                                name=\"quality\" [(ngModel)]=\"addFormZone.quantity\"\r\n                                                                required />\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Start with...</label>\r\n                                                        <input type=\"number\"  maxlength=\"3\"  class=\"form-control\"\r\n                                                                name=\"start\" [(ngModel)]=\"addFormZone.start\" required />\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Parking Lot</label>\r\n                                                        <select class=\"custom-select\" name=\"parking_lot\"\r\n                                                                [(ngModel)]=\"addFormZone.parking_lot.id_parking_lot\"\r\n                                                                required>\r\n                                                               \r\n                                                                <option value=\"{{parking_lot.id_parking_lot}}\"\r\n                                                                        *ngFor=\"let parking_lot of parkings\">\r\n                                                                      \r\n                                                                        {{parking_lot.name}} \r\n                                                                        {{parking_lot.headquarter.country}}</option>\r\n                                                        </select>\r\n                                                </div>\r\n\r\n                                                <div class=\"col-md-6\">\r\n                                                        <button type=\"submit\"\r\n                                                                class=\"btnAddZone btn btn-block btn-outline-secondary\"\r\n                                                                [disabled]=\"!addZoneForm.valid\"><i\r\n                                                                        class=\"fas fa-plus-square\"></i> Add</button>\r\n                                                </div>\r\n                                        </form>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n        <!--Modal edit zone-->\r\n        <div class=\"modal fade\" id=\"editZone\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"editZone\" aria-hidden=\"true\">\r\n                <div class=\"modal-dialog\" role=\"document\">\r\n                        <div class=\"modal-content\">\r\n                                <div class=\"modal-header\">\r\n                                        <h5 class=\"modal-title justify-content-center\"><strong>EDIT ZONE</strong></h5>\r\n                                        <button type=\"button\" id=\"closeModal4\" (click)=\"ngOnInit()\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n                                                <span aria-hidden=\"true\">&times;</span>\r\n                                        </button>\r\n                                </div>\r\n                                <div class=\"modal-body\">\r\n                                        <form #editZoneForm=ngForm (ngSubmit)=\"editZone()\"\r\n                                                class=\"form-row justify-content-sm-center\">\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Zone Name</label>\r\n                                                        <input type=\"text\" class=\"form-control\"  maxlength=\"10\"  name=\"name\"\r\n                                                                [(ngModel)]=\"editFormZone.name\" required>\r\n                                                </div>\r\n                                                <div class=\"form-group col-md-12\">\r\n                                                        <label>Parking Lot</label>\r\n                                                        <select class=\"custom-select\" name=\"parking_lot\"\r\n                                                                [(ngModel)]=\"editFormZone.parking_lot.id_parking_lot\"\r\n                                                                required>\r\n                                                                <option selected>Choose...</option>\r\n                                                                <option value=\"{{parking_lot.id_parking_lot}}\" *ngFor=\"let parking_lot of parkings\">\r\n                                                                                {{parking_lot.id_parking_lot}}  {{parking_lot.name}} </option>\r\n                                                        </select>\r\n                                                </div>\r\n\r\n                                                <div class=\"col-md-6\">\r\n                                                        <button type=\"submit\"\r\n                                                                class=\"btnEditZone btn btn-block btn-outline-secondary\"\r\n                                                                [disabled]=\"!editZoneForm.valid\" ><i\r\n                                                                        class=\"fas fa-plus-square\"></i><Strong>Edit</Strong></button>\r\n                                                </div>\r\n                                        </form>\r\n                                </div>\r\n                        </div>\r\n                </div>\r\n        </div>\r\n</div>";
     /***/
   },
 
@@ -509,7 +509,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"/\">\r\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n  <br> <br> <br>\r\n  <div class=\"row  justify-content-center\">\r\n    <div class=\"col-md-3\">\r\n      <label>DATE</label>\r\n      <form class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <div class=\"input-group\">\r\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d2\" #c2=\"ngModel\"  [minDate]=\"minDate\" [maxDate]=\"maxDate\"  readonly\r\n             [(ngModel)]=\"dashboardForm.reserveDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\" >\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-outline-secondary calendar\"  (click)=\"d2.toggle()\" type=\"button\"  ></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <label>CURRENT LOCATION</label>\r\n      <select class=\"custom-select\" id=\"inputGroupSelect04\" name=\"headquarter\" required \r\n      [(ngModel)]=\"hqModel\" (change)=\" dataReserve(hqModel,$event.target.value)\" aria-label=\"\">\r\n        <option selected=\"true\" *ngIf=\"current !=null\">Current\r\n          {{current}}\r\n        </option>\r\n        <option *ngFor=\"let headquarter of headquarters\" [ngValue]=\"headquarter\" >{{headquarter.name}}\r\n          {{headquarter.city}}\r\n          {{headquarter.country}}</option>\r\n      </select>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <label>PARKING LOT</label>\r\n      <select class=\"custom-select\" name=\"parking lot\" required [(ngModel)]=\"parkingLotModel\" (change)=\" dataReserve(parkingLotModel,$event.target.value)\">\r\n        <option selected>Choose...</option>\r\n        <option *ngFor=\"let parking of parkings\" [ngValue]=\"parking\"  >{{parking.id_parking_lot}}\r\n          {{parking.name}}</option>\r\n      </select>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <label>ZONE</label>\r\n      <select class=\"custom-select\" name=\"zone\" required [(ngModel)]=\"zoneModel\" (change)=\" dataReserve(zoneModel,$event.target.value)\" >\r\n        <option selected>Choose...</option>\r\n        <option *ngFor=\"let zone of zones\" [ngValue]=\"zone\" >{{zone.parking_lot.name}} {{zone.name}}</option>\r\n      </select>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <br>\r\n      <button class=\"btn btn-delete btn-block btn-outline-danger\" (click)=\"listSpaces()\" (click)=\"dataCalendar()\"  (click)=\"loadAvailableTimes()\">\r\n        <strong>VIEW DASHBOARD</strong>\r\n      </button><br><br>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"row justify-content-center\">\r\n    <div class=\"col-md-10 \">\r\n      <div class=\"table-responsive\">\r\n        <table class=\"table table-bordered table-hover rounded \">\r\n          <thead class=\"tableThead thead\">\r\n            <tr>\r\n              <th scope=\"col\"><strong>SPACE</strong></th>\r\n              <th scope=\"col\"><strong>AVAILABLE</strong></th>\r\n              <th scope=\"col\"><strong>RESERVE</strong></th>\r\n              \r\n            </tr>\r\n          </thead>\r\n          <tbody >\r\n            <tr *ngFor=\" let space of spacesContainer\">\r\n              <td >{{space.name}}</td>\r\n              <td>\r\n                <table>\r\n                    <tr>\r\n                      <td *ngFor=\" let range of space.range\"> {{range[0][0]}}:00 - {{range[0][1]}}:00</td>\r\n                    </tr>\r\n                </table>\r\n              </td>\r\n              <td> <button class=\"btn btn-delete btn-block btn-outline-danger\" data-toggle=\"modal\" data-target=\"#reserve\" (click)=\"dataSpace(space)\" (click)=\"dataCalendar()\">\r\n                  <strong>RESERVE</strong></button>\r\n              </td>\r\n           \r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n\r\n<!-- Modal -->\r\n<div class=\"modal fade\" id=\"reserve\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"reserve\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-xl\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" >Reserve</h5>\r\n        <button type=\"button\" id=\"closeReserveModal\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"card-body\">\r\n          <h5 class=\"card-title text-center font-weight-bold\">Reserve a space</h5>\r\n          <!--Inicia formulario-->\r\n          <form>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Vehiculos</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <select class=\"custom-select\" name=\"vehicle\" [(ngModel)]=\"formAddReserve.vehicle.increment\">\r\n                  <option selected>Choose...</option>\r\n                  <option value=\"{{vehicle.increment}}\" *ngFor=\"let vehicle of vehicles\">{{vehicle.license_plate}}\r\n                  </option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Start time</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <select class=\"form-control\" name=\"start_time\" required [(ngModel)]=\"start_time\" (change)=\" setStartTime(start_time,$event.target.value)\">\r\n                  <option selected>Choose...</option>\r\n                  <option *ngFor=\"let range of spaceRange\" [ngValue]=\"range\" >{{range.begin}}:00</option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">End time</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <select class=\"form-control\" name=\"end_time\" required [(ngModel)]=\"end_time\" (change)=\" setEndTime(end_time,$event.target.value)\">\r\n                  <option selected>Choose...</option>\r\n                  <option *ngFor=\"let opt of selectableRange\" [ngValue]=\"opt\" >{{opt}}:00</option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Date</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"calendarModel\"  name=\"calendarModel\"  disabled >\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >End for extended bookings <i class=\"far fa-question-circle\" data-toggle=\"tooltip\" title=\"Book the same day of the week for long periods of time.\"></i> </label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                    <div class=\"input-group\">\r\n                      <input class=\"form-control\" placeholder=\"yyyy-mm-dd\"\r\n                             name=\"dp\"  [minDate]=\"minDate2\" [maxDate]=\"maxDate2\" [markDisabled]=\"isDisabled\" [(ngModel)]=\"extendReserveForm.extendReserveDate\" ngbDatepicker #d=\"ngbDatepicker\" readonly>\r\n                      <div class=\"input-group-append\">\r\n                        <button class=\"btn btn-outline-secondary calendar\" (click)=\"d.toggle()\" type=\"button\"></button>\r\n                      </div>\r\n                      \r\n                    </div>\r\n                    <small>Is optional</small>\r\n              </div>\r\n              \r\n            </div>\r\n            <div class=\"form-group row\" hidden>\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Headquarter</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"hqModel.name\" name=\"headquarter\" type=\"text\" class=\"form-control\"   disabled>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Parking</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"parkingLotModel.name\" name=\"parking\" type=\"text\" class=\"form-control\"  disabled required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Zone</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"zoneModel.name\" name=\"zone\" type=\"text\" class=\"form-control\" disabled>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Space number</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"spaceModel.name\" name=\"space\" type=\"text\" class=\"form-control\"  disabled>\r\n              </div>\r\n            </div>\r\n            <!--Botones-->\r\n            <div class=\"row text-center\">\r\n\r\n              <div class=\"col-sm-6 col-md-12\">\r\n                <button type=\"submit\" class=\"py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary\" (click)=\"dataCalendarExtend()\" (click)=\"addReserve()\" >Reserve</button>\r\n              </div>\r\n\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"/\">\r\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n  <br> <br> <br>\r\n  <div class=\"row  justify-content-center\">\r\n    <div class=\"col-md-3\">\r\n      <label>DATE</label>\r\n      <form class=\"form-inline\">\r\n        <div class=\"form-group\">\r\n          <div class=\"input-group \">\r\n            <input class=\"form-control\" placeholder=\"yyyy/mm/dd\" name=\"d2\" #c2=\"ngModel\"  [minDate]=\"minDate\" [maxDate]=\"maxDate\"  readonly\r\n             [(ngModel)]=\"dashboardForm.reserveDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\" required>\r\n            <div class=\"input-group-append\">\r\n              <button class=\"btn btn-outline-secondary calendar\"  (click)=\"d2.toggle()\" type=\"button\"></button>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </form>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <label>CURRENT LOCATION</label>\r\n      <select class=\"custom-select\" id=\"inputGroupSelect04\" name=\"headquarter\" required \r\n      [(ngModel)]=\"hqModel\" (change)=\" listParkings(hqModel,$event.target.value)\" aria-label=\"\">\r\n        <option *ngFor=\"let headquarter of headquarters\" [ngValue]=\"headquarter\">{{headquarter.name}}\r\n          {{headquarter.city}}\r\n          {{headquarter.country}}</option>\r\n      </select>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <label>PARKING LOT</label>\r\n      <select class=\"custom-select\" name=\"parking lot\" required [(ngModel)]=\"parkingLotModel\" (change)=\" listZones(parkingLotModel,$event.target.value)\">\r\n        <!--<option selected>Choose...</option>-->\r\n        <option *ngFor=\"let parking of parkings\" [ngValue]=\"parking\"  >\r\n          {{parking.name}}</option>\r\n      </select>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <label>ZONE</label>\r\n      <select class=\"custom-select\" name=\"zone\" required [(ngModel)]=\"zoneModel\" (change)=\" dataReserve(zoneModel,$event.target.value)\" >\r\n        <!--<option selected>Choose...</option>-->\r\n        <option *ngFor=\"let zone of zones\" [ngValue]=\"zone\" > {{zone.name}}</option>\r\n      </select>\r\n    </div>\r\n\r\n    <div class=\"col-md-2\">\r\n      <br>\r\n      <button class=\"btn btn-delete btn-block btn-outline-danger\" (click)=\"loadAvailableTimes()\">\r\n        <strong>VIEW DASHBOARD</strong>\r\n      </button><br><br>\r\n    </div>\r\n\r\n  </div>\r\n\r\n  <div class=\"row justify-content-center\">\r\n    <div class=\"col-md-10 \">\r\n      <div class=\"table-responsive\">\r\n        <table class=\"table table-bordered table-hover rounded \">\r\n          <thead class=\"tableThead thead\">\r\n            <tr>\r\n              <th scope=\"col\"><strong>SPACE</strong></th>\r\n              <th scope=\"col\"><strong>AVAILABLE</strong></th>\r\n              <th scope=\"col\"><strong>RESERVE</strong></th>\r\n              \r\n            </tr>\r\n          </thead>\r\n          <tbody >\r\n            <tr *ngFor=\" let space of spacesContainer\">\r\n              <td >{{space.name}}</td>\r\n              <td>\r\n                <table>\r\n                    <tr>\r\n                      <td *ngFor=\" let range of space.range\"> {{range[0][0]}}:00 - {{range[0][1]}}:00</td>\r\n                    </tr>\r\n                </table>\r\n              </td>\r\n              <td> <button class=\"btn btn-delete btn-block btn-outline-danger\" data-toggle=\"modal\" data-target=\"#reserve\" (click)=\"dataSpace(space)\" (click)=\"dataCalendar()\">\r\n                  <strong>RESERVE</strong></button>\r\n              </td>\r\n           \r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n        <h5 *ngIf=\"!hide\" class=\"text-center\">Please select a date and make sure to choose a zone!</h5>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n</div>\r\n\r\n<!-- Modal -->\r\n<div class=\"modal fade\" id=\"reserve\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"reserve\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-xl\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" >Reserve</h5>\r\n        <button type=\"button\" id=\"closeReserveModal\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <div class=\"card-body\">\r\n          <h5 class=\"card-title text-center font-weight-bold\">Reserve a space</h5>\r\n          <!--Inicia formulario-->\r\n          <form>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Vehiculos</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <select class=\"custom-select\" name=\"vehicle\" [(ngModel)]=\"formAddReserve.vehicle.increment\">\r\n                  <option selected>Choose...</option>\r\n                  <option value=\"{{vehicle.increment}}\" *ngFor=\"let vehicle of vehicles\">{{vehicle.license_plate}}\r\n                  </option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Start time</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <select class=\"form-control\" name=\"start_time\" required [(ngModel)]=\"start_time\" (change)=\" setStartTime(start_time,$event.target.value)\">\r\n                  <option selected>Choose...</option>\r\n                  <option *ngFor=\"let range of spaceRange\" [ngValue]=\"range\" >{{range.begin}}:00</option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">End time</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <select class=\"form-control\" name=\"end_time\" required [(ngModel)]=\"end_time\" (change)=\" setEndTime(end_time,$event.target.value)\">\r\n                  <option selected>Choose...</option>\r\n                  <option *ngFor=\"let opt of selectableRange\" [ngValue]=\"opt\" >{{opt}}:00</option>\r\n                </select>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Date</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"calendarModel\"  name=\"calendarModel\"  disabled >\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >End for extended bookings <i class=\"far fa-question-circle\" data-toggle=\"tooltip\" title=\"Book the same day of the week for long periods of time.\"></i> </label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                    <div class=\"input-group\">\r\n                      <input class=\"form-control\" placeholder=\"yyyy-mm-dd\"\r\n                             name=\"dp\"  [minDate]=\"minDate2\" [maxDate]=\"maxDate2\" [markDisabled]=\"isDisabled\" [(ngModel)]=\"extendReserveForm.extendReserveDate\" ngbDatepicker #d=\"ngbDatepicker\" readonly>\r\n                      <div class=\"input-group-append\">\r\n                        <button class=\"btn btn-outline-secondary calendar\" (click)=\"d.toggle()\" type=\"button\"></button>\r\n                      </div>\r\n                      \r\n                    </div>\r\n                    <small>Is optional</small>\r\n              </div>\r\n              \r\n            </div>\r\n            <div class=\"form-group row\" hidden>\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Headquarter</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"hqModel.name\" name=\"headquarter\" type=\"text\" class=\"form-control\"   disabled>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Parking</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"parkingLotModel.name\" name=\"parking\" type=\"text\" class=\"form-control\"  disabled required>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Zone</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"zoneModel.name\" name=\"zone\" type=\"text\" class=\"form-control\" disabled>\r\n              </div>\r\n            </div>\r\n            <div class=\"form-group row\">\r\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Space number</label>\r\n              <div class=\"col-sm-8 col-lg-10\">\r\n                <input [(ngModel)]=\"spaceModel.name\" name=\"space\" type=\"text\" class=\"form-control\"  disabled>\r\n              </div>\r\n            </div>\r\n            <!--Botones-->\r\n            <div class=\"row text-center\">\r\n\r\n              <div class=\"col-sm-6 col-md-12\">\r\n                <button type=\"submit\" class=\"py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary\" (click)=\"dataCalendarExtend()\" (click)=\"addReserve()\" >Reserve</button>\r\n              </div>\r\n\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n";
     /***/
   },
 
@@ -569,7 +569,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n    <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\">\r\n    <br>\r\n    <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n      <h3 class=\"font-weight-bold\">HANDBOOK</h3>\r\n    </section>\r\n    <div class=\"accordion\" id=\"accordionExample\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" data-target=\"#register\"\r\n                        aria-expanded=\"false\" aria-controls=\"register\">\r\n                        How do we register with AvantiParking?\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n\r\n            <div id=\"register\" class=\"collapse\" aria-labelledby=\"register\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Login/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-To register on the avantica parking platform, all you have to do is log in once on the AvantiParkig page.\r\n                    <br>\r\n                    <a class=\"btn btn-primary\" style=\"color:aliceblue\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\"\r\n                    aria-expanded=\"false\" aria-controls=\"collapseOne\">Go, how to login</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"headingOne\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\"\r\n                        aria-expanded=\"false\" aria-controls=\"collapseOne\">\r\n                        How to login?\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n\r\n            <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Login/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-We must click on the button that says \"LOGIN\", this will load the following screen.\r\n                </div>\r\n                <img src=\"assets/Login/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-One on this screen, we choose the google account, with which we would like to log in.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"headingTwo\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">\r\n                        Add a vehicle\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapseTwo\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Vehicle/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-The first thing we must do is go to the navbar and touch the \"Vehicle\" button.\r\n                </div>\r\n                <img src=\"assets/Vehicle/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-Once, on this screen, all we have to do is touch the \"New Vechicle\" button, which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Vehicle/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-In this form, we fill in the respective data of your vehicle, once all the data is in, we touch the \"Add\" button.\r\n                </div>\r\n                <img src=\"assets/Vehicle/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-In addition to adding vehicles, we can intuitively edit and delete them.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"headingThree\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">\r\n                        Assign a default site\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapseThree\" class=\"collapse\" aria-labelledby=\"headingThree\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/LocationUser/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-We must touch our image, in the upper right corner, which will show the menu, which is seen on the screen, once there, we just have to touch the \"Settings\" button.\r\n                </div>\r\n                <img src=\"assets/LocationUser/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-On the next screen, we just have to select the default venue, where we will be. Once selected, we only have to touch the Allocate button.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"heading4\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse4\" aria-expanded=\"false\" aria-controls=\"collapse4\">\r\n                        Where can I see my notifications\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse4\" class=\"collapse\" aria-labelledby=\"heading4\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Notifications/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-The first thing we can notice is that when we have notifications, we can see in the upper right corner, the number of notifications, when we click on our profile image, we can see a \"Notifications\" button, in which we can also see the number of notifications, by clicking on this button, we can see notifications from our application.\r\n                </div>\r\n                <img src=\"assets/Notifications/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-These would be the notifications, once we open them, the number of messages will stop coming out, in the upper right corner, in addition, we have the possibility to click on the \"X\" of each message, to delete it, simply the we can leave there.\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\r\n    <span><i class=\"fas fa-arrow-left    \"></i></span>\r\n</button>\r\n<div class=\"container\" >\r\n    <br>\r\n    <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\r\n      <h3 class=\"font-weight-bold\">HANDBOOK</h3>\r\n    </section>\r\n    \r\n    <!--HandBook Users -->\r\n    <div class=\"accordion\" id=\"accordionExample\">\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" data-target=\"#register\"\r\n                        aria-expanded=\"false\" aria-controls=\"register\">\r\n                        How do we register with AvantiParking?\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n\r\n            <div id=\"register\" class=\"collapse\" aria-labelledby=\"register\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Login/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-To register on the avantica parking platform, all you have to do is log in once on the AvantiParkig page.\r\n                    <br>\r\n                    <a class=\"btn btn-primary\" style=\"color:aliceblue\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\"\r\n                    aria-expanded=\"false\" aria-controls=\"collapseOne\">Go, how to login</a>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"headingOne\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\"\r\n                        aria-expanded=\"false\" aria-controls=\"collapseOne\">\r\n                        How to login?\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n\r\n            <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Login/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-We must click on the button that says \"LOGIN\", this will load the following screen.\r\n                </div>\r\n                <img src=\"assets/Login/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-One on this screen, we choose the google account, with which we would like to log in.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"headingTwo\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapseTwo\" aria-expanded=\"false\" aria-controls=\"collapseTwo\">\r\n                        Add a vehicle\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapseTwo\" class=\"collapse\" aria-labelledby=\"headingTwo\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Vehicle/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-The first thing we must do is go to the navbar and touch the \"Vehicle\" button.\r\n                </div>\r\n                <img src=\"assets/Vehicle/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-Once, on this screen, all we have to do is touch the \"New Vechicle\" button, which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Vehicle/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-In this form, we fill in the respective data of your vehicle, once all the data is in, we touch the \"Add\" button.\r\n                </div>\r\n                <img src=\"assets/Vehicle/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-In addition to adding vehicles, we can intuitively edit and delete them.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"headingThree\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapseThree\" aria-expanded=\"false\" aria-controls=\"collapseThree\">\r\n                        Assign a default site\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapseThree\" class=\"collapse\" aria-labelledby=\"headingThree\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/LocationUser/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-We must touch our image, in the upper right corner, which will show the menu, which is seen on the screen, once there, we just have to touch the \"Settings\" button.\r\n                </div>\r\n                <img src=\"assets/LocationUser/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-On the next screen, we just have to select the default venue, where we will be. Once selected, we only have to touch the Allocate button.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"heading4\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse4\" aria-expanded=\"false\" aria-controls=\"collapse4\">\r\n                        Where can I see my notifications\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse4\" class=\"collapse\" aria-labelledby=\"heading4\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Notifications/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-The first thing we can notice is that when we have notifications, we can see in the upper right corner, the number of notifications, when we click on our profile image, we can see a \"Notifications\" button, in which we can also see the number of notifications, by clicking on this button, we can see notifications from our application.\r\n                </div>\r\n                <img src=\"assets/Notifications/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-These would be the notifications, once we open them, the number of messages will stop coming out, in the upper right corner, in addition, we have the possibility to click on the \"X\" of each message, to delete it, simply the we can leave there.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"heading5\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse5\" aria-expanded=\"false\" aria-controls=\"collapse5\">\r\n                        Where can I reserve a parking space?\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse5\" class=\"collapse\" aria-labelledby=\"heading5\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Dashboard/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-The first thing we must do is go to the navbar and touch the \"Dashboard\" button, then fill in all the fields and then press the button \"View Dashboard\".\r\n                </div>\r\n                <img src=\"assets/Dashboard/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-We choose the field that we want to reserve and press the button, , which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Dashboard/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-In this form, we fill in the respective data of your vehicle, choose the start time and the end time, once all the data is in, we touch the \"Reserve\" button.\r\n                </div>\r\n                <img src=\"assets/Dashboard/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-If we want to add an extended reservation then in the \"end for extended\" field, we choose a final date for this reservation.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\">\r\n            <div class=\"card-header\" id=\"heading6\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse6\" aria-expanded=\"false\" aria-controls=\"collapse6\">\r\n                        Where can I see all my reservations?\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse6\" class=\"collapse\" aria-labelledby=\"heading6\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Reserves/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-We must to go to the navbar and touch the \"My Reserves\" button, here you will see a list of all our reservations made.\r\n                </div>\r\n            </div>\r\n        </div>\r\n           <!--HandBook Users Administrator-->\r\n        <div class=\"card\" *ngIf=\"loggedIn && type\">\r\n            <div class=\"card-header\" id=\"heading7\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse7\" aria-expanded=\"false\" aria-controls=\"collapse7\">\r\n                        Add a headquarter\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse7\" class=\"collapse\" aria-labelledby=\"heading7\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Headquarter/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-Access to each window will appear in the administrator user menu, choose the \"headqarter\" option.\r\n                </div>\r\n                <img src=\"assets/Headquarter/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-Once, on this screen, all we have to do is touch the \"New Headquarter\" button, which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Headquarter/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-In this form, we fill in the respective data of headquarter, once all the data is in, we touch the \"Add\" button.\r\n                </div>\r\n                <img src=\"assets/Headquarter/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-In addition to adding headquarters, we can intuitively edit and delete them.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\" *ngIf=\"loggedIn && type\">\r\n            <div class=\"card-header\" id=\"heading8\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse8\" aria-expanded=\"false\" aria-controls=\"collapse8\">\r\n                        Add a parking\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse8\" class=\"collapse\" aria-labelledby=\"heading8\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Parking/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-There is also an access in the setting button, which opens a window with different accesses, we choose \"parking-lot\"\r\n                </div>\r\n                <img src=\"assets/Parking/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-Once, on this screen, all we have to do is touch the \"New Parking Lot\" button, which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Parking/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-In this form, we fill in the respective data of parking lot, once all the data is in, we touch the \"Add\" button.\r\n                </div>\r\n                <img src=\"assets/Parking/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-In addition to adding oarkings, we can intuitively edit and delete them.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\"  *ngIf=\"loggedIn && type\">\r\n            <div class=\"card-header\" id=\"heading9\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse9\" aria-expanded=\"false\" aria-controls=\"collapse9\">\r\n                        Add a zone\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse9\" class=\"collapse\" aria-labelledby=\"heading9\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Zone/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-Access to each window will appear in the administrator user menu, choose the \"Zone\" option.\r\n                </div>\r\n                <img src=\"assets/Zone/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-Once, on this screen, all we have to do is touch the \"New Zone\" button, which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Zone/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-In this form, we fill in the respective data of the zone, once all the data is in, we touch the \"Add\" button.\r\n                </div>\r\n                <img src=\"assets/Zone/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-In the table we must press the eye icon to see the spaces in that zone.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\"  *ngIf=\"loggedIn && type\">\r\n            <div class=\"card-header\" id=\"heading10\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse10\" aria-expanded=\"false\" aria-controls=\"collapse10\">\r\n                        Add spaces\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse10\" class=\"collapse\" aria-labelledby=\"heading10\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Spaces/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-Once in the window of spaces, we can also add other spaces by pressing the button \"Add Space\", which will display the following form.\r\n                </div>\r\n                <img src=\"assets/Spaces/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-In this form, we fill in the respective data of your vehicle, once all the data is in, we touch the \"Add\" button\r\n                </div>\r\n                <img src=\"assets/Spaces/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-.By clicking on the edit button, a form will be displayed with the information of the chosen space, here you can modify your data\r\n                </div>\r\n                <img src=\"assets/Spaces/4.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-When you want to delete a space a warning will be issued, if you want to continue press \"yes, delete it!\"\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\"  *ngIf=\"loggedIn && type\">\r\n            <div class=\"card-header\" id=\"heading11\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse11\" aria-expanded=\"false\" aria-controls=\"collapse11\">\r\n                        Change user´s roll\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse11\" class=\"collapse\" aria-labelledby=\"heading11\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/User_roll/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-Access to each window will appear in the administrator user menu, choose the \"Assign or modify roles\" option.\r\n                </div>\r\n                <img src=\"assets/User_roll/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #2-Once, on this screen, all we have to do is touch the \"Admin\" button if we want to grant administrator permissions, or press \"Regular\" button if we want to remove administrator permissions\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"card\"  *ngIf=\"loggedIn && type\">\r\n            <div class=\"card-header\" id=\"heading12\">\r\n                <h2 class=\"mb-0\">\r\n                    <button class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\"\r\n                        data-target=\"#collapse12\" aria-expanded=\"false\" aria-controls=\"collapse12\">\r\n                        Make a report\r\n                    </button>\r\n                </h2>\r\n            </div>\r\n            <div id=\"collapse12\" class=\"collapse\" aria-labelledby=\"heading12\" data-parent=\"#accordionExample\">\r\n                <img src=\"assets/Report/1.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #1-Access to each window will appear in the administrator user menu, choose the \"Report\" option.\r\n                </div>\r\n                <img src=\"assets/Report/2.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #3-To make a report, you must choose a start date and an end date, then press the \"Generate Report\" button\r\n                </div>\r\n                <img src=\"assets/Report/3.png\" class=\"img-fluid\" alt=\"Responsive image\">\r\n                <div class=\"card-body\">\r\n                    #4-A table will appear with the information of the report, finally press the \"generate report\" button.\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
     /***/
   },
 
@@ -2929,6 +2929,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.addFormSpace.user = null;
           }
 
+          console.log(this.addFormSpace);
           this.space.addSpace(this.addFormSpace).subscribe(function (data) {
             _this23.nullSpace = data;
 
@@ -3756,6 +3757,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.space = space;
         this.emails = emails;
         this.calendarService = calendarService;
+        this.headquarters = [];
         this.dashboards = [];
         this.formAddReserve = {
           id_reservation: null,
@@ -3776,12 +3778,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           end_date_extend: null,
           space: null,
           reserve: this.formAddReserve
-        };
-        this.userInf = {
-          id: null,
-          name: null,
-          imageUrl: null,
-          headquarter: ''
         };
         this.formReserve = {
           parking_lot_id: null,
@@ -3808,6 +3804,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           country: null,
           city: null
         };
+        this.userInf = {
+          id: null,
+          name: null,
+          imageUrl: null,
+          headquarter: this.hqModel
+        };
         this.parkingLotModel = {
           id_parking_lot: null,
           name: null,
@@ -3829,6 +3831,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         };
         this.minDate2 = null;
         this.maxDate2 = null;
+        this.hide = false;
       }
 
       _createClass(DashboardComponent, [{
@@ -3840,10 +3843,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this36.loadUser(data);
 
             _this36.listVehicles();
-          });
-          this.listHeadquarters();
-          this.listParkings();
-          this.listZones();
+          }); //this.listHeadquarters();
+          //this.listParkings();
+          //this.listZones();
+
           this.dashboardCalendarDates();
         }
       }, {
@@ -3892,7 +3895,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             day: since.getDate()
           };
           var selectedDate = new _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__["NgbDate"](this.arrayAux[0], this.arrayAux[1], this.arrayAux[2]); //console.log("jinx",this.arrayAux);
-          // console.log("jajaj",this.dashboardForm.reserveDate);
+          //console.log("jajaj",this.dashboardForm.reserveDate);
           //console.log("aquiii",selectedDate);
 
           this.isDisabled = function (date, current) {
@@ -3909,30 +3912,70 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, function (error) {});
         }
       }, {
-        key: "listParkings",
-        value: function listParkings() {
+        key: "listHeadquarters",
+        value: function listHeadquarters() {
           var _this39 = this;
 
-          this._parking.listParkingLot().subscribe(function (data) {
-            _this39.parkings = data;
+          this.headquarters = [];
+
+          this._headquarter.listHeadquarter().subscribe(function (data) {
+            var hqs = data;
+
+            if (_this39.userInf.headquarter != null) {
+              //console.log("jiji");
+              _this39.headquarters.push(_this39.userInf.headquarter);
+
+              var _iterator = _createForOfIteratorHelper(hqs),
+                  _step;
+
+              try {
+                for (_iterator.s(); !(_step = _iterator.n()).done;) {
+                  var hq = _step.value;
+
+                  if (hq.id_headquarter != _this39.userInf.headquarter.id_headquarter) {
+                    _this39.headquarters.push(hq);
+                  }
+                }
+              } catch (err) {
+                _iterator.e(err);
+              } finally {
+                _iterator.f();
+              }
+            } else {
+              _this39.headquarters = hqs;
+            }
+
+            _this39.hqModel = _this39.headquarters[0];
+
+            _this39.listParkings(_this39.hqModel); //console.log(this.headquarters);        
+
+          }, function (error) {//console.log(error);
           });
         }
       }, {
-        key: "listHeadquarters",
-        value: function listHeadquarters() {
+        key: "listParkings",
+        value: function listParkings(headquarter) {
           var _this40 = this;
 
-          this._headquarter.listHeadquarter().subscribe(function (data) {
-            _this40.headquarters = data;
+          this._parking.listParkingLotHQ(headquarter.id_headquarter).subscribe(function (data) {
+            console.log(data);
+            _this40.parkings = data;
+            _this40.parkingLotModel = _this40.parkings[0];
+
+            _this40.listZones(_this40.parkingLotModel);
+          }, function (error) {//console.log(error);
           });
         }
       }, {
         key: "listZones",
-        value: function listZones() {
+        value: function listZones(parking_lot) {
           var _this41 = this;
 
-          this._zone.listZone().subscribe(function (data) {
+          this._zone.listZoneByPKLot(parking_lot.id_parking_lot).subscribe(function (data) {
+            //console.log("data",data);
             _this41.zones = data;
+            _this41.zoneModel = _this41.zones[0];
+          }, function (error) {//console.log("error",error);
           });
         }
       }, {
@@ -3954,16 +3997,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.img = data.imageUrl;
 
           if (data.headquarter == null) {
-            this.userInf.headquarter = '';
+            this.userInf.headquarter = null;
           } else {
-            this.userInf.headquarter = data.headquarter;
-            this.current = data.headquarter.name;
+            this.userInf.headquarter = data.headquarter; //this.current = data.headquarter.name;
           }
-        }
-      }, {
-        key: "headquarterUser",
-        value: function headquarterUser(data) {
-          this.userInf.headquarter = data.name;
+
+          this.listHeadquarters();
         }
       }, {
         key: "dataSpace",
@@ -3978,12 +4017,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.spaceModel.state = space.state;
           this.spaceModel.zone = space.zone;
 
-          var _iterator = _createForOfIteratorHelper(space.range),
-              _step;
+          var _iterator2 = _createForOfIteratorHelper(space.range),
+              _step2;
 
           try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var range = _step.value;
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var range = _step2.value;
 
               for (var i = range[0][0]; i < range[0][1]; i++) {
                 var displayRange = {
@@ -4000,9 +4039,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator.e(err);
+            _iterator2.e(err);
           } finally {
-            _iterator.f();
+            _iterator2.f();
           }
 
           this.formAddDetail.space = this.spaceModel;
@@ -4114,7 +4153,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           var zone = this.zoneModel.id_zone;
 
-          if (zone != null && this.calendarModel != null) {
+          if (zone != null && this.dashboardForm.reserveDate != null) {
+            this.hide = true;
+            this.dataCalendar();
+            this.listSpaces();
+
             this._dashboard.listTimes(zone, this.calendarModel).subscribe(function (data) {
               _this43.spacesContainer = [];
               var keysArray = Object.keys(data);
@@ -4139,12 +4182,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 espacio.id_space = space;
                 var ranges = data[space];
 
-                var _iterator2 = _createForOfIteratorHelper(ranges),
-                    _step2;
+                var _iterator3 = _createForOfIteratorHelper(ranges),
+                    _step3;
 
                 try {
-                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-                    var range = _step2.value;
+                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                    var range = _step3.value;
                     var rangeS = {
                       begin: null,
                       end: null
@@ -4154,9 +4197,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     contenedor.push(range);
                   }
                 } catch (err) {
-                  _iterator2.e(err);
+                  _iterator3.e(err);
                 } finally {
-                  _iterator2.f();
+                  _iterator3.f();
                 }
 
                 espacio.range = contenedor;
@@ -4586,23 +4629,55 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
     var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+    /* harmony import */
+
+
+    var src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/services/user.service */
+    "./src/app/services/user.service.ts");
+    /* harmony import */
+
+
+    var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/services/auth.service */
+    "./src/app/services/auth.service.ts");
 
     var HandbookComponent = /*#__PURE__*/function () {
-      function HandbookComponent() {
+      function HandbookComponent(user, auth) {
         _classCallCheck(this, HandbookComponent);
+
+        this.user = user;
+        this.auth = auth;
+        this.GOOGLE_AUTH_URL = this.user.GOOGLE_AUTH_URL;
       }
 
       _createClass(HandbookComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          var _this45 = this;
+
           jquery__WEBPACK_IMPORTED_MODULE_2__('html, body').animate({
             scrollTop: 0
           }, '300');
+          this.auth.authStatus.subscribe(function (value) {
+            return _this45.loggedIn = value;
+          });
+          this.auth.adminStatus.subscribe(function (value) {
+            return _this45.type = value;
+          });
         }
       }]);
 
       return HandbookComponent;
     }();
+
+    HandbookComponent.ctorParameters = function () {
+      return [{
+        type: src_app_services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]
+      }, {
+        type: src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_4__["AuthService"]
+      }];
+    };
 
     HandbookComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-handbook',
@@ -4692,13 +4767,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoginComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this45 = this;
+          var _this46 = this;
 
           this.auth.authStatus.subscribe(function (value) {
-            return _this45.loggedIn = value;
+            return _this46.loggedIn = value;
           });
           this.auth.adminStatus.subscribe(function (value) {
-            return _this45.type = value;
+            return _this46.type = value;
           });
         }
       }]);
@@ -4870,29 +4945,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getData",
         value: function getData() {
-          var _this46 = this;
+          var _this47 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this46.loadUser(data);
+            _this47.loadUser(data);
 
-            _this46.listarReservas();
+            _this47.listarReservas();
 
-            _this46.listVehicles();
+            _this47.listVehicles();
           }, function (error) {});
         }
       }, {
         key: "listVehicles",
         value: function listVehicles() {
-          var _this47 = this;
+          var _this48 = this;
 
           this._vehicle.listVehicle("vehiculo").subscribe(function (data) {
-            _this47.vehicles = data;
+            _this48.vehicles = data;
           }, function (error) {});
         }
       }, {
         key: "deleteReserve",
         value: function deleteReserve(_formReserve) {
-          var _this48 = this;
+          var _this49 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
             customClass: {
@@ -4910,8 +4985,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this48._parking.deleteParkingLot(_formReserve).subscribe(function (data) {
-                _this48.ngOnInit();
+              _this49._parking.deleteParkingLot(_formReserve).subscribe(function (data) {
+                _this49.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
               });
@@ -4921,56 +4996,62 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "listarReservas",
         value: function listarReservas() {
-          var _this49 = this;
+          var _this50 = this;
 
           var us = this.formUser.id; //?
 
           this._myReserves.listUserReserves(this.formUser.id).subscribe(function (data) {
-            _this49.validDetail = [];
-            _this49.reserves = data;
+            _this50.validDetail = [];
+            _this50.reserves = data; //console.log(this.reserves.created_at)
 
-            var _iterator3 = _createForOfIteratorHelper(_this49.reserves),
-                _step3;
+            var _iterator4 = _createForOfIteratorHelper(_this50.reserves),
+                _step4;
 
             try {
-              for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-                var reserve = _step3.value;
-                _this49.emply = false;
+              for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+                var reserve = _step4.value;
+                _this50.emply = false;
 
-                _this49.listValidDetails(reserve.id_reservation);
+                _this50.listValidDetails(reserve.id_reservation); //console.log(reserve.created_at)   
+
               }
             } catch (err) {
-              _iterator3.e(err);
+              _iterator4.e(err);
             } finally {
-              _iterator3.f();
+              _iterator4.f();
             }
           }, function (error) {});
         }
       }, {
         key: "listValidDetails",
         value: function listValidDetails(reserve_id) {
-          var _this50 = this;
+          var _this51 = this;
 
           this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(function (data) {
             var detail = [];
             detail = data;
 
             if (detail.length > 0) {
-              var _iterator4 = _createForOfIteratorHelper(detail),
-                  _step4;
+              var _iterator5 = _createForOfIteratorHelper(detail),
+                  _step5;
 
               try {
-                for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-                  var item = _step4.value;
+                for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+                  var item = _step5.value;
+                  var dateAux = item.date.substring(0, 7) + '-' + (parseInt(item.date.substring(8)) + 1);
+                  item.date = dateAux;
+                  item.reserve.created_at = item.reserve.created_at.substring(0, 10);
 
-                  _this50.validDetail.push(item);
+                  _this51.validDetail.push(item);
                 }
               } catch (err) {
-                _iterator4.e(err);
+                _iterator5.e(err);
               } finally {
-                _iterator4.f();
+                _iterator5.f();
               }
             }
+
+            console.log(_this51.validDetail);
           }, function (error) {});
         } //si fuera necesaria
 
@@ -4993,7 +5074,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "cancelReserve",
         value: function cancelReserve(reserve_detail) {
-          var _this51 = this;
+          var _this52 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
             customClass: {
@@ -5011,22 +5092,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this51._myReserves.cancelReserve(reserve_detail).subscribe(function (data) {
-                _this51.ngOnInit();
+              _this52._myReserves.cancelReserve(reserve_detail).subscribe(function (data) {
+                _this52.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Deleted!', 'Your reservation has been successfully canceled', 'success');
                 var email = {
                   id: null,
-                  to: _this51.userNotifications.email,
+                  to: _this52.userNotifications.email,
                   subject: "RESERVE CANCELE",
                   text: "Your reservation has been successfully canceled!",
                   viewed: false,
                   user_id: {
-                    id: _this51.userNotifications.id
+                    id: _this52.userNotifications.id
                   }
                 };
 
-                _this51.emails.sendEmail(email).subscribe(function (data) {});
+                _this52.emails.sendEmail(email).subscribe(function (data) {});
               }, function (error) {});
             }
           });
@@ -5158,25 +5239,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this52 = this;
+          var _this53 = this;
 
           this.auth.authStatus.subscribe(function (value) {
-            return _this52.loggedIn = value;
+            return _this53.loggedIn = value;
           });
           this.auth.adminStatus.subscribe(function (value) {
-            return _this52.admin = value;
+            return _this53.admin = value;
           });
           this.getAsyncData();
         }
       }, {
         key: "notificationsUser",
         value: function notificationsUser(data) {
-          var _this53 = this;
+          var _this54 = this;
 
           this.notifications = 0;
           data.forEach(function (element) {
             if (!element.viewed) {
-              _this53.notifications++;
+              _this54.notifications++;
             }
           });
           this.notificationsArray = data;
@@ -5184,16 +5265,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "notificationViewed",
         value: function notificationViewed(id) {
-          var _this54 = this;
+          var _this55 = this;
 
           this.notificationsService.changeViewed(id).subscribe(function (data) {
-            _this54.notifications = 0;
+            _this55.notifications = 0;
           });
         }
       }, {
         key: "loadUser",
         value: function loadUser(data) {
-          var _this55 = this;
+          var _this56 = this;
 
           this.userInf = data;
 
@@ -5214,16 +5295,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.img = data.imageUrl;
           this.notificationsService.userNotifications(data.id).subscribe(function (data) {
-            _this55.notificationsUser(data);
+            _this56.notificationsUser(data);
           });
         }
       }, {
         key: "deleteNotifications",
         value: function deleteNotifications(n) {
-          var _this56 = this;
+          var _this57 = this;
 
           this.notificationsService.deleteNotification(n.id).subscribe(function (data) {
-            _this56.getAsyncData();
+            _this57.getAsyncData();
           });
         }
       }, {
@@ -5239,7 +5320,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getAsyncData",
         value: function getAsyncData() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this57 = this;
+            var _this58 = this;
 
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
@@ -5250,21 +5331,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.auth.changeAuthStatus(false);
                     } else {
                       this.user.loadImg().subscribe(function (data) {
-                        _this57.loadUser(data);
+                        _this58.loadUser(data);
                       }, function (error) {
-                        _this57.auth.changeAdminStatus(false);
+                        _this58.auth.changeAdminStatus(false);
 
-                        _this57.auth.changeAuthStatus(false);
+                        _this58.auth.changeAuthStatus(false);
 
                         localStorage.removeItem('accessToken');
 
-                        _this57.router.navigateByUrl('');
+                        _this58.router.navigateByUrl('');
                       });
                     }
 
                     setTimeout(function () {
-                      _this57.getAsyncData();
-                    }, 3000);
+                      _this58.getAsyncData();
+                    }, 60000);
 
                   case 2:
                   case "end":
@@ -5375,7 +5456,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var Oauth2Component = /*#__PURE__*/function () {
       function Oauth2Component(router, user, auth) {
-        var _this58 = this;
+        var _this59 = this;
 
         _classCallCheck(this, Oauth2Component);
 
@@ -5389,12 +5470,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (this.token) {
           localStorage.setItem('accessToken', this.token);
           this.auth.authStatus.subscribe(function (value) {
-            return _this58.loggedIn = value;
+            return _this59.loggedIn = value;
           });
 
           if (!this.loggedIn) {
             setTimeout(function () {
-              _this58.router.navigateByUrl('');
+              _this59.router.navigateByUrl('');
             }, 2004);
             setTimeout(function () {
               location.reload();
@@ -5540,13 +5621,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UserPanelComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this59 = this;
+          var _this60 = this;
 
           this.h.listHeadquarter().subscribe(function (data) {
-            _this59.headquarters = data;
+            _this60.headquarters = data;
           });
           this.user.loadImg().subscribe(function (data) {
-            _this59.loadUser(data);
+            _this60.loadUser(data);
           });
         }
       }, {
@@ -5566,7 +5647,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "allocateHeadquarters",
         value: function allocateHeadquarters() {
-          var _this60 = this;
+          var _this61 = this;
 
           var headquarter = {
             id_headquarter: this.u.headquarter,
@@ -5575,7 +5656,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             city: null
           };
           this.auth.adminStatus.subscribe(function (value) {
-            return _this60.u.role = value;
+            return _this61.u.role = value;
           });
           this.u.headquarter = headquarter;
           this.user.modify(this.u).subscribe(function (data) {
@@ -5586,7 +5667,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               timer: 4500
             });
 
-            _this60.ngOnInit();
+            _this61.ngOnInit();
           }, function (error) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
               type: 'error',
@@ -5757,47 +5838,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getData",
         value: function getData() {
-          var _this61 = this;
+          var _this62 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this61.loadUser(data);
+            _this62.loadUser(data);
 
-            _this61.listVehicles();
+            _this62.listVehicles();
           }, function (error) {});
         }
       }, {
         key: "listVehicles",
         value: function listVehicles() {
-          var _this62 = this;
+          var _this63 = this;
 
           this.vehicle.listVehicle(this.formUser.id).subscribe(function (data) {
-            _this62.vehicles = data;
+            _this63.vehicles = data;
           }, function (error) {});
         }
       }, {
         key: "addVehicle",
         value: function addVehicle() {
-          var _this63 = this;
+          var _this64 = this;
 
           this.addFormVehicle.user.id = this.formUser.id;
           this.vehicle.addVehicle(this.addFormVehicle).subscribe(function (data) {
-            _this63.nullVehicle = data;
+            _this64.nullVehicle = data;
 
-            if (_this63.nullVehicle.license_plate === null) {
+            if (_this64.nullVehicle.license_plate === null) {
               //si viene vacio el vehiculo ya esta registrado
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'A vehicle with the license plate ' + _this63.addFormVehicle.license_plate + ' has already been registered!',
+                text: 'A vehicle with the license plate ' + _this64.addFormVehicle.license_plate + ' has already been registered!',
                 confirmButtonColor: '#EF4023'
               });
             } else {
-              _this63.responseSuccess(data);
+              _this64.responseSuccess(data);
 
-              _this63.addFormVehicle.license_plate = null;
-              _this63.addFormVehicle.brand = null;
-              _this63.addFormVehicle.model = null;
-              _this63.addFormVehicle.user.id = null;
+              _this64.addFormVehicle.license_plate = null;
+              _this64.addFormVehicle.brand = null;
+              _this64.addFormVehicle.model = null;
+              _this64.addFormVehicle.user.id = null;
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'success',
                 title: 'The vehicle has been saved',
@@ -5806,14 +5887,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
               jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal1").click();
 
-              _this63.ngOnInit();
+              _this64.ngOnInit();
             }
           }, function (error) {});
         }
       }, {
         key: "deleteVehicle",
         value: function deleteVehicle(_formVehicle) {
-          var _this64 = this;
+          var _this65 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
             customClass: {
@@ -5831,8 +5912,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this64.vehicle.deleteVehicle(_formVehicle).subscribe(function (data) {
-                _this64.ngOnInit();
+              _this65.vehicle.deleteVehicle(_formVehicle).subscribe(function (data) {
+                _this65.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
               }, function (error) {
@@ -5849,7 +5930,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "editVehicle",
         value: function editVehicle() {
-          var _this65 = this;
+          var _this66 = this;
 
           this.vehicle.editVehicle(this.oldLicensePlate, this.editFormVehicle).subscribe(function (data) {
             jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal1").click();
@@ -5861,7 +5942,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
             jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal").click();
 
-            _this65.ngOnInit();
+            _this66.ngOnInit();
           }, function (error) {});
         }
       }, {
@@ -5953,12 +6034,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var headquarters = [];
 
-          var _iterator5 = _createForOfIteratorHelper(value),
-              _step5;
+          var _iterator6 = _createForOfIteratorHelper(value),
+              _step6;
 
           try {
-            for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-              var u = _step5.value;
+            for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+              var u = _step6.value;
               var id = u.id_hearquarter + "";
 
               if (u.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.country.toLowerCase().indexOf(arg.toLowerCase()) > -1 || id.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.city.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
@@ -5968,9 +6049,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ;
             }
           } catch (err) {
-            _iterator5.e(err);
+            _iterator6.e(err);
           } finally {
-            _iterator5.f();
+            _iterator6.f();
           }
 
           ;
@@ -6030,12 +6111,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var parkings = [];
 
-          var _iterator6 = _createForOfIteratorHelper(value),
-              _step6;
+          var _iterator7 = _createForOfIteratorHelper(value),
+              _step7;
 
           try {
-            for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-              var u = _step6.value;
+            for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+              var u = _step7.value;
               var id = u.id_parking_lot + "";
 
               if (u.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.headquarter.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || id.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
@@ -6045,9 +6126,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ;
             }
           } catch (err) {
-            _iterator6.e(err);
+            _iterator7.e(err);
           } finally {
-            _iterator6.f();
+            _iterator7.f();
           }
 
           ;
@@ -6107,18 +6188,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var report = [];
 
-          var _iterator7 = _createForOfIteratorHelper(value),
-              _step7;
+          var _iterator8 = _createForOfIteratorHelper(value),
+              _step8;
 
           try {
-            for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-              var u = _step7.value;
+            for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+              var u = _step8.value;
 
               if (u.end_date_extend == null) {
                 u.end_date_extend = "";
               }
 
-              var user = u.reserve.user.id + "";
+              var user = u.reserve.user.email + "";
 
               if (u.date.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.end_date_extend.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.end_time.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.start_time.toLowerCase().indexOf(arg.toLowerCase()) > -1 || user.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.space.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.space.zone.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.space.zone.parking_lot.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.space.zone.parking_lot.headquarter.name.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
                 report.push(u);
@@ -6135,9 +6216,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
           } catch (err) {
-            _iterator7.e(err);
+            _iterator8.e(err);
           } finally {
-            _iterator7.f();
+            _iterator8.f();
           }
 
           ;
@@ -6211,12 +6292,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var space = [];
 
-          var _iterator8 = _createForOfIteratorHelper(value),
-              _step8;
+          var _iterator9 = _createForOfIteratorHelper(value),
+              _step9;
 
           try {
-            for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-              var u = _step8.value;
+            for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+              var u = _step9.value;
 
               if (u.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.type.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
                 space.push(u);
@@ -6225,9 +6306,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ;
             }
           } catch (err) {
-            _iterator8.e(err);
+            _iterator9.e(err);
           } finally {
-            _iterator8.f();
+            _iterator9.f();
           }
 
           ;
@@ -6287,12 +6368,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var user = [];
 
-          var _iterator9 = _createForOfIteratorHelper(value),
-              _step9;
+          var _iterator10 = _createForOfIteratorHelper(value),
+              _step10;
 
           try {
-            for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
-              var u = _step9.value;
+            for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
+              var u = _step10.value;
 
               if (u.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.email.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
                 user.push(u);
@@ -6301,9 +6382,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ;
             }
           } catch (err) {
-            _iterator9.e(err);
+            _iterator10.e(err);
           } finally {
-            _iterator9.f();
+            _iterator10.f();
           }
 
           ;
@@ -6363,12 +6444,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var vehicles = [];
 
-          var _iterator10 = _createForOfIteratorHelper(value),
-              _step10;
+          var _iterator11 = _createForOfIteratorHelper(value),
+              _step11;
 
           try {
-            for (_iterator10.s(); !(_step10 = _iterator10.n()).done;) {
-              var v = _step10.value;
+            for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
+              var v = _step11.value;
               var id = v.licence_plate + "";
 
               if (v.brand.toLowerCase().indexOf(arg.toLowerCase()) > -1 || v.model.toLowerCase().indexOf(arg.toLowerCase()) > -1 || id.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
@@ -6378,9 +6459,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ;
             }
           } catch (err) {
-            _iterator10.e(err);
+            _iterator11.e(err);
           } finally {
-            _iterator10.f();
+            _iterator11.f();
           }
 
           ;
@@ -6440,12 +6521,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (arg === '' || arg.length < 1) return value;
           var zone = [];
 
-          var _iterator11 = _createForOfIteratorHelper(value),
-              _step11;
+          var _iterator12 = _createForOfIteratorHelper(value),
+              _step12;
 
           try {
-            for (_iterator11.s(); !(_step11 = _iterator11.n()).done;) {
-              var u = _step11.value;
+            for (_iterator12.s(); !(_step12 = _iterator12.n()).done;) {
+              var u = _step12.value;
 
               if (u.name.toLowerCase().indexOf(arg.toLowerCase()) > -1 || u.parking_lot.name.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
                 zone.push(u);
@@ -6454,9 +6535,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               ;
             }
           } catch (err) {
-            _iterator11.e(err);
+            _iterator12.e(err);
           } finally {
-            _iterator11.f();
+            _iterator12.f();
           }
 
           ;
@@ -6519,14 +6600,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AdminAfterService = /*#__PURE__*/function () {
       function AdminAfterService(auth, router) {
-        var _this66 = this;
+        var _this67 = this;
 
         _classCallCheck(this, AdminAfterService);
 
         this.auth = auth;
         this.router = router;
         this.auth.adminStatus.subscribe(function (value) {
-          return _this66.admin = value;
+          return _this67.admin = value;
         });
       }
 
@@ -6604,14 +6685,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AfterLoginService = /*#__PURE__*/function () {
       function AfterLoginService(auth, router) {
-        var _this67 = this;
+        var _this68 = this;
 
         _classCallCheck(this, AfterLoginService);
 
         this.auth = auth;
         this.router = router;
         this.auth.authStatus.subscribe(function (value) {
-          return _this67.login = value;
+          return _this68.login = value;
         });
       }
 
@@ -6669,7 +6750,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /*! tslib */
     "./node_modules/tslib/tslib.es6.js");
 
-    var domain = "https://avantiparking-1590019036260.azurewebsites.net";
+    var domain = "https://avantiparking-1590019036260.azurewebsites.net"; //export const domain: string="http://localhost:8080";
+
     /***/
   },
 
@@ -6788,14 +6870,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var BeforeLoginService = /*#__PURE__*/function () {
       function BeforeLoginService(auth, router) {
-        var _this68 = this;
+        var _this69 = this;
 
         _classCallCheck(this, BeforeLoginService);
 
         this.auth = auth;
         this.router = router;
         this.auth.authStatus.subscribe(function (value) {
-          return _this68.loggedIn = value;
+          return _this69.loggedIn = value;
         });
       }
 
@@ -7433,6 +7515,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
+        key: "listParkingLotHQ",
+        value: function listParkingLotHQ(id) {
+          return this.http.get("".concat(this.url, "/api/parking_lot/hq/") + id, {
+            headers: this.httpHeaders
+          });
+        }
+      }, {
         key: "editParkingLot",
         value: function editParkingLot(id, data) {
           return this.http.put("".concat(this.url, "/api/parking_lot/") + id, data, {
@@ -7649,6 +7738,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
         }
       }, {
+        key: "listZoneByPKLot",
+        value: function listZoneByPKLot(id) {
+          return this.http.get("".concat(this.url, "/api/zone/lot/") + id, {
+            headers: this.httpHeaders
+          });
+        }
+      }, {
         key: "editZone",
         value: function editZone(id, data) {
           return this.http.put("".concat(this.url, "/api/zone/") + id, data, {
@@ -7787,13 +7883,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, UserService);
 
         this.http = http;
-        this.token = token; //public baseUrl:any = "http://localhost:8080";
-        //public oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';                                                           <<<< ----
-        //public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;                            -
-        //public url: any;                                                                                                                      -
-        //  -
-
-        this.baseUrl = _api_modules__WEBPACK_IMPORTED_MODULE_4__["domain"]; //  -
+        this.token = token;
+        this.baseUrl = _api_modules__WEBPACK_IMPORTED_MODULE_4__["domain"]; //public oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';                                                   
+        //public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;                
 
         this.oauth2UrlRedirect = 'https://test-avantiparking.web.app/oauth2/redirect'; //Cuando lo prueben local, ponel el que esta arriba comentado
 
