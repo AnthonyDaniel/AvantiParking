@@ -8,11 +8,11 @@
       <label>DATE</label>
       <form class="form-inline">
         <div class="form-group">
-          <div class="input-group">
-            <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"  [minDate]="minDate" [maxDate]="maxDate"  readonly
-             [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker" >
+          <div class="input-group ">
+            <input class="form-control" placeholder="yyyy/mm/dd" name="d2" #c2="ngModel"  [minDate]="minDate" [maxDate]="maxDate"  readonly
+             [(ngModel)]="dashboardForm.reserveDate" (click)="d2.toggle()" ngbDatepicker #d2="ngbDatepicker" required>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar"  (click)="d2.toggle()" type="button"  ></button>
+              <button class="btn btn-outline-secondary calendar"  (click)="d2.toggle()" type="button"></button>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@
     <div class="col-md-2">
       <label>PARKING LOT</label>
       <select class="custom-select" name="parking lot" required [(ngModel)]="parkingLotModel" (change)=" listZones(parkingLotModel,$event.target.value)">
-        <option selected>Choose...</option>
+        <!--<option selected>Choose...</option>-->
         <option *ngFor="let parking of parkings" [ngValue]="parking"  >
           {{parking.name}}</option>
       </select>
@@ -41,14 +41,14 @@
     <div class="col-md-2">
       <label>ZONE</label>
       <select class="custom-select" name="zone" required [(ngModel)]="zoneModel" (change)=" dataReserve(zoneModel,$event.target.value)" >
-        <option selected>Choose...</option>
+        <!--<option selected>Choose...</option>-->
         <option *ngFor="let zone of zones" [ngValue]="zone" > {{zone.name}}</option>
       </select>
     </div>
 
     <div class="col-md-2">
       <br>
-      <button class="btn btn-delete btn-block btn-outline-danger" (click)="listSpaces()" (click)="dataCalendar()"  (click)="loadAvailableTimes()">
+      <button class="btn btn-delete btn-block btn-outline-danger" (click)="loadAvailableTimes()">
         <strong>VIEW DASHBOARD</strong>
       </button><br><br>
     </div>
@@ -84,6 +84,7 @@
             </tr>
           </tbody>
         </table>
+        <h5 *ngIf="!hide" class="text-center">Please select a date and make sure to choose a zone!</h5>
       </div>
     </div>
 

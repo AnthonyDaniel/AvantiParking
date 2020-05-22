@@ -139,7 +139,7 @@ export class DashboardComponent implements OnInit {
       this.loadUser(data);
       this.listVehicles();
     });
-    this.listHeadquarters();
+    //this.listHeadquarters();
     //this.listParkings();
     //this.listZones();
     this.dashboardCalendarDates();
@@ -178,7 +178,7 @@ export class DashboardComponent implements OnInit {
     this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
     let selectedDate = new NgbDate(this.arrayAux[0],this.arrayAux[1],this.arrayAux[2]);
     //console.log("jinx",this.arrayAux);
-   // console.log("jajaj",this.dashboardForm.reserveDate);
+    //console.log("jajaj",this.dashboardForm.reserveDate);
     //console.log("aquiii",selectedDate);
     this.isDisabled = (date: NgbDate, current: {month: number}) => 
       this.calendarService.getWeekday(selectedDate) != this.calendarService.getWeekday(date);
@@ -193,10 +193,6 @@ export class DashboardComponent implements OnInit {
      }
       );
   }
-  
-  /*headquarterUser(data) {
-    this.userInf.headquarter = data.name;
-  }*/
 
   listHeadquarters() {
     this.headquarters = [];
@@ -204,7 +200,7 @@ export class DashboardComponent implements OnInit {
       data => {
         let hqs:any = data ;
         if(this.userInf.headquarter!= null){          
-          console.log("jiji");
+          //console.log("jiji");
           this.headquarters.push(this.userInf.headquarter); 
           for(let hq of hqs){
             if(hq.id_headquarter != this.userInf.headquarter.id_headquarter){
@@ -216,10 +212,10 @@ export class DashboardComponent implements OnInit {
         }  
         this.hqModel = this.headquarters[0];  
         this.listParkings(this.hqModel);    
-        console.log(this.headquarters);        
+        //console.log(this.headquarters);        
       },
       error =>{
-        console.log(error);
+        //console.log(error);
       }
     );
   }
@@ -233,7 +229,7 @@ export class DashboardComponent implements OnInit {
         this.listZones(this.parkingLotModel);
       },
       error => {
-        console.log(error);
+        //console.log(error);
       }
     )
   }
@@ -241,12 +237,12 @@ export class DashboardComponent implements OnInit {
   listZones(parking_lot) {
     this._zone.listZoneByPKLot(parking_lot.id_parking_lot).subscribe(
       data => {
-        console.log("data",data);
+        //console.log("data",data);
         this.zones = data;
         this.zoneModel = this.zones[0];
       },
       error =>{
-        console.log("error",error);
+        //console.log("error",error);
       }
     )
   }
@@ -273,6 +269,7 @@ export class DashboardComponent implements OnInit {
       this.userInf.headquarter = data.headquarter;
       //this.current = data.headquarter.name;
     }
+    this.listHeadquarters();
   }
 
   
@@ -378,9 +375,13 @@ export class DashboardComponent implements OnInit {
       console.log(this.calendarModelExtend)
     }
   }
+  public hide = false;
   loadAvailableTimes() {
     let zone = this.zoneModel.id_zone;
-    if (zone != null && this.calendarModel != null) {
+    if (zone != null && this.dashboardForm.reserveDate != null) {
+      this.hide = true;
+      this.dataCalendar()
+      this.listSpaces();
       this._dashboard.listTimes(zone, this.calendarModel).subscribe(
         data => {
           this.spacesContainer = [];
@@ -417,14 +418,7 @@ export class DashboardComponent implements OnInit {
         },
         error => {
         });
-    } else {
-      Swal.fire({
-        type: 'error',
-        title: 'Oops...',
-        text: 'No reservation will be shown until you filter the fields to show',
-        confirmButtonColor: '#EF4023'
-      })
-    }
+    } 
 
   }
 
