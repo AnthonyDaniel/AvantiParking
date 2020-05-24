@@ -90,16 +90,16 @@ public class Dashboard_Controller {
 									flag = true;
 									range[0][0]=available;
 									range[0][1]=timeToInt(details.get(j).getStart_time());
-									rangeContainer.add(range);
-									if(j == details.size()-1) {
-										if(timeToInt(details.get(j).getEnd_time()) < 20) {
-											range = new Integer[1][2];
-											range[0][0] = timeToInt(details.get(j).getEnd_time());								
-											range[0][1] = 20;
-											rangeContainer.add(range);
-										}							
-									}
+									rangeContainer.add(range);									
 								}								
+							}
+							if(j == details.size()-1) {
+								if(timeToInt(details.get(j).getEnd_time()) < 20) {
+									range = new Integer[1][2];
+									range[0][0] = timeToInt(details.get(j).getEnd_time());								
+									range[0][1] = 20;
+									rangeContainer.add(range);
+								}							
 							}
 						}
 						if(flag) {
@@ -108,7 +108,7 @@ public class Dashboard_Controller {
 						}
 					}
 				}			
-			}			
+			}
 		}
 		return ResponseEntity.ok().body(container);
 	}
