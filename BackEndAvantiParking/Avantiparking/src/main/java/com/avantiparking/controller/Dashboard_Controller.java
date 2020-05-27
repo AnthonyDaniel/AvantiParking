@@ -93,7 +93,7 @@ public class Dashboard_Controller {
 									rangeContainer.add(range);									
 								}								
 							}
-							if(j == details.size()-1) {
+							if(j == details.size()-1 && details.size() > 1) {
 								if(timeToInt(details.get(j).getEnd_time()) < 20) {
 									range = new Integer[1][2];
 									range[0][0] = timeToInt(details.get(j).getEnd_time());								

@@ -8,13 +8,13 @@ import * as API from './api.modules';
 export class UserService {
   public baseUrl:any =  API.domain;            
 
-  //public oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';                                                   
-  //public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;                
+  public oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';                                                   
+  public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;                
                                                                                            
-  
+  /*
   public oauth2UrlRedirect = 'https://test-avantiparking.web.app/oauth2/redirect'; //Cuando lo prueben local, ponel el que esta arriba comentado
   public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;
-  
+  */
   
   public url: any;
 

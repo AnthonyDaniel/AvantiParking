@@ -466,7 +466,7 @@ export class DashboardComponent implements OnInit {
 
       console.log("aqui--", this.formAddDetail.start_time);
 
-      if(this.formAddDetail.end_date_extend == null){
+      /*if(this.formAddDetail.end_date_extend == null){
         this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
           this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
             data => {
@@ -512,7 +512,7 @@ export class DashboardComponent implements OnInit {
               console.log(error);
             }
         );
-      }else{
+      }else{*/
         this._dashboard.createReserve2(this.formAddDetail).subscribe(
             data => {
               let response:any = data;
@@ -571,7 +571,7 @@ export class DashboardComponent implements OnInit {
               console.log(error);
             }
         );
-      } 
+      //} 
     }
   }
 }
