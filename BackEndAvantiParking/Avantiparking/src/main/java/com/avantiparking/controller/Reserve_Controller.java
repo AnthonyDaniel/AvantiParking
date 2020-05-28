@@ -90,7 +90,7 @@ public class Reserve_Controller {
 		return response;
 	}
 	
-	@PostMapping("/reserves")
+	/*@PostMapping("/reserves")
 	public Reserve_detail addReservation(@Valid @RequestBody Reserve_detail _detail) {
 		if(!spaceTaken(_detail, false)) {
 			Optional<Reserve> exists;
@@ -113,25 +113,18 @@ public class Reserve_Controller {
 			return reserve_detail_Repository.save(_detail);
 		}
 		return new Reserve_detail();
-	}
+	}*/
 	
 	@PostMapping("/reserves/extended")
 	public ResponseEntity<HashMap<String,Boolean>> addExtendedReservation(@Valid @RequestBody Reserve_detail detail) {
 		HashMap<String, Boolean> response = new HashMap<>();
 		List<Date> dates = reserveExtended(detail);
-		
-		//auxDetail = addReserve(detail);
 		LocalDate auxDate;
-		/*if(auxDetail.getId_reserve_detail() != null) {
-			auxDate = auxDetail.getDate().toLocalDate().plusDays(1);
-			System.out.println("----------------"+detail);
-			response.put(auxDate.toString(), true);
-		}else {
-			response.put(detail.getDate().toLocalDate().plusDays(1).toString(), false);
-		}*/
-		
+		if(detail.getReserve().getVehicle().getIncrement() == null) {
+			detail.getReserve().setVehicle(null);
+		}
+		Reserve reserve = reserve_Repository.save(detail.getReserve());
 		for(int i = 0; i< dates.size();i++) {
-			//Reserve_detail auxDetail = new Reserve_detail();
 			Reserve_detail aux = new Reserve_detail();
 			aux.setDate(dates.get(i));
 			aux.setEnd_date_extend(detail.getEnd_date_extend());
@@ -140,63 +133,29 @@ public class Reserve_Controller {
 			aux.setReserve_state(detail.isReserve_state());
 			aux.setSpace(detail.getSpace());
 			aux.setStart_time(detail.getStart_time());
-			//auxDetail = addReserve(aux,false);
-			System.out.println("jijiji"+aux.getDate()+ "aaaa"+aux.getId_reserve_detail());
-			if(addReserve(aux,false).getId_reserve_detail() != null) {
+			aux.setReserve(reserve);
+			//System.out.println("jijiji"+aux.getDate()+ "aaaa"+aux.getId_reserve_detail());
+			if(!spaceTaken(aux, false)) {				
+				 reserve_detail_Repository.save(aux);
+				 auxDate = aux.getDate().toLocalDate();
+				 response.put(auxDate.toString(), true);
+			}else {
+				response.put(aux.getDate().toLocalDate().toString(), false);
+			}
+			/*if(addReserve(aux,false).getId_reserve_detail() != null) {
 				auxDate = aux.getDate().toLocalDate();
 				response.put(auxDate.toString(), true);
 			}else {
 				response.put(aux.getDate().toLocalDate().toString(), false);
-			}
-			/*if(auxDetail.getId_reserve_detail() != null) {
-				auxDate = auxDetail.getDate().toLocalDate();
-				response.put(auxDate.toString(), true);
-			}else {
-				response.put(auxDetail.getDate().toLocalDate().toString(), false);
 			}*/
-			
-		}
-		/*Reserve_detail auxDetail;
-		auxDetail = addReserve(detail);
-		LocalDate auxDate;
-		if(auxDetail.getId_reserve_detail() != null) {
-			auxDate = auxDetail.getDate().toLocalDate().plusDays(1);
-			System.out.println("----------------"+detail);
-			response.put(auxDate.toString(), true);
-		}else {
-			response.put(detail.getDate().toLocalDate().plusDays(1).toString(), false);
-		}
-		if(true) {
-			List<Date> dates = reserveExtended(detail);
-			for(int i = 0; i< dates.size();i++) {
-				Reserve_detail mauxDetail = new Reserve_detail();
-				mauxDetail.setDate(dates.get(i));
-				mauxDetail.setEnd_date_extend(detail.getEnd_date_extend());
-				mauxDetail.setEnd_time(detail.getEnd_time());
-				mauxDetail.setReserve(detail.getReserve());
-				mauxDetail.setReserve_state(detail.isReserve_state());
-				mauxDetail.setSpace(detail.getSpace());
-				mauxDetail.setStart_time(detail.getStart_time());
-				//_detail.setId_reserve_detail(null);
-				
-				System.out.println(i+"---"+mauxDetail.getDate()+"ccc"+mauxDetail);
-				auxDetail = addReserve(mauxDetail);
-				System.out.println("jijiji"+auxDetail.getDate()+ "aaaa"+auxDetail.getId_reserve_detail());
-				if(auxDetail.getId_reserve_detail() != null) {
-					auxDate = auxDetail.getDate().toLocalDate();
-					response.put(auxDate.toString(), true);
-				}else {
-					response.put(auxDetail.getDate().toLocalDate().toString(), false);
-				}
-			}					
-		}*/
+		}		
 		return ResponseEntity.ok(response);
 	}
 	
 	private Reserve_detail addReserve(Reserve_detail _detail, boolean flag) {
 		if(!spaceTaken(_detail, flag)) {
-			if(_detail.getReserve().getId_reservation() == null) {
-				Optional<Reserve> exists;
+			//if(_detail.getReserve().getId_reservation() == null) {
+				/*Optional<Reserve> exists;
 				if(_detail.getReserve().getVehicle().getIncrement() == null) {
 					exists = reserve_Repository.findReservationNullVehicle(_detail.getReserve().getUser().getId(), _detail.getReserve().getCreated_at());
 				}else {
@@ -212,8 +171,14 @@ public class Reserve_Controller {
 					_detail.setReserve(reserve);
 				}else {
 					_detail.setReserve(exists.get());
-				}
+				}*/
+				
+			//}
+			if(_detail.getReserve().getVehicle().getIncrement() == null) {
+				_detail.getReserve().setVehicle(null);
 			}
+			Reserve reserve = reserve_Repository.saveAndFlush(_detail.getReserve());
+			_detail.setReserve(reserve);
 			return reserve_detail_Repository.save(_detail);
 		}
 		return new Reserve_detail();
@@ -229,17 +194,17 @@ public class Reserve_Controller {
 			LocalDate endDate = _detail.getEnd_date_extend().toLocalDate();
 			//startDate = startDate.plusDays(1);//locale le quita un dia
 			endDate = endDate.plusDays(1);//locale le quita un dia
-			int startDay, endDay;
+			//int startDay, endDay;
 			//LocalDate auxDate = startDate;
-			startDay =startDate.getDayOfMonth();
-			endDay = endDate.getDayOfMonth();
-			System.out.println("startdate - "+ startDate+ "  enddate - "+ endDate);
-			System.out.println("startday - "+ startDay+ "  endday - "+ endDay);
+			//startDay =startDate.getDayOfMonth();
+			//endDay = endDate.getDayOfMonth();
+			//System.out.println("startdate - "+ startDate+ "  enddate - "+ endDate);
+			//System.out.println("startday - "+ startDay+ "  endday - "+ endDay);
 			//daysList.add(java.sql.Date.valueOf(auxDate));
 			do {
 				auxDate = auxDate.plusDays(7);			
 				daysList.add(java.sql.Date.valueOf(auxDate));
-				System.out.println("Adding - "+ auxDate);	
+				//System.out.println("Adding - "+ auxDate);	
 									
 			}while(!auxDate.equals(endDate));	
 		}			
@@ -261,7 +226,7 @@ public class Reserve_Controller {
 			dateS = date.getYear()+"-"+month+"-"+ (date.getDayOfMonth());// se suma uno porque devuelve uno menos
 		}
 		
-		System.out.println("*****************************"+dateS);
+		//System.out.println("*****************************"+dateS);
 		int start = timeToInt(_detail.getStart_time());
 		int end = timeToInt(_detail.getEnd_time());
 		List<Reserve_detail> details = reserve_detail_Repository.findByDateAndSpace(dateS, _detail.getSpace().getId_space());

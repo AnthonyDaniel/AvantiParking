@@ -564,6 +564,7 @@ export class DashboardComponent implements OnInit {
                 })
               }
               this.extendReserveForm.extendReserveDate = null;
+              this.calendarModelExtend = null;
               this.ngOnInit();
               this.loadAvailableTimes();  
             },

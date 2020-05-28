@@ -93,8 +93,18 @@ public class Dashboard_Controller {
 									rangeContainer.add(range);									
 								}								
 							}
+							if(details.size() == 1 && available != -1) {
+								if(timeToInt(details.get(j).getEnd_time()) < 20) {
+									flag = true;
+									range = new Integer[1][2];
+									range[0][0] = timeToInt(details.get(j).getEnd_time());								
+									range[0][1] = 20;
+									rangeContainer.add(range);
+								}	
+							}
 							if(j == details.size()-1 && details.size() > 1) {
 								if(timeToInt(details.get(j).getEnd_time()) < 20) {
+									flag = true;
 									range = new Integer[1][2];
 									range[0][0] = timeToInt(details.get(j).getEnd_time());								
 									range[0][1] = 20;
