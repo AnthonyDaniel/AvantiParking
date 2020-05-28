@@ -122,6 +122,32 @@ public class Reserve_Controller {
 		LocalDate auxDate;
 		if(detail.getReserve().getVehicle().getIncrement() == null) {
 			detail.getReserve().setVehicle(null);
+		}else {
+			List<Reserve_detail> detailsForCar = reserve_detail_Repository.findByCarAndDate(detail.getDate(), detail.getReserve().getVehicle().getIncrement());
+			//System.out.println("*****"+detailsForCar);
+			if(detailsForCar.size() > 0) {
+				for(int i=0;i<detailsForCar.size();i++) {
+					//System.out.println("Existente"+detailsForCar.get(i).getStart_time());
+					//System.out.println("Nueva"+detail.getStart_time());
+					if(detailsForCar.get(i).getStart_time().equals(detail.getStart_time())) {
+						//System.out.println("yeeeeeeeeeeeeeeeeeeeeeeeeeesd");
+						response.put("car", false);	
+						return ResponseEntity.ok(response);
+					}
+				}
+				/*detailsForCar.forEach((detailC) ->{
+					if(detailC.getStart_time() == detail.getStart_time()) {
+						response.put("car", false);	
+						
+					}
+				});*/
+				/*if(response.size() > 0) {
+					return ResponseEntity.ok(response);
+				}*/
+				/*for(int i = 0; i < detailsForCar.size();i++) {
+					
+				}	*/			
+			}
 		}
 		Reserve reserve = reserve_Repository.save(detail.getReserve());
 		for(int i = 0; i< dates.size();i++) {

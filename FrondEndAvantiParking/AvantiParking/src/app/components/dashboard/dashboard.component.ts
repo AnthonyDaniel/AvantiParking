@@ -273,7 +273,7 @@ export class DashboardComponent implements OnInit {
   }
 
   
-  dataSpace(space) {
+  dataSpace(space) {    
     this.end_time = null;
     this.start_time = null;
     this.spaceRange = [];
@@ -514,59 +514,67 @@ export class DashboardComponent implements OnInit {
         );
       }else{*/
         this._dashboard.createReserve2(this.formAddDetail).subscribe(
-            data => {
+            data => {              
               let response:any = data;
-              console.log(response);
-              let keys = Object.keys(response);
-              console.log(keys);
-              let flag = false; 
-              let message = "Dates";
-              for(let key of keys){
-                //response.get(key);
-                if(response[key]==false){
-                  flag = true;
-                  message = message+" "+key+","
-                }
-                console.log(key,response[key]);
-              }
-              message = message + " couldn't be reserved. "
-              if(!flag){
-                $("#closeReserveModal").click();
-                Swal.fire({
-                  type: 'success',
-                  title: 'Your reservation has been saved!',
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-  
-  
-                let email={
-                  id:null,
-                  to:this.userNotifications.email,
-                  subject:"RESERVE " + this.formAddDetail.date,
-                  text:"Your reservation has been saved!",
-                  viewed:false,
-                  user_id:{
-                    id:this.userNotifications.id
-                  }
-                }
-                this.emails.sendEmail(email).subscribe(
-                  data => {
-                  }
-                );
-  
-              }else{
-                $("#closeReserveModal").click();
+              if(response["car"] == false){
                 Swal.fire({
                   type: 'error',
-                  title: message +'Somebody might have taken your space! Please reload.',
+                  title: 'The vehicle has a resevration at this time on another space!',
                   showConfirmButton: true
                 })
-              }
-              this.extendReserveForm.extendReserveDate = null;
-              this.calendarModelExtend = null;
-              this.ngOnInit();
-              this.loadAvailableTimes();  
+              }else{
+                console.log(response);
+                let keys = Object.keys(response);
+                console.log(keys);
+                let flag = false; 
+                let message = "Dates";
+                for(let key of keys){
+                  //response.get(key);
+                  if(response[key]==false){
+                    flag = true;
+                    message = message+" "+key+","
+                  }
+                  console.log(key,response[key]);
+                }
+                message = message + " couldn't be reserved. "
+                if(!flag){
+                  $("#closeReserveModal").click();
+                  Swal.fire({
+                    type: 'success',
+                    title: 'Your reservation has been saved!',
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+    
+    
+                  let email={
+                    id:null,
+                    to:this.userNotifications.email,
+                    subject:"RESERVE " + this.formAddDetail.date,
+                    text:"Your reservation has been saved!",
+                    viewed:false,
+                    user_id:{
+                      id:this.userNotifications.id
+                    }
+                  }
+                  this.emails.sendEmail(email).subscribe(
+                    data => {
+                    }
+                  );
+    
+                }else{
+                  $("#closeReserveModal").click();
+                  Swal.fire({
+                    type: 'error',
+                    title: message +'Somebody might have taken your space! Please reload.',
+                    showConfirmButton: true
+                  })
+                }
+                this.extendReserveForm.extendReserveDate = null;
+                this.calendarModelExtend = null;
+                this.ngOnInit();
+                this.loadAvailableTimes(); 
+              }               
             },
             error => {
               console.log(error);

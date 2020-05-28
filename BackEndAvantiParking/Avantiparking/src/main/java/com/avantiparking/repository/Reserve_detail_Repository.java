@@ -26,5 +26,8 @@ public interface Reserve_detail_Repository extends JpaRepository<Reserve_detail,
 	
 	@Query(value = information+" where reserve = ?1 and reserve_state = 1", nativeQuery = true)
 	List<Reserve_detail> findAllUnValidByReserve(Long reserve_id);
+	
+	@Query(value = "select reserve_detail.* from reserve_detail inner join reserve on reserve_detail.reserve = reserve.id_reservation where date = ?1 and vehicle = ?2 and reserve_state = 0", nativeQuery = true)
+	List<Reserve_detail> findByCarAndDate(Date date, Long vehicle);
 
 }
