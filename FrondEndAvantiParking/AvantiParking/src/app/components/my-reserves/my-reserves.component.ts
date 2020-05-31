@@ -123,11 +123,11 @@ export class MyReservesComponent implements OnInit {
       data=>{   
         this.validDetail = [];  
         this.reserves = data;       
-        //console.log(this.reserves.created_at)
+
         for(let reserve of this.reserves){
           this.emply = false;
           this.listValidDetails(reserve.id_reservation);   
-          //console.log(reserve.created_at)   
+ 
         }
       },
       error=>{
@@ -156,22 +156,6 @@ export class MyReservesComponent implements OnInit {
     );
   }
 
-  //si fuera necesaria
-  /*listValidUnvalidDetails(reserve_id){
-    this._myReserves.listUserUnValidReservesDetails(reserve_id).subscribe(
-      data=>{
-        let detail:any = [];      
-        detail = data;
-        if(detail.length > 0){ ;
-          for(let item of detail){            
-            this.unvalidDetail.push(item);
-          } 
-        }              
-      },
-      error=>{
-      }
-    );
-  } */ 
 
   cancelReserve(reserve_detail){
     const swalWithBootstrapButtons = Swal.mixin({

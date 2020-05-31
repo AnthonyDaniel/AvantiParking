@@ -139,9 +139,6 @@ export class DashboardComponent implements OnInit {
       this.loadUser(data);
       this.listVehicles();
     });
-    //this.listHeadquarters();
-    //this.listParkings();
-    //this.listZones();
     this.dashboardCalendarDates();
   }
   dashboardCalendarDates(){
@@ -160,26 +157,15 @@ export class DashboardComponent implements OnInit {
       
     const since2 = moment().add(2,'d').recur().every(7).days();
    
-    //console.log(this.dashboardForm.reserveDate)
     let fecha = this.dashboardForm.reserveDate.month + '/' + this.dashboardForm.reserveDate.day + '/' + this.dashboardForm.reserveDate.year;
-    //let fecha3 = this.dashboardForm.reserveDate.month + 1 + '/' + this.dashboardForm.reserveDate.day + 28 + '/' + this.dashboardForm.reserveDate.year;
-    //console.log(fecha3)
-    // let fecha2= "06/04/2020";
 
-    // let since3 = moment().recur(fecha,fecha2).every(7).days();
-    // let allDates = since3.all("L");
-    // console.log(allDates)
 
     const since = moment().add(30, 'd').toDate();
     const now = moment().toDate();
     let number = this.dashboardForm.reserveDate.day;
-    //console.log(number)
     this.minDate2 = { year: now.getFullYear(), month: now.getMonth() + 1, day: number }
     this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
     let selectedDate = new NgbDate(this.arrayAux[0],this.arrayAux[1],this.arrayAux[2]);
-    //console.log("jinx",this.arrayAux);
-    //console.log("jajaj",this.dashboardForm.reserveDate);
-    //console.log("aquiii",selectedDate);
     this.isDisabled = (date: NgbDate, current: {month: number}) => 
       this.calendarService.getWeekday(selectedDate) != this.calendarService.getWeekday(date);
   }
@@ -200,7 +186,6 @@ export class DashboardComponent implements OnInit {
       data => {
         let hqs:any = data ;
         if(this.userInf.headquarter!= null){          
-          //console.log("jiji");
           this.headquarters.push(this.userInf.headquarter); 
           for(let hq of hqs){
             if(hq.id_headquarter != this.userInf.headquarter.id_headquarter){
@@ -212,10 +197,10 @@ export class DashboardComponent implements OnInit {
         }  
         this.hqModel = this.headquarters[0];  
         this.listParkings(this.hqModel);    
-        //console.log(this.headquarters);        
+       
       },
       error =>{
-        //console.log(error);
+
       }
     );
   }
@@ -229,7 +214,7 @@ export class DashboardComponent implements OnInit {
         this.listZones(this.parkingLotModel);
       },
       error => {
-        //console.log(error);
+
       }
     )
   }
@@ -237,12 +222,12 @@ export class DashboardComponent implements OnInit {
   listZones(parking_lot) {
     this._zone.listZoneByPKLot(parking_lot.id_parking_lot).subscribe(
       data => {
-        //console.log("data",data);
+
         this.zones = data;
         this.zoneModel = this.zones[0];
       },
       error =>{
-        //console.log("error",error);
+
       }
     )
   }
@@ -267,7 +252,7 @@ export class DashboardComponent implements OnInit {
       this.userInf.headquarter = null;
     } else {
       this.userInf.headquarter = data.headquarter;
-      //this.current = data.headquarter.name;
+
     }
     this.listHeadquarters();
   }
@@ -299,7 +284,7 @@ export class DashboardComponent implements OnInit {
     this.formAddDetail.space = this.spaceModel;
   }
   setStartTime(spaceRange) {
-   // this.formAddDetail.start_time = spaceRange.begin + ":00:00";
+ 
     if(spaceRange.begin < 10){      
       this.formAddDetail.start_time = "0"+spaceRange.begin + ":00:00";
     }else{      
@@ -332,7 +317,7 @@ export class DashboardComponent implements OnInit {
   }
 
   dataCalendar() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
-    //console.log("dataCalendar",this.dashboardForm.reserveDate)
+
     if (this.dashboardForm.reserveDate != null) {      
       this.arrayAux = [this.dashboardForm.reserveDate.year ,parseInt(this.dashboardForm.reserveDate.month) ,this.dashboardForm.reserveDate.day]  //fecha inicial para calcular extendida
       var monthWithoutCero: string = this.dashboardForm.reserveDate.month; // mes sin el 0(mes: 4,5,6)
@@ -341,24 +326,23 @@ export class DashboardComponent implements OnInit {
       var dayWithCero: string = '0' + this.dashboardForm.reserveDate.day // mes con el 0(mes: 04,05,06)
       this.calendarModel = this.dashboardForm.reserveDate.year + '-';
       if (monthWithoutCero[0] != monthWithCero[1] && this.dashboardForm.reserveDate.month < 10) {
-        //this.dashboardForm.reserveDate.month = '0' + this.dashboardForm.reserveDate.month;
+      
         this.calendarModel = this.calendarModel + '0' + this.dashboardForm.reserveDate.month+ '-';
       }else{
         this.calendarModel = this.calendarModel + this.dashboardForm.reserveDate.month+'-';
       }
       if (dayWithoutCero[0] != dayWithCero[1] && this.dashboardForm.reserveDate.day < 10) {
-        //this.dashboardForm.reserveDate.day = '0' + this.dashboardForm.reserveDate.day;
+        
         this.calendarModel = this.calendarModel + '0' + this.dashboardForm.reserveDate.day;
       }else{
         this.calendarModel = this.calendarModel + this.dashboardForm.reserveDate.day;
       }
-      //this.calendarModel = this.dashboardForm.reserveDate.year + '-' + this.dashboardForm.reserveDate.month + '-' + this.dashboardForm.reserveDate.day; // al modelo del calendario para el formulario le asignamos la fecha del dashboard
-      //console.log(this.calendarModel)
+     
     }
     this.calendarDates(); //limitar calendario de extendida
   }
   dataCalendarExtend() { //metodo que atrapa la fecha del dashboard para mostrarla por defecto en el formulario
-    //console.log(this.extendReserveForm.extendReserveDate)
+
     if (this.extendReserveForm.extendReserveDate != null) {
      
       var monthWithoutCero: string = this.extendReserveForm.extendReserveDate.month; // mes sin el 0(mes: 4,5,6)
@@ -412,9 +396,7 @@ export class DashboardComponent implements OnInit {
             espacio.range = contenedor;
             this.spacesContainer.push(espacio);
           }
-          /*for(let cc of this.spacesContainer){
-           
-          }  */
+    
         },
         error => {
         });
@@ -466,53 +448,7 @@ export class DashboardComponent implements OnInit {
 
       console.log("aqui--", this.formAddDetail.start_time);
 
-      /*if(this.formAddDetail.end_date_extend == null){
-        this._dashboard.createReserve(this.formAddReserve.created_at, this.formAddReserve.user.id,
-          this.formAddReserve.vehicle.increment, this.formAddDetail).subscribe(
-            data => {
-              let response:any = data;
-              if(response.id_reserve_detail != null){
-                $("#closeReserveModal").click();
-                Swal.fire({
-                  type: 'success',
-                  title: 'Your reservation has been saved!',
-                  showConfirmButton: false,
-                  timer: 1500
-                });
-  
-  
-                let email={
-                  id:null,
-                  to:this.userNotifications.email,
-                  subject:"RESERVE " + this.formAddDetail.date,
-                  text:"Your reservation has been saved!",
-                  viewed:false,
-                  user_id:{
-                    id:this.userNotifications.id
-                  }
-                }
-                this.emails.sendEmail(email).subscribe(
-                  data => {
-                  }
-                );
-  
-              }else{
-                $("#closeReserveModal").click();
-                Swal.fire({
-                  type: 'error',
-                  title: 'Somebody might have taken your space! Please reload.',
-                  showConfirmButton: true
-                })
-              }            
-              this.ngOnInit();
-              this.loadAvailableTimes();
-  
-            },
-            error => {
-              console.log(error);
-            }
-        );
-      }else{*/
+
         this._dashboard.createReserve2(this.formAddDetail).subscribe(
             data => {              
               let response:any = data;
@@ -529,7 +465,7 @@ export class DashboardComponent implements OnInit {
                 let flag = false; 
                 let message = "Dates";
                 for(let key of keys){
-                  //response.get(key);
+          
                   if(response[key]==false){
                     flag = true;
                     message = message+" "+key+","
@@ -580,7 +516,7 @@ export class DashboardComponent implements OnInit {
               console.log(error);
             }
         );
-      //} 
+     
     }
   }
 }
