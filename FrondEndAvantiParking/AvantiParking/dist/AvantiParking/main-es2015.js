@@ -3318,9 +3318,11 @@ let NavbarComponent = class NavbarComponent {
             this.auth.changeAuthStatus(true);
         }
         this.img = data.imageUrl;
-        this.notificationsService.userNotifications(data.id).subscribe(data => {
-            this.notificationsUser(data);
-        });
+        setTimeout(() => {
+            this.notificationsService.userNotifications(data.id).subscribe(data => {
+                this.notificationsUser(data);
+            });
+        }, 60000);
     }
     deleteNotifications(n) {
         this.notificationsService.deleteNotification(n.id).subscribe(data => {
@@ -3352,7 +3354,7 @@ let NavbarComponent = class NavbarComponent {
             }
             setTimeout(() => {
                 this.getAsyncData();
-            }, 60000);
+            }, 5000);
         });
     }
 };

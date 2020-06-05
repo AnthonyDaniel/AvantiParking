@@ -5294,9 +5294,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           this.img = data.imageUrl;
-          this.notificationsService.userNotifications(data.id).subscribe(function (data) {
-            _this56.notificationsUser(data);
-          });
+          setTimeout(function () {
+            _this56.notificationsService.userNotifications(data.id).subscribe(function (data) {
+              _this56.notificationsUser(data);
+            });
+          }, 60000);
         }
       }, {
         key: "deleteNotifications",
@@ -5345,7 +5347,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     setTimeout(function () {
                       _this58.getAsyncData();
-                    }, 60000);
+                    }, 5000);
 
                   case 2:
                   case "end":
