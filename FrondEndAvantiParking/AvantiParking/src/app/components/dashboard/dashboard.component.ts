@@ -455,7 +455,7 @@ export class DashboardComponent implements OnInit {
               if(response["car"] == false){
                 Swal.fire({
                   type: 'error',
-                  title: 'The vehicle has a resevration at this time on another space!',
+                  title: 'The vehicle has a reservation at this time on another space!',
                   showConfirmButton: true
                 })
               }else{
