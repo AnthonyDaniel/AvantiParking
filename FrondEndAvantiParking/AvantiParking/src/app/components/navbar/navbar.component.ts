@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
           this.notificationsUser(data);
         }
       );
-    }, 5000);
+    }, 1000);
    
   }
   deleteNotifications(n){
@@ -104,7 +104,7 @@ export class NavbarComponent implements OnInit {
     }
     setTimeout(() => {
       this.getAsyncData()
-    }, 5000);
+    }, 40000);
   }
 }
 
