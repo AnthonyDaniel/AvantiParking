@@ -184,12 +184,12 @@
       <table class="table table-bordered table-hover">
         <thead class="tableThead thead">
           <tr>
-            <th class="text-center" COLSPAN="3" scope="col"><strong>ACTIVE USERS</strong></th>
+            <th class="text-center" COLSPAN="3" ><strong>ACTIVE USERS</strong></th>
           </tr>
           <tr>
-            <th scope="col"><strong>ID</strong></th>
-            <th scope="col"><strong>NAME</strong></th>
-            <th scope="col"><strong>EMAIL</strong></th>
+            <th ><strong>ID</strong></th>
+            <th ><strong>NAME</strong></th>
+            <th ><strong>EMAIL</strong></th>
           </tr>
         </thead>
         <tbody>
@@ -201,41 +201,60 @@
         </tbody>
       </table>
     </div>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover">
+    <div class="table-responsive" style="overflow:scroll;height:400px;width:auto;">
+      <table class="table table-bordered table-hover" style="width:500px;"  border=1>
         <thead class="tableThead thead">
           <tr>
-            <th class="text-center" COLSPAN="10" scope="col"><strong>RESERVES</strong></th>
+            <th class="text-center" COLSPAN="10" ><strong>RESERVES</strong></th>
           </tr>
           <tr>
-            <th scope="col"><strong>USER EMAIL</strong></th>
-            <th scope="col"><strong>DATE</strong></th>
-            <th scope="col"><strong>START TIME</strong></th>
-            <th scope="col"><strong>END TIME</strong></th>
-            <th scope="col"><strong>EXTEND DATE</strong></th>
-            <th scope="col"><strong>VEHICLE</strong></th>
-            <th scope="col"><strong>HEADQUARTER</strong></th>
-            <th scope="col"><strong>PARKING LOT</strong></th>
-            <th scope="col"><strong>ZONE</strong></th>
-            <th scope="col"><strong>SPACE</strong></th>
+            <th style="width:600px" ><strong>USER EMAIL</strong></th>
+            <th style="width:500px" ><strong>DATE</strong></th>
+            <th style="width:500px" ><strong>START TIME</strong></th>
+            <th style="width:500px" ><strong>END TIME</strong></th>
+            <th style="width:500px" ><strong>EXTEND DATE</strong></th>
+            <th style="width:500px" ><strong>VEHICLE</strong></th>
+            <th style="width:500px" ><strong>HEADQUARTER</strong></th>
+            <th style="width:500px" ><strong>PARKING LOT</strong></th>
+            <th style="width:500px" ><strong>ZONE</strong></th>
+            <th style="width:500px" ><strong>SPACE</strong></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let i of reportComplete  | ReportPipe:filter">
-            <td class="text-center">{{i.reserve.user.email}}</td>
-            <td class="text-center">{{i.date}}</td>
-            <td class="text-center">{{i.start_time}}</td>
-            <td class="text-center">{{i.end_time}}</td>
-            <td class="text-center">{{i.end_date_extend}}</td>
-            <td class="text-center" *ngIf="i.reserve.vehicle!=null">{{i.reserve.vehicle.license_plate}}</td>
-            <td class="text-center" *ngIf="i.reserve.vehicle==null"></td>
-            <td class="text-center">{{i.space.zone.parking_lot.headquarter.name}}</td>
-            <td class="text-center">{{i.space.zone.parking_lot.name}}</td>
-            <td class="text-center">{{i.space.zone.name}}</td>
-            <td class="text-center">{{i.space.name}}</td>
+            <td style="width:600px" class="text-center">{{i.reserve.user.email}}</td>
+            <td style="width:500px" class="text-center">{{i.date}}</td>
+            <td style="width:500px" class="text-center">{{i.start_time}}</td>
+            <td style="width:500px" class="text-center">{{i.end_time}}</td>
+            <td style="width:500px" class="text-center">{{i.end_date_extend}}</td>
+            <td style="width:500px" class="text-center" *ngIf="i.reserve.vehicle!=null">{{i.reserve.vehicle.license_plate}}</td>
+            <td style="width:500px" class="text-center" *ngIf="i.reserve.vehicle==null"></td>
+            <td style="width:500px" class="text-center">{{i.space.zone.parking_lot.headquarter.name}}</td>
+            <td style="width:500px" class="text-center">{{i.space.zone.parking_lot.name}}</td>
+            <td style="width:500px" class="text-center">{{i.space.zone.name}}</td>
+            <td style="width:500px" class="text-center">{{i.space.name}}</td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

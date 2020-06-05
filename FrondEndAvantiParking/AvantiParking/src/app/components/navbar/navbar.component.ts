@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
           this.notificationsUser(data);
         }
       );
-    }, 60000);
+    }, 5000);
    
   }
   deleteNotifications(n){
