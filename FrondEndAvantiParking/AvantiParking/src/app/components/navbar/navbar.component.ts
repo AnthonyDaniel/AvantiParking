@@ -104,7 +104,7 @@ export class NavbarComponent implements OnInit {
     }
     setTimeout(() => {
       this.getAsyncData()
-    }, 40000);
+    }, 8000);
   }
 }
 
