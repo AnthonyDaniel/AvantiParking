@@ -85,38 +85,6 @@ export class MyReservesComponent implements OnInit {
     );
   }
 
-  deleteReserve(_formReserve) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        cancelButton: 'btn btn-secondary'
-      },
-      buttonsStyling: false
-    })
-
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!!",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#EF4023',
-      confirmButtonText: 'Yes, cancel it!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        this._parking.deleteParkingLot(_formReserve).subscribe(
-          data => {
-            this.ngOnInit();
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-          }
-        )
-      }
-    })
-  }
-
   listarReservas(){
     var us = this.formUser.id;//?
     this._myReserves.listUserReserves(this.formUser.id).subscribe(   
@@ -167,7 +135,7 @@ export class MyReservesComponent implements OnInit {
     })
     Swal.fire({
       title: 'Are you sure?',
-      text: "No podrás revertir esto. ¡Tu reserva será cancelada!",
+      text:"You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!",
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#EF4023',
