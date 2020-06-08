@@ -2655,7 +2655,7 @@ let DashboardComponent = class DashboardComponent {
                 if (response["car"] == false) {
                     sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
                         type: 'error',
-                        title: 'The vehicle has a resevration at this time on another space!',
+                        title: 'The vehicle has a reservation at this time on another space!',
                         showConfirmButton: true
                     });
                 }
@@ -3045,30 +3045,6 @@ let MyReservesComponent = class MyReservesComponent {
         }, error => {
         });
     }
-    deleteReserve(_formReserve) {
-        const swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
-            customClass: {
-                cancelButton: 'btn btn-secondary'
-            },
-            buttonsStyling: false
-        });
-        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-            title: 'Are you sure?',
-            text: "You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#EF4023',
-            confirmButtonText: 'Yes, cancel it!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.value) {
-                this._parking.deleteParkingLot(_formReserve).subscribe(data => {
-                    this.ngOnInit();
-                    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
-                });
-            }
-        });
-    }
     listarReservas() {
         var us = this.formUser.id; //?
         this._myReserves.listUserReserves(this.formUser.id).subscribe(data => {
@@ -3087,7 +3063,8 @@ let MyReservesComponent = class MyReservesComponent {
             detail = data;
             if (detail.length > 0) {
                 for (let item of detail) {
-                    let dateAux = item.date.substring(0, 7) + '-' + (parseInt(item.date.substring(8)) + 1);
+                    //let dateAux = item.date.substring(0,7)+'-'+ (parseInt(item.date.substring(8))+1); //para localhost
+                    let dateAux = item.date.substring(0, 7) + '-' + (parseInt(item.date.substring(8))); //para produccion
                     item.date = dateAux;
                     item.reserve.created_at = item.reserve.created_at.substring(0, 10);
                     this.validDetail.push(item);
@@ -3106,7 +3083,7 @@ let MyReservesComponent = class MyReservesComponent {
         });
         sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
             title: 'Are you sure?',
-            text: "No podrás revertir esto. ¡Tu reserva será cancelada!",
+            text: "You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#EF4023',
@@ -3274,7 +3251,7 @@ let NavbarComponent = class NavbarComponent {
             }
             setTimeout(() => {
                 this.getAsyncData();
-            }, 40000);
+            }, 8000);
         });
     }
 };
@@ -4089,8 +4066,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "domain", function() { return domain; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 
-//export const domain: string="https://avantiparking-1590019036260.azurewebsites.net";
-const domain = "http://localhost:8080";
+const domain = "https://avantiparking6.azurewebsites.net";
+//export const domain: string="http://localhost:8080";
 
 
 /***/ }),
@@ -4681,7 +4658,11 @@ let UserService = class UserService {
         this.http = http;
         this.token = token;
         this.baseUrl = _api_modules__WEBPACK_IMPORTED_MODULE_4__["domain"];
-        this.oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';
+        /*
+        public oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';
+        public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;
+         */
+        this.oauth2UrlRedirect = 'https://test-avantiparking.web.app/oauth2/redirect'; //Cuando lo prueben local, ponel el que esta arriba comentado
         this.GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;
         this.httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
             'Authorization': 'Bearer ' + this.token.getToken()

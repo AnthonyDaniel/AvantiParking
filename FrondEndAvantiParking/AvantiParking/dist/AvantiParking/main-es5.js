@@ -4240,7 +4240,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               if (response["car"] == false) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
                   type: 'error',
-                  title: 'The vehicle has a resevration at this time on another space!',
+                  title: 'The vehicle has a reservation at this time on another space!',
                   showConfirmButton: true
                 });
               } else {
@@ -4903,54 +4903,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }, function (error) {});
         }
       }, {
-        key: "deleteReserve",
-        value: function deleteReserve(_formReserve) {
-          var _this49 = this;
-
-          var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
-            customClass: {
-              cancelButton: 'btn btn-secondary'
-            },
-            buttonsStyling: false
-          });
-          sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-            title: 'Are you sure?',
-            text: "You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#EF4023',
-            confirmButtonText: 'Yes, cancel it!',
-            reverseButtons: true
-          }).then(function (result) {
-            if (result.value) {
-              _this49._parking.deleteParkingLot(_formReserve).subscribe(function (data) {
-                _this49.ngOnInit();
-
-                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
-              });
-            }
-          });
-        }
-      }, {
         key: "listarReservas",
         value: function listarReservas() {
-          var _this50 = this;
+          var _this49 = this;
 
           var us = this.formUser.id; //?
 
           this._myReserves.listUserReserves(this.formUser.id).subscribe(function (data) {
-            _this50.validDetail = [];
-            _this50.reserves = data;
+            _this49.validDetail = [];
+            _this49.reserves = data;
 
-            var _iterator4 = _createForOfIteratorHelper(_this50.reserves),
+            var _iterator4 = _createForOfIteratorHelper(_this49.reserves),
                 _step4;
 
             try {
               for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                 var reserve = _step4.value;
-                _this50.emply = false;
+                _this49.emply = false;
 
-                _this50.listValidDetails(reserve.id_reservation);
+                _this49.listValidDetails(reserve.id_reservation);
               }
             } catch (err) {
               _iterator4.e(err);
@@ -4962,7 +4933,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "listValidDetails",
         value: function listValidDetails(reserve_id) {
-          var _this51 = this;
+          var _this50 = this;
 
           this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(function (data) {
             var detail = [];
@@ -4975,11 +4946,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               try {
                 for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
                   var item = _step5.value;
-                  var dateAux = item.date.substring(0, 7) + '-' + (parseInt(item.date.substring(8)) + 1);
+                  //let dateAux = item.date.substring(0,7)+'-'+ (parseInt(item.date.substring(8))+1); //para localhost
+                  var dateAux = item.date.substring(0, 7) + '-' + parseInt(item.date.substring(8)); //para produccion
+
                   item.date = dateAux;
                   item.reserve.created_at = item.reserve.created_at.substring(0, 10);
 
-                  _this51.validDetail.push(item);
+                  _this50.validDetail.push(item);
                 }
               } catch (err) {
                 _iterator5.e(err);
@@ -4988,13 +4961,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
-            console.log(_this51.validDetail);
+            console.log(_this50.validDetail);
           }, function (error) {});
         }
       }, {
         key: "cancelReserve",
         value: function cancelReserve(reserve_detail) {
-          var _this52 = this;
+          var _this51 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
             customClass: {
@@ -5004,7 +4977,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           });
           sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
             title: 'Are you sure?',
-            text: "No podrás revertir esto. ¡Tu reserva será cancelada!",
+            text: "You will not be able to reverse this! If you cancel this reserve, it will be permanently deleted!!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#EF4023',
@@ -5012,22 +4985,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this52._myReserves.cancelReserve(reserve_detail).subscribe(function (data) {
-                _this52.ngOnInit();
+              _this51._myReserves.cancelReserve(reserve_detail).subscribe(function (data) {
+                _this51.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Deleted!', 'Your reservation has been successfully canceled', 'success');
                 var email = {
                   id: null,
-                  to: _this52.userNotifications.email,
+                  to: _this51.userNotifications.email,
                   subject: "RESERVE CANCELE",
                   text: "Your reservation has been successfully canceled!",
                   viewed: false,
                   user_id: {
-                    id: _this52.userNotifications.id
+                    id: _this51.userNotifications.id
                   }
                 };
 
-                _this52.emails.sendEmail(email).subscribe(function (data) {});
+                _this51.emails.sendEmail(email).subscribe(function (data) {});
               }, function (error) {});
             }
           });
@@ -5159,25 +5132,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this53 = this;
+          var _this52 = this;
 
           this.auth.authStatus.subscribe(function (value) {
-            return _this53.loggedIn = value;
+            return _this52.loggedIn = value;
           });
           this.auth.adminStatus.subscribe(function (value) {
-            return _this53.admin = value;
+            return _this52.admin = value;
           });
           this.getAsyncData();
         }
       }, {
         key: "notificationsUser",
         value: function notificationsUser(data) {
-          var _this54 = this;
+          var _this53 = this;
 
           this.notifications = 0;
           data.forEach(function (element) {
             if (!element.viewed) {
-              _this54.notifications++;
+              _this53.notifications++;
             }
           });
           this.notificationsArray = data;
@@ -5185,16 +5158,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "notificationViewed",
         value: function notificationViewed(id) {
-          var _this55 = this;
+          var _this54 = this;
 
           this.notificationsService.changeViewed(id).subscribe(function (data) {
-            _this55.notifications = 0;
+            _this54.notifications = 0;
           });
         }
       }, {
         key: "loadUser",
         value: function loadUser(data) {
-          var _this56 = this;
+          var _this55 = this;
 
           this.userInf = data;
 
@@ -5215,18 +5188,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.img = data.imageUrl;
           setTimeout(function () {
-            _this56.notificationsService.userNotifications(data.id).subscribe(function (data) {
-              _this56.notificationsUser(data);
+            _this55.notificationsService.userNotifications(data.id).subscribe(function (data) {
+              _this55.notificationsUser(data);
             });
           }, 1000);
         }
       }, {
         key: "deleteNotifications",
         value: function deleteNotifications(n) {
-          var _this57 = this;
+          var _this56 = this;
 
           this.notificationsService.deleteNotification(n.id).subscribe(function (data) {
-            _this57.getAsyncData();
+            _this56.getAsyncData();
           });
         }
       }, {
@@ -5242,7 +5215,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getAsyncData",
         value: function getAsyncData() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this58 = this;
+            var _this57 = this;
 
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
@@ -5253,21 +5226,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.auth.changeAuthStatus(false);
                     } else {
                       this.user.loadImg().subscribe(function (data) {
-                        _this58.loadUser(data);
+                        _this57.loadUser(data);
                       }, function (error) {
-                        _this58.auth.changeAdminStatus(false);
+                        _this57.auth.changeAdminStatus(false);
 
-                        _this58.auth.changeAuthStatus(false);
+                        _this57.auth.changeAuthStatus(false);
 
                         localStorage.removeItem('accessToken');
 
-                        _this58.router.navigateByUrl('');
+                        _this57.router.navigateByUrl('');
                       });
                     }
 
                     setTimeout(function () {
-                      _this58.getAsyncData();
-                    }, 40000);
+                      _this57.getAsyncData();
+                    }, 8000);
 
                   case 2:
                   case "end":
@@ -5378,7 +5351,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var Oauth2Component = /*#__PURE__*/function () {
       function Oauth2Component(router, user, auth) {
-        var _this59 = this;
+        var _this58 = this;
 
         _classCallCheck(this, Oauth2Component);
 
@@ -5392,12 +5365,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (this.token) {
           localStorage.setItem('accessToken', this.token);
           this.auth.authStatus.subscribe(function (value) {
-            return _this59.loggedIn = value;
+            return _this58.loggedIn = value;
           });
 
           if (!this.loggedIn) {
             setTimeout(function () {
-              _this59.router.navigateByUrl('');
+              _this58.router.navigateByUrl('');
             }, 2004);
             setTimeout(function () {
               location.reload();
@@ -5543,13 +5516,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UserPanelComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this60 = this;
+          var _this59 = this;
 
           this.h.listHeadquarter().subscribe(function (data) {
-            _this60.headquarters = data;
+            _this59.headquarters = data;
           });
           this.user.loadImg().subscribe(function (data) {
-            _this60.loadUser(data);
+            _this59.loadUser(data);
           });
         }
       }, {
@@ -5569,7 +5542,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "allocateHeadquarters",
         value: function allocateHeadquarters() {
-          var _this61 = this;
+          var _this60 = this;
 
           var headquarter = {
             id_headquarter: this.u.headquarter,
@@ -5578,7 +5551,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             city: null
           };
           this.auth.adminStatus.subscribe(function (value) {
-            return _this61.u.role = value;
+            return _this60.u.role = value;
           });
           this.u.headquarter = headquarter;
           this.user.modify(this.u).subscribe(function (data) {
@@ -5589,7 +5562,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               timer: 4500
             });
 
-            _this61.ngOnInit();
+            _this60.ngOnInit();
           }, function (error) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
               type: 'error',
@@ -5760,47 +5733,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getData",
         value: function getData() {
-          var _this62 = this;
+          var _this61 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this62.loadUser(data);
+            _this61.loadUser(data);
 
-            _this62.listVehicles();
+            _this61.listVehicles();
           }, function (error) {});
         }
       }, {
         key: "listVehicles",
         value: function listVehicles() {
-          var _this63 = this;
+          var _this62 = this;
 
           this.vehicle.listVehicle(this.formUser.id).subscribe(function (data) {
-            _this63.vehicles = data;
+            _this62.vehicles = data;
           }, function (error) {});
         }
       }, {
         key: "addVehicle",
         value: function addVehicle() {
-          var _this64 = this;
+          var _this63 = this;
 
           this.addFormVehicle.user.id = this.formUser.id;
           this.vehicle.addVehicle(this.addFormVehicle).subscribe(function (data) {
-            _this64.nullVehicle = data;
+            _this63.nullVehicle = data;
 
-            if (_this64.nullVehicle.license_plate === null) {
+            if (_this63.nullVehicle.license_plate === null) {
               //si viene vacio el vehiculo ya esta registrado
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'A vehicle with the license plate ' + _this64.addFormVehicle.license_plate + ' has already been registered!',
+                text: 'A vehicle with the license plate ' + _this63.addFormVehicle.license_plate + ' has already been registered!',
                 confirmButtonColor: '#EF4023'
               });
             } else {
-              _this64.responseSuccess(data);
+              _this63.responseSuccess(data);
 
-              _this64.addFormVehicle.license_plate = null;
-              _this64.addFormVehicle.brand = null;
-              _this64.addFormVehicle.model = null;
-              _this64.addFormVehicle.user.id = null;
+              _this63.addFormVehicle.license_plate = null;
+              _this63.addFormVehicle.brand = null;
+              _this63.addFormVehicle.model = null;
+              _this63.addFormVehicle.user.id = null;
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'success',
                 title: 'The vehicle has been saved',
@@ -5809,14 +5782,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
               jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal1").click();
 
-              _this64.ngOnInit();
+              _this63.ngOnInit();
             }
           }, function (error) {});
         }
       }, {
         key: "deleteVehicle",
         value: function deleteVehicle(_formVehicle) {
-          var _this65 = this;
+          var _this64 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
             customClass: {
@@ -5834,8 +5807,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this65.vehicle.deleteVehicle(_formVehicle).subscribe(function (data) {
-                _this65.ngOnInit();
+              _this64.vehicle.deleteVehicle(_formVehicle).subscribe(function (data) {
+                _this64.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
               }, function (error) {
@@ -5852,7 +5825,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "editVehicle",
         value: function editVehicle() {
-          var _this66 = this;
+          var _this65 = this;
 
           this.vehicle.editVehicle(this.oldLicensePlate, this.editFormVehicle).subscribe(function (data) {
             jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal1").click();
@@ -5864,7 +5837,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
             jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal").click();
 
-            _this66.ngOnInit();
+            _this65.ngOnInit();
           }, function (error) {});
         }
       }, {
@@ -6522,14 +6495,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AdminAfterService = /*#__PURE__*/function () {
       function AdminAfterService(auth, router) {
-        var _this67 = this;
+        var _this66 = this;
 
         _classCallCheck(this, AdminAfterService);
 
         this.auth = auth;
         this.router = router;
         this.auth.adminStatus.subscribe(function (value) {
-          return _this67.admin = value;
+          return _this66.admin = value;
         });
       }
 
@@ -6607,14 +6580,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AfterLoginService = /*#__PURE__*/function () {
       function AfterLoginService(auth, router) {
-        var _this68 = this;
+        var _this67 = this;
 
         _classCallCheck(this, AfterLoginService);
 
         this.auth = auth;
         this.router = router;
         this.auth.authStatus.subscribe(function (value) {
-          return _this68.login = value;
+          return _this67.login = value;
         });
       }
 
@@ -6670,10 +6643,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! tslib */
-    "./node_modules/tslib/tslib.es6.js"); //export const domain: string="https://avantiparking-1590019036260.azurewebsites.net";
+    "./node_modules/tslib/tslib.es6.js");
 
+    var domain = "https://avantiparking6.azurewebsites.net"; //export const domain: string="http://localhost:8080";
 
-    var domain = "http://localhost:8080";
     /***/
   },
 
@@ -6792,14 +6765,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var BeforeLoginService = /*#__PURE__*/function () {
       function BeforeLoginService(auth, router) {
-        var _this69 = this;
+        var _this68 = this;
 
         _classCallCheck(this, BeforeLoginService);
 
         this.auth = auth;
         this.router = router;
         this.auth.authStatus.subscribe(function (value) {
-          return _this69.loggedIn = value;
+          return _this68.loggedIn = value;
         });
       }
 
@@ -7807,7 +7780,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.http = http;
         this.token = token;
         this.baseUrl = _api_modules__WEBPACK_IMPORTED_MODULE_4__["domain"];
-        this.oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';
+        /*
+        public oauth2UrlRedirect = 'http://localhost:4200/oauth2/redirect';
+        public GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;
+         */
+
+        this.oauth2UrlRedirect = 'https://test-avantiparking.web.app/oauth2/redirect'; //Cuando lo prueben local, ponel el que esta arriba comentado
+
         this.GOOGLE_AUTH_URL = this.baseUrl + '/oauth2/authorize/google?redirect_uri=' + this.oauth2UrlRedirect;
         this.httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
           'Authorization': 'Bearer ' + this.token.getToken()
