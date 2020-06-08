@@ -143,7 +143,8 @@ export class MyReservesComponent implements OnInit {
         detail = data;
         if(detail.length > 0){          
           for(let item of detail){    
-            let dateAux = item.date.substring(0,7)+'-'+ (parseInt(item.date.substring(8))+1);
+            //let dateAux = item.date.substring(0,7)+'-'+ (parseInt(item.date.substring(8))+1); //para localhost
+            let dateAux = item.date.substring(0,7)+'-'+ (parseInt(item.date.substring(8)));  //para produccion
             item.date = dateAux;
             item.reserve.created_at = item.reserve.created_at.substring(0,10);                  
             this.validDetail.push(item);

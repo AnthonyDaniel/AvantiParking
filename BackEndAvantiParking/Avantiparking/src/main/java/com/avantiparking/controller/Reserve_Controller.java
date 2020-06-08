@@ -213,7 +213,7 @@ public class Reserve_Controller {
 	private List<Date> reserveExtended(Reserve_detail _detail) {
 		List<Date> daysList = new ArrayList<>();
 		LocalDate startDate = _detail.getDate().toLocalDate();
-		startDate = startDate.plusDays(1);//locale le quita un dia
+		//startDate = startDate.plusDays(1);//solo en localhost
 		LocalDate auxDate = startDate;
 		daysList.add(java.sql.Date.valueOf(auxDate));
 		if(_detail.getEnd_date_extend() != null) {
