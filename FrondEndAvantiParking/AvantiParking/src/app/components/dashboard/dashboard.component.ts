@@ -161,13 +161,22 @@ export class DashboardComponent implements OnInit {
     let fecha = this.dashboardForm.reserveDate.month + '/' + this.dashboardForm.reserveDate.day + '/' + this.dashboardForm.reserveDate.year;
 
 
-    const since = moment().add(30, 'd').toDate();
+    const since = moment().add(30, 'day').toDate();
+    
     const now = moment().toDate();
     let number = this.dashboardForm.reserveDate.day;
-    this.minDate2 = { year: now.getFullYear(), month: now.getMonth() + 1, day: number }
-    this.maxDate2 = { year: since.getFullYear(), month: since.getMonth() + 1, day: since.getDate() }
+
     let selectedDate = new NgbDate(this.arrayAux[0],this.arrayAux[1],this.arrayAux[2]);
-    this.isDisabled = (date: NgbDate, current: {month: number}) => 
+    //console.log('since',selectedDate);
+    let startDate = moment().year(selectedDate.year).month(selectedDate.month-1).date(selectedDate.day).add(7,'day').toDate();
+    let endDate = moment().year(selectedDate.year).month(selectedDate.month-1).date(selectedDate.day).add(4,'week').toDate();
+    //console.log('end',endDate);
+    this.minDate2 = { year: startDate.getFullYear(), month: startDate.getMonth()+1, day: startDate.getDate()}
+    //console.log('min',this.minDate2);
+    this.maxDate2 = { year: endDate.getFullYear(), month: endDate.getMonth()+1, day: endDate.getDate()}
+    //console.log('max',this.maxDate2);
+    //let selectedDate = new NgbDate(this.arrayAux[0],this.arrayAux[1],this.arrayAux[2]);
+    this.isDisabled = (date: NgbDate, current: {month: number}) =>       
       this.calendarService.getWeekday(selectedDate) != this.calendarService.getWeekday(date);
   }
 
