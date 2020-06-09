@@ -213,13 +213,16 @@ public class Reserve_Controller {
 	private List<Date> reserveExtended(Reserve_detail _detail) {
 		List<Date> daysList = new ArrayList<>();
 		LocalDate startDate = _detail.getDate().toLocalDate();
+		startDate = startDate.minusDays(1);//test para deploy
 		//startDate = startDate.plusDays(1);//solo en localhost
 		LocalDate auxDate = startDate;
 		daysList.add(java.sql.Date.valueOf(auxDate));
 		if(_detail.getEnd_date_extend() != null) {
 			LocalDate endDate = _detail.getEnd_date_extend().toLocalDate();
 			//startDate = startDate.plusDays(1);//locale le quita un dia
-			endDate = endDate.plusDays(1);//locale le quita un dia
+			
+			//endDate = endDate.plusDays(1);//locale le quita un dia solo en localhost
+			
 			//int startDay, endDay;
 			//LocalDate auxDate = startDate;
 			//startDay =startDate.getDayOfMonth();
