@@ -40,6 +40,8 @@ export class ReportComponent implements OnInit {
 
   private filter = "";
 
+  private loadding = false;
+
   constructor(public headquarter: ServiceHeadquarterService,
     public parking: ServiceParkingLotService,
     public zone: ServiceZoneService,
@@ -138,6 +140,7 @@ export class ReportComponent implements OnInit {
     });
   }
   generateReport() {
+    this.loadding=true;
     if (this.initDate != null && this.finalDate != null) {
       let d1 = this.initDate.year + "-" + this.initDate.month + "-" + this.initDate.day;
       let d2 = this.finalDate.year + "-" + this.finalDate.month + "-" + this.finalDate.day;
@@ -148,6 +151,7 @@ export class ReportComponent implements OnInit {
           this.loadReport(data);
         },
         error => {
+          this.loadding=false;
           Swal.fire({
             type: 'error',
             title: 'An error occurred while generating the report, please try again later, if the problem persists, contact the page administrator',
@@ -157,6 +161,7 @@ export class ReportComponent implements OnInit {
         }
       );
     } else {
+      this.loadding=false;
       Swal.fire({
         type: 'error',
         title: 'The init date or final date value is invalid',
@@ -166,11 +171,11 @@ export class ReportComponent implements OnInit {
     }
   }
   loadReport(data) {
+    this.loadding=false;
     this.activeUser=[];
     let myObj = [];
     if (data != null) {
       this.reportComplete = data;
-  
       this.reportComplete.forEach(element => {
         if (!(element.reserve.user.email in myObj)) {
           myObj[element.reserve.user.email] = true
@@ -189,6 +194,7 @@ export class ReportComponent implements OnInit {
     }
   }
   sendEmail() {
+    this.loadding=true;
     let report = document.getElementById("report");
     let email={
       id:null,
@@ -203,6 +209,7 @@ export class ReportComponent implements OnInit {
     }
     this.emails.sendEmail(email).subscribe(
       data => {
+        this.loadding=false;
         Swal.fire({
           type: 'success',
           title: 'The report has been sent to your email',
@@ -211,6 +218,7 @@ export class ReportComponent implements OnInit {
         })
       },
       error => {
+        this.loadding=false;
         console.log(error);
       }
     );

@@ -349,7 +349,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<app-navbar></app-navbar>\n<router-outlet></router-outlet>\n<app-footer></app-footer>";
+    __webpack_exports__["default"] = "\n<app-navbar></app-navbar>\n<router-outlet></router-outlet>\n<app-footer class=\"mt-auto\"></app-footer>";
     /***/
   },
 
@@ -429,7 +429,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\n</button>\n<div class=\"container\">\n  <br>\n  <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\n    <h3 class=\"font-weight-bold\"> REPORTS</h3>\n  </section>\n\n  <div id=\"wrapper\">\n    <div id=\"content-wrapper\" class=\"d-flex flex-column\">\n      <div id=\"content\">\n        <div class=\"container-fluid\">\n\n          <div class=\"row\">\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-primary shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Headquarter</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countHeadquarter}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-home fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-success shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-warning  text-uppercase mb-1\">Parking</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countParking}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-parking fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-success shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-success text-uppercase mb-1\">Zones</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countZone}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-map-marker fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-warning shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-warning text-uppercase mb-1\">Spaces</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countSpaces}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-map-pin fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-6 col-md-6 mb-4\">\n              <div class=\"card border-left-primary shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Users</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countUsers}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-users fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-6 col-md-6 mb-4\">\n              <div class=\"card border-left-primary shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Reservations</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countReservations}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-bookmark fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <hr>\n  <br>\n  <p class=\"text-center\">\n    Generate a report by dates, this report will include the data of each place,\n    which will break down relevant information on the use of parking spaces, in addition to all active reservations\n    and those that are no longer active, with the respective username.\n    <br>\n    In addition, we will give you the possibility to search for an element that\n    you want to find in the result of the report, with the possibility of downloading it in an Excel sheet.\n  </p>\n  <br>\n  <div class=\"row  justify-content-center\">\n    <div class=\"col-md-4 col-sm-6\">\n      <label>Initial date</label>\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <div class=\"input-group\">\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d1\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\n              [maxDate]=\"maxDate\" [(ngModel)]=\"initDate\" (click)=\"d1.toggle()\" ngbDatepicker #d1=\"ngbDatepicker\">\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d1.toggle()\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n    <div class=\"col-md-4 col-sm-6\">\n      <label>Final date</label>\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <div class=\"input-group\">\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d2\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\n              [maxDate]=\"maxDate\" [(ngModel)]=\"finalDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\">\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d2.toggle()\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n\n    <div class=\"col-md-4\">\n      <br>\n      <button class=\"btn btn-delete btn-block mt-2 btn-outline-danger\" (click)=\"generateReport()\">\n        <strong>Generate report</strong>\n      </button>\n    </div>\n  </div>\n</div>\n<div class=\"container\" *ngIf=\"reportComplete.length>0\">\n  <div class=\"text-center\">\n    <h1><STRONG>REPORT</STRONG> </h1>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-sm-4 col-md-6 mt-3\">\n      <input type=\"text\" class=\"form-control\" name=\"filterReport\" placeholder=\"Search...\" maxlength=\"40\"\n        [(ngModel)]=\"filter\">\n    </div>\n    <div class=\"col-sm-8 col-md-6 mt-3\">\n      <div class=\"d-sm-flex align-items-center text-white justify-content-between mb-4\">\n        <h1 class=\"h3 mb-0 text-gray-800\"></h1>\n        <a (click)=\"sendEmail()\" class=\"d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm\"><i\n            class=\"fas fa-download fa-sm text-white\"></i>Send report to email</a>\n      </div>\n    </div>\n  </div>\n  <div id=\"report\">\n    <div class=\"table-responsive justify-content-center\" hidden>\n      <table class=\"table table-bordered table-hover\">\n        <thead class=\"tableThead thead\">\n          <tr>\n            <th class=\"text-center\" COLSPAN=\"3\" ><strong>ACTIVE USERS</strong></th>\n          </tr>\n          <tr>\n            <th ><strong>ID</strong></th>\n            <th ><strong>NAME</strong></th>\n            <th ><strong>EMAIL</strong></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let i of activeUser\">\n            <td class=\"text-center\">{{i.id}}</td>\n            <td class=\"text-center\">{{i.name}}</td>\n            <td class=\"text-center\">{{i.email}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    <div class=\"table-responsive\" style=\"overflow:scroll;height:400px;width:auto;\">\n      <table class=\"table table-bordered table-hover\" style=\"width:500px;\"  border=1>\n        <thead class=\"tableThead thead\">\n          <tr>\n            <th class=\"text-center\" COLSPAN=\"10\" ><strong>RESERVES</strong></th>\n          </tr>\n          <tr>\n            <th style=\"width:600px\" ><strong>USER EMAIL</strong></th>\n            <th style=\"width:500px\" ><strong>DATE</strong></th>\n            <th style=\"width:500px\" ><strong>START TIME</strong></th>\n            <th style=\"width:500px\" ><strong>END TIME</strong></th>\n            <th style=\"width:500px\" ><strong>EXTEND DATE</strong></th>\n            <th style=\"width:500px\" ><strong>VEHICLE</strong></th>\n            <th style=\"width:500px\" ><strong>HEADQUARTER</strong></th>\n            <th style=\"width:500px\" ><strong>PARKING LOT</strong></th>\n            <th style=\"width:500px\" ><strong>ZONE</strong></th>\n            <th style=\"width:500px\" ><strong>SPACE</strong></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let i of reportComplete  | ReportPipe:filter\">\n            <td style=\"width:600px\" class=\"text-center\">{{i.reserve.user.email}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.date}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.start_time}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.end_time}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.end_date_extend}}</td>\n            <td style=\"width:500px\" class=\"text-center\" *ngIf=\"i.reserve.vehicle!=null\">{{i.reserve.vehicle.license_plate}}</td>\n            <td style=\"width:500px\" class=\"text-center\" *ngIf=\"i.reserve.vehicle==null\"></td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.zone.parking_lot.headquarter.name}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.zone.parking_lot.name}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.zone.name}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.name}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"\">\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\n</button>\n<div class=\"container\">\n  <br>\n  <section class=\"jumbotronHeader col-md-12 mb-4 jumbotron  justify-content-center text-center\">\n    <h3 class=\"font-weight-bold\"> REPORTS</h3>\n  </section>\n\n  <div id=\"wrapper\">\n    <div id=\"content-wrapper\" class=\"d-flex flex-column\">\n      <div id=\"content\">\n        <div class=\"container-fluid\">\n\n          <div class=\"row\">\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-primary shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Headquarter</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countHeadquarter}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-home fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-success shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-warning  text-uppercase mb-1\">Parking</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countParking}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-parking fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-success shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-success text-uppercase mb-1\">Zones</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countZone}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-map-marker fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-3 col-md-6 mb-4\">\n              <div class=\"card border-left-warning shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-warning text-uppercase mb-1\">Spaces</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countSpaces}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-map-pin fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-6 col-md-6 mb-4\">\n              <div class=\"card border-left-primary shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Users</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countUsers}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-users fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <div class=\"col-xl-6 col-md-6 mb-4\">\n              <div class=\"card border-left-primary shadow h-100 py-2\">\n                <div class=\"card-body\">\n                  <div class=\"row no-gutters align-items-center\">\n                    <div class=\"col mr-2\">\n                      <div class=\"text-xs font-weight-bold text-primary text-uppercase mb-1\">Reservations</div>\n                      <div class=\"h5 mb-0 font-weight-bold text-gray-800\">{{countReservations}}</div>\n                    </div>\n                    <div class=\"col-auto\">\n                      <i class=\"fas fa-bookmark fa-2x text-gray-300\"></i>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <hr>\n  <br>\n  <p class=\"text-center\">\n    Generate a report by dates, this report will include the data of each place,\n    which will break down relevant information on the use of parking spaces, in addition to all active reservations\n    and those that are no longer active, with the respective username.\n    <br>\n    In addition, we will give you the possibility to search for an element that\n    you want to find in the result of the report, with the possibility of downloading it in an Excel sheet.\n  </p>\n  <br>\n  <div class=\"row  justify-content-center\">\n    <div class=\"col-md-4 col-sm-6\">\n      <label>Initial date</label>\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <div class=\"input-group\">\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d1\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\n              [maxDate]=\"maxDate\" [(ngModel)]=\"initDate\" (click)=\"d1.toggle()\" ngbDatepicker #d1=\"ngbDatepicker\">\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d1.toggle()\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n    <div class=\"col-md-4 col-sm-6\">\n      <label>Final date</label>\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <div class=\"input-group\">\n            <input class=\"form-control\" placeholder=\"dd/mm/yyyy\" name=\"d2\" #c2=\"ngModel\" [minDate]=\"minDate\" readonly\n              [maxDate]=\"maxDate\" [(ngModel)]=\"finalDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\">\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\" (click)=\"d2.toggle()\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n\n    <div class=\"col-md-4\">\n      <br>\n      <button class=\"btn btn-delete btn-block mt-2 btn-outline-danger\" (click)=\"generateReport()\">\n        <strong>Generate report</strong>\n      </button>\n    </div>\n  </div>\n</div>\n\n\n<div *ngIf=\"loadding\" class=\"my-0 py-p pb-5\">\n  <div class=\"hero-content text-center\">\n      <div class=\"row justify-content-center\">\n          <div class=\"col-md-6 text-center mx-auto\">\n              <div class=\"spinner-border mx-auto\" role=\"status\">\n                <span class=\"sr-only\">Loading...</span>\n              </div>\n          </div>\n      </div>\n  </div>\n</div>\n\n<div class=\"container\" *ngIf=\"reportComplete.length>0\">\n  <div class=\"text-center\">\n    <h1><STRONG>REPORT</STRONG> </h1>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-sm-4 col-md-6 mt-3\">\n      <input type=\"text\" class=\"form-control\" name=\"filterReport\" placeholder=\"Search...\" maxlength=\"40\"\n        [(ngModel)]=\"filter\">\n    </div>\n    <div class=\"col-sm-8 col-md-6 mt-3\">\n      <div class=\"d-sm-flex align-items-center text-white justify-content-between mb-4\">\n        <h1 class=\"h3 mb-0 text-gray-800\"></h1>\n        <a (click)=\"sendEmail()\" class=\"d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm\"><i\n            class=\"fas fa-download fa-sm text-white\"></i>Send report to email</a>\n      </div>\n    </div>\n  </div>\n  <div id=\"report\">\n    <div class=\"table-responsive justify-content-center\" hidden>\n      <table class=\"table table-bordered table-hover\">\n        <thead class=\"tableThead thead\">\n          <tr>\n            <th class=\"text-center\" COLSPAN=\"3\" ><strong>ACTIVE USERS</strong></th>\n          </tr>\n          <tr>\n            <th ><strong>ID</strong></th>\n            <th ><strong>NAME</strong></th>\n            <th ><strong>EMAIL</strong></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let i of activeUser\">\n            <td class=\"text-center\">{{i.id}}</td>\n            <td class=\"text-center\">{{i.name}}</td>\n            <td class=\"text-center\">{{i.email}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    <div class=\"table-responsive\" style=\"overflow:scroll;height:400px;width:auto;\">\n      <table class=\"table table-bordered table-hover\" style=\"width:500px;\"  border=1>\n        <thead class=\"tableThead thead\">\n          <tr>\n            <th class=\"text-center\" COLSPAN=\"10\" ><strong>RESERVES</strong></th>\n          </tr>\n          <tr>\n            <th style=\"width:600px\" ><strong>USER EMAIL</strong></th>\n            <th style=\"width:500px\" ><strong>DATE</strong></th>\n            <th style=\"width:500px\" ><strong>START TIME</strong></th>\n            <th style=\"width:500px\" ><strong>END TIME</strong></th>\n            <th style=\"width:500px\" ><strong>EXTEND DATE</strong></th>\n            <th style=\"width:500px\" ><strong>VEHICLE</strong></th>\n            <th style=\"width:500px\" ><strong>HEADQUARTER</strong></th>\n            <th style=\"width:500px\" ><strong>PARKING LOT</strong></th>\n            <th style=\"width:500px\" ><strong>ZONE</strong></th>\n            <th style=\"width:500px\" ><strong>SPACE</strong></th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let i of reportComplete  | ReportPipe:filter\">\n            <td style=\"width:600px\" class=\"text-center\">{{i.reserve.user.email}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.date}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.start_time}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.end_time}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.end_date_extend}}</td>\n            <td style=\"width:500px\" class=\"text-center\" *ngIf=\"i.reserve.vehicle!=null\">{{i.reserve.vehicle.license_plate}}</td>\n            <td style=\"width:500px\" class=\"text-center\" *ngIf=\"i.reserve.vehicle==null\"></td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.zone.parking_lot.headquarter.name}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.zone.parking_lot.name}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.zone.name}}</td>\n            <td style=\"width:500px\" class=\"text-center\">{{i.space.name}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
     /***/
   },
 
@@ -509,7 +509,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"/\">\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\n</button>\n<div class=\"container\">\n  <br> <br> <br>\n  <div class=\"row  justify-content-center\">\n    <div class=\"col-md-3\">\n      <label>DATE</label>\n      <form class=\"form-inline\">\n        <div class=\"form-group\">\n          <div class=\"input-group \">\n            <input class=\"form-control\" placeholder=\"yyyy/mm/dd\" name=\"d2\" #c2=\"ngModel\"  [minDate]=\"minDate\" [maxDate]=\"maxDate\"  readonly\n             [(ngModel)]=\"dashboardForm.reserveDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\" required>\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\"  (click)=\"d2.toggle()\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n\n    <div class=\"col-md-2\">\n      <label>CURRENT LOCATION</label>\n      <select class=\"custom-select\" id=\"inputGroupSelect04\" name=\"headquarter\" required \n      [(ngModel)]=\"hqModel\" (change)=\" listParkings(hqModel,$event.target.value)\" aria-label=\"\">\n        <option *ngFor=\"let headquarter of headquarters\" [ngValue]=\"headquarter\">{{headquarter.name}}\n          {{headquarter.city}}\n          {{headquarter.country}}</option>\n      </select>\n    </div>\n\n    <div class=\"col-md-2\">\n      <label>PARKING LOT</label>\n      <select class=\"custom-select\" name=\"parking lot\" required [(ngModel)]=\"parkingLotModel\" (change)=\" listZones(parkingLotModel,$event.target.value)\">\n        <!--<option selected>Choose...</option>-->\n        <option *ngFor=\"let parking of parkings\" [ngValue]=\"parking\"  >\n          {{parking.name}}</option>\n      </select>\n    </div>\n\n    <div class=\"col-md-2\">\n      <label>ZONE</label>\n      <select class=\"custom-select\" name=\"zone\" required [(ngModel)]=\"zoneModel\" (change)=\" dataReserve(zoneModel,$event.target.value)\" >\n        <!--<option selected>Choose...</option>-->\n        <option *ngFor=\"let zone of zones\" [ngValue]=\"zone\" > {{zone.name}}</option>\n      </select>\n    </div>\n\n    <div class=\"col-md-2\">\n      <br>\n      <button class=\"btn btn-delete btn-block btn-outline-danger\" (click)=\"loadAvailableTimes()\">\n        <strong>VIEW DASHBOARD</strong>\n      </button><br><br>\n    </div>\n\n  </div>\n\n  <div class=\"row justify-content-center\">\n    <div class=\"col-md-10 \">\n      <div class=\"table-responsive\">\n        <table class=\"table table-bordered table-hover rounded \">\n          <thead class=\"tableThead thead\">\n            <tr>\n              <th scope=\"col\"><strong>SPACE</strong></th>\n              <th scope=\"col\"><strong>AVAILABLE</strong></th>\n              <th scope=\"col\"><strong>RESERVE</strong></th>\n              \n            </tr>\n          </thead>\n          <tbody >\n            <tr *ngFor=\" let space of spacesContainer\">\n              <td >{{space.name}}</td>\n              <td>\n                <table>\n                    <tr>\n                      <td *ngFor=\" let range of space.range\"> {{range[0][0]}}:00 - {{range[0][1]}}:00</td>\n                    </tr>\n                </table>\n              </td>\n              <td> <button class=\"btn btn-delete btn-block btn-outline-danger\" data-toggle=\"modal\" data-target=\"#reserve\" (click)=\"dataSpace(space)\" (click)=\"dataCalendar()\">\n                  <strong>RESERVE</strong></button>\n              </td>\n           \n            </tr>\n          </tbody>\n        </table>\n        <h5 *ngIf=\"!hide\" class=\"text-center\">Please select a date and make sure to choose a zone!</h5>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"reserve\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"reserve\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-xl\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" >Reserve</h5>\n        <button type=\"button\" id=\"closeReserveModal\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title text-center font-weight-bold\">Reserve a space</h5>\n          <!--Inicia formulario-->\n          <form>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Vehiculos</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <select class=\"custom-select\" name=\"vehicle\" [(ngModel)]=\"formAddReserve.vehicle.increment\">\n                  <option selected>Choose...</option>\n                  <option value=\"{{vehicle.increment}}\" *ngFor=\"let vehicle of vehicles\">{{vehicle.license_plate}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Start time</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <select class=\"form-control\" name=\"start_time\" required [(ngModel)]=\"start_time\" (change)=\" setStartTime(start_time,$event.target.value)\">\n                  <option selected>Choose...</option>\n                  <option *ngFor=\"let range of spaceRange\" [ngValue]=\"range\" >{{range.begin}}:00</option>\n                </select>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">End time</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <select class=\"form-control\" name=\"end_time\" required [(ngModel)]=\"end_time\" (change)=\" setEndTime(end_time,$event.target.value)\">\n                  <option selected>Choose...</option>\n                  <option *ngFor=\"let opt of selectableRange\" [ngValue]=\"opt\" >{{opt}}:00</option>\n                </select>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Date</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"calendarModel\"  name=\"calendarModel\"  disabled >\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >End for extended bookings <i class=\"far fa-question-circle\" data-toggle=\"tooltip\" title=\"Book the same day of the week for long periods of time.\"></i> </label>\n              <div class=\"col-sm-8 col-lg-10\">\n                    <div class=\"input-group\">\n                      <input class=\"form-control\" placeholder=\"yyyy-mm-dd\"\n                             name=\"dp\"  [minDate]=\"minDate2\" [maxDate]=\"maxDate2\" [markDisabled]=\"isDisabled\" [(ngModel)]=\"extendReserveForm.extendReserveDate\" ngbDatepicker #d=\"ngbDatepicker\" readonly>\n                      <div class=\"input-group-append\">\n                        <button class=\"btn btn-outline-secondary calendar\" (click)=\"d.toggle()\" type=\"button\"></button>\n                      </div>\n                      \n                    </div>\n                    <small>Is optional</small>\n              </div>\n              \n            </div>\n            <div class=\"form-group row\" hidden>\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Headquarter</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"hqModel.name\" name=\"headquarter\" type=\"text\" class=\"form-control\"   disabled>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Parking</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"parkingLotModel.name\" name=\"parking\" type=\"text\" class=\"form-control\"  disabled required>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Zone</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"zoneModel.name\" name=\"zone\" type=\"text\" class=\"form-control\" disabled>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Space number</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"spaceModel.name\" name=\"space\" type=\"text\" class=\"form-control\"  disabled>\n              </div>\n            </div>\n            <!--Botones-->\n            <div class=\"row text-center\">\n\n              <div class=\"col-sm-6 col-md-12\">\n                <button type=\"submit\" class=\"py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary\" (click)=\"dataCalendarExtend()\" (click)=\"addReserve()\" >Reserve</button>\n              </div>\n\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n";
+    __webpack_exports__["default"] = "<button class=\"botonF1\" routerLink=\"/\">\n  <span><i class=\"fas fa-arrow-left    \"></i></span>\n</button>\n<br>\n<br>\n<div class=\"container\">\n  <br> <br> <br>\n  <div class=\"row  justify-content-center\">\n    <div class=\"col-lg-3\">\n      <label>DATE</label>\n      <form class=\"form-inline\">\n        <div class=\"form-group\" style=\"width: 100%;\">\n          <div class=\"input-group \" style=\"width: 100%;\">\n            <input class=\"form-control\" placeholder=\"yyyy/mm/dd\" name=\"d2\" #c2=\"ngModel\"  [minDate]=\"minDate\" [maxDate]=\"maxDate\"  readonly\n             [(ngModel)]=\"dashboardForm.reserveDate\" (click)=\"d2.toggle()\" ngbDatepicker #d2=\"ngbDatepicker\" required>\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\"  (click)=\"d2.toggle()\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n\n    <div class=\"col-lg-2\">\n      <label>CURRENT LOCATION</label>\n      <select class=\"custom-select\" id=\"inputGroupSelect04\" name=\"headquarter\" required \n      [(ngModel)]=\"hqModel\" (change)=\" listParkings(hqModel,$event.target.value)\" aria-label=\"\">\n        <option *ngFor=\"let headquarter of headquarters\" [ngValue]=\"headquarter\">{{headquarter.name}}\n          {{headquarter.city}}\n          {{headquarter.country}}</option>\n      </select>\n    </div>\n\n    <div class=\"col-lg-2\">\n      <label>PARKING LOT</label>\n      <select class=\"custom-select\" name=\"parking lot\" required [(ngModel)]=\"parkingLotModel\" (change)=\" listZones(parkingLotModel,$event.target.value)\">\n        <!--<option selected>Choose...</option>-->\n        <option *ngFor=\"let parking of parkings\" [ngValue]=\"parking\"  >\n          {{parking.name}}</option>\n      </select>\n    </div>\n\n    <div class=\"col-lg-2\">\n      <label>ZONE</label>\n      <select class=\"custom-select\" name=\"zone\" required [(ngModel)]=\"zoneModel\" (change)=\" dataReserve(zoneModel,$event.target.value)\" >\n        <!--<option selected>Choose...</option>-->\n        <option *ngFor=\"let zone of zones\" [ngValue]=\"zone\" > {{zone.name}}</option>\n      </select>\n    </div>\n\n    <div class=\"col-lg-2\">\n      <br>\n      <button class=\"btn btn-delete btn-block btn-outline-danger\" (click)=\"loadAvailableTimes()\">\n        <strong>VIEW DASHBOARD</strong>\n      </button><br><br>\n    </div>\n  </div>\n  <div *ngIf=\"loadding\" class=\"my-0 py-p pb-5\">\n    <div class=\"hero-content text-center\">\n        <div class=\"row justify-content-center\">\n            <div class=\"col-md-6 text-center mx-auto\">\n                <div class=\"spinner-border mx-auto\" role=\"status\">\n                  <span class=\"sr-only\">Loading...</span>\n                </div>\n            </div>\n        </div>\n    </div>\n  </div>\n  <div class=\"row justify-content-center\">\n    <div class=\"col-md-10 \">\n      <div class=\"table-responsive\">\n        <table class=\"table table-bordered table-hover rounded \">\n          <thead class=\"tableThead thead\">\n            <tr>\n              <th scope=\"col\"><strong>SPACE</strong></th>\n              <th scope=\"col\"><strong>AVAILABLE</strong></th>\n              <th scope=\"col\"><strong>RESERVE</strong></th>\n              \n            </tr>\n          </thead>\n          <tbody >\n            <tr *ngFor=\" let space of spacesContainer\">\n              <td >{{space.name}}</td>\n              <td>\n                <table>\n                    <tr>\n                      <td *ngFor=\" let range of space.range\"> {{range[0][0]}}:00 - {{range[0][1]}}:00</td>\n                    </tr>\n                </table>\n              </td>\n              <td> <button class=\"btn btn-delete btn-block btn-outline-danger\" data-toggle=\"modal\" data-target=\"#reserve\" (click)=\"dataSpace(space)\" (click)=\"dataCalendar()\">\n                  <strong>RESERVE</strong></button>\n              </td>\n           \n            </tr>\n          </tbody>\n        </table>\n        <h5 *ngIf=\"!hide\" class=\"text-center\">Please select a date and make sure to choose a zone!</h5>\n      </div>\n    </div>\n\n  </div>\n\n</div>\n\n<!-- Modal -->\n<div class=\"modal fade\" id=\"reserve\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"reserve\" aria-hidden=\"true\">\n  <div class=\"modal-dialog modal-xl\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" >Reserve</h5>\n        <button type=\"button\" id=\"closeReserveModal\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <div class=\"card-body\">\n          <h5 class=\"card-title text-center font-weight-bold\">Reserve a space</h5>\n          <!--Inicia formulario-->\n          <form>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Vehiculos</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <select class=\"custom-select\" name=\"vehicle\" [(ngModel)]=\"formAddReserve.vehicle.increment\">\n                  <option selected>Choose...</option>\n                  <option value=\"{{vehicle.increment}}\" *ngFor=\"let vehicle of vehicles\">{{vehicle.license_plate}}\n                  </option>\n                </select>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Start time</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <select class=\"form-control\" name=\"start_time\" required [(ngModel)]=\"start_time\" (change)=\" setStartTime(start_time,$event.target.value)\">\n                  <option selected>Choose...</option>\n                  <option *ngFor=\"let range of spaceRange\" [ngValue]=\"range\" >{{range.begin}}:00</option>\n                </select>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">End time</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <select class=\"form-control\" name=\"end_time\" required [(ngModel)]=\"end_time\" (change)=\" setEndTime(end_time,$event.target.value)\">\n                  <option selected>Choose...</option>\n                  <option *ngFor=\"let opt of selectableRange\" [ngValue]=\"opt\" >{{opt}}:00</option>\n                </select>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Date</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"calendarModel\"  name=\"calendarModel\"  disabled >\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >End for extended bookings <i class=\"far fa-question-circle\" data-toggle=\"tooltip\" title=\"Book the same day of the week for long periods of time.\"></i> </label>\n              <div class=\"col-sm-8 col-lg-10\">\n                    <div class=\"input-group\">\n                      <input class=\"form-control\" placeholder=\"yyyy-mm-dd\"\n                             name=\"dp\"  [minDate]=\"minDate2\" [maxDate]=\"maxDate2\" [markDisabled]=\"isDisabled\" [(ngModel)]=\"extendReserveForm.extendReserveDate\" ngbDatepicker #d=\"ngbDatepicker\" readonly>\n                      <div class=\"input-group-append\">\n                        <button class=\"btn btn-outline-secondary calendar\" (click)=\"d.toggle()\" type=\"button\"></button>\n                      </div>\n                      \n                    </div>\n                    <small>Is optional</small>\n              </div>\n              \n            </div>\n            <div class=\"form-group row\" hidden>\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Headquarter</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"hqModel.name\" name=\"headquarter\" type=\"text\" class=\"form-control\"   disabled>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\" >Parking</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"parkingLotModel.name\" name=\"parking\" type=\"text\" class=\"form-control\"  disabled required>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Zone</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"zoneModel.name\" name=\"zone\" type=\"text\" class=\"form-control\" disabled>\n              </div>\n            </div>\n            <div class=\"form-group row\">\n              <label class=\"col-sm-4 col-lg-2 col-form-label\">Space number</label>\n              <div class=\"col-sm-8 col-lg-10\">\n                <input [(ngModel)]=\"spaceModel.name\" name=\"space\" type=\"text\" class=\"form-control\"  disabled>\n              </div>\n            </div>\n            <!--Botones-->\n            <div class=\"row text-center\">\n\n              <div class=\"col-sm-6 col-md-12\">\n                <button type=\"submit\" class=\"py-2 mt-2 mb-2 btn btnAdd btn-block btn-outline-secondary\" (click)=\"dataCalendarExtend()\" (click)=\"addReserve()\" >Reserve</button>\n              </div>\n\n            </div>\n          </form>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n";
     /***/
   },
 
@@ -549,7 +549,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!-- Footer -->\n<footer class=\"page-footer font-small blue pt-4 footerColor\">\n\n  <!-- Footer Links -->\n  <div class=\"container-fluid text-center text-md-left\">\n\n    <!-- Grid row -->\n    <div class=\"row justify-content-center\">\n\n      <div class=\"col-md-4 mt-md-0 mt-3 text-center\">\n        <a class=\"navbar-brand\" routerLink=\"/\">\n          <img src=\"https://www.avantica.net/hubfs/Logos%20Update%20Fusion%20Dec19/ENG/logo-eng-Blanco.png\" width=\"210\"\n            id=\"logo\">\n        </a>\n        <h2 class=\"mt-5 mb-5 letraFooter\">Avantica Technologies</h2>\n      </div>\n\n      <hr class=\"clearfix w-100 d-md-none pb-3\">\n\n      <div class=\"col-md-4 mb-md-0 mb-3\">\n\n        <!-- Links -->\n        <h5 class=\"text-uppercase letraFooter\">Contact us</h5>\n\n        <ul class=\"list-unstyled letraFooter\">\n          <li>\n            <p>info@avantica.net+1 650-641-31-34.</p>\n          </li>\n        </ul>\n\n      </div>\n      <!-- Grid column -->\n\n      <!-- Grid column -->\n      <div class=\"col-md-4 mb-md-0 mb-3\">\n\n        <!-- Links -->\n        <h5 class=\"text-uppercase letraFooter\">Social networks</h5>\n\n        <ul class=\"list-unstyled\">\n          <li>\n            <div class=\"socialMedia \">\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.facebook.com/AvanticaTechnologies?__hstc=59161970.fdfdf03d778926c960c49fc83534edba.1460006850503.1460014360609.1460100448262.3&amp;__hssc=59161970.1.1460100448262&amp;__hsfp=1609217652\"\n                aria-label=\"Facebook (opens New Window)\">\n                <i class=\"fab fa-facebook fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"\n                  aria-hidden=\"true\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.linkedin.com/company/avantica-technologies?__hstc=59161970.fdfdf03d778926c960c49fc83534edba.1460006850503.1460014360609.1460100448262.3&amp;__hssc=59161970.1.1460100448262&amp;__hsfp=1609217652\"\n                aria-label=\"Linkedin (opens New Window)\">\n                <i class=\"fab fa-linkedin fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"\n                  aria-hidden=\"true\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://twitter.com/avantica?__hstc=59161970.fdfdf03d778926c960c49fc83534edba.1460006850503.1460014360609.1460100448262.3&amp;__hssc=59161970.1.1460100448262&amp;__hsfp=1609217652\"\n                aria-label=\"Twitter (opens New Window)\">\n                <i class=\"fab fa-twitter-square fa-lg fa-2x\"\n                  style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.instagram.com/avanticatech/\" aria-label=\"Instagram (opens New Window)\">\n                <i class=\"fab fa-instagram fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.avantica.net/blog?hsLang=en-us\" data-href=\"https://www.avantica.net/es/blog\"\n                aria-label=\"Blog (opens New Window)\">\n                <i class=\"fas fa-wifi fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.youtube.com/user/avanticatec\" data-href=\"https://www.youtube.com/user/avanticatec\"\n                aria-label=\"Youtube (opens New Window)\">\n                <i class=\"fab fa-youtube-square fa-lg fa-2x\"\n                  style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n            </div>\n          </li>\n        </ul>\n\n      </div>\n      <!-- Grid column -->\n\n    </div>\n    <!-- Grid row -->\n\n  </div>\n  <div class=\"footer-copyright text-center py-3 letraFooter\">\n    <small class=\"text-center\" id=\"text\">Group Avantica, Inc. All Rights Reserved.</small>\n    <i routerLink=\"/handbook\" class=\"mr-auto far fa-question-circle\">\n\n    </i>\n  </div>\n</footer>";
+    __webpack_exports__["default"] = "<!-- Footer -->\n<footer class=\"page-footer font-small blue pt-4 mt-auto footerColor footer mt-auto\">\n\n  <!-- Footer Links -->\n  <div class=\"container-fluid text-center text-md-left\">\n\n    <!-- Grid row -->\n    <div class=\"row justify-content-center\">\n\n      <div class=\"col-md-4 mt-md-0 mt-3 text-center\">\n        <a class=\"navbar-brand\" routerLink=\"/\">\n          <img src=\"https://www.avantica.net/hubfs/Logos%20Update%20Fusion%20Dec19/ENG/logo-eng-Blanco.png\" width=\"210\"\n            id=\"logo\">\n        </a>\n        <h2 class=\"mt-5 mb-5 letraFooter\">Avantica Technologies</h2>\n      </div>\n\n      <hr class=\"clearfix w-100 d-md-none pb-3\">\n\n      <div class=\"col-md-4 mb-md-0 mb-3\">\n\n        <!-- Links -->\n        <h5 class=\"text-uppercase letraFooter\">Contact us</h5>\n\n        <ul class=\"list-unstyled letraFooter\">\n          <li>\n            <p>info@avantica.net+1 650-641-31-34.</p>\n          </li>\n        </ul>\n\n      </div>\n      <!-- Grid column -->\n\n      <!-- Grid column -->\n      <div class=\"col-md-4 mb-md-0 mb-3\">\n\n        <!-- Links -->\n        <h5 class=\"text-uppercase letraFooter\">Social networks</h5>\n\n        <ul class=\"list-unstyled\">\n          <li>\n            <div class=\"socialMedia \">\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.facebook.com/AvanticaTechnologies?__hstc=59161970.fdfdf03d778926c960c49fc83534edba.1460006850503.1460014360609.1460100448262.3&amp;__hssc=59161970.1.1460100448262&amp;__hsfp=1609217652\"\n                aria-label=\"Facebook (opens New Window)\">\n                <i class=\"fab fa-facebook fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"\n                  aria-hidden=\"true\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.linkedin.com/company/avantica-technologies?__hstc=59161970.fdfdf03d778926c960c49fc83534edba.1460006850503.1460014360609.1460100448262.3&amp;__hssc=59161970.1.1460100448262&amp;__hsfp=1609217652\"\n                aria-label=\"Linkedin (opens New Window)\">\n                <i class=\"fab fa-linkedin fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"\n                  aria-hidden=\"true\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://twitter.com/avantica?__hstc=59161970.fdfdf03d778926c960c49fc83534edba.1460006850503.1460014360609.1460100448262.3&amp;__hssc=59161970.1.1460100448262&amp;__hsfp=1609217652\"\n                aria-label=\"Twitter (opens New Window)\">\n                <i class=\"fab fa-twitter-square fa-lg fa-2x\"\n                  style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.instagram.com/avanticatech/\" aria-label=\"Instagram (opens New Window)\">\n                <i class=\"fab fa-instagram fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.avantica.net/blog?hsLang=en-us\" data-href=\"https://www.avantica.net/es/blog\"\n                aria-label=\"Blog (opens New Window)\">\n                <i class=\"fas fa-wifi fa-lg fa-2x\" style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n              <a class=\"btn-floating btn-large waves-effect waves-light\" target=\"_blank\"\n                href=\"https://www.youtube.com/user/avanticatec\" data-href=\"https://www.youtube.com/user/avanticatec\"\n                aria-label=\"Youtube (opens New Window)\">\n                <i class=\"fab fa-youtube-square fa-lg fa-2x\"\n                  style=\"color:#FFFFFF; margin: 5px; height:6 !important;\"></i>\n              </a>\n            </div>\n          </li>\n        </ul>\n\n      </div>\n      <!-- Grid column -->\n\n    </div>\n    <!-- Grid row -->\n\n  </div>\n  <div class=\"footer-copyright text-center py-3 letraFooter\">\n    <small class=\"text-center\" id=\"text\">Group Avantica, Inc. All Rights Reserved.</small>\n    <i routerLink=\"/handbook\" class=\"mr-auto far fa-question-circle\">\n\n    </i>\n  </div>\n</footer>";
     /***/
   },
 
@@ -2384,7 +2384,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".botonF1{\n    width:60px;\n    height:60px;\n    border-radius:100%;\n    background:#2F2D46;\n    left:0;\n    bottom:20;\n    position: absolute;\n    margin-left: 16px;\n    margin-top: 40px;\n    border:none;\n    outline:none;\n    color:#FFF;\n    font-size:36px;\n    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);\n    transition:.3s;  \n  }\n  span{\n    transition:.5s;  \n  }\n  .botonF1:hover span{\n    transform:rotate(360deg);\n  }\n  .botonF1:active{\n    transform:scale(1.1);\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hZG1pbmlzdHJhdGlvbi9yZXBvcnQvcmVwb3J0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxVQUFVO0lBQ1YsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsTUFBTTtJQUNOLFNBQVM7SUFDVCxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGdCQUFnQjtJQUNoQixXQUFXO0lBQ1gsWUFBWTtJQUNaLFVBQVU7SUFDVixjQUFjO0lBQ2Qsa0VBQWtFO0lBQ2xFLGNBQWM7RUFDaEI7RUFDQTtJQUNFLGNBQWM7RUFDaEI7RUFDQTtJQUNFLHdCQUF3QjtFQUMxQjtFQUNBO0lBQ0Usb0JBQW9CO0VBQ3RCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9hZG1pbmlzdHJhdGlvbi9yZXBvcnQvcmVwb3J0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYm90b25GMXtcbiAgICB3aWR0aDo2MHB4O1xuICAgIGhlaWdodDo2MHB4O1xuICAgIGJvcmRlci1yYWRpdXM6MTAwJTtcbiAgICBiYWNrZ3JvdW5kOiMyRjJENDY7XG4gICAgbGVmdDowO1xuICAgIGJvdHRvbToyMDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgbWFyZ2luLWxlZnQ6IDE2cHg7XG4gICAgbWFyZ2luLXRvcDogNDBweDtcbiAgICBib3JkZXI6bm9uZTtcbiAgICBvdXRsaW5lOm5vbmU7XG4gICAgY29sb3I6I0ZGRjtcbiAgICBmb250LXNpemU6MzZweDtcbiAgICBib3gtc2hhZG93OiAwIDNweCA2cHggcmdiYSgwLDAsMCwwLjE2KSwgMCAzcHggNnB4IHJnYmEoMCwwLDAsMC4yMyk7XG4gICAgdHJhbnNpdGlvbjouM3M7ICBcbiAgfVxuICBzcGFue1xuICAgIHRyYW5zaXRpb246LjVzOyAgXG4gIH1cbiAgLmJvdG9uRjE6aG92ZXIgc3BhbntcbiAgICB0cmFuc2Zvcm06cm90YXRlKDM2MGRlZyk7XG4gIH1cbiAgLmJvdG9uRjE6YWN0aXZle1xuICAgIHRyYW5zZm9ybTpzY2FsZSgxLjEpO1xuICB9Il19 */";
+    __webpack_exports__["default"] = ".botonF1{\n    width:60px;\n    height:60px;\n    border-radius:100%;\n    background:#2F2D46;\n    left:0;\n    bottom:20;\n    position: absolute;\n    margin-left: 16px;\n    margin-top: 40px;\n    border:none;\n    outline:none;\n    color:#FFF;\n    font-size:36px;\n    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);\n    transition:.3s;  \n  }\n  span{\n    transition:.5s;  \n  }\n  .botonF1:hover span{\n    transform:rotate(360deg);\n  }\n  .botonF1:active{\n    transform:scale(1.1);\n  }\n  .container {\n    margin-bottom: 5% !important;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9hZG1pbmlzdHJhdGlvbi9yZXBvcnQvcmVwb3J0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxVQUFVO0lBQ1YsV0FBVztJQUNYLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsTUFBTTtJQUNOLFNBQVM7SUFDVCxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGdCQUFnQjtJQUNoQixXQUFXO0lBQ1gsWUFBWTtJQUNaLFVBQVU7SUFDVixjQUFjO0lBQ2Qsa0VBQWtFO0lBQ2xFLGNBQWM7RUFDaEI7RUFDQTtJQUNFLGNBQWM7RUFDaEI7RUFDQTtJQUNFLHdCQUF3QjtFQUMxQjtFQUNBO0lBQ0Usb0JBQW9CO0VBQ3RCO0VBQ0E7SUFDRSw0QkFBNEI7QUFDaEMiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2FkbWluaXN0cmF0aW9uL3JlcG9ydC9yZXBvcnQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5ib3RvbkYxe1xuICAgIHdpZHRoOjYwcHg7XG4gICAgaGVpZ2h0OjYwcHg7XG4gICAgYm9yZGVyLXJhZGl1czoxMDAlO1xuICAgIGJhY2tncm91bmQ6IzJGMkQ0NjtcbiAgICBsZWZ0OjA7XG4gICAgYm90dG9tOjIwO1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBtYXJnaW4tbGVmdDogMTZweDtcbiAgICBtYXJnaW4tdG9wOiA0MHB4O1xuICAgIGJvcmRlcjpub25lO1xuICAgIG91dGxpbmU6bm9uZTtcbiAgICBjb2xvcjojRkZGO1xuICAgIGZvbnQtc2l6ZTozNnB4O1xuICAgIGJveC1zaGFkb3c6IDAgM3B4IDZweCByZ2JhKDAsMCwwLDAuMTYpLCAwIDNweCA2cHggcmdiYSgwLDAsMCwwLjIzKTtcbiAgICB0cmFuc2l0aW9uOi4zczsgIFxuICB9XG4gIHNwYW57XG4gICAgdHJhbnNpdGlvbjouNXM7ICBcbiAgfVxuICAuYm90b25GMTpob3ZlciBzcGFue1xuICAgIHRyYW5zZm9ybTpyb3RhdGUoMzYwZGVnKTtcbiAgfVxuICAuYm90b25GMTphY3RpdmV7XG4gICAgdHJhbnNmb3JtOnNjYWxlKDEuMSk7XG4gIH1cbiAgLmNvbnRhaW5lciB7XG4gICAgbWFyZ2luLWJvdHRvbTogNSUgIWltcG9ydGFudDtcbn0iXX0= */";
     /***/
   },
 
@@ -2504,6 +2504,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.finalDate = null;
         this.userInf = null;
         this.filter = "";
+        this.loadding = false;
       }
 
       _createClass(ReportComponent, [{
@@ -2616,6 +2617,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function generateReport() {
           var _this18 = this;
 
+          this.loadding = true;
+
           if (this.initDate != null && this.finalDate != null) {
             var d1 = this.initDate.year + "-" + this.initDate.month + "-" + this.initDate.day;
             var d2 = this.finalDate.year + "-" + this.finalDate.month + "-" + this.finalDate.day;
@@ -2624,6 +2627,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.report.generateReport(d1, d2).subscribe(function (data) {
               _this18.loadReport(data);
             }, function (error) {
+              _this18.loadding = false;
               sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
                 type: 'error',
                 title: 'An error occurred while generating the report, please try again later, if the problem persists, contact the page administrator',
@@ -2632,6 +2636,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
             });
           } else {
+            this.loadding = false;
             sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
               type: 'error',
               title: 'The init date or final date value is invalid',
@@ -2645,6 +2650,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function loadReport(data) {
           var _this19 = this;
 
+          this.loadding = false;
           this.activeUser = [];
           var myObj = [];
 
@@ -2671,6 +2677,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendEmail",
         value: function sendEmail() {
+          var _this20 = this;
+
+          this.loadding = true;
           var report = document.getElementById("report");
           var email = {
             id: null,
@@ -2684,6 +2693,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           };
           this.emails.sendEmail(email).subscribe(function (data) {
+            _this20.loadding = false;
             sweetalert2__WEBPACK_IMPORTED_MODULE_9___default.a.fire({
               type: 'success',
               title: 'The report has been sent to your email',
@@ -2691,6 +2701,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               timer: 15000
             });
           }, function (error) {
+            _this20.loadding = false;
             console.log(error);
           });
         }
@@ -2869,10 +2880,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(SpaceComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this20 = this;
+          var _this21 = this;
 
           this.user.getAll().subscribe(function (data) {
-            _this20.users = data;
+            _this21.users = data;
           });
           this.listSpace();
           this.ListZone();
@@ -2883,12 +2894,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "listSpace",
         value: function listSpace() {
-          var _this21 = this;
+          var _this22 = this;
 
           this.zoneToken = JSON.parse(localStorage.getItem('zone'));
           this.addFormSpace.zone.id_zone = this.zoneToken.id_zone;
           this.space.listSpaces(this.zoneToken.id_zone).subscribe(function (data) {
-            _this21.spaces = data;
+            _this22.spaces = data;
           }, function (error) {});
         }
       }, {
@@ -2908,16 +2919,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ListZone",
         value: function ListZone() {
-          var _this22 = this;
+          var _this23 = this;
 
           this._zone.listZone().subscribe(function (data) {
-            _this22.zones = data;
+            _this23.zones = data;
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this23 = this;
+          var _this24 = this;
 
           if (this.addFormSpace.state == 'Available') {
             this.addFormSpace.state = 0;
@@ -2931,20 +2942,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           console.log(this.addFormSpace);
           this.space.addSpace(this.addFormSpace).subscribe(function (data) {
-            _this23.nullSpace = data;
+            _this24.nullSpace = data;
 
-            if (_this23.nullSpace.name == null) {
+            if (_this24.nullSpace.name == null) {
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'A space with the name ' + _this23.addFormSpace.name + ' has already been registered for this zone!',
+                text: 'A space with the name ' + _this24.addFormSpace.name + ' has already been registered for this zone!',
                 confirmButtonColor: '#EF4023'
               });
             } else {
-              _this23.responseSuccess(data);
+              _this24.responseSuccess(data);
 
               jquery__WEBPACK_IMPORTED_MODULE_5__("#closeModal6").click();
-              _this23.addFormSpace.name = null, _this23.addFormSpace.type = null, _this23.addFormSpace.state = null, _this23.addFormSpace.user = null, _this23.addFormSpace.zone.id_zone = null;
+              _this24.addFormSpace.name = null, _this24.addFormSpace.type = null, _this24.addFormSpace.state = null, _this24.addFormSpace.user = null, _this24.addFormSpace.zone.id_zone = null;
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'success',
                 title: 'The Space has been saved',
@@ -2952,16 +2963,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 timer: 1500
               });
 
-              _this23.ngOnInit();
+              _this24.ngOnInit();
             }
           }, function (error) {
-            return _this23.responseError(error);
+            return _this24.responseError(error);
           });
         }
       }, {
         key: "deleteSpace",
         value: function deleteSpace(_formSpace) {
-          var _this24 = this;
+          var _this25 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
             customClass: {
@@ -2979,10 +2990,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this24.space.deleteSpace(_formSpace).subscribe(function (data) {
+              _this25.space.deleteSpace(_formSpace).subscribe(function (data) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Deleted!', 'The Space has been deleted.', 'success');
 
-                _this24.ngOnInit();
+                _this25.ngOnInit();
               });
             }
           });
@@ -2990,7 +3001,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "deleteAll",
         value: function deleteAll() {
-          var _this25 = this;
+          var _this26 = this;
 
           sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
             title: 'Are you sure to delete all?',
@@ -3002,18 +3013,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this25.space.deleteAllZoneSpaces(_this25.zoneToken.id_zone).subscribe(function (data) {}, function (error) {});
+              _this26.space.deleteAllZoneSpaces(_this26.zoneToken.id_zone).subscribe(function (data) {}, function (error) {});
 
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Deleted!', 'All spaces have been removed.', 'success');
 
-              _this25.ngOnInit();
+              _this26.ngOnInit();
             }
           });
         }
       }, {
         key: "editSpaceForm",
         value: function editSpaceForm() {
-          var _this26 = this;
+          var _this27 = this;
 
           if (this.editFormSpace.state === 'Occupied') {
             this.editFormSpace.state = true;
@@ -3038,7 +3049,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               timer: 1500
             });
 
-            _this26.listSpace();
+            _this27.listSpace();
           }, function (error) {});
         }
       }, {
@@ -3182,16 +3193,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UsersComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this27 = this;
+          var _this28 = this;
 
           this.user.getAll().subscribe(function (data) {
-            _this27.users = data;
+            _this28.users = data;
           });
         }
       }, {
         key: "admin",
         value: function admin(u) {
-          var _this28 = this;
+          var _this29 = this;
 
           sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
             title: 'Are you sure?',
@@ -3205,7 +3216,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             if (result.value) {
               u.role = !u.role;
 
-              _this28.user.modify(u).subscribe(function (data) {
+              _this29.user.modify(u).subscribe(function (data) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Success!', 'Privileges were granted', 'success');
               }, function (error) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Error!', 'No privileges were granted - Contact application administrator', 'error');
@@ -3216,10 +3227,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "regular",
         value: function regular(u) {
-          var _this29 = this;
+          var _this30 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this29.filter(u, data);
+            _this30.filter(u, data);
           }, function (error) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Error!', 'Error: Contact application administrator', 'error');
           });
@@ -3227,7 +3238,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "filter",
         value: function filter(u, data) {
-          var _this30 = this;
+          var _this31 = this;
 
           if (data.email == u.email) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Error!', 'To make sure there is always an administrator, you cannot delete yourself, ask a fellow administrator to eliminate your privileges', 'error');
@@ -3244,7 +3255,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               if (result.value) {
                 u.role = !u.role;
 
-                _this30.user.modify(u).subscribe(function (data) {
+                _this31.user.modify(u).subscribe(function (data) {
                   sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Success!', 'Privileges removed', 'success');
                 }, function (error) {
                   sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Error!', 'Could not remove privileges, contact application administrator', 'error');
@@ -3415,44 +3426,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ListZone",
         value: function ListZone() {
-          var _this31 = this;
+          var _this32 = this;
 
           this._zone.listZone().subscribe(function (data) {
-            _this31.zones = data;
+            _this32.zones = data;
           });
         }
       }, {
         key: "ListParkingLot",
         value: function ListParkingLot() {
-          var _this32 = this;
+          var _this33 = this;
 
           this.parking_lot.listParkingLot().subscribe(function (data) {
-            _this32.parkings = data;
+            _this33.parkings = data;
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit() {
-          var _this33 = this;
+          var _this34 = this;
 
           if (this.addFormZone.quantity <= 100 && this.addFormZone.start <= 999) {
             this._zone.addZone(this.addFormZone).subscribe(function (data) {
-              _this33.nullZone = data;
+              _this34.nullZone = data;
 
-              if (_this33.nullZone.name == null) {
+              if (_this34.nullZone.name == null) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                   type: 'error',
                   title: 'Oops...',
-                  text: 'A zone with the name "' + _this33.addFormZone.name + '" has already been registered for the selected parking lot!',
+                  text: 'A zone with the name "' + _this34.addFormZone.name + '" has already been registered for the selected parking lot!',
                   confirmButtonColor: '#EF4023'
                 });
               } else {
-                _this33.responseSuccess(data);
+                _this34.responseSuccess(data);
 
-                _this33.addFormZone.name = null;
-                _this33.addFormZone.parking_lot.id_parking_lot = null;
-                _this33.addFormZone.quantity = null;
-                _this33.addFormZone.start = null;
+                _this34.addFormZone.name = null;
+                _this34.addFormZone.parking_lot.id_parking_lot = null;
+                _this34.addFormZone.quantity = null;
+                _this34.addFormZone.start = null;
                 jquery__WEBPACK_IMPORTED_MODULE_5__("#closeModal5").click();
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                   type: 'success',
@@ -3461,10 +3472,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   timer: 1500
                 });
 
-                _this33.ngOnInit();
+                _this34.ngOnInit();
               }
             }, function (error) {
-              return _this33.responseError(error);
+              return _this34.responseError(error);
             });
           } else {
             sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
@@ -3478,7 +3489,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "delete",
         value: function _delete(_formZone) {
-          var _this34 = this;
+          var _this35 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
             customClass: {
@@ -3496,10 +3507,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this34._zone.deleteZone(_formZone).subscribe(function (data) {
+              _this35._zone.deleteZone(_formZone).subscribe(function (data) {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Deleted!', 'Your zone has been deleted.', 'success');
 
-                _this34.ngOnInit();
+                _this35.ngOnInit();
               });
             }
           });
@@ -3507,7 +3518,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "editZone",
         value: function editZone() {
-          var _this35 = this;
+          var _this36 = this;
 
           this._zone.editZone(this.editFormZone.id_zone, this.editFormZone).subscribe(function (data) {
             jquery__WEBPACK_IMPORTED_MODULE_5__("#closeModal4").click();
@@ -3518,7 +3529,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               timer: 1500
             });
 
-            _this35.ngOnInit();
+            _this36.ngOnInit();
           }, function (error) {});
         }
       }, {
@@ -3759,6 +3770,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.calendarService = calendarService;
         this.headquarters = [];
         this.dashboards = [];
+        this.loadding = false;
         this.formAddReserve = {
           id_reservation: null,
           created_at: null,
@@ -3837,12 +3849,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(DashboardComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this36 = this;
+          var _this37 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this36.loadUser(data);
+            _this37.loadUser(data);
 
-            _this36.listVehicles();
+            _this37.listVehicles();
           });
           this.dashboardCalendarDates();
         }
@@ -3866,7 +3878,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "calendarDates",
         value: function calendarDates() {
-          var _this37 = this;
+          var _this38 = this;
 
           var since2 = moment__WEBPACK_IMPORTED_MODULE_13__().add(2, 'd').recur().every(7).days();
           var fecha = this.dashboardForm.reserveDate.month + '/' + this.dashboardForm.reserveDate.day + '/' + this.dashboardForm.reserveDate.year;
@@ -3886,30 +3898,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var selectedDate = new _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_11__["NgbDate"](this.arrayAux[0], this.arrayAux[1], this.arrayAux[2]);
 
           this.isDisabled = function (date, current) {
-            return _this37.calendarService.getWeekday(selectedDate) != _this37.calendarService.getWeekday(date);
+            return _this38.calendarService.getWeekday(selectedDate) != _this38.calendarService.getWeekday(date);
           };
         }
       }, {
         key: "listSpaces",
         value: function listSpaces() {
-          var _this38 = this;
+          var _this39 = this;
 
           this.space.listSpaces(this.zoneModel.id_zone).subscribe(function (data) {
-            _this38.spaces = data;
+            _this39.spaces = data;
           }, function (error) {});
         }
       }, {
         key: "listHeadquarters",
         value: function listHeadquarters() {
-          var _this39 = this;
+          var _this40 = this;
 
           this.headquarters = [];
 
           this._headquarter.listHeadquarter().subscribe(function (data) {
             var hqs = data;
 
-            if (_this39.userInf.headquarter != null) {
-              _this39.headquarters.push(_this39.userInf.headquarter);
+            if (_this40.userInf.headquarter != null) {
+              _this40.headquarters.push(_this40.userInf.headquarter);
 
               var _iterator = _createForOfIteratorHelper(hqs),
                   _step;
@@ -3918,8 +3930,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 for (_iterator.s(); !(_step = _iterator.n()).done;) {
                   var hq = _step.value;
 
-                  if (hq.id_headquarter != _this39.userInf.headquarter.id_headquarter) {
-                    _this39.headquarters.push(hq);
+                  if (hq.id_headquarter != _this40.userInf.headquarter.id_headquarter) {
+                    _this40.headquarters.push(hq);
                   }
                 }
               } catch (err) {
@@ -3928,44 +3940,44 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _iterator.f();
               }
             } else {
-              _this39.headquarters = hqs;
+              _this40.headquarters = hqs;
             }
 
-            _this39.hqModel = _this39.headquarters[0];
+            _this40.hqModel = _this40.headquarters[0];
 
-            _this39.listParkings(_this39.hqModel);
+            _this40.listParkings(_this40.hqModel);
           }, function (error) {});
         }
       }, {
         key: "listParkings",
         value: function listParkings(headquarter) {
-          var _this40 = this;
+          var _this41 = this;
 
           this._parking.listParkingLotHQ(headquarter.id_headquarter).subscribe(function (data) {
             console.log(data);
-            _this40.parkings = data;
-            _this40.parkingLotModel = _this40.parkings[0];
+            _this41.parkings = data;
+            _this41.parkingLotModel = _this41.parkings[0];
 
-            _this40.listZones(_this40.parkingLotModel);
+            _this41.listZones(_this41.parkingLotModel);
           }, function (error) {});
         }
       }, {
         key: "listZones",
         value: function listZones(parking_lot) {
-          var _this41 = this;
+          var _this42 = this;
 
           this._zone.listZoneByPKLot(parking_lot.id_parking_lot).subscribe(function (data) {
-            _this41.zones = data;
-            _this41.zoneModel = _this41.zones[0];
+            _this42.zones = data;
+            _this42.zoneModel = _this42.zones[0];
           }, function (error) {});
         }
       }, {
         key: "listVehicles",
         value: function listVehicles() {
-          var _this42 = this;
+          var _this43 = this;
 
           this._vehicle.listVehicle(this.userInf.id).subscribe(function (data) {
-            _this42.vehicles = data;
+            _this43.vehicles = data;
           }, function (error) {});
         }
       }, {
@@ -4123,8 +4135,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loadAvailableTimes",
         value: function loadAvailableTimes() {
-          var _this43 = this;
+          var _this44 = this;
 
+          this.loadding = true;
           var zone = this.zoneModel.id_zone;
 
           if (zone != null && this.dashboardForm.reserveDate != null) {
@@ -4133,13 +4146,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.listSpaces();
 
             this._dashboard.listTimes(zone, this.calendarModel).subscribe(function (data) {
-              _this43.spacesContainer = [];
+              _this44.loadding = false;
+              _this44.spacesContainer = [];
               var keysArray = Object.keys(data);
 
               var _loop = function _loop() {
                 var space = _keysArray[_i];
 
-                var tempSpace = _this43.spaces.find(function (element) {
+                var tempSpace = _this44.spaces.find(function (element) {
                   return element.id_space == space;
                 });
 
@@ -4178,14 +4192,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 espacio.range = contenedor;
 
-                _this43.spacesContainer.push(espacio);
+                _this44.spacesContainer.push(espacio);
               };
 
               for (var _i = 0, _keysArray = keysArray; _i < _keysArray.length; _i++) {
                 _loop();
               }
-            }, function (error) {});
+            }, function (error) {
+              _this44.loadding = false;
+            });
           } else {
+            this.loadding = false;
             sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
               type: 'error',
               title: 'Oops...',
@@ -4197,7 +4214,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "addReserve",
         value: function addReserve() {
-          var _this44 = this;
+          var _this45 = this;
 
           if (this.formAddDetail.start_time == null || this.formAddDetail.end_time == null) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
@@ -4273,16 +4290,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   });
                   var email = {
                     id: null,
-                    to: _this44.userNotifications.email,
-                    subject: "RESERVE " + _this44.formAddDetail.date,
+                    to: _this45.userNotifications.email,
+                    subject: "RESERVE " + _this45.formAddDetail.date,
                     text: "Your reservation has been saved!",
                     viewed: false,
                     user_id: {
-                      id: _this44.userNotifications.id
+                      id: _this45.userNotifications.id
                     }
                   };
 
-                  _this44.emails.sendEmail(email).subscribe(function (data) {});
+                  _this45.emails.sendEmail(email).subscribe(function (data) {});
                 } else {
                   jquery__WEBPACK_IMPORTED_MODULE_16__("#closeReserveModal").click();
                   sweetalert2__WEBPACK_IMPORTED_MODULE_7___default.a.fire({
@@ -4292,12 +4309,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   });
                 }
 
-                _this44.extendReserveForm.extendReserveDate = null;
-                _this44.calendarModelExtend = null;
+                _this45.extendReserveForm.extendReserveDate = null;
+                _this45.calendarModelExtend = null;
 
-                _this44.ngOnInit();
+                _this45.ngOnInit();
 
-                _this44.loadAvailableTimes();
+                _this45.loadAvailableTimes();
               }
             }, function (error) {
               console.log(error);
@@ -4592,16 +4609,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(HandbookComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this45 = this;
+          var _this46 = this;
 
           jquery__WEBPACK_IMPORTED_MODULE_2__('html, body').animate({
             scrollTop: 0
           }, '300');
           this.auth.authStatus.subscribe(function (value) {
-            return _this45.loggedIn = value;
+            return _this46.loggedIn = value;
           });
           this.auth.adminStatus.subscribe(function (value) {
-            return _this45.type = value;
+            return _this46.type = value;
           });
         }
       }]);
@@ -4645,7 +4662,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".login{\n  background-image: url('/assets/avantica.jpg');\n  width: 100%;\n  height: 100%;\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n  overflow: hidden;\n  position: relative;\n  right: 0; \n  top: 10;\n  \n}\n.card{\n    color: white;\n    background: rgba(0,0,0,.8);\n    padding: 40px;\n    border-radius: 10px;\n    box-shadow: 0px 0px 10px 0px #000;\n  }\n.white-text{\n     color: white;\n }\n.btnLogin{\n    background-color: #fff;\n    color:#454685;\n    border-color: #454685;\n}\n.btnLogin:hover{\n\tcolor: white;\n\tbackground-color: #454685;\n}\n.menu{\n  \n  background-image: url('/assets/avantica.jpg');\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n  width: 101%;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  right: 0; \n  top: 10;\n\n}\n.container\n{\n  position: relative;\n  max-width: 100%;\n  display: grid;\n  grid-template-columns: repeat( auto-fill , minmax(300px, 1fr) );\n  grid-template-rows: minmax(100px, auto);\n  margin: 40px;\n  grid-auto-flow: dense;\n  grid-gap: 10px;\n}\n.container .box{\n  background: rgba(0,0,0,.8);\n  padding: 20px;\n  display: grid;\n  font-size: 20px;\n  place-items: center;\n  text-align: center;\n  color: #fff;\n  transition: 0.5s;\n  box-shadow: 0px 0px 10px 0px #000;\n \n\n}\n.container .box:hover \n{\n  background: #2F2D46;\n  \n}\n.container .box img\n{\n  position: relative;\n  max-width: 100px;\n  margin-bottom: 10px;\n  transition: transform .5s;\n}\n.container .box:hover img\n{\n  transform: scale(1.5);\n}\n.container .box:nth-child(1)\n{\n  grid-column: span 2;\n  grid-row: span 1;\n}\n.container .box:nth-child(2)\n{\n  grid-column: span 1;\n  grid-row: span 2;\n}\n.container .box:nth-child(4)\n{\n  grid-column: span 1;\n  grid-row: span 2;\n\n\n}\n.container .box:nth-child(5)\n{\n  grid-column: span 3;\n  grid-row: span 1;\n\n}\n@media (max-width: 991px)\n{\n  .container\n  {\n      grid-template-columns: repeat( auto-fill , minmax(50%, 1fr) );\n      grid-template-rows: minmax(auto, auto);\n  }\n  .container .box\n  {\n      grid-column: unset !important;\n      grid-row: unset !important;\n  }\n  .row{\n  \n    background-image: url('/assets/avantica.jpg');\n    width: 104%;\n  \n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkNBQTZDO0VBQzdDLFdBQVc7RUFDWCxZQUFZO0VBQ1osMEJBQTBCO0VBQzFCLDRCQUE0QjtFQUM1QixnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixPQUFPOztBQUVUO0FBQ0E7SUFDSSxZQUFZO0lBQ1osMEJBQTBCO0lBQzFCLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsaUNBQWlDO0VBQ25DO0FBQ0Q7S0FDSSxZQUFZO0NBQ2hCO0FBQ0E7SUFDRyxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLHFCQUFxQjtBQUN6QjtBQUNBO0NBQ0MsWUFBWTtDQUNaLHlCQUF5QjtBQUMxQjtBQUVBOztFQUVFLDZDQUE2QztFQUM3QywwQkFBMEI7RUFDMUIsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxZQUFZO0VBQ1osZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsT0FBTzs7QUFFVDtBQUNBOztFQUVFLGtCQUFrQjtFQUNsQixlQUFlO0VBQ2YsYUFBYTtFQUNiLCtEQUErRDtFQUMvRCx1Q0FBdUM7RUFDdkMsWUFBWTtFQUNaLHFCQUFxQjtFQUNyQixjQUFjO0FBQ2hCO0FBQ0E7RUFDRSwwQkFBMEI7RUFDMUIsYUFBYTtFQUNiLGFBQWE7RUFDYixlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsZ0JBQWdCO0VBQ2hCLGlDQUFpQzs7O0FBR25DO0FBQ0E7O0VBRUUsbUJBQW1COztBQUVyQjtBQUNBOztFQUVFLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0VBQ25CLHlCQUF5QjtBQUMzQjtBQUNBOztFQUVFLHFCQUFxQjtBQUN2QjtBQUNBOztFQUVFLG1CQUFtQjtFQUNuQixnQkFBZ0I7QUFDbEI7QUFDQTs7RUFFRSxtQkFBbUI7RUFDbkIsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsbUJBQW1CO0VBQ25CLGdCQUFnQjs7O0FBR2xCO0FBQ0E7O0VBRUUsbUJBQW1CO0VBQ25CLGdCQUFnQjs7QUFFbEI7QUFFQTs7RUFFRTs7TUFFSSw2REFBNkQ7TUFDN0Qsc0NBQXNDO0VBQzFDO0VBQ0E7O01BRUksNkJBQTZCO01BQzdCLDBCQUEwQjtFQUM5QjtFQUNBOztJQUVFLDZDQUE2QztJQUM3QyxXQUFXOztFQUViO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9naW57XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybCgnL2Fzc2V0cy9hdmFudGljYS5qcGcnKTtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMTAwJTtcbiAgYmFja2dyb3VuZC1zaXplOiAxMDAlIDEwMCU7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgcmlnaHQ6IDA7IFxuICB0b3A6IDEwO1xuICBcbn1cbi5jYXJke1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsMCwwLC44KTtcbiAgICBwYWRkaW5nOiA0MHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgYm94LXNoYWRvdzogMHB4IDBweCAxMHB4IDBweCAjMDAwO1xuICB9XG4gLndoaXRlLXRleHR7XG4gICAgIGNvbG9yOiB3aGl0ZTtcbiB9XG4gLmJ0bkxvZ2lue1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgY29sb3I6IzQ1NDY4NTtcbiAgICBib3JkZXItY29sb3I6ICM0NTQ2ODU7XG59XG4uYnRuTG9naW46aG92ZXJ7XG5cdGNvbG9yOiB3aGl0ZTtcblx0YmFja2dyb3VuZC1jb2xvcjogIzQ1NDY4NTtcbn1cblxuLm1lbnV7XG4gIFxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy9hc3NldHMvYXZhbnRpY2EuanBnJyk7XG4gIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICB3aWR0aDogMTAxJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHJpZ2h0OiAwOyBcbiAgdG9wOiAxMDtcblxufVxuLmNvbnRhaW5lclxue1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC13aWR0aDogMTAwJTtcbiAgZGlzcGxheTogZ3JpZDtcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoIGF1dG8tZmlsbCAsIG1pbm1heCgzMDBweCwgMWZyKSApO1xuICBncmlkLXRlbXBsYXRlLXJvd3M6IG1pbm1heCgxMDBweCwgYXV0byk7XG4gIG1hcmdpbjogNDBweDtcbiAgZ3JpZC1hdXRvLWZsb3c6IGRlbnNlO1xuICBncmlkLWdhcDogMTBweDtcbn1cbi5jb250YWluZXIgLmJveHtcbiAgYmFja2dyb3VuZDogcmdiYSgwLDAsMCwuOCk7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgcGxhY2UtaXRlbXM6IGNlbnRlcjtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogI2ZmZjtcbiAgdHJhbnNpdGlvbjogMC41cztcbiAgYm94LXNoYWRvdzogMHB4IDBweCAxMHB4IDBweCAjMDAwO1xuIFxuXG59XG4uY29udGFpbmVyIC5ib3g6aG92ZXIgXG57XG4gIGJhY2tncm91bmQ6ICMyRjJENDY7XG4gIFxufVxuLmNvbnRhaW5lciAuYm94IGltZ1xue1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC13aWR0aDogMTAwcHg7XG4gIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSAuNXM7XG59XG4uY29udGFpbmVyIC5ib3g6aG92ZXIgaW1nXG57XG4gIHRyYW5zZm9ybTogc2NhbGUoMS41KTtcbn1cbi5jb250YWluZXIgLmJveDpudGgtY2hpbGQoMSlcbntcbiAgZ3JpZC1jb2x1bW46IHNwYW4gMjtcbiAgZ3JpZC1yb3c6IHNwYW4gMTtcbn1cbi5jb250YWluZXIgLmJveDpudGgtY2hpbGQoMilcbntcbiAgZ3JpZC1jb2x1bW46IHNwYW4gMTtcbiAgZ3JpZC1yb3c6IHNwYW4gMjtcbn1cbi5jb250YWluZXIgLmJveDpudGgtY2hpbGQoNClcbntcbiAgZ3JpZC1jb2x1bW46IHNwYW4gMTtcbiAgZ3JpZC1yb3c6IHNwYW4gMjtcblxuXG59XG4uY29udGFpbmVyIC5ib3g6bnRoLWNoaWxkKDUpXG57XG4gIGdyaWQtY29sdW1uOiBzcGFuIDM7XG4gIGdyaWQtcm93OiBzcGFuIDE7XG5cbn1cblxuQG1lZGlhIChtYXgtd2lkdGg6IDk5MXB4KVxue1xuICAuY29udGFpbmVyXG4gIHtcbiAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KCBhdXRvLWZpbGwgLCBtaW5tYXgoNTAlLCAxZnIpICk7XG4gICAgICBncmlkLXRlbXBsYXRlLXJvd3M6IG1pbm1heChhdXRvLCBhdXRvKTtcbiAgfVxuICAuY29udGFpbmVyIC5ib3hcbiAge1xuICAgICAgZ3JpZC1jb2x1bW46IHVuc2V0ICFpbXBvcnRhbnQ7XG4gICAgICBncmlkLXJvdzogdW5zZXQgIWltcG9ydGFudDtcbiAgfVxuICAucm93e1xuICBcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy9hc3NldHMvYXZhbnRpY2EuanBnJyk7XG4gICAgd2lkdGg6IDEwNCU7XG4gIFxuICB9XG59Il19 */";
+    __webpack_exports__["default"] = ".login{\n  background-image: url('/assets/avantica.jpg');\n  width: 100%;\n  height: 80vh;\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n  overflow: hidden;\n  position: relative;\n  right: 0; \n  top: 10;\n  background-size: cover;\n}\n.card{\n    color: white;\n    background: rgba(0,0,0,.8);\n    padding: 40px;\n    border-radius: 10px;\n    box-shadow: 0px 0px 10px 0px #000;\n  }\n.white-text{\n     color: white;\n }\n.btnLogin{\n    background-color: #fff;\n    color:#454685;\n    border-color: #454685;\n}\n.btnLogin:hover{\n\tcolor: white;\n\tbackground-color: #454685;\n}\n.menu{\n  \n  background-image: url('/assets/avantica.jpg');\n  background-size: 100% 100%;\n  background-repeat: no-repeat;\n  width: 101%;\n  height: 100%;\n  overflow: hidden;\n  position: relative;\n  right: 0; \n  top: 10;\n\n}\n.container\n{\n  position: relative;\n  max-width: 100%;\n  display: grid;\n  grid-template-columns: repeat( auto-fill , minmax(300px, 1fr) );\n  grid-template-rows: minmax(100px, auto);\n  margin: 40px;\n  grid-auto-flow: dense;\n  grid-gap: 10px;\n}\n.container .box{\n  background: rgba(0,0,0,.8);\n  padding: 20px;\n  display: grid;\n  font-size: 20px;\n  place-items: center;\n  text-align: center;\n  color: #fff;\n  transition: 0.5s;\n  box-shadow: 0px 0px 10px 0px #000;\n \n\n}\n.container .box:hover \n{\n  background: #2F2D46;\n  \n}\n.container .box img\n{\n  position: relative;\n  max-width: 100px;\n  margin-bottom: 10px;\n  transition: transform .5s;\n}\n.container .box:hover img\n{\n  transform: scale(1.5);\n}\n.container .box:nth-child(1)\n{\n  grid-column: span 2;\n  grid-row: span 1;\n}\n.container .box:nth-child(2)\n{\n  grid-column: span 1;\n  grid-row: span 2;\n}\n.container .box:nth-child(4)\n{\n  grid-column: span 1;\n  grid-row: span 2;\n\n\n}\n.container .box:nth-child(5)\n{\n  grid-column: span 3;\n  grid-row: span 1;\n\n}\n@media (max-width: 991px)\n{\n  .container\n  {\n      grid-template-columns: repeat( auto-fill , minmax(50%, 1fr) );\n      grid-template-rows: minmax(auto, auto);\n  }\n  .container .box\n  {\n      grid-column: unset !important;\n      grid-row: unset !important;\n  }\n  .row{\n  \n    background-image: url('/assets/avantica.jpg');\n    width: 104%;\n  \n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsNkNBQTZDO0VBQzdDLFdBQVc7RUFDWCxZQUFZO0VBQ1osMEJBQTBCO0VBQzFCLDRCQUE0QjtFQUM1QixnQkFBZ0I7RUFDaEIsa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixPQUFPO0VBSVAsc0JBQXNCO0FBQ3hCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osMEJBQTBCO0lBQzFCLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsaUNBQWlDO0VBQ25DO0FBQ0Q7S0FDSSxZQUFZO0NBQ2hCO0FBQ0E7SUFDRyxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLHFCQUFxQjtBQUN6QjtBQUNBO0NBQ0MsWUFBWTtDQUNaLHlCQUF5QjtBQUMxQjtBQUVBOztFQUVFLDZDQUE2QztFQUM3QywwQkFBMEI7RUFDMUIsNEJBQTRCO0VBQzVCLFdBQVc7RUFDWCxZQUFZO0VBQ1osZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsT0FBTzs7QUFFVDtBQUNBOztFQUVFLGtCQUFrQjtFQUNsQixlQUFlO0VBQ2YsYUFBYTtFQUNiLCtEQUErRDtFQUMvRCx1Q0FBdUM7RUFDdkMsWUFBWTtFQUNaLHFCQUFxQjtFQUNyQixjQUFjO0FBQ2hCO0FBQ0E7RUFDRSwwQkFBMEI7RUFDMUIsYUFBYTtFQUNiLGFBQWE7RUFDYixlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLGtCQUFrQjtFQUNsQixXQUFXO0VBQ1gsZ0JBQWdCO0VBQ2hCLGlDQUFpQzs7O0FBR25DO0FBQ0E7O0VBRUUsbUJBQW1COztBQUVyQjtBQUNBOztFQUVFLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0VBQ25CLHlCQUF5QjtBQUMzQjtBQUNBOztFQUVFLHFCQUFxQjtBQUN2QjtBQUNBOztFQUVFLG1CQUFtQjtFQUNuQixnQkFBZ0I7QUFDbEI7QUFDQTs7RUFFRSxtQkFBbUI7RUFDbkIsZ0JBQWdCO0FBQ2xCO0FBQ0E7O0VBRUUsbUJBQW1CO0VBQ25CLGdCQUFnQjs7O0FBR2xCO0FBQ0E7O0VBRUUsbUJBQW1CO0VBQ25CLGdCQUFnQjs7QUFFbEI7QUFFQTs7RUFFRTs7TUFFSSw2REFBNkQ7TUFDN0Qsc0NBQXNDO0VBQzFDO0VBQ0E7O01BRUksNkJBQTZCO01BQzdCLDBCQUEwQjtFQUM5QjtFQUNBOztJQUVFLDZDQUE2QztJQUM3QyxXQUFXOztFQUViO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2xvZ2luL2xvZ2luLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubG9naW57XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybCgnL2Fzc2V0cy9hdmFudGljYS5qcGcnKTtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogODB2aDtcbiAgYmFja2dyb3VuZC1zaXplOiAxMDAlIDEwMCU7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgcmlnaHQ6IDA7IFxuICB0b3A6IDEwO1xuICAtd2Via2l0LWJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIC1tb3otYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgLW8tYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3Zlcjtcbn1cbi5jYXJke1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsMCwwLC44KTtcbiAgICBwYWRkaW5nOiA0MHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XG4gICAgYm94LXNoYWRvdzogMHB4IDBweCAxMHB4IDBweCAjMDAwO1xuICB9XG4gLndoaXRlLXRleHR7XG4gICAgIGNvbG9yOiB3aGl0ZTtcbiB9XG4gLmJ0bkxvZ2lue1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgY29sb3I6IzQ1NDY4NTtcbiAgICBib3JkZXItY29sb3I6ICM0NTQ2ODU7XG59XG4uYnRuTG9naW46aG92ZXJ7XG5cdGNvbG9yOiB3aGl0ZTtcblx0YmFja2dyb3VuZC1jb2xvcjogIzQ1NDY4NTtcbn1cblxuLm1lbnV7XG4gIFxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy9hc3NldHMvYXZhbnRpY2EuanBnJyk7XG4gIGJhY2tncm91bmQtc2l6ZTogMTAwJSAxMDAlO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICB3aWR0aDogMTAxJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHJpZ2h0OiAwOyBcbiAgdG9wOiAxMDtcblxufVxuLmNvbnRhaW5lclxue1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC13aWR0aDogMTAwJTtcbiAgZGlzcGxheTogZ3JpZDtcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoIGF1dG8tZmlsbCAsIG1pbm1heCgzMDBweCwgMWZyKSApO1xuICBncmlkLXRlbXBsYXRlLXJvd3M6IG1pbm1heCgxMDBweCwgYXV0byk7XG4gIG1hcmdpbjogNDBweDtcbiAgZ3JpZC1hdXRvLWZsb3c6IGRlbnNlO1xuICBncmlkLWdhcDogMTBweDtcbn1cbi5jb250YWluZXIgLmJveHtcbiAgYmFja2dyb3VuZDogcmdiYSgwLDAsMCwuOCk7XG4gIHBhZGRpbmc6IDIwcHg7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgcGxhY2UtaXRlbXM6IGNlbnRlcjtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBjb2xvcjogI2ZmZjtcbiAgdHJhbnNpdGlvbjogMC41cztcbiAgYm94LXNoYWRvdzogMHB4IDBweCAxMHB4IDBweCAjMDAwO1xuIFxuXG59XG4uY29udGFpbmVyIC5ib3g6aG92ZXIgXG57XG4gIGJhY2tncm91bmQ6ICMyRjJENDY7XG4gIFxufVxuLmNvbnRhaW5lciAuYm94IGltZ1xue1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC13aWR0aDogMTAwcHg7XG4gIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSAuNXM7XG59XG4uY29udGFpbmVyIC5ib3g6aG92ZXIgaW1nXG57XG4gIHRyYW5zZm9ybTogc2NhbGUoMS41KTtcbn1cbi5jb250YWluZXIgLmJveDpudGgtY2hpbGQoMSlcbntcbiAgZ3JpZC1jb2x1bW46IHNwYW4gMjtcbiAgZ3JpZC1yb3c6IHNwYW4gMTtcbn1cbi5jb250YWluZXIgLmJveDpudGgtY2hpbGQoMilcbntcbiAgZ3JpZC1jb2x1bW46IHNwYW4gMTtcbiAgZ3JpZC1yb3c6IHNwYW4gMjtcbn1cbi5jb250YWluZXIgLmJveDpudGgtY2hpbGQoNClcbntcbiAgZ3JpZC1jb2x1bW46IHNwYW4gMTtcbiAgZ3JpZC1yb3c6IHNwYW4gMjtcblxuXG59XG4uY29udGFpbmVyIC5ib3g6bnRoLWNoaWxkKDUpXG57XG4gIGdyaWQtY29sdW1uOiBzcGFuIDM7XG4gIGdyaWQtcm93OiBzcGFuIDE7XG5cbn1cblxuQG1lZGlhIChtYXgtd2lkdGg6IDk5MXB4KVxue1xuICAuY29udGFpbmVyXG4gIHtcbiAgICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KCBhdXRvLWZpbGwgLCBtaW5tYXgoNTAlLCAxZnIpICk7XG4gICAgICBncmlkLXRlbXBsYXRlLXJvd3M6IG1pbm1heChhdXRvLCBhdXRvKTtcbiAgfVxuICAuY29udGFpbmVyIC5ib3hcbiAge1xuICAgICAgZ3JpZC1jb2x1bW46IHVuc2V0ICFpbXBvcnRhbnQ7XG4gICAgICBncmlkLXJvdzogdW5zZXQgIWltcG9ydGFudDtcbiAgfVxuICAucm93e1xuICBcbiAgICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy9hc3NldHMvYXZhbnRpY2EuanBnJyk7XG4gICAgd2lkdGg6IDEwNCU7XG4gIFxuICB9XG59Il19 */";
     /***/
   },
 
@@ -4705,13 +4722,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoginComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this46 = this;
+          var _this47 = this;
 
           this.auth.authStatus.subscribe(function (value) {
-            return _this46.loggedIn = value;
+            return _this47.loggedIn = value;
           });
           this.auth.adminStatus.subscribe(function (value) {
-            return _this46.type = value;
+            return _this47.type = value;
           });
         }
       }]);
@@ -4883,45 +4900,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getData",
         value: function getData() {
-          var _this47 = this;
+          var _this48 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this47.loadUser(data);
+            _this48.loadUser(data);
 
-            _this47.listarReservas();
+            _this48.listarReservas();
 
-            _this47.listVehicles();
+            _this48.listVehicles();
           }, function (error) {});
         }
       }, {
         key: "listVehicles",
         value: function listVehicles() {
-          var _this48 = this;
+          var _this49 = this;
 
           this._vehicle.listVehicle("vehiculo").subscribe(function (data) {
-            _this48.vehicles = data;
+            _this49.vehicles = data;
           }, function (error) {});
         }
       }, {
         key: "listarReservas",
         value: function listarReservas() {
-          var _this49 = this;
+          var _this50 = this;
 
           var us = this.formUser.id; //?
 
           this._myReserves.listUserReserves(this.formUser.id).subscribe(function (data) {
-            _this49.validDetail = [];
-            _this49.reserves = data;
+            _this50.validDetail = [];
+            _this50.reserves = data;
 
-            var _iterator4 = _createForOfIteratorHelper(_this49.reserves),
+            var _iterator4 = _createForOfIteratorHelper(_this50.reserves),
                 _step4;
 
             try {
               for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
                 var reserve = _step4.value;
-                _this49.emply = false;
+                _this50.emply = false;
 
-                _this49.listValidDetails(reserve.id_reservation);
+                _this50.listValidDetails(reserve.id_reservation);
               }
             } catch (err) {
               _iterator4.e(err);
@@ -4933,7 +4950,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "listValidDetails",
         value: function listValidDetails(reserve_id) {
-          var _this50 = this;
+          var _this51 = this;
 
           this._myReserves.listUserValidReservesDetails(reserve_id).subscribe(function (data) {
             var detail = [];
@@ -4952,7 +4969,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   item.date = dateAux;
                   item.reserve.created_at = item.reserve.created_at.substring(0, 10);
 
-                  _this50.validDetail.push(item);
+                  _this51.validDetail.push(item);
                 }
               } catch (err) {
                 _iterator5.e(err);
@@ -4961,13 +4978,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               }
             }
 
-            console.log(_this50.validDetail);
+            console.log(_this51.validDetail);
           }, function (error) {});
         }
       }, {
         key: "cancelReserve",
         value: function cancelReserve(reserve_detail) {
-          var _this51 = this;
+          var _this52 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
             customClass: {
@@ -4985,22 +5002,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this51._myReserves.cancelReserve(reserve_detail).subscribe(function (data) {
-                _this51.ngOnInit();
+              _this52._myReserves.cancelReserve(reserve_detail).subscribe(function (data) {
+                _this52.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Deleted!', 'Your reservation has been successfully canceled', 'success');
                 var email = {
                   id: null,
-                  to: _this51.userNotifications.email,
+                  to: _this52.userNotifications.email,
                   subject: "RESERVE CANCELE",
                   text: "Your reservation has been successfully canceled!",
                   viewed: false,
                   user_id: {
-                    id: _this51.userNotifications.id
+                    id: _this52.userNotifications.id
                   }
                 };
 
-                _this51.emails.sendEmail(email).subscribe(function (data) {});
+                _this52.emails.sendEmail(email).subscribe(function (data) {});
               }, function (error) {});
             }
           });
@@ -5132,25 +5149,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this52 = this;
+          var _this53 = this;
 
           this.auth.authStatus.subscribe(function (value) {
-            return _this52.loggedIn = value;
+            return _this53.loggedIn = value;
           });
           this.auth.adminStatus.subscribe(function (value) {
-            return _this52.admin = value;
+            return _this53.admin = value;
           });
           this.getAsyncData();
         }
       }, {
         key: "notificationsUser",
         value: function notificationsUser(data) {
-          var _this53 = this;
+          var _this54 = this;
 
           this.notifications = 0;
           data.forEach(function (element) {
             if (!element.viewed) {
-              _this53.notifications++;
+              _this54.notifications++;
             }
           });
           this.notificationsArray = data;
@@ -5158,16 +5175,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "notificationViewed",
         value: function notificationViewed(id) {
-          var _this54 = this;
+          var _this55 = this;
 
           this.notificationsService.changeViewed(id).subscribe(function (data) {
-            _this54.notifications = 0;
+            _this55.notifications = 0;
           });
         }
       }, {
         key: "loadUser",
         value: function loadUser(data) {
-          var _this55 = this;
+          var _this56 = this;
 
           this.userInf = data;
 
@@ -5188,18 +5205,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           this.img = data.imageUrl;
           setTimeout(function () {
-            _this55.notificationsService.userNotifications(data.id).subscribe(function (data) {
-              _this55.notificationsUser(data);
+            _this56.notificationsService.userNotifications(data.id).subscribe(function (data) {
+              _this56.notificationsUser(data);
             });
           }, 1000);
         }
       }, {
         key: "deleteNotifications",
         value: function deleteNotifications(n) {
-          var _this56 = this;
+          var _this57 = this;
 
           this.notificationsService.deleteNotification(n.id).subscribe(function (data) {
-            _this56.getAsyncData();
+            _this57.getAsyncData();
           });
         }
       }, {
@@ -5215,7 +5232,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getAsyncData",
         value: function getAsyncData() {
           return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var _this57 = this;
+            var _this58 = this;
 
             return regeneratorRuntime.wrap(function _callee$(_context) {
               while (1) {
@@ -5226,20 +5243,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       this.auth.changeAuthStatus(false);
                     } else {
                       this.user.loadImg().subscribe(function (data) {
-                        _this57.loadUser(data);
+                        _this58.loadUser(data);
                       }, function (error) {
-                        _this57.auth.changeAdminStatus(false);
+                        _this58.auth.changeAdminStatus(false);
 
-                        _this57.auth.changeAuthStatus(false);
+                        _this58.auth.changeAuthStatus(false);
 
                         localStorage.removeItem('accessToken');
 
-                        _this57.router.navigateByUrl('');
+                        _this58.router.navigateByUrl('');
                       });
                     }
 
                     setTimeout(function () {
-                      _this57.getAsyncData();
+                      _this58.getAsyncData();
                     }, 8000);
 
                   case 2:
@@ -5351,7 +5368,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var Oauth2Component = /*#__PURE__*/function () {
       function Oauth2Component(router, user, auth) {
-        var _this58 = this;
+        var _this59 = this;
 
         _classCallCheck(this, Oauth2Component);
 
@@ -5365,12 +5382,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         if (this.token) {
           localStorage.setItem('accessToken', this.token);
           this.auth.authStatus.subscribe(function (value) {
-            return _this58.loggedIn = value;
+            return _this59.loggedIn = value;
           });
 
           if (!this.loggedIn) {
             setTimeout(function () {
-              _this58.router.navigateByUrl('');
+              _this59.router.navigateByUrl('');
             }, 2004);
             setTimeout(function () {
               location.reload();
@@ -5516,13 +5533,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UserPanelComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this59 = this;
+          var _this60 = this;
 
           this.h.listHeadquarter().subscribe(function (data) {
-            _this59.headquarters = data;
+            _this60.headquarters = data;
           });
           this.user.loadImg().subscribe(function (data) {
-            _this59.loadUser(data);
+            _this60.loadUser(data);
           });
         }
       }, {
@@ -5542,7 +5559,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "allocateHeadquarters",
         value: function allocateHeadquarters() {
-          var _this60 = this;
+          var _this61 = this;
 
           var headquarter = {
             id_headquarter: this.u.headquarter,
@@ -5551,7 +5568,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             city: null
           };
           this.auth.adminStatus.subscribe(function (value) {
-            return _this60.u.role = value;
+            return _this61.u.role = value;
           });
           this.u.headquarter = headquarter;
           this.user.modify(this.u).subscribe(function (data) {
@@ -5562,7 +5579,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               timer: 4500
             });
 
-            _this60.ngOnInit();
+            _this61.ngOnInit();
           }, function (error) {
             sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
               type: 'error',
@@ -5733,47 +5750,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getData",
         value: function getData() {
-          var _this61 = this;
+          var _this62 = this;
 
           this.user.loadImg().subscribe(function (data) {
-            _this61.loadUser(data);
+            _this62.loadUser(data);
 
-            _this61.listVehicles();
+            _this62.listVehicles();
           }, function (error) {});
         }
       }, {
         key: "listVehicles",
         value: function listVehicles() {
-          var _this62 = this;
+          var _this63 = this;
 
           this.vehicle.listVehicle(this.formUser.id).subscribe(function (data) {
-            _this62.vehicles = data;
+            _this63.vehicles = data;
           }, function (error) {});
         }
       }, {
         key: "addVehicle",
         value: function addVehicle() {
-          var _this63 = this;
+          var _this64 = this;
 
           this.addFormVehicle.user.id = this.formUser.id;
           this.vehicle.addVehicle(this.addFormVehicle).subscribe(function (data) {
-            _this63.nullVehicle = data;
+            _this64.nullVehicle = data;
 
-            if (_this63.nullVehicle.license_plate === null) {
+            if (_this64.nullVehicle.license_plate === null) {
               //si viene vacio el vehiculo ya esta registrado
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'error',
                 title: 'Oops...',
-                text: 'A vehicle with the license plate ' + _this63.addFormVehicle.license_plate + ' has already been registered!',
+                text: 'A vehicle with the license plate ' + _this64.addFormVehicle.license_plate + ' has already been registered!',
                 confirmButtonColor: '#EF4023'
               });
             } else {
-              _this63.responseSuccess(data);
+              _this64.responseSuccess(data);
 
-              _this63.addFormVehicle.license_plate = null;
-              _this63.addFormVehicle.brand = null;
-              _this63.addFormVehicle.model = null;
-              _this63.addFormVehicle.user.id = null;
+              _this64.addFormVehicle.license_plate = null;
+              _this64.addFormVehicle.brand = null;
+              _this64.addFormVehicle.model = null;
+              _this64.addFormVehicle.user.id = null;
               sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
                 type: 'success',
                 title: 'The vehicle has been saved',
@@ -5782,14 +5799,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               });
               jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal1").click();
 
-              _this63.ngOnInit();
+              _this64.ngOnInit();
             }
           }, function (error) {});
         }
       }, {
         key: "deleteVehicle",
         value: function deleteVehicle(_formVehicle) {
-          var _this64 = this;
+          var _this65 = this;
 
           var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
             customClass: {
@@ -5807,8 +5824,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             reverseButtons: true
           }).then(function (result) {
             if (result.value) {
-              _this64.vehicle.deleteVehicle(_formVehicle).subscribe(function (data) {
-                _this64.ngOnInit();
+              _this65.vehicle.deleteVehicle(_formVehicle).subscribe(function (data) {
+                _this65.ngOnInit();
 
                 sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Deleted!', 'Your file has been deleted.', 'success');
               }, function (error) {
@@ -5825,7 +5842,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "editVehicle",
         value: function editVehicle() {
-          var _this65 = this;
+          var _this66 = this;
 
           this.vehicle.editVehicle(this.oldLicensePlate, this.editFormVehicle).subscribe(function (data) {
             jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal1").click();
@@ -5837,7 +5854,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             });
             jquery__WEBPACK_IMPORTED_MODULE_4__("#closeModal").click();
 
-            _this65.ngOnInit();
+            _this66.ngOnInit();
           }, function (error) {});
         }
       }, {
@@ -6495,14 +6512,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AdminAfterService = /*#__PURE__*/function () {
       function AdminAfterService(auth, router) {
-        var _this66 = this;
+        var _this67 = this;
 
         _classCallCheck(this, AdminAfterService);
 
         this.auth = auth;
         this.router = router;
         this.auth.adminStatus.subscribe(function (value) {
-          return _this66.admin = value;
+          return _this67.admin = value;
         });
       }
 
@@ -6580,14 +6597,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var AfterLoginService = /*#__PURE__*/function () {
       function AfterLoginService(auth, router) {
-        var _this67 = this;
+        var _this68 = this;
 
         _classCallCheck(this, AfterLoginService);
 
         this.auth = auth;
         this.router = router;
         this.auth.authStatus.subscribe(function (value) {
-          return _this67.login = value;
+          return _this68.login = value;
         });
       }
 
@@ -6765,14 +6782,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var BeforeLoginService = /*#__PURE__*/function () {
       function BeforeLoginService(auth, router) {
-        var _this68 = this;
+        var _this69 = this;
 
         _classCallCheck(this, BeforeLoginService);
 
         this.auth = auth;
         this.router = router;
         this.auth.authStatus.subscribe(function (value) {
-          return _this68.loggedIn = value;
+          return _this69.loggedIn = value;
         });
       }
 

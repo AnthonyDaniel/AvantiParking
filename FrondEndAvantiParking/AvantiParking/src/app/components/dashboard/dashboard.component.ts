@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   public dashboards: any = [];
   public userNotifications;
 
+  public loadding = false;
 
   public formAddReserve = {
     id_reservation: null,
@@ -361,6 +362,7 @@ export class DashboardComponent implements OnInit {
   }
   public hide = false;
   loadAvailableTimes() {
+    this.loadding = true;
     let zone = this.zoneModel.id_zone;
     if (zone != null && this.dashboardForm.reserveDate != null) {
       this.hide = true;
@@ -368,6 +370,7 @@ export class DashboardComponent implements OnInit {
       this.listSpaces();
       this._dashboard.listTimes(zone, this.calendarModel).subscribe(
         data => {
+          this.loadding = false;
           this.spacesContainer = [];
           let keysArray = Object.keys(data);
           for (let space of keysArray) {
@@ -396,11 +399,12 @@ export class DashboardComponent implements OnInit {
             espacio.range = contenedor;
             this.spacesContainer.push(espacio);
           }
-    
         },
         error => {
+          this.loadding = false;
         });
     }else {
+      this.loadding = false;
       Swal.fire({
         type: 'error',
         title: 'Oops...',

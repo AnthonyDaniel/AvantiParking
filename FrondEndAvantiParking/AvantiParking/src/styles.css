@@ -77,3 +77,46 @@
     color:#fff;
 }
 
+body {
+	padding-right: 0 !important;
+}
+
+input {
+	font-size: 12.8px;
+}
+
+label {
+	font-size: 12.8px;
+}
+
+.text {
+	font-size: 12.8px;
+	color: #777777;
+}
+
+.use100 {
+	height: 100%;
+}
+
+html {
+	height: 100%;
+  }
+  
+  body {
+	min-height: 100%;
+	position: relative;
+  }
+  
+  .main {
+	 min-height: 100%;
+	 padding-bottom: 55px;
+  }
+  
+  #footer {
+	position: absolute;
+	bottom: 0;
+  }
+
+  a{
+	cursor: pointer;
+  }
