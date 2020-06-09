@@ -219,7 +219,7 @@ public class Reserve_Controller {
 		if(_detail.getEnd_date_extend() != null) {
 			LocalDate endDate = _detail.getEnd_date_extend().toLocalDate();
 			//startDate = startDate.plusDays(1);//locale le quita un dia
-			endDate = endDate.plusDays(1);//locale le quita un dia
+			//endDate = endDate.plusDays(1);//locale le quita un dia - local host
 			//int startDay, endDay;
 			//LocalDate auxDate = startDate;
 			//startDay =startDate.getDayOfMonth();
